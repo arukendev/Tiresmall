@@ -121,13 +121,18 @@ $(function() {
 	}
 	
 	function addSearch() {
-		if ($('.second').css('display') == 'flex') {
-			$('.second').css('display', 'none');
-			$('.searchTireBtn').removeAttr("onclick");
-			$('.searchTireBtn').attr("onclick","searchTire()");
-		} else {
+		if ($('.second').css('display') == 'none') {
+			$('.second').slideDown();
 			$('.second').css('display','flex');
+			$('.searchTireBtn2').empty();
+			$('.searchTireBtn2').append('돌아가기');
 			$('.searchTireBtn').removeAttr("onclick");
-			$('.searchTireBtn').attr("onclick","searchTire2()")
-		}	
+			$('.searchTireBtn').attr("onclick","searchTire2()");
+		} else {
+			$('.second').slideUp();
+			$('.searchTireBtn2').empty();
+			$('.searchTireBtn2').append('앞뒤 타이어 사이즈가 다른 경우');
+			$('.searchTireBtn').removeAttr("onclick");
+			$('.searchTireBtn').attr("onclick","searchTire()")
+		}
 	}

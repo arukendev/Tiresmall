@@ -1,5 +1,9 @@
 package com.tireshoppingmall.home.auth;
 
+import java.util.List;
+
+import com.tireshoppingmall.home.admin.order.OrderDTO;
+
 public interface MemberMapper {
 
 	int regMember(MemberDTO mDTO);
@@ -13,6 +17,8 @@ public interface MemberMapper {
 	AuthUserDTO getSocialMember(String socialID);
 
 	int regMemberSocial(MemberDTO mDTO);
+
+	List<OrderDTO> getMyOrder(AuthUserDTO aDTO);
 
 
 }

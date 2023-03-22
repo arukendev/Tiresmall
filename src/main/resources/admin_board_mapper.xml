@@ -5,14 +5,14 @@
 	<!-- Notice mapper  -->
 	
 	<!-- Notice 전체 조회  -->
-	<select id="getAllNotice" resultType="com.tireshoppingmall.home.admin.board.NoticeDTO">
+	<!-- <select id="getAllNotice" resultType="com.tireshoppingmall.home.admin.board.NoticeDTO">
 		select * from notice order by n_no
-	</select>
+	</select> -->
 
 	<!-- Notice 검색 전체 조회  -->
-	<select id="searchAllNotice" parameterType="com.tireshoppingmall.home.admin.board.SearchDTO" resultType="com.tireshoppingmall.home.admin.board.NoticeDTO">
+	<!-- <select id="searchAllNotice" parameterType="com.tireshoppingmall.home.admin.board.SearchDTO" resultType="com.tireshoppingmall.home.admin.board.NoticeDTO">
 		select * from notice where n_title like '%'|| #{titleInput} ||'%' and n_sortation like '%'||#{selectOption}||'%' order by n_no
-	</select>
+	</select> -->
 	
 	<!-- Notice 등록  -->
 	<insert id="regNotice" parameterType="com.tireshoppingmall.home.admin.board.NoticeDTO">
@@ -58,14 +58,14 @@
 	
 	<!-- FAQ mapper  -->
 	
-	<select id="getAllFaq" resultType="com.tireshoppingmall.home.admin.board.FaqDTO">
+	<!-- <select id="getAllFaq" resultType="com.tireshoppingmall.home.admin.board.FaqDTO">
 		select * from faq order by f_no
-	</select>
+	</select> -->
 	
 	<!-- FAQ 검색 전체 조회  -->
-	<select id="searchAllFaq" parameterType="com.tireshoppingmall.home.admin.board.SearchDTO" resultType="com.tireshoppingmall.home.admin.board.FaqDTO">
+	<!-- <select id="searchAllFaq" parameterType="com.tireshoppingmall.home.admin.board.SearchDTO" resultType="com.tireshoppingmall.home.admin.board.FaqDTO">
 		select * from faq where f_title like '%'|| #{titleInput} ||'%' and f_sortation like '%'||#{selectOption}||'%' order by f_no
-	</select>
+	</select> -->
 	
 	<!-- FAQ 등록  -->
 	<insert id="regFaq" parameterType="com.tireshoppingmall.home.admin.board.FaqDTO">
@@ -119,8 +119,11 @@
 	
 	<!-- QNA 전체 조회 -->
 	<select id="getAllQna" resultType="com.tireshoppingmall.home.admin.board.QnaDTO">
-		select q_no, q_title, q_txt, q_date, q_id, q_reply_has, a_id, a_name
-		from qna, auth where q_id = a_id order by q_no
+		select q_no, q_title, q_txt, q_date, q_u_no, q_reply_has, u_id, i_name, au.u_no
+		from qna q, auth_user au, auth_userinfo aui
+		where q.q_u_no = au.u_no
+		and au.u_no = aui.u_no
+		order by q_no
 	</select>
 
 	<!-- QNA 부분 검색-->
@@ -157,23 +160,23 @@
 	<!-- QNA 페이징 (faq 갯수 카운트) -->
 	<select id="getQnaCount" resultType="int">
 		select count(*)
-		from qna, auth
-		where a_id = q_id
+		from qna q, auth_user au, auth_userinfo aui
+		where q.q_u_no = au.u_no and au.u_no = aui.u_no
 		and q_title like '%'||#{titleInput}||'%'
-        and q_id like '%'||#{idInput}||'%'
-        and a_name like '%'||#{nameInput}||'%'
+        and u_id like '%'||#{idInput}||'%'
+        and i_name like '%'||#{nameInput}||'%'
 	</select>
 	
 	<!-- QNA 페이징-->
 	<select id="getQna" resultType="com.tireshoppingmall.home.admin.board.QnaDTO">
 		select * from
-        (select rownum as rn, q_no, q_id, q_title, q_txt, q_date, q_reply_has, a_id, a_name
-        from(select * from qna q, auth a where q.q_id = a.a_id and
+        (select rownum as rn, q_no, q_u_no, q_title, q_txt, q_date, q_reply_has, u_id, i_name
+        from(select * from qna q, auth_user au, auth_userinfo aui where q.q_u_no = au.u_no and au.u_no = aui.u_no and
        		<if test="nameInput != ''">
-         	  a.a_name = #{nameInput} and
+         	  aui.i_name = #{nameInput} and
 			</if>
 			<if test="idInput != ''">	
-          	  q.q_id = #{idInput} and
+          	  au.u_id = #{idInput} and
             </if>
            	  q.q_title like '%'||#{titleInput}||'%' order by q_no))
         where rn &gt;= #{start} and rn &lt;= #{end}

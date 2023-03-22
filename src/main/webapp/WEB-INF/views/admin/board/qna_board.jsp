@@ -106,8 +106,8 @@
 									<td class="td_c1">${status.count }
 										<input type="hidden" value="${q.q_no }">
 									</td>
-									<td class="td_c2">${q.a_name }</td>
-									<td class="td_c3">${q.q_id }</td>
+									<td class="td_c2">${q.i_name }</td>
+									<td class="td_c3">${q.u_id }</td>
 									<td class="td_c4">${q.q_title }</td>
 									<td class="td_c5"><fmt:formatDate
 											pattern="yyyy-MM-dd HH:mm:ss" value="${q.q_date }" /></td>

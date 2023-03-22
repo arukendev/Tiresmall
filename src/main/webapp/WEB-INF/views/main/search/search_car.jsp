@@ -78,6 +78,7 @@ pageEncoding="UTF-8"%>
 				</div>
 			</div>
 		</div>
+		<!-- 전륜 후륜 사이즈 다를시 버튼 클릭 시 나옴 -->
 		<div class="searchConditionWrapper second">
 			<div class="conditionItemBox">
 				<div class="conditionSubtitle">단면폭</div>
@@ -145,13 +146,16 @@ pageEncoding="UTF-8"%>
 		<button class="searchTireBtn2" type="button" onclick="addSearch()">앞뒤 타이어 사이즈가 다른 경우</button>
 	</div>
 	
+	<!-- 검색결과 Title -->
 	<div class="searchResultContainer">
 		<div class="searchResultTitle">검색 결과</div>
 		<hr style="margin-bottom: 50px;">
 	</div>
 	
+	<!-- 검색 결과가 없을 경우 -->
 	<div class="tire-search-fail" style="display: none;">검색된 제품이 없습니다.</div>
 	
+	<!-- 검색결과가 있을 경우 복사 될 태그 -->
 	<div class="tire-item">
 		<div class="tire-img">타이어이미지</div>
 		<div class="tire-info">
@@ -166,6 +170,7 @@ pageEncoding="UTF-8"%>
 		</div>
 	</div>
 	
+	<!-- 검색된 결과를 담을 DIV -->
 	<div class="tire-items">
 			
 	</div>

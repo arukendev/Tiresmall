@@ -47,8 +47,8 @@ public class ProductController {
 
 	@RequestMapping(value = "/product.brand.type", method = RequestMethod.GET)
 	public String goProductType(HttpServletRequest request, @RequestParam String b, @RequestParam int p,
-			@RequestParam String t, @RequestParam String tv) {
-		pDAO.searchProductGroup(b, t, tv, request);
+			@RequestParam String t) {
+		pDAO.searchProductGroup(b, t, request);
 		pDAO.getProductGroup(p, request);
 		request.setAttribute("content", "main/product/product.jsp");
 		return "index";
@@ -56,8 +56,8 @@ public class ProductController {
 
 	@RequestMapping(value = "/product.brand.type.ajax", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public @ResponseBody ProductGroups goProductTypeAjax(HttpServletRequest request, @RequestParam String b,
-			@RequestParam int p, @RequestParam String t, @RequestParam String tv) {
-		pDAO.searchProductGroup(b, t, tv, request);
+			@RequestParam int p, @RequestParam String t) {
+		pDAO.searchProductGroup(b, t, request);
 		return pDAO.getProductGroupJson(p, request);
 	}
 

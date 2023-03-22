@@ -214,4 +214,15 @@ public class MainOrderDTO {
 	public void setO_request(String o_request) {
 		this.o_request = o_request;
 	}
+
+	@Override
+	public String toString() {
+		return "MainOrderDTO [o_no=" + o_no + ", o_sortation=" + o_sortation + ", o_ordernumber=" + o_ordernumber
+				+ ", o_orderdate=" + o_orderdate + ", o_ordername=" + o_ordername + ", o_product=" + o_product
+				+ ", o_price=" + o_price + ", o_paymethod=" + o_paymethod + ", o_deliverymethod=" + o_deliverymethod
+				+ ", o_step=" + o_step + ", o_storeshop=" + o_storeshop + ", o_tireinstalldate=" + o_tireinstalldate
+				+ ", o_name=" + o_name + ", o_phone=" + o_phone + ", o_email=" + o_email + ", o_caryear=" + o_caryear
+				+ ", o_carbrand=" + o_carbrand + ", o_carname=" + o_carname + ", o_carnumber=" + o_carnumber
+				+ ", o_request=" + o_request + "]";
+	}
 }

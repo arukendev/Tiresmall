@@ -47,56 +47,50 @@ public class FaqDAO {
 			search.setStart(new BigDecimal(start));
 			search.setEnd(new BigDecimal(end));
 			faqCount = allFaqCount;
-			System.out.println("1-------" + allFaqCount);
+			System.out.println("null이면" + allFaqCount);
 		}else {
 			search.setStart(new BigDecimal(start));
 			search.setEnd(new BigDecimal(end));
 			faqCount = ss.getMapper(AdminBoardMapper.class).getFaqCount(search);
 		}
 		List<FaqDTO> faq = ss.getMapper(AdminBoardMapper.class).getFaq(search);
-		System.out.println(count);
-		System.out.println(allFaqCount);
 		int pageCount = (int) Math.ceil(faqCount / (double) count);
-		System.out.println(faqCount);
-		System.out.println(pageCount);
 	
 		req.setAttribute("pageCount", pageCount);
 		req.setAttribute("faqs", faq);
 		req.setAttribute("curPage", pageNo);
-		
-		System.out.println(req);
 	}
 	
-/*	public void getAllFaq(HttpServletRequest req) {
+	/*	public void getAllFaq(HttpServletRequest req) {
 
 		List<FaqDTO> faq = ss.getMapper(AdminBoardMapper.class).getAllFaq();
 		req.setAttribute("faq", faq);
 
 	}*/
 
-	public void searchFaq(HttpServletRequest req, SearchDTO sDTO) {
+	/*public void searchFaq(HttpServletRequest req, SearchDTO sDTO) {
 		String[] option = { "", "주문/배송", "상품관련", "장착관련", "반품/교환/취소","회원" };
 		sDTO.setSelectOption(option[Integer.parseInt(req.getParameter("selectOption"))]);
 		List<FaqDTO> faq = ss.getMapper(AdminBoardMapper.class).searchAllFaq(sDTO);
 		req.setAttribute("faqs", faq);
 		
-	}
+	}*/
 
 	public void regFaq(HttpServletRequest req, FaqDTO faqDTO) {
 		if(ss.getMapper(AdminBoardMapper.class).regFaq(faqDTO) == 1) {
 			allFaqCount++;
-			req.setAttribute("regR", "등록 성공");
+			System.out.println("등록 성공");
 		}else {
-			req.setAttribute("regR", "등록 실패");
+			System.err.println("등록 실패");
 		}
 		
 	}
 
 	public void updateFaq(HttpServletRequest req, FaqDTO faqDTO) {
 		if(ss.getMapper(AdminBoardMapper.class).updateFaq(faqDTO) >= 1) {
-			req.setAttribute("updateR", "업데이트 성공");
+			System.out.println("업뎃 성공");
 		}else {
-			req.setAttribute("updateR", "업데이트 실패");
+			System.err.println("없뎃 실패");
 		}
 	}
 
@@ -109,5 +103,8 @@ public class FaqDAO {
 		}
 	}
 
+	public void searchFaq(SearchDTO sDTO, HttpServletRequest req) {
+		req.getSession().setAttribute("searchDTO", sDTO);
+	}
 	
 }

@@ -76,6 +76,7 @@ body {
 	padding-bottom: 60px;
 	width: 500px;
 	justify-content: flex-end;
+	padding-left: 100px;
 }
 #profileInfo_btns button{
 	
@@ -84,11 +85,11 @@ body {
 	width: 100px;
 	height: 20px;
 	background: red;
-	border-radius: 10px;
 	color: white;
 	box-shadow: 2px 2px 2px 2px gray;
 	border: none;
 	cursor:pointer;
+	margin-left: 10px;
 	
 }
 

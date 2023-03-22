@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tireshoppingmall.home.order.MainOrderMapper">
+
+	<insert id="setOrder">
+		insert into product_order values(
+		    o_no_seq.nextval,
+		    #{o_sortation},
+		    #{o_ordernumber},
+		    sysdate,
+		    #{o_ordername},
+		    #{o_product},
+		    #{o_price},
+		    #{o_paymethod},
+		    #{o_deliverymethod},
+		    #{o_step},
+		    #{o_storeshop},
+		    #{o_tireinstalldate},
+		    #{o_name},
+		    #{o_phone},
+		    #{o_email},
+		    #{o_caryear},
+		    #{o_carbrand},
+		    #{o_carname},
+		    #{o_carnumber},
+		    #{o_request}
+		)
+	</insert>
+	
+</mapper>

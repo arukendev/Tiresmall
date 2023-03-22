@@ -1,5 +1,5 @@
 $(function(){
-	checkForHash();
+//	checkForHash();
 	loadPrices(); // 가격 최소, 최대 가져오는 함수 호출
 	
 	// radio 체크
@@ -85,12 +85,8 @@ $(function(){
 	
 }) // ready 끝
 function getProductJSON(page){
-		var paramTv = 1;
-		if(getParameter('tv')==2){
-			paramTv=2;
-		}
-		$.getJSON("product.brand.type.ajax?b="+getParameter('b')+"&p="+page+"&t="+$('input[name="carTypeA"]:checked').val()+'&tv='+paramTv,function(j){
-			console.log("product.brand.type.ajax?b="+getParameter('b')+"&p="+page+"&t="+$('input[name="carTypeA"]:checked').val()+'&tv='+paramTv)
+		
+		$.getJSON("product.brand.type.ajax?b="+getParameter('b')+"&p="+page+"&t="+$('input[name="carTypeA"]:checked').val(),function(j){
 			console.log(JSON.stringify(j));
 			
 //			$('#product_search span').eq(0).html('총 '+j.pGroups.length+'개 상품이 검색되었습니다.');
@@ -162,17 +158,18 @@ function getProductJSON(page){
 				html+='</div><div></div></div>'
 				$('#product_paging').html(html)
 				
-				let hashUrl = '';
-			    if(document.URL.indexOf('#') > -1){
-			        let url = document.URL.substring(0, document.URL.indexOf('#'))
-			        hashUrl = url + '#'+getParameter('b')+'_1_'+$('input[name="carTypeA"]:checked').val()+'_'+getParameter('tv');
-			    } else {
-			        hashUrl = document.URL += '#'+getParameter('b')+'_1_'+$('input[name="carTypeA"]:checked').val()+'_'+getParameter('tv');
-			    }
-			    if(getParameter('tv')==''){
-			    	hashUrl+='1';
-			    }
-			    window.location.replace(hashUrl);
+//				let hashUrl = '';
+//			    if(document.URL.indexOf('#') > -1){
+//			        let url = document.URL.substring(0, document.URL.indexOf('#'))
+//			        hashUrl = url + '#'+getParameter('b')+'_1_'+$('input[name="carTypeA"]:checked').val();
+//			    } else {
+//			        hashUrl = document.URL += '#'+getParameter('b')+'_1_'+$('input[name="carTypeA"]:checked').val();
+//			    }
+				 if(document.URL.indexOf('#') > -1){
+					 window.location.replace(location.href.substr(0,location.href.indexOf('#'))+'#type');
+				 } else{
+					 window.location.replace(location.href+'#type');
+				 }
 				
 		
 //			if(curPage!=1){
@@ -214,15 +211,17 @@ function loadPrices(){
 
 // paging 함수
 function movePage(pageNumber){
-	location.href=location.href.substring(0,location.href.lastIndexOf('p')+2) + pageNumber + location.href.substring(location.href.lastIndexOf('p')+3)
+	var urlBeforeParam = location.href.substr(0,location.href.lastIndexOf('?')+1);
+	var paramsOfUrl = location.href.substr(location.href.lastIndexOf('?')+1);
+	var params = new URLSearchParams(paramsOfUrl);
+	params.set('p', pageNumber)
+	paramsOfUrl=params.toString();
+	location.href=urlBeforeParam+paramsOfUrl
 }
 
 // type별 조회시 paging하는 함수 
 function movePageType(pageNumber){
-	if(getParameter('tv')==2){
-		location.href='product.brand.type?b='+getParameter('b')+'&p='+pageNumber+'&t='+$('input[name="carTypeA"]:checked').val()+'&tv=2'
-	}
-	location.href='product.brand.type?b='+getParameter('b')+'&p='+pageNumber+'&t='+$('input[name="carTypeA"]:checked').val()+'&tv=1'
+	location.href='product.brand.type?b='+getParameter('b')+'&p='+pageNumber+'&t='+$('input[name="carTypeA"]:checked').val()
 }
 
 // url에서 파라미터 이름으로 파라미터 값 가져오는 함수
@@ -249,8 +248,7 @@ function checkForHash() {
 		if(url.indexOf('brand.type')==-1){
 			url+='.type';
 		}
-		url+='?b='+HashLocationName.split('_')[0]+
-		'&p='+HashLocationName.split('_')[1]+'&t='+HashLocationName.split('_')[2]+'&tv='+HashLocationName.split('_')[3]
+		url+='?b='+HashLocationName.split('_')[0]+'&p='+HashLocationName.split('_')[1]+'&t='+HashLocationName.split('_')[2]
 		location.href=url;
 	} 
 }

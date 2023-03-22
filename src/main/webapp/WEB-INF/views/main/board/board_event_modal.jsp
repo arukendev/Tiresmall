@@ -20,6 +20,7 @@
 						</div>
 						<form class="board_event_modal_buttons" method="dialog">
 							<button onclick="clickToSetBoardEventModalCookie();">오늘은 그만 보기</button>
+							<div></div>
 							<button>닫기</button>
 						</form>
 					</div>

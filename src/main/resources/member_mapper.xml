@@ -7,7 +7,7 @@
 	into auth_user values(auth_user_seq.nextval, #{u_id}, 1) 
 	into auth_password values(auth_password_seq.nextval,auth_user_seq.nextval , 'test' , #{pw_password}, sysdate)
 	into auth_userinfo values(auth_userinfo_seq.nextval,auth_user_seq.nextval , #{i_name} ,#{i_phoneNum},sysdate, 1,#{u_id}
-	,#{i_carbrand, jdbcType=VARCHAR},#{i_carname, jdbcType=VARCHAR},#{i_caryear}
+	,#{i_carbrand, jdbcType=VARCHAR},#{i_carname, jdbcType=VARCHAR},#{i_caryear
 	, jdbcType=VARCHAR},#{i_carnum, jdbcType=VARCHAR}) 
 	SELECT * FROM DUAL
 </insert>
@@ -44,5 +44,11 @@
 <select id="checkIDkko" resultType="int">
 	select count(*) from auth_user where u_id=#{kakaoID}
 </select>
+
+<select id="getMyOrder" resultType="com.tireshoppingmall.home.admin.order.OrderDTO">
+	select * from product_order where O_SORTATION=#{u_no}
+</select>
+
+
 
 </mapper>

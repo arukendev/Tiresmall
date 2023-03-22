@@ -242,7 +242,7 @@ public class AuthController {
         	mDAO.loginCheck(req);   
         	model.addAttribute("content", "main/home/home.jsp");
             return "redirect:/"; //본인 원하는 경로 설정
-		}else {
+		} else {
 			//회원가입 성공하면
 			if (lsDAO.regMemberSocial(req,mDTO)) {
 				lsDAO.login(id,req);
@@ -252,32 +252,36 @@ public class AuthController {
 			}
 			req.setAttribute("content", "main/home/home.jsp");
 			return "redirect:/"; //본인 원하는 경로 설정}
-			
 		}
-        
     }
 
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String myProfileGo(HttpServletRequest req,Model model) {
+	public String myProfileGo(HttpServletRequest req,Model model,AuthUserDTO aDTO) {
     	model.addAttribute("content", "main/auth/myProfile.jsp");
 		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 주문 조회");
 		model.addAttribute("board_whereAmITwo", "주문 조회");
 		model.addAttribute("profile_contents", "myOrderList.jsp");
 		
+		aDTO = (AuthUserDTO) req.getSession().getAttribute("loginMember");
+		mDAO.getMyOrder(req,aDTO);
+		
 		return "index";
 	}
     @RequestMapping(value = "/profile.myInfo", method = RequestMethod.GET)
-    public String myProfileInfoGo(HttpServletRequest req,Model model) {
+    public String myProfileInfoGo(HttpServletRequest req,Model model,AuthUserDTO aDTO) {
     	
     	model.addAttribute("content", "main/auth/myProfile.jsp");
     	model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> myProfile");
     	model.addAttribute("board_whereAmITwo", "나의 회원정보");
+    	
+    	aDTO = (AuthUserDTO) req.getSession().getAttribute("loginMember");
+    	model.addAttribute("personalInfomation",aDTO);
     	model.addAttribute("profile_contents", "profileInfo.jsp");
     	
     	return "index";
     }
-
+    
 
 
 

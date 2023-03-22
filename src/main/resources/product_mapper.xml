@@ -5,16 +5,9 @@
 		select count(*)
         from tire_group, tire_brand
         where tg_brand like '%'||#{search}||'%'
-        <if test="search3 != ''">
-        	<choose>
-        		<when test="search2 != ''">
-	        		and tg_${search2} &gt;= #{search3}
-        		</when>
-        		<otherwise>
-        			and (tg_sedan &gt;= #{search3} or tg_suv &gt;= #{search3})
-        		</otherwise>
-       		</choose>
-        </if>
+       		<if test="search2 != ''">
+        		and tg_${search2} = 1
+       		</if>
         and tg_brand = tb_name
         order by tb_order, tg_id
 	</select>
@@ -25,16 +18,9 @@
                 from (
                     select * from tire_group, tire_brand
                 where tg_brand like '%'||#{search}||'%'
-                <if test="search3 != ''">
-	                <choose>
-		        		<when test="search2 != ''">
-			        		and tg_${search2} &gt;= #{search3}
-		        		</when>
-		        		<otherwise>
-		        			and (tg_sedan &gt;= #{search3} or tg_suv &gt;= #{search3})
-		        		</otherwise>
-	        		</choose>
-        		</if>
+	        		<if test="search2 != ''">
+		        		and tg_${search2} = 1
+	        		</if>
                 and tg_brand = tb_name
         		order by tb_order, tg_id
             )

@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 public class ProductSelector {
 	private String search;
 	private String search2;
-	private String search3;
 	private BigDecimal start;
 	private BigDecimal end;
 	
@@ -14,11 +13,10 @@ public class ProductSelector {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductSelector(String search, String search2, String search3, BigDecimal start, BigDecimal end) {
+	public ProductSelector(String search, String search2, BigDecimal start, BigDecimal end) {
 		super();
 		this.search = search;
 		this.search2 = search2;
-		this.search3 = search3;
 		this.start = start;
 		this.end = end;
 	}
@@ -37,14 +35,6 @@ public class ProductSelector {
 
 	public void setSearch2(String search2) {
 		this.search2 = search2;
-	}
-
-	public String getSearch3() {
-		return search3;
-	}
-
-	public void setSearch3(String search3) {
-		this.search3 = search3;
 	}
 
 	public BigDecimal getStart() {

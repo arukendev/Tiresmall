@@ -64,6 +64,7 @@
 				<beans:value>classpath:product_mapper.xml</beans:value>
 				<beans:value>classpath:search_mapper.xml</beans:value>
 				<beans:value>classpath:store_mapper.xml</beans:value>
+				<beans:value>classpath:order_mapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

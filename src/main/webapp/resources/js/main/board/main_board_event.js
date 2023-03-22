@@ -1,3 +1,9 @@
+const BoardEventModalPrev = document.querySelectorAll(".swiper-slide-prev");
+// 모두 translate3d+0+0+100px&rotateY-50deg
+
+const BoardEventModalNext = document.querySelectorAll(".swiper-slide-next");
+// 모두 translate3d+0+0-100px&rotateY+50deg
+
 function setBoardEventModalCookie(name, value, expiredays) { 
 	var todayDate = new Date(); 
 	todayDate.setDate(todayDate.getDate() + expiredays);

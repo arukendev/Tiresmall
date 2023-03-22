@@ -135,6 +135,12 @@ textarea:focus{
 	border: none;
 }
 
+.noticeBtn:hover{
+	color: rgb(50, 60, 70);
+	background-color: white;
+	border: 1px solid black;
+}
+
 .color-2{
 	background-color: #3c8dbc;
 }
@@ -215,8 +221,6 @@ textarea:focus{
     background-color: white;
     padding-top: 10px;
     padding-bottom: 10px;
-    position: fixed;
-    bottom: 0px;
 }
 
 #paging-box a{

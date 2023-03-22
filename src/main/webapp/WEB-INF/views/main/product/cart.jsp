@@ -96,8 +96,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                   <input type="hidden" class="cart_ti_pricegp" value="${tire.ti_pricegp}">
                   <input type="hidden" class="cart_ti_pricefac" value="${tire.ti_pricefac}">
                   <input type="hidden" class="cart_ti_marking" value="${tire.ti_marking}">
-                  <input type="hidden" class="cart_final_price" value="${tire.ti_stock * tire.ti_pricegp}" />
-                  <input type="hidden" class="cart_finalFac_price" value="${tire.ti_stock * tire.ti_pricefac}"/>
+                  <input type="hidden" class="cart_final_price" value="${tire.ti_allpricegp}" />
+                  <input type="hidden" class="cart_finalFac_price" value="${tire.ti_allpricefac}"/>
                 </div>
               </c:forEach>
             </div>

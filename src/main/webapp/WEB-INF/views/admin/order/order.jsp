@@ -222,6 +222,8 @@
 								<td class="td_c3">${o.o_ordernumber }</td>
 								<td class="td_c4"><fmt:formatDate
 										pattern="yyyy-MM-dd HH:mm:ss" value="${o.o_orderdate }" /></td>
+								<td class="td_c00" style="display: none"><fmt:formatDate
+										pattern="yyyy-MM-dd" value="${o.o_tireinstalldate }" /></td>
 								<td class="td_c5">${o.o_name }</td>
 								<td class="td_c6">${o.o_phone }</td>
 								<td class="td_c7">${o.o_ordername }</td>
