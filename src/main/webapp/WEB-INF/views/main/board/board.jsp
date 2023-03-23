@@ -39,7 +39,7 @@
 			<br>
 			
 			<div>
-				<a class="board_sideMenuList board_notice" href="board.notice">공지사항</a>
+				<a class="board_sideMenuList board_notice" href="board.notice.read">공지사항</a>
 			</div>
 			<div>
 				<a class="board_sideMenuList board_event" href="board.event">이벤트</a>

@@ -17,7 +17,7 @@
 				    <div class="swiper-slide">
 						<div class="board_event_modal_card">
 							<div class="board_event_modal_image">
-								<a href="#"><img src="resources/web/main/board/${e.e_mainimg }"/></a>
+								<a href="#"><img src="resources/upload-event/${e.e_mainimg }"/></a>
 							</div>
 							<form class="board_event_modal_buttons" method="dialog">
 								<button onclick="clickToSetBoardEventModalCookie();">오늘은 그만 보기</button>

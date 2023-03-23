@@ -14,6 +14,8 @@
 .board_qna_home > div:nth-child(1) {
 	grid-area: qh_home;
 	
+	padding-left: 15px;
+	
 	font-weight: 700;
     font-size: 32px;
     line-height: 44px;
@@ -21,6 +23,8 @@
 }
 .board_qna_home > div:nth-child(2) {
 	grid-area: qh_faq;
+	
+	padding-left: 15px;
 	
 	display: flex;
 }
@@ -36,6 +40,21 @@
     line-height: 16px;
     background: rgb(40, 42, 46);
     color: rgb(255, 255, 255);
+    margin-right: 5px;
+}
+.board_qna_home > div:nth-child(2) > div:hover {
+	display: inline-flex;
+    align-items: center;
+    border-radius: 100px;
+    gap: 4px;
+    white-space: nowrap;
+    padding: 8px 16px;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 16px;
+    background: #ab1e21;
+    color: rgb(255, 255, 255);
+    margin-right: 5px;
 }
 .board_qna_home > div:nth-child(3) {
 	grid-area: qh_qna;
@@ -44,6 +63,10 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	
+	/*
+	*/
+	margin-left: 35px;
 	
 	width: 160px;
     height: 160px;
@@ -66,6 +89,10 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	
+	/*
+	*/
+	margin-left: 35px;
 	
 	float: right;
 	width: 160px;

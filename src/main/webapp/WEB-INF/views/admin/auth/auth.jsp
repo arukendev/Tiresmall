@@ -156,24 +156,24 @@
 					</tr>
 
 				</c:if>
-
+				
 				<c:forEach items="${manyAuth }" var="a" varStatus="status">
 					<tr id="manyAuth_content">
 						<td class="auth_table_td">${status.count + (curPage-1)*count}</td>
-						<td class="auth_table_td">${a.a_Sortation }</td>
-						<td class="auth_table_td">${a.a_id }</td>
-						<td class="auth_table_td">${a.a_name }</td>
-						<td class="auth_table_td">${a.a_phone }</td>
+						<td class="auth_table_td">${a.i_grade }</td>
+						<td class="auth_table_td">${a.u_id }</td>
+						<td class="auth_table_td">${a.i_name }</td>
+						<td class="auth_table_td">${a.i_phoneNum }</td>
 						<td class="auth_table_td">${a.mc_number }<c:if
 								test="${empty a.mc_number}">차 번호 없음</c:if></td>
 						<td class="auth_table_td"><fmt:formatDate
-								value="${a.a_date }" pattern="yyyy-MM-dd" /></td>
+								value="${a.i_newDate }" pattern="yyyy-MM-dd" /></td>
 						<td id="auth_Btn" class="auth_table_td">
-							<button class="admin_notPrintBTN auth_update"
+							<%-- <button class="admin_notPrintBTN auth_update"
 								onclick="updateauth('${a.a_id }','${a.a_Sortation }','${a.a_name }','${a.a_phone }','${a.a_address }'
 												,'${a.mc_number }','${a.mc_model }','${a.mc_year }')">
-								수정</button>
-							<button type="button" onclick="deleteAuth('${a.a_id }')" class="admin_deleteBTN">삭제</button>
+								수정</button> --%>
+							<button type="button" onclick="deleteAuth('${a.u_id }')" class="admin_deleteBTN">삭제</button>
 						</td>
 					</tr>
 				</c:forEach>

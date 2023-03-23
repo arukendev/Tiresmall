@@ -29,14 +29,14 @@
 
 <select id="getMember" resultType="com.tireshoppingmall.home.auth.AuthUserDTO">
 	select *
-	from auth_user,auth_userinfo 
-	where auth_user.u_no=auth_userinfo.u_no 
+	from auth_user,auth_userinfo
+	where auth_user.u_no=auth_userinfo.i_no
 	and u_id=#{u_id}
 </select>
 <select id="getSocialMember" resultType="com.tireshoppingmall.home.auth.AuthUserDTO">
 	select *
 	from auth_user,auth_userinfo 
-	where auth_user.u_no=auth_userinfo.u_no 
+	where auth_user.u_no=auth_userinfo.i_no
 	and u_id=#{socialID}
 </select>
 

@@ -87,6 +87,10 @@
 	<beans:bean id="bqco" class="com.tireshoppingmall.home.board.BoardQnaCountOption">
 		<beans:constructor-arg value="5"></beans:constructor-arg>
 	</beans:bean>
+	<!-- board.BoardNotice페이징 -->
+	<beans:bean id="bnco" class="com.tireshoppingmall.home.board.BoardNoticeCountOption">
+		<beans:constructor-arg value="5"></beans:constructor-arg>
+	</beans:bean>
 
 	<!-- Notice 몇개씩 보여줄지 -->
 	<beans:bean id="no"

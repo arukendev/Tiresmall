@@ -14,7 +14,6 @@ import com.tireshoppingmall.home.auth.MemberDAO;
 
 @Controller
 public class BoardController {
-	
 	@Autowired
 	private BoardFaqDAO bfDAO;
 	
@@ -23,6 +22,9 @@ public class BoardController {
 	
 	@Autowired
 	private BoardQnaDAO bqDAO;
+	
+	@Autowired
+	private BoardNoticeDAO bnDAO;
 	
 	@RequestMapping(value = "/board.faq.read", method = RequestMethod.GET)
 	public String boardFaqRead(HttpServletRequest req, Model model) {
@@ -157,14 +159,39 @@ public class BoardController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/board.notice", method = RequestMethod.GET)
-	public String boardNotice(Model model) {
+	/*
+	@RequestMapping(value = "/board.notice.read", method = RequestMethod.GET)
+	public String boardNoticeRead(HttpServletRequest req, Model model) {
+		bnDAO.readNotice(1, req);
+		
 		model.addAttribute("content", "main/board/board.jsp");
 		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 공지사항");
 		model.addAttribute("board_whereAmITwo", "공지사항");
-		model.addAttribute("board_contents", "board_notice.jsp");
+		model.addAttribute("board_contents", "board_notice_read.jsp");
 		return "index";
 	}
+	@RequestMapping(value = "/board.notice.read.paging", method = RequestMethod.GET)
+	public String boardNoticeReadPaging(@RequestParam int pn, HttpServletRequest req, Model model) {
+		bnDAO.readNotice(pn, req);
+		
+		model.addAttribute("content", "main/board/board.jsp");
+		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 공지사항");
+		model.addAttribute("board_whereAmITwo", "공지사항");
+		model.addAttribute("board_contents", "board_notice_read.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/board.notice.readdetail", method = RequestMethod.GET)
+	public String boardNoticeReaddetail(BoardQnaDTO bq, HttpServletRequest req, Model model) {
+		bnDAO.readdetailNotice(bq, req);
+		
+		model.addAttribute("content", "main/board/board.jsp");
+		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 공지사항");
+		model.addAttribute("board_whereAmITwo", "공지사항");
+		model.addAttribute("board_contents", "board_notice_readdetail.jsp");
+		return "index";
+	}
+	 * */
 	
 	@RequestMapping(value = "/board.event", method = RequestMethod.GET)
 	public String boardEvent(Model model) {

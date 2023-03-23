@@ -1,7 +1,5 @@
 package com.tireshoppingmall.home.board;
 
-import javax.servlet.http.HttpServletRequest;
-
 public class BoardQnaCountOption {
 	private int qnaCountPerPage;
 	public BoardQnaCountOption() {
@@ -17,8 +15,5 @@ public class BoardQnaCountOption {
 	}
 	public void setQnaCountPerPage(int qnaCountPerPage) {
 		this.qnaCountPerPage = qnaCountPerPage;
-	}
-	public static void clearQnaSearch(HttpServletRequest req) {
-		req.getSession().setAttribute("QnaSearch", null);
 	}
 }

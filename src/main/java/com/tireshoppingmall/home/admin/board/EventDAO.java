@@ -190,6 +190,7 @@ public class EventDAO {
 		
 		if(ss.getMapper(AdminBoardMapper.class).eventReg(eventDto)==1) {
 			System.out.println("등록성공");
+			allEventCount++;
 		}else {
 			File mainFile = new File(path + saveFileName + extension);
 			if(mainFile.exists()) {
