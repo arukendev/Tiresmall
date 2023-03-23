@@ -81,22 +81,12 @@
 			ref="sqlSessionFactory" />
 	</beans:bean>
 
-<<<<<<< HEAD
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10485760" />
 		<beans:property name="defaultEncoding" value="utf-8" />
 	</beans:bean>
 
-	<!-- Ask 몇개씩 보여줄지 -->
-	<beans:bean id="aco"
-		class="com.tireshoppingmall.home.board.AskCountOption">
-=======
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-      <beans:property name="maxUploadSize" value="52428800" />
-      <beans:property name="defaultEncoding" value="utf-8" />
-	</beans:bean>
-	
 	<!-- board.BoardFaq페이징 -->
 	<beans:bean id="bfco" class="com.tireshoppingmall.home.board.BoardFaqCountOption">
 		<beans:constructor-arg value="7"></beans:constructor-arg>
@@ -107,7 +97,6 @@
 	</beans:bean>
 	<!-- board.BoardNotice페이징 -->
 	<beans:bean id="bnco" class="com.tireshoppingmall.home.board.BoardNoticeCountOption">
->>>>>>> origin/재호
 		<beans:constructor-arg value="5"></beans:constructor-arg>
 	</beans:bean>
 
@@ -167,7 +156,6 @@
 		class="com.tireshoppingmall.home.admin.car.CarOption">
 		<beans:constructor-arg value="10"></beans:constructor-arg>
 	</beans:bean>
-<<<<<<< HEAD
 	<!-- navermail설정 -->
 	<beans:bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
@@ -189,15 +177,12 @@
 			</beans:props>
 		</beans:property>
 	</beans:bean>
-=======
 	
 	<!-- Event 몇개씩 보여줄지 -->
 	<beans:bean id="eo"
 		class="com.tireshoppingmall.home.admin.board.EventOption">
 		<beans:constructor-arg value="3"></beans:constructor-arg>
 	</beans:bean>
-
->>>>>>> origin/재호
 </beans:beans>
 
 
