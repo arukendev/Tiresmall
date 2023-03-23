@@ -79,8 +79,19 @@ function submitCheck(e) {
     payCarYearSelect.value === "" ||
     payCarBrandSelect.value === "" ||
     payCarNameSelect.value === "" ||
-    payCarNumInput.value === ""
+    payCarNumInput.value === "" ||
+    !phoneReg.test(e.target.value) ||
+    !emailReg.test(e.target.value) ||
+    !carNumReg.test(e.target.value)
   ) {
+    if (payDate.value === "") {
+      payDate.style.borderColor = "var(--red)";
+      document.querySelector(".pay_date_confirm").innerText =
+        "장착일을 입력해주세요";
+    } else {
+      payDate.style.borderColor = "#aaa";
+      document.querySelector(".pay_date_confirm").innerText = "";
+    }
     e.preventDefault();
   }
 }

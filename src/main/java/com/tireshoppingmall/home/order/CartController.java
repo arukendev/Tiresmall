@@ -42,7 +42,10 @@ public class CartController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/cart.pay", method = RequestMethod.POST)
-	public int directPay(CartDTO cDTO, HttpServletRequest req) {
+	public int directPay(ArrayList<CartDTO> cList, CartDTO cDTO, HttpServletRequest req) {
+		if (req.getSession().getAttribute("cartSession") == null) {
+			req.getSession().setAttribute("cartSession", cList);
+		}
 		return cDAO.directPay(cDTO, req);
 	}
 }

@@ -154,6 +154,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
               </div>
               <div>
                 <input type="date" name="o_tireinstalldate" class="pay_date" />
+                <span class="pay_date_confirm"></span>
               </div>
             </li>
           </ul>
@@ -192,6 +193,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                       name="o_phone"
                       value="${sessionScope.loginMember.i_phoneNum}"
                       class="pay_phone_input"
+                      placeholder="-을 제외하고 입력해주세요"
                     />
                     <span class="pay_phone_confirm"></span>
                   </div>
@@ -297,12 +299,15 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                   </div>
                   <div>
                     <select name="o_caryear">
+                      <option value="">연식</option>
                       <option value="2023">2023</option>
                     </select>
                     <select name="o_carbrand">
+                      <option value="">제조사</option>
                       <option value="현대">현대</option>
                     </select>
                     <select name="o_carname">
+                      <option value="">차종</option>
                       <option value="그랜절">그랜절</option>
                     </select>
                   </div>
