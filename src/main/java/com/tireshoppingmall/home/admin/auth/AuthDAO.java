@@ -45,7 +45,7 @@ public class AuthDAO {
 			paging = new AuthDTO();
 			paging.setU_id("");
 			paging.setI_name("");
-			paging.setMc_number("");
+			paging.setMc_number(null);
 			paging.setI_grade(0);
 			paging.setStart(new BigDecimal(start));
 			paging.setEnd(new BigDecimal(end));
