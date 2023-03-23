@@ -38,7 +38,7 @@ public class MemberDAO {
 	private SqlSession ss;
 	
 	public void regMember(HttpServletRequest req, MemberDTO mDTO) {
-
+		System.out.println("값-------"+mDTO.getI_carnum());
 		if(ss.getMapper(MemberMapper.class).regMember(mDTO)>=3) {
 			System.out.println("가입성공");
 			System.out.println(mDTO.getI_caryear());
@@ -49,18 +49,27 @@ public class MemberDAO {
 	}
 
 	public void login(MemberDTO mDTO, HttpServletRequest req) {
+		System.out.println("아디"+mDTO.getU_id());
+		System.out.println("비번"+mDTO.getPw_password());
+		//성공시 비밀번호 반환 실패시 널
+		String checkMemberInDB = ss.getMapper(MemberMapper.class).checkMember(mDTO);
 		
-		int checkMemberInDB = ss.getMapper(MemberMapper.class).checkMember(mDTO);//반환값이 1이면 입력한 값과 db 값이 일치
+		
 		System.out.println("0--------!!"+checkMemberInDB);
-		if (checkMemberInDB == 1) {
-			System.out.println("1--------!!"+checkMemberInDB);
-				AuthUserDTO member = ss.getMapper(MemberMapper.class).getMember(mDTO);
-				req.getSession().setAttribute("loginMember", member);
-				req.getSession().setMaxInactiveInterval(60 * 10);
+		if (checkMemberInDB != null ) {
+			System.out.println("-----------아이디 성공");
+				System.out.println("값이 뭘까"+mDTO.getI_carnum() +"이사이에");
+				if (checkMemberInDB.equals(mDTO.getPw_password())) {
+					System.out.println("비밀번호 성공");
+					AuthUserDTO member = ss.getMapper(MemberMapper.class).getMember(mDTO);
+					
+					req.getSession().setAttribute("loginMember", member);
+					req.getSession().setMaxInactiveInterval(60 * 10);
+				}
 			
 		} else {
 			req.setAttribute("resultMem", "Can not find user");
-			System.out.println("2--------!!"+checkMemberInDB);
+			System.out.println("2--------!!아이디 체크 실패");
 		}	
 	}
 

@@ -122,6 +122,11 @@ public class AuthController {
 			return "redirect: board.qna.check";
 		}
 		
+		
+		
+		
+		
+		
 	}
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logoutDo(MemberDTO mDTO, HttpServletRequest req) {
@@ -274,6 +279,7 @@ public class AuthController {
         
       //반환값이 1이면 기존 가입한 회원, 0이면 가입하지 않은 회원
         if (lsDAO.checkIdkko(id)==1) {
+        	System.out.println("로그인 성공");
         	lsDAO.login(id,req);
         	mDAO.loginCheck(req);   
         	model.addAttribute("content", "main/home/home.jsp");
@@ -312,6 +318,10 @@ public class AuthController {
     	model.addAttribute("board_whereAmITwo", "나의 회원정보");
     	
     	aDTO = (AuthUserDTO) req.getSession().getAttribute("loginMember");
+    	System.out.println(aDTO.getI_carbrand());
+    	System.out.println(aDTO.getI_carname());
+    	System.out.println(aDTO.getI_carnum());
+    	System.out.println(aDTO.getI_caryear());
     	model.addAttribute("personalInfomation",aDTO);
     	model.addAttribute("profile_contents", "profileInfo.jsp");
     	
