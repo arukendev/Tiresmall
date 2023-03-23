@@ -26,20 +26,24 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-
-
-	<context:component-scan
-		base-package="com.tireshoppingmall.home" />
-
-	<beans:bean id="dataSource"
-		class="org.apache.commons.dbcp2.BasicDataSource">
-		<beans:property name="driverClassName"
-			value="oracle.jdbc.driver.OracleDriver" />
-		<beans:property name="url"
-			value="jdbc:oracle:thin:@LKTIP49ELNUTZSTH_high?TNS_ADMIN=C:/Wallet_LKTIP49ELNUTZSTH" />
+	
+	
+	<context:component-scan base-package="com.tireshoppingmall.home" />
+	
+	<beans:bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<beans:property name="url" value="jdbc:oracle:thin:@LKTIP49ELNUTZSTH_high?TNS_ADMIN=C:/Wallet_LKTIP49ELNUTZSTH" />
 		<beans:property name="username" value="admin" />
 		<beans:property name="password" value="Soldesk802!@#" />
 	</beans:bean>
+	
+	<!-- <beans:bean id="naverLoginBO" class="com.tireshoppingmall.home.auth.NaverLoginBO"/>
+	<beans:bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<beans:property name="username" value="c##lhb0103" />
+		<beans:property name="password" value="lhb0103" />
+	</beans:bean>  -->
 
 	<beans:bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -66,6 +70,7 @@
 				<beans:value>classpath:product_mapper.xml</beans:value>
 				<beans:value>classpath:search_mapper.xml</beans:value>
 				<beans:value>classpath:store_mapper.xml</beans:value>
+				<beans:value>classpath:order_mapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -76,6 +81,7 @@
 			ref="sqlSessionFactory" />
 	</beans:bean>
 
+<<<<<<< HEAD
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10485760" />
@@ -85,6 +91,23 @@
 	<!-- Ask 몇개씩 보여줄지 -->
 	<beans:bean id="aco"
 		class="com.tireshoppingmall.home.board.AskCountOption">
+=======
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      <beans:property name="maxUploadSize" value="52428800" />
+      <beans:property name="defaultEncoding" value="utf-8" />
+	</beans:bean>
+	
+	<!-- board.BoardFaq페이징 -->
+	<beans:bean id="bfco" class="com.tireshoppingmall.home.board.BoardFaqCountOption">
+		<beans:constructor-arg value="7"></beans:constructor-arg>
+	</beans:bean>
+	<!-- board.BoardQna페이징 -->
+	<beans:bean id="bqco" class="com.tireshoppingmall.home.board.BoardQnaCountOption">
+		<beans:constructor-arg value="5"></beans:constructor-arg>
+	</beans:bean>
+	<!-- board.BoardNotice페이징 -->
+	<beans:bean id="bnco" class="com.tireshoppingmall.home.board.BoardNoticeCountOption">
+>>>>>>> origin/재호
 		<beans:constructor-arg value="5"></beans:constructor-arg>
 	</beans:bean>
 
@@ -126,7 +149,7 @@
 	<!-- admin.tireGroup 몇개씩 보여줄지 -->
 	<beans:bean id="admin_po"
 		class="com.tireshoppingmall.home.admin.tire.TireOption">
-		<beans:constructor-arg value="16"></beans:constructor-arg>
+		<beans:constructor-arg value="11"></beans:constructor-arg>
 	</beans:bean>
 
 
@@ -144,6 +167,7 @@
 		class="com.tireshoppingmall.home.admin.car.CarOption">
 		<beans:constructor-arg value="10"></beans:constructor-arg>
 	</beans:bean>
+<<<<<<< HEAD
 	<!-- navermail설정 -->
 	<beans:bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
@@ -165,6 +189,15 @@
 			</beans:props>
 		</beans:property>
 	</beans:bean>
+=======
+	
+	<!-- Event 몇개씩 보여줄지 -->
+	<beans:bean id="eo"
+		class="com.tireshoppingmall.home.admin.board.EventOption">
+		<beans:constructor-arg value="3"></beans:constructor-arg>
+	</beans:bean>
+
+>>>>>>> origin/재호
 </beans:beans>
 
 

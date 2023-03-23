@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tireshoppingmall.home.auth.MemberMapper">
+
+<insert id="regMember"  parameterType="com.tireshoppingmall.home.auth.MemberDTO">
+	insert all 
+	into auth_user values(auth_user_seq.nextval, #{u_id}, 1) 
+	into auth_password values(auth_password_seq.nextval,auth_user_seq.nextval , 'test' , #{pw_password}, sysdate)
+	into auth_userinfo values(auth_userinfo_seq.nextval,auth_user_seq.nextval , #{i_name} ,#{i_phoneNum},sysdate, 1) 
+	SELECT * FROM DUAL
+</insert>
+
+<select id="checkMember" resultType="int">
+	select count(*) from auth_user,auth_password
+	where auth_user.u_no= auth_password.u_no 
+	and u_id=#{u_id} and pw_password=#{pw_password}
+</select>
+
+<select id="getMember" resultType="com.tireshoppingmall.home.auth.AuthUserDTO">
+	select *
+	from auth_user,auth_userinfo 
+	where auth_user.u_no=auth_userinfo.u_no 
+	and u_id=#{u_id}
+</select>
+<select id="getSocialMember" resultType="com.tireshoppingmall.home.auth.AuthUserDTO">
+	select *
+	from auth_user,auth_userinfo 
+	where auth_user.u_no=auth_userinfo.u_no 
+	and u_id=#{socialID}
+</select>
+
+
+<select id="checkIDkko" resultType="int">
+	select count(*) from auth_user where u_id=#{kakaoID}
+</select>
+
+</mapper>

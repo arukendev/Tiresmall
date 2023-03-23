@@ -9,12 +9,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
 <link rel="stylesheet" href="resources/css/main/product/main_product.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"
 	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 	crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
 <script type="text/javascript" src="resources/js/main/product/main_product.js"></script>
 </head>
 <body>
@@ -29,8 +27,8 @@
 			<span>총 ${theNumber }개 상품이 검색 되었습니다. </span>
 			<div id="product_search_type">
 				<input name="carTypeA" type="radio" value=""> 전체 타입
-				<input name="carTypeA" type="radio" value="sedan"> 승용차
-				<input name="carTypeA" type="radio" value="suv"> SUV
+				<input name="carTypeA" type="radio" value="sedan"> 승용차 추천
+				<input name="carTypeA" type="radio" value="suv"> SUV 추천
 			</div>
 		</div>
 		<div id="product_container">

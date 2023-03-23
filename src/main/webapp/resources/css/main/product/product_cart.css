@@ -154,6 +154,8 @@
 }
 
 .cart_nav {
+  position: sticky;
+  top: 100px;
   display: flex;
   flex-direction: column;
   border: 1px solid #ddd;

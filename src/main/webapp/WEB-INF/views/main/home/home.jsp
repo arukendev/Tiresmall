@@ -67,7 +67,7 @@ pageEncoding="UTF-8"%>
           <hr />
         </div>
         <div class="home_recommend">
-          <a class="home_recommend_menu" href="product.brand.type?b=&p=1&t=sedan&tv=2">
+          <a class="home_recommend_menu" href="product.brand.type?b=&p=1&t=sedan">
             <div class="home_shadow"></div>
             <img
               src="resources/web/main/home/sedan.jpg"
@@ -75,7 +75,7 @@ pageEncoding="UTF-8"%>
             />
             <span class="home_recommend_txt">승용차용</span>
           </a>
-          <a class="home_recommend_menu" href="product.brand.type?b=&p=1&t=suv&tv=2">
+          <a class="home_recommend_menu" href="product.brand.type?b=&p=1&t=suv">
             <div class="home_shadow"></div>
             <img
               src="resources/web/main/home/suv.jpg"
@@ -163,9 +163,9 @@ pageEncoding="UTF-8"%>
       </section>
     </div>
     <c:if test="${!empty events}">
-	    <dialog class="board_event_modal_dialog">
-			  <jsp:include page="${eventModal}"></jsp:include>
-		  <dialog>
+		<dialog class="board_event_modal_dialog">
+			<jsp:include page="${eventModal}"></jsp:include>
+		<dialog>
     </c:if>
     <script src="resources/js/main/home/main_home.js"></script>
   </body>

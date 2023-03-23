@@ -1,11 +1,12 @@
 $("#datepicker" ).datepicker({
-    	dateFormat: 'yy/mm/dd'
-   });
-    
-   $("#datepicker1" ).datepicker({
-		dateFormat: 'yy/mm/dd'
+    	dateFormat: 'yy/mm/dd',
+    	maxDate: 0
 });
-
+    
+$("#datepicker1" ).datepicker({
+		dateFormat: 'yy/mm/dd',
+		maxDate: 0
+});
 
 $('.order_modal_go').click(function() {
 	$("#product-table").empty();
@@ -50,7 +51,6 @@ $('.order_modal_go').click(function() {
 			
 		}
 	})
-	
 		
 	let inputs = $(this).find('input');
 	let arr = [];
@@ -60,20 +60,20 @@ $('.order_modal_go').click(function() {
 	});
 
 	// console.log(arr);
-	modal_content_td[0].innerText = arr[0];
-	modal_content_td[1].innerText = arr[9];
-	modal_content_td[2].innerText = arr[2];
-	modal_content_td[3].innerText = arr[3];
-	modal_content_td[4].innerText = arr[10];
-	modal_content_td[6].innerText = arr[11];
-	modal_content_td[7].innerText = arr[12] + ' ' + arr[13] + ' ' + arr[14];
-	modal_content_td[8].innerText = arr[15];
-	modal_content_td[9].innerText = arr[16];
-	modal_content_td[10].innerText = arr[18];
-	modal_content_td[12].innerText = arr[17];
-	modal_content_td[13].innerText = arr[7];
-	modal_content_td[14].innerText = arr[8];
-	modal_content_td[15].innerText = arr[5];
+	modal_content_td[0].innerText = arr[0];									// 주문번호
+	modal_content_td[1].innerText = $(this).find(".td_c4").text(); 			// 주문일시
+	modal_content_td[2].innerText = arr[2];									// 주문자명
+	modal_content_td[3].innerText = arr[3];									// 연락처
+	modal_content_td[4].innerText = arr[10];								// 회원아이디
+	modal_content_td[6].innerText = arr[11];								// 차량번호
+	modal_content_td[7].innerText = arr[12] + ' ' + arr[13] + ' ' + arr[14];// 차종 (null가능)
+	modal_content_td[8].innerText = arr[15];								// 주문명
+	modal_content_td[9].innerText = arr[16];								// 배송방법
+	modal_content_td[10].innerText = arr[18];								// 주문자메모
+	modal_content_td[12].innerText = arr[17];								// 배송지
+	modal_content_td[13].innerText = arr[7];								// 결제방법
+	modal_content_td[14].innerText = arr[8];								// 주문금액
+	modal_content_td[15].innerText = $(this).find(".td_c00").text();		// 방문예약일
 	
 	/*	if(arr[5]!=''){
 		modal_content_td[16].innerText = '직영점 방문 예약일입니다. 상품을 준비하고 주문자에게 해피콜해주세요.';		

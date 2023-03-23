@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.tireshoppingmall.home.board.EventDAO;
-import com.tireshoppingmall.home.board.EventDTO;
+import com.tireshoppingmall.home.board.BoardEventDAO;
+import com.tireshoppingmall.home.board.BoardEventDTO;
 import com.tireshoppingmall.home.store.StoreDAO;
 
 @Controller
@@ -19,13 +19,13 @@ public class HomeController {
 	private HomeDAO hDAO;
 	
 	@Autowired
-	private EventDAO eDAO;
+	private BoardEventDAO eDAO;
 	
 	@Autowired
 	private StoreDAO sDAO;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(EventDTO e, HttpServletRequest req) {
+	public String home(BoardEventDTO e, HttpServletRequest req) {
 		eDAO.readEvent(e, req);
 		req.setAttribute("eventModal", "../board/board_event_modal.jsp");
 		req.setAttribute("content", "main/home/home.jsp");

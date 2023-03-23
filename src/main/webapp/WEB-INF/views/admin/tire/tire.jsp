@@ -103,7 +103,7 @@
 						</td>
 						<td class="admin_tire_table_td">${t.tg_num }개</td>
 						<td id="tire_Btn" class="admin_tire_table_td">
-							<button class="admin_notPrintBTN">수정</button>
+							<button class="admin_notPrintBTN" onclick="location.href='admin.tire.update.go?tg_id=${t.tg_id}'">수정</button>
 							<button type="button" class="admin_deleteBTN" onclick="tireDelete('${t.tg_id}')">삭제</button>
 						</td>
 					</tr>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tireshoppingmall.home.admin.tire.AdminTireMapper">
+
+<select id="getTireCount" resultType="int">
+	select count(*)
+		from tire_group 
+		where 	
+		<choose>
+			<when test="tg_brand==2">
+				tg_brand = '미쉐린타이어' and 
+			</when>
+			<when test="tg_brand==3">
+				tg_brand = '금호타이어' and 
+			</when>
+			<when test="tg_brand==4">
+				tg_brand = '콘티넨탈타이어' and 
+			</when>
+			<when test="tg_brand==5">
+				tg_brand = '한국타이어' and 
+			</when>
+			<when test="tg_brand==6">
+				tg_brand = '넥센타이어' and 
+			</when>
+			<when test="tg_brand==7">
+				tg_brand = '요코하마타이어' and 
+			</when>
+			<when test="tg_brand==8">
+				tg_brand = '브리지스톤타이어' and 
+			</when>
+			<when test="tg_brand==9">
+				tg_brand = '굳이어타이어' and 
+			</when>
+			<when test="tg_brand==10">
+				tg_brand = '던롭타이어' and 
+			</when>
+			<when test="tg_brand==11">
+				tg_brand = '피렐리타이어' and 
+			</when>
+			<when test="tg_brand==12">
+				tg_brand = 'BF굿리치타이어' and 
+			</when>
+		</choose>
+		tg_name like '%'||#{tg_name}||'%' 
+</select>
+
+
+<select id="getAllTireGroup" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
+	select * from (select 
+	rownum as rn,tg_id,tg_brand,tg_name,tg_img,tg_text,tg_dcrate,tg_print,tg_sedan,tg_suv
+	 from (select * from tire_group  
+	 where 
+		<choose>
+			<when test="tg_brand==2">
+				tg_brand = '미쉐린타이어' and
+			</when>
+			<when test="tg_brand==3">
+				tg_brand = '금호타이어' and 
+			</when>
+			<when test="tg_brand==4">
+				tg_brand = '콘티넨탈타이어' and 
+			</when>
+			<when test="tg_brand==5">
+				tg_brand = '한국타이어' and 
+			</when>
+			<when test="tg_brand==6">
+				tg_brand = '넥센타이어' and 
+			</when>
+			<when test="tg_brand==7">
+				tg_brand = '요코하마타이어' and 
+			</when>
+			<when test="tg_brand==8">
+				tg_brand = '브리지스톤타이어' and 
+			</when>
+			<when test="tg_brand==9">
+				tg_brand = '굳이어타이어' and 
+			</when>
+			<when test="tg_brand==10">
+				tg_brand = '던롭타이어' and 
+			</when>
+			<when test="tg_brand==11">
+				tg_brand = '피렐리타이어' and 
+			</when>
+			<when test="tg_brand==12">
+				tg_brand = 'BF굿리치타이어' and 
+			</when>
+		</choose>
+		tg_name like '%'||#{tg_name}||'%' 
+			order by tg_id desc )  <!-- 계발중이니깐 이런데 나중에는 지워줘야함 -->
+			)where rn &gt;= #{start} and rn &lt;= #{end}
+</select>
+
+<select id="getTireCountByMz" resultType="int">
+	select count(ti_tg_id) from tire_item where ti_tg_id= #{val}
+</select>
+
+<delete id="deleteTireGroup">
+	delete from tire_group where tg_id=#{tg_id}
+</delete>
+
+
+
+
+<!--타이어 브랜드  -->
+<select id="getTireBrand" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
+	select * from tire_brand order by tb_order
+</select>
+
+<select id="getTireBrandCount" resultType="int">
+	select count(*) from tire_group left OUTER JOIN tire_item
+	on  tg_id = ti_tg_id where tg_brand = #{val}
+</select>
+
+<delete id="deleteTireBrand">
+	delete from tire_brand where tb_name= #{tb_name}
+</delete>
+
+
+
+
+
+
+
+
+
+
+
+<select id="getTireGroupforDetail" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
+	select * from tire_group, tire_item
+	where ti_tg_id = tg_id
+	and ti_tg_id=#{val}
+</select>
+
+
+</mapper>

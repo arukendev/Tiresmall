@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="resources/css/main/search/main_search.css" />
 <script src="https://code.jquery.com/jquery-3.6.3.js"
 	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
@@ -78,6 +80,7 @@ pageEncoding="UTF-8"%>
 				</div>
 			</div>
 		</div>
+		<!-- 전륜 후륜 사이즈 다를시 버튼 클릭 시 나옴 -->
 		<div class="searchConditionWrapper second">
 			<div class="conditionItemBox">
 				<div class="conditionSubtitle">단면폭</div>
@@ -145,15 +148,37 @@ pageEncoding="UTF-8"%>
 		<button class="searchTireBtn2" type="button" onclick="addSearch()">앞뒤 타이어 사이즈가 다른 경우</button>
 	</div>
 	
+	<!-- 검색결과 Title -->
 	<div class="searchResultContainer">
 		<div class="searchResultTitle">검색 결과</div>
 		<hr style="margin-bottom: 50px;">
 	</div>
 	
+	<!-- 검색 결과가 없을 경우 -->
 	<div class="tire-search-fail" style="display: none;">검색된 제품이 없습니다.</div>
 	
+	<!-- 검색결과가 있을 경우 복사 될 태그 -->
 	<div class="tire-item">
-		<div class="tire-img">타이어이미지</div>
+		<div class="tire-hidden">
+			<div class="tire-hidden tire-img-border"></div>
+		</div>
+		<div class="tire-img"></div>
+		<div class="tire-info">
+			<p class="tire-brand"></p>
+			<p class="tire-name"></p>
+		</div>
+		<div class="tire-info-size">
+			<div class="tire-info-width">width123</div>&nbsp;/&nbsp;
+			<div class="tire-info-ratio">ratio123</div>&nbsp;/&nbsp; 
+			<div class="tire-info-inch">inch123</div>&nbsp;
+		</div>
+		<div class="tire-price"></div>
+		<div class="tire-detail-go">
+			<i class="fa-solid fa-magnifying-glass"></i>상세보기
+		</div>
+	</div>
+	
+	<!-- <div class="tire-img">타이어이미지</div>
 		<div class="tire-info">
 			<div class="tire-brand">타이어 브랜드</div>
 			<div class="tire-name">타이어이름</div>
@@ -163,11 +188,11 @@ pageEncoding="UTF-8"%>
 				<div class="tire-info-ratio">ratio123</div>&nbsp;/&nbsp; 
 				<div class="tire-info-inch">inch123</div>&nbsp;
 			</div>
-		</div>
-	</div>
+		</div> -->
 	
+	
+	<!-- 검색된 결과를 담을 DIV -->
 	<div class="tire-items">
-			
 	</div>
 	
 </body>

@@ -126,6 +126,12 @@ function insertToCart(go) {
   const product_ti_pricegp = document.querySelector(
     ".product_ti_pricegp"
   ).value;
+  const product_ti_allpricefac =
+    quantityInputValue *
+    parseInt(document.querySelector(".product_ti_pricefac").value);
+  const product_ti_allpricegp =
+    quantityInputValue *
+    parseInt(document.querySelector(".product_ti_pricegp").value);
 
   const cartDTO = {
     tg_id: product_tg_id,
@@ -141,6 +147,8 @@ function insertToCart(go) {
     ti_stock: product_ti_stock,
     ti_pricefac: product_ti_pricefac,
     ti_pricegp: product_ti_pricegp,
+    ti_allpricefac: product_ti_allpricefac,
+    ti_allpricegp: product_ti_allpricegp,
   };
 
   if (go) {

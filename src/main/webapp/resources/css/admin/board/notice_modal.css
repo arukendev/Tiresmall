@@ -3,10 +3,13 @@
 .modal_table {
 	background-color: white;
 	width: 100%;
+	border-collapse: collapse;
 	height: 100%;
 }
 .left_td{
-	background-color: #708090;
+	background-color: #333333;
+	border: 1px solid;
+	color: white;
 }
 
 .modal_table td {
@@ -15,7 +18,7 @@
 
 .notice_header {
 	display: flex;
-	background-color: #fffa65;
+	background-color: #CCCCCC;
 	align-items: center;
 	justify-content: center;
 	height: 70px;
@@ -49,7 +52,7 @@
 
 #titleInput_M {
 	height: 30px;
-	width: 80%;
+	width: 95%;
 }
 #titleInput_M:focus {
 	outline: none;
@@ -58,7 +61,7 @@
 	width: 100%;
     height: 100vh;
     display: flex;
-    align-items: center;
+    padding-top: 60px;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.3);
 }

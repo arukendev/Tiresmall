@@ -1,37 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/main/auth/auth.css">
-<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="resources/js/main/auth/termOfUse.js"></script>
-</head>
-<body>
-		<form  action="authReg.go" name="join_form" onsubmit="return agreeCheck()">
-			<div id="tou_container">
-				<div id="tou_logo">
-					<a href="/home">
-					<img alt="" src="resources/web/logo.png">
-					</a>
-				</div>
-				<div id="join_policy">
-					<input type="hidden" value="${socialID }" name="socialID">
-					
-						<div id="join_agree_all">
-							<label for="agreementAll">전체 동의</label>
-							<input id="agreementAll" type="checkbox" name="agreementAll"/>
-						</div>
-						<div class="join_policy_title">
-							<span> 대전 타이어쇼핑몰 이용약관 (필수) </span>
-						</div>
-						<div class="join_agree_btn">
-							<label for="agreement1">아래 사항에 동의 합니다.</label>
-							<input id="agreement1" class="agreements" type="checkbox" name="agreement1" />
-						</div>
-						<textarea id="text1" readonly>
+  <head>
+    <meta charset="UTF-8" />
+    <title>대전 타이어쇼핑몰</title>
+    <link
+      rel="shortcut icon"
+      href="resources/web/favicon.png"
+      type="image/png"
+    />
+    <link rel="icon" href="resources/web/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="resources/css/main/auth/auth.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="resources/js/main/auth/termOfUse.js"
+    ></script>
+  </head>
+  <body>
+    <form action="authReg.go" name="join_form" onsubmit="return agreeCheck()">
+      <div id="tou_container">
+        <div id="tou_logo">
+          <a href="/home">
+            <img alt="" src="resources/web/logo.png" />
+          </a>
+        </div>
+        <div id="join_policy">
+          <input type="hidden" value="${socialID }" name="socialID" />
+
+          <div id="join_agree_all">
+            <label for="agreementAll">전체 동의</label>
+            <input id="agreementAll" type="checkbox" name="agreementAll" />
+          </div>
+          <div class="join_policy_title">
+            <span> 대전 타이어쇼핑몰 이용약관 (필수) </span>
+          </div>
+          <div class="join_agree_btn">
+            <label for="agreement1">아래 사항에 동의 합니다.</label>
+            <input
+              id="agreement1"
+              class="agreements"
+              type="checkbox"
+              name="agreement1"
+            />
+          </div>
+          <textarea id="text1" readonly>
 							제1조(목적)
 본 약관은 대전 타이어쇼핑몰 (이하 "회사")가 운영하는 대전 타이어쇼핑몰 (http://tireshoppingmall.com)에서 제공하는 전자상거래 관련 서비스(이하 “서비스”)를 이용함에 있어 상품 또는 용역을 거래하는 자 간의 권리, 의무 등 기타 필요사항, 회원과 회사간의 권리, 의무, 책임사항 및 회원의 서비스 이용절차 등에 관한 사항을 규정함을 목적으로 합니다.
 
@@ -200,18 +218,22 @@ c. 그 외 회사가 정한 안전거래 이용규칙을 위반한 경우
 
 제1조 (약관의 효력)
 1. 이 약관은 2021년 03월 01일부터 시행됩니다.
-						</textarea>
-				
-						
-						
-						<div class="join_policy_title">
-							<span>개인정보수집 이용 (필수)</span>
-						</div>
-						<div class="join_agree_btn">
-							<label for="agreement2">아래 사항에 동의 합니다.</label>
-							<input id="agreement2" class="agreements" type="checkbox" name="agreement2"/>
-						</div>
-						<textarea id="text1" readonly>
+						</textarea
+          >
+
+          <div class="join_policy_title">
+            <span>개인정보수집 이용 (필수)</span>
+          </div>
+          <div class="join_agree_btn">
+            <label for="agreement2">아래 사항에 동의 합니다.</label>
+            <input
+              id="agreement2"
+              class="agreements"
+              type="checkbox"
+              name="agreement2"
+            />
+          </div>
+          <textarea id="text1" readonly>
 								대전 타이어쇼핑몰 이하 "회사")가 운영하는 대전 타이어쇼핑몰 (http://www.tireshoppingmall.com)은 서비스를 이용하는 고객님의 개인정보를 매우 소중하게 생각하고 있으며, 고객님의 개인정보를 보호하기 위해 최선의 노력을 다하고 있습니다.
 회사는 『개인정보보호법』, 『정보통신망 이용촉진 및 정보보호 등에 관한 법률』을 비롯한 모든 개인정보보호 관련 법률규정을 준수하고 있으며, 회사의 개인정보처리방침을 별도로 제정하고 이를 준수함으로써 이용자의 개인정보를 보호하고 있습니다. 또한 회사는 개인정보처리방침을 홈페이지 첫 화면에 공개하여 이용자들이 언제나 쉽게 열람할 수 있도록 조치하고 있으며, 회사의 개인정보처리방침이 수정될 경우 홈페이지를 통해 공지합니다.
 
@@ -333,15 +355,15 @@ cyberbureau.police.go.kr
 [부칙]
 
 본 개인정보 처리방침은 2021년 03월 01일부터 시행합니다.
-						</textarea>
-				</div>
-				
-				<div id="tou_btn">
-				<button type="button" onclick="goHome()">취소</button>
-				<button >확인</button>
-				</div>
-			</div>
-	</form>
+						</textarea
+          >
+        </div>
 
-</body>
+        <div id="tou_btn">
+          <button type="button" onclick="goHome()">취소</button>
+          <button>확인</button>
+        </div>
+      </div>
+    </form>
+  </body>
 </html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tireshoppingmall.home.admin.order.AdminOrderMapper">
+
+	<!-- Order 페이징 (order 갯수 카운트) -->
+	<select id="getOrderCount" resultType="int">
+		select count(*)
+		from product_order
+				 where
+			o_name like '%'||#{nameInput}||'%'
+		    and	o_phone like '%'||#{phoneInput}||'%'
+		    and	o_ordernumber like '%'||#{orderNumberInput}||'%'
+			<if test="dateSearch1 != '' and dateSearch2 != ''">
+		    and o_orderdate BETWEEN TO_DATE(#{dateSearch1}) 
+        	AND TO_DATE(#{dateSearch2}) + 1
+		</if>
+	</select>
+
+	<!-- Order 페이징-->
+	<select id="getOrder" resultType="com.tireshoppingmall.home.admin.order.OrderDTO">
+		select * from(
+			select rownum as rn, o_no, o_sortation, o_ordernumber,
+			o_orderdate, o_name,O_PRODUCT, o_phone, o_ordername, o_price,
+			o_paymethod, o_deliverymethod, o_step,O_STORESHOP,O_TIREINSTALLDATE,O_EMAIL,
+			O_CARYEAR,O_CARBRAND,O_CARNAME,O_CARNUMBER,O_REQUEST
+			 from(
+				select * from product_order
+				 where
+		       		 o_name like '%'||#{nameInput}||'%'
+		        	and o_phone like '%'||#{phoneInput}||'%'
+		        	and o_ordernumber like '%'||#{orderNumberInput}||'%'
+		      		<if test="dateSearch1 != '' and dateSearch2 != ''">
+					and o_orderdate BETWEEN TO_DATE(#{dateSearch1}) 
+		       		AND TO_DATE(#{dateSearch2}) + 1
+		        	</if>
+		        order by o_no))
+	    where rn &gt;= #{start} and rn &lt;= #{end}
+	</select>
+
+</mapper>

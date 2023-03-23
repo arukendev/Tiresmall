@@ -1,0 +1,243 @@
+@charset "UTF-8";
+
+@tire_container{
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+#tire_searchBox{
+	display: flex;
+	min-width:900px;
+}
+
+#tire_content{
+	/* margin-top:20px;  */
+    width: 100%;
+    text-align: center;
+    font-size: 20pt;
+
+}
+
+.tire_form{
+	height:70px;
+	width: 100%;
+	background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+}
+
+
+#tire_searchBox{
+	padding-top: 20px;
+	padding-left: 30px;
+}
+
+.tire_searchTitle{
+	display: flex;
+	justify-content:center;
+	align-items:center;
+	font-size: 15pt;
+	margin-right: 20px;
+	padding:6px;
+	border-radius:10px;
+	background-color: #181C32;
+	color:white;
+	height: 30px;
+}
+.tire_searchTitle select{
+	height: 29px;
+    width:200px;
+    font-size: 14pt;
+    border-radius:10px; 
+    font-family: GmarketSansMedium;
+    text-align: center;
+    align-items: center;
+    valign: middle;
+}
+
+
+.tire_searchID input{
+	height: 25px;
+	font-size: 11pt;
+	border-radius:10px; 
+	font-family: GmarketSansMedium;
+}
+
+#searchBtn{
+	display: flex;
+	flex:1;
+	justify-content: space-between;
+	min-width: 300px;
+}
+
+#searchBtn button{
+	display: flex;
+    background: #181C32;
+    margin-left: 20px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    padding: 8px 10px;
+    font-size: 1em;
+    cursor: pointer;
+    color: white;
+    font-family: GmarketSansMedium;
+    cursor: pointer; 
+  user-select: none;	
+}
+
+#admin_tire_reg{
+  margin-right:30px;
+  background-color: #5F5F5F;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-left:20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  user-select: none;	
+}
+
+#admin_tire_reg:hover {
+  background-color: #FFFFFF;
+  color: #5F5F5F;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+#admin_tire_content{
+	margin-left:10px;
+	margin-right:10px;
+    border-spacing:0px;
+    width: 99%;
+    text-align: center;
+    font-size: 20pt;
+    margin-bottom: 60px;
+    margin-top: 5px;
+    
+}
+
+
+
+.admin_tire_content_title{
+    font-size: 15pt;
+    padding: 15px;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+	border: 1px solid #343a40;
+	user-select: none;	
+}
+
+.admin_tire_no{
+	width: 5%;
+}
+.admin_tire_brand{
+	width: 18%;
+}
+.admin_tire_name{
+	width: 31%;
+}
+.admin_tire_print{
+	width: 8%;
+}
+.admin_tire_sedanPrint{
+	width:8%;
+}
+.admin_tire_SUVPrint{
+	width:8%;
+}
+.authadmin_tire_sizeNum_date{
+	width:10%;
+}
+.admin_tire_management{
+	width: 12%;
+}
+
+
+
+#admin_tires_content{
+	text-align: center;
+	font-size: 15pt;	
+	border: 1px solid #343a40;
+	height: 60px;
+}
+
+.admin_tire_table_td{
+	padding-bottom: 3px;
+	padding-top: 3px;
+	border: 1px solid #343a40;	
+}
+
+.admin_printBTN{
+	border-radius:7px;
+	padding:6px;
+	color: #0d6efd;
+    background-color: #fff;
+    border-color: #0d6efd;
+    font-size: 12pt;
+    font-weight: 900;
+    cursor: pointer; 
+    user-select: none;
+    font-family: GmarketSansMedium;	
+}
+.admin_printBTN:hover{
+	color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+    
+
+.admin_notPrintBTN{
+	margin-left:5px;
+	margin-right:5px;
+	border-radius:7px;
+	font-weight: 900;
+	font-size: 12pt;
+	padding:6px;
+	color: #212529;
+    background-color: #fff;
+    border-color: #212529;
+    cursor: pointer; 
+    user-select: none;
+    font-family: GmarketSansMedium;	
+}
+.admin_notPrintBTN:hover{
+	color: #fff;
+    background-color: #212529;
+    border-color: #212529;
+}
+
+.admin_deleteBTN{
+	margin-left:5px;
+	margin-right:5px;
+	border-radius:7px;
+	font-weight: 900;
+	font-size: 12pt;
+	padding:6px;
+	color: #dc3545;
+    background-color: #fff;
+    border-color: #dc3545;
+      cursor: pointer; 
+    user-select: none;	
+    font-family: GmarketSansMedium;
+}
+
+.admin_deleteBTN:hover{
+	color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+
+
+
+
+

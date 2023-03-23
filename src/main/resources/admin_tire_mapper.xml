@@ -47,7 +47,7 @@
 
 <select id="getAllTireGroup" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
 	select * from (select 
-	rownum as rn,tg_id,tg_brand,tg_name,tg_img,tg_text,tg_dcrate,tg_print,tg_sedan,tg_suv
+	rownum as rn,tg_id,tg_brand,tg_name,tg_img,tg_text,tg_dcrate,tg_print,tg_sedan,tg_suv,TG_DETAIL
 	 from (select * from tire_group  
 	 where 
 		<choose>
@@ -133,20 +133,47 @@
 </delete>
 
 
+<insert id="tireGroupReg">
+	insert into tire_group values(tire_group_seq.nextval,#{tg_brand},
+	#{tg_name},#{tg_img},#{tg_text},#{tg_dcrate},#{tg_print},#{tg_sedan},#{tg_suv},#{tg_detail})
+</insert>
 
 
+<!-- 이거 예외처리는 어떻게 할것인가? 같은 이름의 타이어가 있을경우  -->
+<select id="getTireGroupPk" resultType="int">
+	select tg_id from tire_group where tg_name =#{val}
+</select>
+<!-- 이게 맞나? -->
+<insert id="tierItemReg">
+	insert into tire_item values(tire_item_seq.nextval,#{ti_tg_id},#{ti_width},#{ti_ratio},#{ti_inch},#{ti_stock},#{ti_pricefac},#{ti_marking})
+</insert>
+<!-- 여기서 여러번 등록하는곳 -->
+<!-- <insert id= "tierItemReg2">
+	insert into
+		tire_item
+		(TI_ID,TI_TG_ID,TI_WIDTH,TI_RATIO,TI_INCH,TI_STOCK,TI_PRICEFAC,TI_MARKING,)
+		values
+		<foreach collection="TireListDTO"></foreach>
+</insert>
+ -->
+<select id="getTireGroupDetail" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
+	select * from tire_group where tg_id = #{val}
+</select>
 
-
-
-
-
+ 
+<select id="getTireItem" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
+	select * from tire_item where ti_tg_id = #{tg_id} 
+</select>
+ 
 
 
 <select id="getTireGroupforDetail" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
 	select * from tire_group, tire_item
 	where ti_tg_id = tg_id
-	and ti_tg_id = #{val}
+	and ti_id = #{val}
 </select>
-
+<delete id="tireSizeDelete">
+	delete from tire_item where ti_tg_id= #{val}
+</delete>
 
 </mapper>

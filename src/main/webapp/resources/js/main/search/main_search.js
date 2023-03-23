@@ -75,10 +75,12 @@ $(function() {
 					$('.tire-items').empty();
 					
 					if(data.tires[0] == undefined) {
-						$('tire-items').append($('tire-search-fail').first().clone());
+						$('.tire-items').css('display','none');
+						$('.tire-items').append($('tire-search-fail').first().clone());
 						$('.searchResultContainer').css('display','block');
 						$('.tire-search-fail').css('display','block');
 					} else {
+						$('.tire-items').css('display','grid');
 						$('.tire-search-fail').css('display','none');
 					}
 				
@@ -97,18 +99,16 @@ $(function() {
 						$(itemDIV).find(".tire-img").text(getImg);
 						$(itemDIV).find(".tire-brand").text(getBrand);
 						$(itemDIV).find(".tire-name").text(getName);
-						$(itemDIV).find(".tire-price").text("판매가 : " + getPrice + "원");
+						$(itemDIV).find(".tire-price").text(" ￦  " + getPrice + "원");
 						$(itemDIV).find(".tire-info-width").text(getWidth);
 						$(itemDIV).find(".tire-info-ratio").text(getRatio);
 						$(itemDIV).find(".tire-info-inch").text(getInch);
 						
 						$('.tire-items').append(itemDIV);
 						
-						
 					
-					
-					$('.show').css('display','flex');
-					$('.searchResultContainer').css('display','block');
+						$('.show').css('display','flex');
+						$('.searchResultContainer').css('display','block');
 									
 				});
 				}
@@ -121,13 +121,18 @@ $(function() {
 	}
 	
 	function addSearch() {
-		if ($('.second').css('display') == 'flex') {
-			$('.second').css('display', 'none');
-			$('.searchTireBtn').removeAttr("onclick");
-			$('.searchTireBtn').attr("onclick","searchTire()");
-		} else {
+		if ($('.second').css('display') == 'none') {
+			$('.second').slideDown();
 			$('.second').css('display','flex');
+			$('.searchTireBtn2').empty();
+			$('.searchTireBtn2').append('돌아가기');
 			$('.searchTireBtn').removeAttr("onclick");
-			$('.searchTireBtn').attr("onclick","searchTire2()")
-		}	
+			$('.searchTireBtn').attr("onclick","searchTire2()");
+		} else {
+			$('.second').slideUp();
+			$('.searchTireBtn2').empty();
+			$('.searchTireBtn2').append('앞뒤 타이어 사이즈가 다른 경우');
+			$('.searchTireBtn').removeAttr("onclick");
+			$('.searchTireBtn').attr("onclick","searchTire()")
+		}
 	}

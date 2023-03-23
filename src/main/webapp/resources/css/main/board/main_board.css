@@ -1,8 +1,10 @@
+@import "main_board_home.css";
 @import "main_board_faq.css";
-@import "main_board_ask.css";
-@import "main_board_ask_readAll.css";
-@import "main_board_ask_readOne.css";
-@import "main_board_ask_cu.css";
+@import "main_board_qna.css";
+@import "main_board_qna_r.css";
+@import "main_board_qna_rd.css";
+@import "main_board_qna_cu.css";
+@import "main_board_qna_complete.css";
 @import "main_board_event_dialog.css";
 
 .board_mainContainer {
@@ -59,13 +61,13 @@
 	font-weight: 700;
 }
 
-.board_faq, .board_ask, .board_kakao, .board_notice, .board_event {
+.board_faq, .board_qna, .board_kakao, .board_notice, .board_event {
 	font-size: 19px;
 	font-weight: 700;
 }
 
-.board_askAndKakaoLogo {
-	width: 19px;
+.board_qnaAndKakaoLogo {
+	width: 20px;
 	vertical-align: bottom;
 }
 
@@ -81,6 +83,7 @@
 	*/
 	margin-top: auto;
 	margin-bottom: 50px;
+	line-height: 20px;
 }
 
 .board_sideInfo_20px {

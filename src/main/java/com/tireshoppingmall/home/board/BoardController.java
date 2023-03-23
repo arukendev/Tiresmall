@@ -14,22 +14,44 @@ import com.tireshoppingmall.home.auth.MemberDAO;
 
 @Controller
 public class BoardController {
+	@Autowired
+	private BoardFaqDAO bfDAO;
 	
 	@Autowired
 	private MemberDAO mDAO;
 	
 	@Autowired
-	private AskDAO aDAO;
+	private BoardQnaDAO bqDAO;
 	
-	private boolean askFirstReq;
-	public BoardController() {
-		askFirstReq = true;
+	@Autowired
+	private BoardNoticeDAO bnDAO;
+	
+	@RequestMapping(value = "/board.faq.read", method = RequestMethod.GET)
+	public String boardFaqRead(HttpServletRequest req, Model model) {
+		req.getSession().setAttribute("FaqIroiro", null);
+		bfDAO.readFaq(1, req);
+		
+		model.addAttribute("content", "main/board/board.jsp");
+		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> FAQ");
+		model.addAttribute("board_whereAmITwo", "FAQ");
+		model.addAttribute("board_contents", "board_faq.jsp");
+		return "index";
 	}
-	/*
-	*/
-	
-	@RequestMapping(value = "/board.faq", method = RequestMethod.GET)
-	public String boardFAQ(Model model) {
+	@RequestMapping(value = "/board.faq.read.search", method = RequestMethod.GET)
+	public String boardFaqReadSearch(BoardFaqSelector bfSelector, HttpServletRequest req, Model model) {
+		req.getSession().setAttribute("FaqIroiro", bfSelector);
+		bfDAO.readFaq(1, req);
+		
+		model.addAttribute("content", "main/board/board.jsp");
+		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> FAQ");
+		model.addAttribute("board_whereAmITwo", "FAQ");
+		model.addAttribute("board_contents", "board_faq.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "/board.faq.read.paging", method = RequestMethod.GET)
+	public String boardFaqReadPaging(@RequestParam int pn, HttpServletRequest req, Model model) {
+		bfDAO.readFaq(pn, req);
+		
 		model.addAttribute("content", "main/board/board.jsp");
 		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> FAQ");
 		model.addAttribute("board_whereAmITwo", "FAQ");
@@ -37,123 +59,139 @@ public class BoardController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/board.ask.readall.check", method = RequestMethod.GET)
-	public String boardAsk(HttpServletRequest req, Model model) {
+	@RequestMapping(value = "/board.qna.check", method = RequestMethod.GET)
+	public String boardQnaCheck(HttpServletRequest req, Model model) {
 		if (mDAO.loginCheck(req)) {
-			AuthUserDTO auDTO = (AuthUserDTO) req.getSession().getAttribute("loginMember");
+			AuthUserDTO forU_id = (AuthUserDTO) req.getSession().getAttribute("loginMember");
 			
 			model.addAttribute("content", "main/board/board.jsp");
 			model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 1:1문의");
 			model.addAttribute("board_whereAmITwo", "1:1문의");
-			return "redirect: board.ask.readall?u_id=" + auDTO.getU_id();
+			return "redirect: board.qna.read?u_id=" + forU_id.getU_id();
 		} else {
-			req.getSession().setAttribute("loginRequiredByAsk", "YES");
+			req.getSession().setAttribute("loginRequiredByQna", "YES");
 			return "redirect: login";
 		}
 	}
 	
-	@RequestMapping(value = "/board.ask.readall", method = RequestMethod.GET)
-	public String boardAskReadall(HttpServletRequest req, Model model, AuthUserDTO auDTO) {
-		if (askFirstReq) {
-			aDAO.calculateAllAskCount(req);
-			askFirstReq = false;
-		}
-		
-		/*
-		AskCountOption.clearAskSearch(req);
-		 */
-		
-		aDAO.readAllAsk(1, req);
+	@RequestMapping(value = "/board.qna.read", method = RequestMethod.GET)
+	public String boardQnaRead(HttpServletRequest req, Model model) {
+		bqDAO.readQna(1, req);
 		
 		model.addAttribute("content", "main/board/board.jsp");
 		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 1:1문의");
 		model.addAttribute("board_whereAmITwo", "1:1문의");
-		model.addAttribute("board_contents", "board_ask_readAll.jsp");
+		model.addAttribute("board_contents", "board_qna_read.jsp");
 		return "index";
 	}
-	@RequestMapping(value = "/board.ask.readall.paging", method = RequestMethod.GET)
-	public String boardAskReadallPaging(@RequestParam int pn, HttpServletRequest req, Model model) {
-		aDAO.readAllAsk(pn, req);
+	@RequestMapping(value = "/board.qna.read.paging", method = RequestMethod.GET)
+	public String boardQnaReadPaging(@RequestParam int pn, HttpServletRequest req, Model model) {
+		bqDAO.readQna(pn, req);
 		
 		model.addAttribute("content", "main/board/board.jsp");
 		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 1:1문의");
 		model.addAttribute("board_whereAmITwo", "1:1문의");
-		model.addAttribute("board_contents", "board_ask_readAll.jsp");
+		model.addAttribute("board_contents", "board_qna_read.jsp");
 		return "index";
 	}
 	
-	@RequestMapping(value = "/board.ask.readone", method = RequestMethod.GET)
-	public String boardAskReadone(AskDTO a, HttpServletRequest req, Model model) {
-		aDAO.readOneAsk(a, req);
+	@RequestMapping(value = "/board.qna.readdetail", method = RequestMethod.GET)
+	public String boardQnaReaddetail(BoardQnaDTO bq, HttpServletRequest req, Model model) {
+		bqDAO.readdetailQna(bq, req);
 		
 		model.addAttribute("content", "main/board/board.jsp");
 		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 1:1문의");
 		model.addAttribute("board_whereAmITwo", "1:1문의");
-		model.addAttribute("board_contents", "board_ask_readOne.jsp");
+		model.addAttribute("board_contents", "board_qna_readdetail.jsp");
 		return "index";
 	}
 	
-	@RequestMapping(value = "/board.ask.create.go", method = RequestMethod.GET)
-	public String boardAskCreateGo(Model model) {
+	@RequestMapping(value = "/board.qna.create.go", method = RequestMethod.GET)
+	public String boardQnaCreateGo(Model model) {
 		model.addAttribute("content", "main/board/board.jsp");
 		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 1:1문의");
 		model.addAttribute("board_whereAmITwo", "1:1문의");
-		model.addAttribute("board_contents", "board_ask_create.jsp");
+		model.addAttribute("board_contents", "board_qna_create.jsp");
 		return "index";
 	}
-	@RequestMapping(value = "/board.ask.create.do", method = RequestMethod.POST)
-	public String boardAskCreateDo(AskDTO a, HttpServletRequest req, Model model) {
-		aDAO.createAsk(a, req);
+	@RequestMapping(value = "/board.qna.create.do", method = RequestMethod.POST)
+	public String boardQnaCreateDo(BoardQnaDTO bq, HttpServletRequest req, Model model) {
+		bqDAO.createQna(bq, req);
 		
 		model.addAttribute("content", "main/board/board.jsp");
 		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 1:1문의");
 		model.addAttribute("board_whereAmITwo", "1:1문의");
-		model.addAttribute("board_contents", "board_ask_complete.jsp");
-		return "index";
-	}
-	
-	@RequestMapping(value = "/board.ask.update.go", method = RequestMethod.GET)
-	public String boardAskUpdateGo(AskDTO a, HttpServletRequest req, Model model) {
-		aDAO.readOneAsk(a, req);
-		
-		model.addAttribute("content", "main/board/board.jsp");
-		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 1:1문의");
-		model.addAttribute("board_whereAmITwo", "1:1문의");
-		model.addAttribute("board_contents", "board_ask_update.jsp");
-		return "index";
-	}
-	@RequestMapping(value = "/board.ask.update.do", method = RequestMethod.POST)
-	public String boardAskUpdateDo(AskDTO a, HttpServletRequest req, Model model) {
-		aDAO.updateAsk(a, req);
-		
-		model.addAttribute("content", "main/board/board.jsp");
-		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 1:1문의");
-		model.addAttribute("board_whereAmITwo", "1:1문의");
-		model.addAttribute("board_contents", "board_ask_complete.jsp");
+		model.addAttribute("board_contents", "board_qna_complete.jsp");
 		return "index";
 	}
 	
-	@RequestMapping(value = "/board.ask.delete", method = RequestMethod.GET)
-	public String boardAskDelete(AskDTO a, HttpServletRequest req, Model model) {
-		aDAO.deleteAsk(a, req);
-		
-		aDAO.readAllAsk(1, req);
+	@RequestMapping(value = "/board.qna.update.go", method = RequestMethod.GET)
+	public String boardQnaUpdateGo(BoardQnaDTO bq, HttpServletRequest req, Model model) {
+		bqDAO.readdetailQna(bq, req);
 		
 		model.addAttribute("content", "main/board/board.jsp");
 		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 1:1문의");
 		model.addAttribute("board_whereAmITwo", "1:1문의");
-		model.addAttribute("board_contents", "board_ask_readAll.jsp");
+		model.addAttribute("board_contents", "board_qna_update.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "/board.qna.update.do", method = RequestMethod.POST)
+	public String boardQnaUpdateDo(BoardQnaDTO bq, HttpServletRequest req, Model model) {
+		bqDAO.updateQna(bq, req);
+		
+		model.addAttribute("content", "main/board/board.jsp");
+		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 1:1문의");
+		model.addAttribute("board_whereAmITwo", "1:1문의");
+		model.addAttribute("board_contents", "board_qna_complete.jsp");
 		return "index";
 	}
 	
-	@RequestMapping(value = "/board.notice", method = RequestMethod.GET)
-	public String boardNotice(Model model) {
+	@RequestMapping(value = "/board.qna.delete", method = RequestMethod.GET)
+	public String boardQnaDelete(BoardQnaDTO bq, HttpServletRequest req, Model model) {
+		bqDAO.deleteQna(bq, req);
+		
+		bqDAO.readQna(1, req);
+		
+		model.addAttribute("content", "main/board/board.jsp");
+		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 1:1문의");
+		model.addAttribute("board_whereAmITwo", "1:1문의");
+		model.addAttribute("board_contents", "board_qna_read.jsp");
+		return "index";
+	}
+	
+	/*
+	@RequestMapping(value = "/board.notice.read", method = RequestMethod.GET)
+	public String boardNoticeRead(HttpServletRequest req, Model model) {
+		bnDAO.readNotice(1, req);
+		
 		model.addAttribute("content", "main/board/board.jsp");
 		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 공지사항");
 		model.addAttribute("board_whereAmITwo", "공지사항");
-		model.addAttribute("board_contents", "board_notice.jsp");
+		model.addAttribute("board_contents", "board_notice_read.jsp");
 		return "index";
 	}
+	@RequestMapping(value = "/board.notice.read.paging", method = RequestMethod.GET)
+	public String boardNoticeReadPaging(@RequestParam int pn, HttpServletRequest req, Model model) {
+		bnDAO.readNotice(pn, req);
+		
+		model.addAttribute("content", "main/board/board.jsp");
+		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 공지사항");
+		model.addAttribute("board_whereAmITwo", "공지사항");
+		model.addAttribute("board_contents", "board_notice_read.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/board.notice.readdetail", method = RequestMethod.GET)
+	public String boardNoticeReaddetail(BoardQnaDTO bq, HttpServletRequest req, Model model) {
+		bnDAO.readdetailNotice(bq, req);
+		
+		model.addAttribute("content", "main/board/board.jsp");
+		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 공지사항");
+		model.addAttribute("board_whereAmITwo", "공지사항");
+		model.addAttribute("board_contents", "board_notice_readdetail.jsp");
+		return "index";
+	}
+	 * */
 	
 	@RequestMapping(value = "/board.event", method = RequestMethod.GET)
 	public String boardEvent(Model model) {

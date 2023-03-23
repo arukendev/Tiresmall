@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+#admin_tire_discount{
+	height:70px;
+	display: flex;
+	justify-content: space-between;
+	align-items:center;
+	min-width: 300px;
+	background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+}
+#admin_tire_discount_menu_title{
+	margin-left:50px;
+}
+
+
+#admin_tire_discount_reg{
+  margin-right:30px;
+  background-color: #5F5F5F;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  margin-left:20px;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  justify-content:center;
+  align-items: center;
+  user-select: none;	
+}
+#admin_tire_discount_reg:hover {
+  background-color: #FFFFFF;
+  color: #5F5F5F;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}

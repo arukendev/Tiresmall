@@ -113,13 +113,13 @@ public class AuthController {
 		mDAO.loginCheck(req);
 		
 		// 로그인페이지를통하여들어온경우:	로그인후에 홈화면으로
-		if (req.getSession().getAttribute("loginRequiredByAsk") == null) {
+		if (req.getSession().getAttribute("loginRequiredByQna") == null) {
 			req.setAttribute("content", "main/home/home.jsp");
 			return "index";
 		// 1:1문의페이지를통하여들어온경우:	로그인후에 1:1문의화면으로
 		} else {
-			req.getSession().setAttribute("loginRequiredByAsk", null);	
-			return "redirect: board.ask.readall.check";
+			req.getSession().setAttribute("loginRequiredByQna", null);	
+			return "redirect: board.qna.check";
 		}
 		
 	}
@@ -278,7 +278,7 @@ public class AuthController {
         	mDAO.loginCheck(req);   
         	model.addAttribute("content", "main/home/home.jsp");
             return "redirect:/"; //본인 원하는 경로 설정
-		}else {
+		} else {
 			//회원가입 성공하면
 			if (lsDAO.regMemberSocial(req,mDTO)) {
 				lsDAO.login(id,req);
@@ -288,9 +288,7 @@ public class AuthController {
 			}
 			req.setAttribute("content", "main/home/home.jsp");
 			return "redirect:/"; //본인 원하는 경로 설정}
-			
 		}
-        
     }
 
 

@@ -26,7 +26,10 @@ a:visited {
 }
 
 .DashBoard {
-	width: 100%;
+	height: 750px;
+    min-width: 1550px;
+    margin-top: 60px;
+    position: relative;
 }
 
 #order_modal {
@@ -39,11 +42,13 @@ a:visited {
 	width: 100%;
 	min-width: 1200px;
 	padding-top: 10px;
+	border-collapse: collapse;
 }
 
 .order_content td {
 	padding: 20px;
 	text-align: center;
+	border: 1px solid black;
 }
 
 .th_head {
@@ -51,21 +56,24 @@ a:visited {
 	padding: 20px;
 	background-color: black;
     color: white;
+    border: 1px solid white;
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
     user-select:none;
 }
 
-.order_form {
+/* .order_form {
 	width: 100%;
 	background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
-}
+} */
 
 .order_form>div {
 	width: 100%;
-	height: 50px;
+	height: 60px;
 	display: flex;
+	position: absolute;
+	background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
 }
 
 .input_box1>div {
@@ -187,6 +195,12 @@ a:visited {
 	border: none;
 }
 
+.orderBtn:hover{
+	color: rgb(50, 60, 70);
+	background-color: white;
+	border: 1px solid black;
+}
+
 .tdBtn>button {
 	width: 80px;
 	height: 30px;
@@ -210,16 +224,14 @@ a:visited {
 }
 
 #paging-box{
-	display: flex;
+	position: relative;
+    display: flex;
+    top: -60px;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 40px;
-    position: relative;
-    top: 550px;
     background-color: white;
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 
 #paging-box a{

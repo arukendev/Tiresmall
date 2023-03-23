@@ -8,8 +8,8 @@ public class QnaDTO {
 	private String q_title;
 	private String q_txt;
 	private Date q_date;
-	private String q_id;
-	private String a_name;
+	private String u_id;
+	private String i_name;
 	private int q_reply_has;
 	
 	public String getQ_no() {
@@ -36,32 +36,25 @@ public class QnaDTO {
 	public void setQ_date(Date q_date) {
 		this.q_date = q_date;
 	}
-	public String getQ_id() {
-		return q_id;
+	public String getU_id() {
+		return u_id;
 	}
-	public void setQ_id(String q_id) {
-		this.q_id = q_id;
+	public void setU_id(String u_id) {
+		this.u_id = u_id;
 	}
-	public String getA_name() {
-		return a_name;
+	public String getI_name() {
+		return i_name;
 	}
-	public void setA_name(String a_name) {
-		this.a_name = a_name;
+	public void setI_name(String i_name) {
+		this.i_name = i_name;
 	}
-	
-	
-	
 	public int getQ_reply_has() {
 		return q_reply_has;
 	}
 	public void setQ_reply_has(int q_reply_has) {
 		this.q_reply_has = q_reply_has;
 	}
-	@Override
-	public String toString() {
-		return "QnaDTO [q_no=" + q_no + ", q_title=" + q_title + ", q_txt=" + q_txt + ", q_date=" + q_date + ", q_id="
-				+ q_id + ", a_name=" + a_name + ", q_reply_has=" + q_reply_has + "]";
-	}
-
 	
+	
+
 }

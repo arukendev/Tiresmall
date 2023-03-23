@@ -14,30 +14,27 @@ public class TireListDTO {
 	private int tg_dcrate;		/* dc rate 할인율 */
 	private int tg_print;       /* 출력 여부 */
 	private int tg_sedan;		/* 승용차 추천 1(t)/0(f) */
-	private int tg_suv;			/* suv 추천 1(t)/0(f)*/	
+	private int tg_suv;			/* suv 추천 1(t)/0(f)*/
+	private String tg_detail;
 
 	
 	//타이어 상세
-	private int[] ti_id;		
-	private int[] ti_tg_id;		/* tire_group 테이블 pk 참조하는 것 */
-	private int[] ti_hg;			/* 하중 */
-	private String[] ti_speed;	/* 속도계수 		하중 + 속도계수 = 마킹이 됨. */ 
+	private int ti_id;		
+	private int ti_tg_id;		/* tire_group 테이블 pk 참조하는 것 */
+	private String[] ti_marking;	/* 하중 + 속도계수 = 마킹이 됨. */ 
 	private int[] ti_width;		/* 단면폭 */
 	private int[] ti_ratio;		/* 편평비 */
 	private int[] ti_inch;		/* 인치 */
 	private int[] ti_stock;		/* 재고량 */
-	private int[] ti_pricegp;		/* 기표가격 */	
 	private int[] ti_pricefac;	/* 공장가격 */
-	private int[] ti_vat;			/* 부가세 */
 	
 	public TireListDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public TireListDTO(int tg_id, String tg_brand, String tg_name, String tg_img, String tg_text, int tg_num,
-			int tg_dcrate, int tg_print, int tg_sedan, int tg_suv, int[] ti_id, int[] ti_tg_id, int[] ti_hg,
-			String[] ti_speed, int[] ti_width, int[] ti_ratio, int[] ti_inch, int[] ti_stock, int[] ti_pricegp,
-			int[] ti_pricefac, int[] ti_vat) {
+			int tg_dcrate, int tg_print, int tg_sedan, int tg_suv, String tg_detail, int ti_id, int ti_tg_id,
+			String[] ti_marking, int[] ti_width, int[] ti_ratio, int[] ti_inch, int[] ti_stock, int[] ti_pricefac) {
 		super();
 		this.tg_id = tg_id;
 		this.tg_brand = tg_brand;
@@ -49,18 +46,17 @@ public class TireListDTO {
 		this.tg_print = tg_print;
 		this.tg_sedan = tg_sedan;
 		this.tg_suv = tg_suv;
+		this.tg_detail = tg_detail;
 		this.ti_id = ti_id;
 		this.ti_tg_id = ti_tg_id;
-		this.ti_hg = ti_hg;
-		this.ti_speed = ti_speed;
+		this.ti_marking = ti_marking;
 		this.ti_width = ti_width;
 		this.ti_ratio = ti_ratio;
 		this.ti_inch = ti_inch;
 		this.ti_stock = ti_stock;
-		this.ti_pricegp = ti_pricegp;
 		this.ti_pricefac = ti_pricefac;
-		this.ti_vat = ti_vat;
 	}
+
 
 	public int getTg_id() {
 		return tg_id;
@@ -142,36 +138,36 @@ public class TireListDTO {
 		this.tg_suv = tg_suv;
 	}
 
-	public int[] getTi_id() {
+	public String getTg_detail() {
+		return tg_detail;
+	}
+
+	public void setTg_detail(String tg_detail) {
+		this.tg_detail = tg_detail;
+	}
+
+	public int getTi_id() {
 		return ti_id;
 	}
 
-	public void setTi_id(int[] ti_id) {
+	public void setTi_id(int ti_id) {
 		this.ti_id = ti_id;
 	}
 
-	public int[] getTi_tg_id() {
+	public int getTi_tg_id() {
 		return ti_tg_id;
 	}
 
-	public void setTi_tg_id(int[] ti_tg_id) {
+	public void setTi_tg_id(int ti_tg_id) {
 		this.ti_tg_id = ti_tg_id;
 	}
 
-	public int[] getTi_hg() {
-		return ti_hg;
+	public String[] getTi_marking() {
+		return ti_marking;
 	}
 
-	public void setTi_hg(int[] ti_hg) {
-		this.ti_hg = ti_hg;
-	}
-
-	public String[] getTi_speed() {
-		return ti_speed;
-	}
-
-	public void setTi_speed(String[] ti_speed) {
-		this.ti_speed = ti_speed;
+	public void setTi_marking(String[] ti_marking) {
+		this.ti_marking = ti_marking;
 	}
 
 	public int[] getTi_width() {
@@ -206,14 +202,6 @@ public class TireListDTO {
 		this.ti_stock = ti_stock;
 	}
 
-	public int[] getTi_pricegp() {
-		return ti_pricegp;
-	}
-
-	public void setTi_pricegp(int[] ti_pricegp) {
-		this.ti_pricegp = ti_pricegp;
-	}
-
 	public int[] getTi_pricefac() {
 		return ti_pricefac;
 	}
@@ -222,26 +210,18 @@ public class TireListDTO {
 		this.ti_pricefac = ti_pricefac;
 	}
 
-	public int[] getTi_vat() {
-		return ti_vat;
-	}
-
-	public void setTi_vat(int[] ti_vat) {
-		this.ti_vat = ti_vat;
-	}
-
 	@Override
 	public String toString() {
 		return "TireListDTO [tg_id=" + tg_id + ", tg_brand=" + tg_brand + ", tg_name=" + tg_name + ", tg_img=" + tg_img
 				+ ", tg_text=" + tg_text + ", tg_num=" + tg_num + ", tg_dcrate=" + tg_dcrate + ", tg_print=" + tg_print
-				+ ", tg_sedan=" + tg_sedan + ", tg_suv=" + tg_suv + ", ti_id=" + Arrays.toString(ti_id) + ", ti_tg_id="
-				+ Arrays.toString(ti_tg_id) + ", ti_hg=" + Arrays.toString(ti_hg) + ", ti_speed="
-				+ Arrays.toString(ti_speed) + ", ti_width=" + Arrays.toString(ti_width) + ", ti_ratio="
-				+ Arrays.toString(ti_ratio) + ", ti_inch=" + Arrays.toString(ti_inch) + ", ti_stock="
-				+ Arrays.toString(ti_stock) + ", ti_pricegp=" + Arrays.toString(ti_pricegp) + ", ti_pricefac="
-				+ Arrays.toString(ti_pricefac) + ", ti_vat=" + Arrays.toString(ti_vat) + "]";
+				+ ", tg_sedan=" + tg_sedan + ", tg_suv=" + tg_suv + ", tg_detail=" + tg_detail + ", ti_id=" + ti_id
+				+ ", ti_tg_id=" + ti_tg_id + ", ti_marking=" + Arrays.toString(ti_marking) + ", ti_width="
+				+ Arrays.toString(ti_width) + ", ti_ratio=" + Arrays.toString(ti_ratio) + ", ti_inch="
+				+ Arrays.toString(ti_inch) + ", ti_stock=" + Arrays.toString(ti_stock) + ", ti_pricefac="
+				+ Arrays.toString(ti_pricefac) + "]";
 	}
-	
-	
+
+
+
 	
 }

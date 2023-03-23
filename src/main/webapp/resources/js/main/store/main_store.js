@@ -43,7 +43,7 @@ function initMap() {
 		    "</div>" +
 		    '<h1 id="firstHeading" class="firstHeading">'+ $('#store_info_name').text() +'</h1>' +
 		    '<div id="bodyContent">' +
-		    "<p>"+ $('.storeAddress').text() +"</p>" +
+		    "<p>"+ $('.storeAddress').text() +"</p>" + `<a style="color: blue; text-decoration: underline; font-size:11pt;" target="_blank" href="https://www.google.com/maps/dir//'`+latV+`,`+lngV+`'/@`+latV+`,`+lngV+`,18z"><i class="fa-solid fa-diamond-turn-right"></i> 경로찾기</a>`+
 		    "</div>" +
 		    "</div>";
 	  

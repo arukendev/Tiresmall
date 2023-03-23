@@ -1,4 +1,5 @@
 $(function(){
+	checkForHash();
 	loadPrices(); // 가격 최소, 최대 가져오는 함수 호출
 	
 	// radio 체크
@@ -28,12 +29,64 @@ $(function(){
 //		}
 //	}
 	
-	$('input[name="carTypeA"]').click(function getProductJSON(){
-		var paramTv = 1;
-		if(getParameter('tv')==2){
-			paramTv=2;
-		}
-		$.getJSON("product.brand.type.ajax?b="+getParameter('b')+"&p=1&t="+$('input[name="carTypeA"]:checked').val()+'&tv='+paramTv,function(j){
+	$('input[name="carTypeA"]').click(function(){
+		getProductJSON(1)
+	})
+		
+	
+//	var priceMin =0;
+//	var priceMax = 2000000;
+//	
+//	if(getParameter('pr')!=''){
+//		priceMin = getParameter('pr').split('-')[0];
+//		priceMax = getParameter('pr').split('-')[1];
+//	}
+//	
+//	$( "#slider-range" ).slider({
+//		range: true,
+//		min: 0,
+//		max: 2000000,
+//		step: 50000,
+//		values: [ priceMin, priceMax ],
+//		slide: function( event, ui ) {
+//			$( "#amount" ).val("￦"+ AddComma(ui.values[ 0 ]) + " - ￦" + AddComma(ui.values[ 1 ]) );
+//		}
+//			
+//	});
+//	$( "#amount" ).val( "￦"+AddComma($( "#slider-range" ).slider( "values", 0 )) +
+//			" - ￦" + AddComma($( "#slider-range" ).slider( "values", 1 )) );
+//		
+//	
+//	$('#product_priceRange_button').click(function(){
+//		if($('input[name="carTypeA"]:checked').val() == 0 || $('input[name="carTypeA"]:checked').val()==1){
+//			location.href='product.brand.price?b='+getParameter('b')+'&p=1&t='+$('input[name="carTypeA"]:checked').val()+'&pr='+$( "#slider-range" ).slider("values",0)+'-'+$( "#slider-range" ).slider("values",1)
+//		} else{
+//			location.href='product.brand.price?b='+getParameter('b')+'&p=1&t='+getParameter('t')+'&pr='+$( "#slider-range" ).slider("values",0)+'-'+$( "#slider-range" ).slider("values",1)
+//		}
+//	})
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}) // ready 끝
+function getProductJSON(page){
+		
+		$.getJSON("product.brand.type.ajax?b="+getParameter('b')+"&p="+page+"&t="+$('input[name="carTypeA"]:checked').val(),function(j){
 			console.log(JSON.stringify(j));
 			
 //			$('#product_search span').eq(0).html('총 '+j.pGroups.length+'개 상품이 검색되었습니다.');
@@ -72,7 +125,7 @@ $(function(){
 			
 			$('#product_container a').remove();
 			$.each(j.pGroups, function(i, s){
-				$('#product_container').append('<a href="detail.test?item='+ s.tg_id + '"><div class="product_item"><div class="product_item_hidden"></div>'+
+				$('#product_container').append('<a href="product.detail?tg_id='+ s.tg_id + '"><div class="product_item"><div class="product_item_hidden"><div class="product_item_hidden product_img_border"></div></div>'+
 						'<div class="product_item_img"><img src="resources/web/main/product/no-tire-image.jpg"></div>'+
 						'<div class="product_item_title"><p>'+ s.tg_brand +'</p><p>'+ s.tg_name +'</p></div>'+
 						'<div class="product_item_size">'+ s.minInch +'인치  ~ '+ s.maxInch +'인치</div>'+
@@ -104,6 +157,21 @@ $(function(){
 				}
 				html+='</div><div></div></div>'
 				$('#product_paging').html(html)
+				
+				let hashUrl = '';
+			    if(document.URL.indexOf('#') > -1){
+			        let url = document.URL.substring(0, document.URL.indexOf('#'))
+			        hashUrl = url + '#'+getParameter('b')+'_1_'+$('input[name="carTypeA"]:checked').val();
+			    } else {
+			        hashUrl = document.URL += '#'+getParameter('b')+'_1_'+$('input[name="carTypeA"]:checked').val();
+			    }
+			    window.location.replace(hashUrl)
+//				 if(document.URL.indexOf('#') > -1){
+//					 window.location.replace(location.href.substr(0,location.href.indexOf('#'))+'#type');
+//				 } else{
+//					 window.location.replace(location.href+'#type');
+//				 }
+				
 		
 //			if(curPage!=1){
 //				$('#product_wrap_paging').append('<div class="product_paging_firstLast"><a href="javascript:movePage(1)">1</a> . . .</div>')
@@ -124,83 +192,37 @@ $(function(){
 //			}
 			
 		})
-	})
-	
-//	var priceMin =0;
-//	var priceMax = 2000000;
-//	
-//	if(getParameter('pr')!=''){
-//		priceMin = getParameter('pr').split('-')[0];
-//		priceMax = getParameter('pr').split('-')[1];
-//	}
-//	
-//	$( "#slider-range" ).slider({
-//		range: true,
-//		min: 0,
-//		max: 2000000,
-//		step: 50000,
-//		values: [ priceMin, priceMax ],
-//		slide: function( event, ui ) {
-//			$( "#amount" ).val("￦"+ AddComma(ui.values[ 0 ]) + " - ￦" + AddComma(ui.values[ 1 ]) );
-//		}
-//			
-//	});
-//	$( "#amount" ).val( "￦"+AddComma($( "#slider-range" ).slider( "values", 0 )) +
-//			" - ￦" + AddComma($( "#slider-range" ).slider( "values", 1 )) );
-//		
-//	
-//	$('#product_priceRange_button').click(function(){
-//		if($('input[name="carTypeA"]:checked').val() == 0 || $('input[name="carTypeA"]:checked').val()==1){
-//			location.href='product.brand.price?b='+getParameter('b')+'&p=1&t='+$('input[name="carTypeA"]:checked').val()+'&pr='+$( "#slider-range" ).slider("values",0)+'-'+$( "#slider-range" ).slider("values",1)
-//		} else{
-//			location.href='product.brand.price?b='+getParameter('b')+'&p=1&t='+getParameter('t')+'&pr='+$( "#slider-range" ).slider("values",0)+'-'+$( "#slider-range" ).slider("values",1)
-//		}
-//	})
-			
-	
-	function loadPrices(){
-		const plMinPrice = document.querySelectorAll(".pl_minPrice");		  
-		const plMaxPrice = document.querySelectorAll(".pl_maxPrice");		  
-		const plDc = document.querySelectorAll(".pl_dcRate");
-		const plMinPriceSpan = document.querySelectorAll(".pl_minPriceSpan");
-		const plMaxPriceSpan = document.querySelectorAll(".pl_maxPriceSpan");
-		for (var i = 0; i < plMinPrice.length; i++) {
-			const plDcRate = (100 - plDc[i].value) * 0.01;
-			plMinPrice[i].value = Math.floor(plMinPrice[i].value * plDcRate / 100) * 100;
-			plMaxPrice[i].value = Math.floor(plMaxPrice[i].value * plDcRate / 100) * 100;
-			plMinPriceSpan[i].innerText = parseInt(plMinPrice[i].value).toLocaleString();
-			plMaxPriceSpan[i].innerText = parseInt(plMaxPrice[i].value).toLocaleString();
-		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-}) // ready 끝
+
+function loadPrices(){
+	const plMinPrice = document.querySelectorAll(".pl_minPrice");		  
+	const plMaxPrice = document.querySelectorAll(".pl_maxPrice");		  
+	const plDc = document.querySelectorAll(".pl_dcRate");
+	const plMinPriceSpan = document.querySelectorAll(".pl_minPriceSpan");
+	const plMaxPriceSpan = document.querySelectorAll(".pl_maxPriceSpan");
+	for (var i = 0; i < plMinPrice.length; i++) {
+		const plDcRate = (100 - plDc[i].value) * 0.01;
+		plMinPrice[i].value = Math.floor(plMinPrice[i].value * plDcRate / 100) * 100;
+		plMaxPrice[i].value = Math.floor(plMaxPrice[i].value * plDcRate / 100) * 100;
+		plMinPriceSpan[i].innerText = parseInt(plMinPrice[i].value).toLocaleString();
+		plMaxPriceSpan[i].innerText = parseInt(plMaxPrice[i].value).toLocaleString();
+	}
+}
+
 
 // paging 함수
 function movePage(pageNumber){
-	location.href=location.href.substring(0,location.href.lastIndexOf('p')+2) + pageNumber + location.href.substring(location.href.lastIndexOf('p')+3)
+	var urlBeforeParam = location.href.substr(0,location.href.lastIndexOf('?')+1);
+	var paramsOfUrl = location.href.substr(location.href.lastIndexOf('?')+1);
+	var params = new URLSearchParams(paramsOfUrl);
+	params.set('p', pageNumber)
+	paramsOfUrl=params.toString();
+	location.href=urlBeforeParam+paramsOfUrl
 }
 
 // type별 조회시 paging하는 함수 
 function movePageType(pageNumber){
-	if(getParameter('tv')==2){
-		location.href='product.brand.type?b='+getParameter('b')+'&p='+pageNumber+'&t='+$('input[name="carTypeA"]:checked').val()+'&tv=2'
-	}
-	location.href='product.brand.type?b='+getParameter('b')+'&p='+pageNumber+'&t='+$('input[name="carTypeA"]:checked').val()+'&tv=1'
+	location.href='product.brand.type?b='+getParameter('b')+'&p='+pageNumber+'&t='+$('input[name="carTypeA"]:checked').val()
 }
 
 // url에서 파라미터 이름으로 파라미터 값 가져오는 함수
@@ -215,4 +237,19 @@ function getParameter(param) {
 function AddComma(num) {
     var regexp = /\B(?=(\d{3})+(?!\d))/g;
     return num.toString().replace(regexp, ',');
+}
+
+function checkForHash() {
+	if(document.location.hash){
+		
+		$('body').remove()
+		var HashLocationName = document.location.hash;
+		HashLocationName = HashLocationName.replace("#","");
+		var url = location.href.substr(0,location.href.indexOf('?'))
+		if(url.indexOf('brand.type')==-1){
+			url+='.type';
+		}
+		url+='?b='+HashLocationName.split('_')[0]+'&p='+HashLocationName.split('_')[1]+'&t='+HashLocationName.split('_')[2]
+		location.href=url;
+	} 
 }

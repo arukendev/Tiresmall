@@ -85,25 +85,10 @@ public class AdminTireController {
 	}
 	//admin.tire.reg.do
 	@RequestMapping(value = "/admin.tire.reg.do", method = RequestMethod.POST)
-	public String tireRegDo(@RequestParam("file") MultipartFile file,HttpServletRequest req,TireListDTO tDTO) {
-		System.out.println("음 어떤게 문제일까?1");
-		System.out.println(tDTO.toString());
-		System.out.println(tDTO.getTg_name());
-		
-		for (int inch : tDTO.getTi_inch()) {
-			System.out.println(inch);
-			
-		}
-		 // 배열로 받아오기
-		 String[] asd = req.getParameterValues("ti_marking");
+	public String tireRegDo(@RequestParam("file") MultipartFile file,MultipartHttpServletRequest files,HttpServletRequest req,TireListDTO tDTO) {
 
-		 System.out.println("음 어떤게 문제일까?2");
-		 
-		 for (int i = 0; i < asd.length; i++) {
-			System.out.println(asd[i]);
-		}
 		
-//		tDAO.tireRegDo(tDTO,req,file,files);
+		tDAO.tireRegDo(tDTO,req,file,files);
 		
 		
 		TireDTO.TirePagsing(req);
@@ -114,6 +99,23 @@ public class AdminTireController {
 		return "admin/master";
 	}
 	
+	//admin.tire.update.go
+	@RequestMapping(value = "/admin.tire.update.go", method = RequestMethod.GET)
+	public String tireUpdateGo(HttpServletRequest req,TireDTO tDTO) {		
+		
+		tDAO.getTireItem(tDTO,req);
+			
+		req.setAttribute("subMenuPage", "tire/tire_subMenu.jsp");
+		req.setAttribute("contentPage", "tire/tire_update.jsp");
+		return "admin/master";
+	}
+	//admin.tire.size.delete
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.size.delete", method = RequestMethod.GET)
+	public int adminTireSizeDelete(TireDTO tDTO) {	
+		
+		return tDAO.tireSizeDelte(tDTO);
+	}
 	
 	
 	
@@ -129,7 +131,6 @@ public class AdminTireController {
 		req.setAttribute("contentPage", "tire/tire.jsp");
 		return "admin/master";
 	}
-
 	@ResponseBody
 	@RequestMapping(value = "admin.tire.print.onoff", method = RequestMethod.GET)
 	public int tirePrintOnOff(TireDTO tg) {	

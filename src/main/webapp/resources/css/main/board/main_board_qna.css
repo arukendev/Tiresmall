@@ -1,0 +1,28 @@
+.board_qna_buttonRed {
+	width: 100px;
+	height: 40px;
+	
+	cursor: pointer;
+	
+	background: #ab1e21;
+	color: #fff;
+	
+	font-weight: 900;
+	text-align: center;
+	
+	border: none;
+}
+
+.board_qna_buttonGray {
+	width: 100px;
+	height: 40px;
+	
+	cursor: pointer;
+	
+	background: #f5f5f5;
+	
+	font-weight: 900;
+	text-align: center;
+	
+	border: 1px solid #ddd;
+}

@@ -1,0 +1,399 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+
+:root {
+  --color-success: #23d160;
+  --color-error: #f14668;
+  --color-basicRed:#b20433;
+  --color-grayLigt:#e6e4e3;
+}
+
+
+body {
+  background-color: white;
+  color: black;
+ 
+}
+#login_logo {
+  padding-top: 110px;
+  padding-bottom: 50px;
+}
+
+#login_logo img {
+  width: 250px;
+}
+
+#login_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#login_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#login_box_title{
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 20pt;
+	margin-right: 212px;
+	padding-bottom: 5px;
+}
+
+#login_box_title img{
+	width: 20px;
+}
+#login_id{
+	width: 290px;
+	height: 37px;
+	border-radius: 10px 10px 0 0;
+	border-bottom: none;
+}
+
+#login_pw{
+	width: 290px;
+	height: 37px;
+	border-radius: 0 0 10px 10px;
+}
+
+#login_btn{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+#login_btn button{
+	font-family: 'Black Han Sans', sans-serif;
+	font-size: 26pt;
+	width: 300px;
+	height: 46px;
+	background: var(--color-basicRed);
+	border-radius: 10px;
+	color: white;
+	box-shadow: 2px 2px 2px 2px gray;
+	border: none;
+	cursor:pointer;
+	}
+	
+#login_other_btn{
+	font-size:9pt;
+	color: gray;
+	cursor:pointer;
+}
+#login_btn_social{
+	 display: flex;
+  flex-direction: column;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	width: 1000px;
+	justify-content: center;
+	align-items: center;
+}
+#login_btn_kakao button{
+	border: none;
+	cursor:pointer;
+	 background-color: white;
+}
+
+
+#login_btn_naver{
+	width: 300px; 
+  height: 45px; 
+  object-fit: cover;
+
+}
+#login_btn_naver img{
+	width: 300px; 
+  	height: 45px; 
+  	object-fit: cover;
+}
+
+
+#join_container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+#join_logo{
+	padding-top: 30px;
+	padding-bottom:15px;
+	width: 300px;
+}
+#join_logo img{
+	padding-top: 30px;
+	width: 100%;
+}
+
+
+
+
+ .join_title{
+ padding-top: 20px;
+ padding-bottom: 7px;
+ font-family: 'Do Hyeon', sans-serif;
+ font-size: 14pt;
+	
+}
+
+#join_btn{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+#join_btn button{
+	font-family: 'Black Han Sans', sans-serif;
+	font-size: 26pt;
+	width: 300px;
+	height: 46px;
+	background: var(--color-basicRed);
+	border-radius: 10px;
+	color: white;
+	box-shadow: 2px 2px 2px 2px gray;
+	border: none;
+	cursor:pointer;
+	}
+
+.join_box{
+	width: 300px;
+}
+.join_box input{
+	width: 300px;
+	height: 30px;
+}
+.join_box input:focus {
+	outline-color:rgb(183,62,65);
+}
+
+
+#tou_container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+#tou_logo{
+	padding-top: 30px;
+	padding-bottom:30px;
+	width: 300px;
+}
+#tou_logo img{
+	padding-top: 30px;
+	width: 100%;
+}
+
+
+#tou_btn{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+#tou_btn button{
+	font-family: 'Black Han Sans', sans-serif;
+	font-size: 16pt;
+	width: 150px;
+	height: 30px;
+	background: var(--color-basicRed);
+	border-radius: 10px;
+	color: white;
+	box-shadow: 2px 2px 2px 2px gray;
+	border: none;
+	cursor:pointer;
+	}
+#tou_btn button:nth-child(1){
+	background-color: gray;
+	box-shadow: 0px gray;
+	}
+#join_policy{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  accent-color: rgb(183,62,65);
+}	
+#join_policy textarea{
+  width: 430px;
+  height: 174px;
+}	
+
+.join_policy_title{
+	display: flex;
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 16pt;
+	padding-top: 10px;
+	
+}
+.join_agree_btn{
+	display: flex;
+	margin-left: 240px;
+	padding-top: 20px;
+}
+#join_agree_all{
+	display: flex;
+	padding-left: 350px;
+}
+
+/*---------------findEmail-----------------*/
+
+.find_content > div:last-child {
+  display:none;
+}
+
+
+#find_input{
+	display: flex;
+	width: 400px;
+}
+
+#find_container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+#find_logo{
+	padding-top: 30px;
+	padding-bottom:15px;
+	width: 300px;
+}
+#find_logo img{
+	padding-top: 30px;
+	width: 100%;
+}
+
+ .find_title{
+ padding-top: 20px;
+ padding-bottom: 7px;
+ font-family: 'Do Hyeon', sans-serif;
+ font-size: 16pt;
+ display: flex;
+ width: 500px;
+ height:80px;
+ justify-content:center;
+ align-items: center;
+ padding-bottom: 30px;
+}
+
+.findTab active{
+	width: 200px;
+	height: 60px;
+	line-height:60px;	
+	text-align:center;
+	background: var(--color-basicRed);
+	color: white;
+	border: 1px soild black;
+}
+.findTab{
+	width: 200px;
+	height: 60px;
+	line-height:60px;	
+	text-align:center;
+	background-color: #77767c;
+	color: white;
+}
+
+.find_content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#find_btn{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+#find_btn button{
+	font-family: 'Black Han Sans', sans-serif;
+	font-size: 26pt;
+	width: 300px;
+	height: 46px;
+	background: var(--color-basicRed);
+	border-radius: 10px;
+	color: white;
+	box-shadow: 2px 2px 2px 2px gray;
+	border: none;
+	cursor:pointer;
+	}
+#find_email{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items:center;
+	width: 600px;
+	padding-bottom: 30px;
+}
+#find_email span {
+	width:100px;
+	font-size: 16pt;
+	padding-right: 15px;
+	font-family: 'Do Hyeon', sans-serif;
+	line-height: 32.5px;
+}
+#find_email input{
+	width: 300px;
+	height: 30px;
+}
+#find_email input:focus {
+	outline-color:rgb(183,62,65);
+}
+#find_pw{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items:center;
+	width: 600px;
+	padding-bottom: 30px;
+}
+#find_pw span {
+	width:100px;
+	font-size: 16pt;
+	padding-right: 15px;
+	font-family: 'Do Hyeon', sans-serif;
+	line-height: 32.5px;
+}
+#find_pw input{
+	width: 300px;
+	height: 30px;
+}
+#find_pw input:focus {
+	outline-color:rgb(183,62,65);
+}
+#find_input{
+ padding-bottom: 16px;
+}
+
+
+.findTab a{
+	display:block;
+    text-decoration:none;
+    background-color: gray;
+    color: var(--color-grayLigt);
+    cursor:pointer;
+    transition:.5s ease;
+}
+.findTab a:hover{
+	background: var(--color-basicRed);
+	color: white;
+}
+.active a {
+	background: var(--color-basicRed);
+	color:white;
+	
+}
+
+
+
+
+
+
+

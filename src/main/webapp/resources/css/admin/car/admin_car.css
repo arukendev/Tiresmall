@@ -106,6 +106,7 @@ select {
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 	cursor: pointer;
 	transition: all 0.3s ease-in-out;
+	margin-right:20px; 
 }
 
 .car-findareabutton:hover {
@@ -115,31 +116,85 @@ select {
 }
 
 .carRegButton {
-	width: 200px;
-	font-size: 16px;
-	font-weight: 600;
-	color: #fff;
-	cursor: pointer;
-	margin: 20px;
-	height: 55px;
-	text-align: center;
+ 
+	display: flex;
+	background-color: #5F5F5F;
+	color: #FFFFFF;
 	border: none;
-	background-size: 300% 100%;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	font-size: 16px;
+	font-weight: bold;
 	border-radius: 50px;
-	moz-transition: all .4s ease-in-out;
-	-o-transition: all .4s ease-in-out;
-	-webkit-transition: all .4s ease-in-out;
-	transition: all .4s ease-in-out;
-	background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
-	box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
 }
 
 .carRegButton:hover {
-	background-position: 100% 0;
-	moz-transition: all .4s ease-in-out;
-	-o-transition: all .4s ease-in-out;
-	-webkit-transition: all .4s ease-in-out;
-	transition: all .4s ease-in-out;
+	background-color: #FFFFFF;
+	color: #5F5F5F;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.carregokbutton1{
+	
+display: flex;
+	background-color: #5F5F5F;
+	color: #FFFFFF;
+	border: none;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	font-size: 16px;
+	font-weight: bold;
+	border-radius: 50px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+
+.carregokbutton1:hover {
+	background-color: #FFFFFF;
+	color: #5F5F5F;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+
+.updatecarokbutton1{
+	
+display: flex;
+	background-color: #5F5F5F;
+	color: #FFFFFF;
+	border: none;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	font-size: 16px;
+	font-weight: bold;
+	border-radius: 50px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+
+.updatecarokbutton1:hover {
+	background-color: #FFFFFF;
+	color: #5F5F5F;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
 }
 
 .carRegButton1 {
@@ -294,6 +349,25 @@ select {
 	border: 1px solid gray;
 	line-height: 30px;
 }
+.fileinputstyle{
+  text-align: center;
+  border: 1px solid gray;
+  line-height: 35px;
+  margin-bottom: 20px;
+  height: 36px;
+ 	width:199px;
+ 	margin-left: 30px;
+}
+
+.updatefileinputstyle{
+  text-align: center;
+  border: 1px solid gray;
+  line-height: 35px;
+  margin-bottom: 20px;
+  height: 36px;
+ 	width:199px;
+ 	margin-left: 30px;
+}
 
 .btinputstyle {
 	text-align: center;
@@ -304,8 +378,16 @@ select {
 .tminputstyle {
 	border: 1px solid gray;
 	text-align: center;
-	height: 36px;
-	width: 197px;
+	height: 43px;
+	width: 198px;
+	line-height: 36px;
+}
+
+.tmreginputstyle {
+	border: 1px solid gray;
+	text-align: center;
+	height: 35px;
+	width: 198px;
 	line-height: 36px;
 }
 
@@ -790,7 +872,7 @@ a {
 }
 
 .admin_car_year {
-	width: 18%;
+	width: 10%;
 }
 
 .admin_car_name {
@@ -806,12 +888,13 @@ a {
 }
 
 .authadmin_manage {
-	width: 10%;
+	width: 18%;
 }
 
 .admin_car_management {
 	width: 12%;
 }
+
 
 #admin_cars_content {
 	text-align: center;
@@ -958,21 +1041,185 @@ a {
 }
 
 
-.admin-tire-size-reg-delete{
-	height:17px;
-	width:35px;
-	margin-left:30px;
+
+#admin_tire_size_button{
+	width:79px;
+	margin:15px;
+	padding:5px 15px;
+	cursor: pointer;
+	color: #fff;
+    background-color: #198754;
+    border: none;
+    border-radius: 8px;
+   
+}
+#admin_tire_size_button:hover {
+	color: #fff;
+    background-color: #157347;
+
+}
+
+
+#admin-tire-size-reg{
+	border-spacing:0px;
+	margin-left: 8px;
+	margin-right: 8px;
+	margin-bottom: 8px;
+	width: 98.5%;
+}
+
+.admin-tire-size-reg-title{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	color: #fff;
+	background: #6b6b6b;
+	border: 1px solid #6b6b6b;
+}
+
+.admin-tire-size{
+	width: 16%;
+	min-width: 60px;
+}
+.admin-tire-name{ 
+	width: 30%;
+	min-width: 130px;
+}
+.admin-tire-marking{
+	width: 15%;
+	min-width: 60px;
+}
+.admin-tire-pricefac{
+	width: 15%;
+	min-width: 70px;
+}
+
+.admin-tire-stock{
+	width: 14%;
+	min-width: 50px;
+}
+.admin-tire-delete{
+	width: 10%;
+	min-width: 50px;
+}
+
+.admin-tire-size-reg-content{
+	border: 1px solid #6b6b6b;
+	text-align: center;
+}
+
+.admin_tire_size_reg_modal_open{
+	cursor: pointer;
+    user-select: none;
+}
+
+
+.admin-tire-reg-size-modal{
+	position:fixed;
+	display: none;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-tire-reg-size-modal-container{	
+	background-color:white;
+	border: 1px solid #6b6b6b;
+}
+
+.admin-tire-reg-size-modal-title{
+	padding:10px;
+	text-align: center;
+	border-bottom: 1px solid #6b6b6b;
+}
+.admin-tire-reg-size-modal-input{
+	padding: 10px;
+	border-bottom: 1px solid #6b6b6b;
+}
+.admin-tire-reg-size-modal-input input{
+	width: 70px;
+	height: 30px;
+	text-align: center;
+	font-family: GmarketSansMedium;
+	font-size: 15pt;
+}
+
+.size-span{
+	padding: 1px;
+	font-size: 15pt;
+}
+
+
+
+.admin-tire-reg-size-modal-button{
+	padding:10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.admin-tire-reg-size-modal-button1{
+	border-radius:7px;
+	padding:6px;
+	color: #0d6efd;
+    background-color: #fff;
+    border :1px solid #0d6efd;
+    font-size: 12pt;
+    font-weight: 900;
+    cursor: pointer; 
+    user-select: none;
+    font-family: GmarketSansMedium;	
+}
+.admin-tire-reg-size-modal-button1:hover{
+	color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.admin-tire-reg-size-modal-button2{
+	margin-left:5px;
 	margin-right:5px;
 	border-radius:7px;
 	font-weight: 900;
 	font-size: 12pt;
 	padding:6px;
+	color: #212529;
+    background-color: #fff;
+    border :1px solid #212529;
+    cursor: pointer; 
+    user-select: none;
+    font-family: GmarketSansMedium;	
+}
+.admin-tire-reg-size-modal-button2:hover{
+	color: #fff;
+    background-color: #212529;
+    border-color: #212529;
+}
+
+.admin-tire-size-reg-delete{
+	height:17px;
+	width:35px;
+	margin-top:3px;
+	margin-left:75px;
+	margin-right:5px;
+	line-height: 17px;
+	border-radius:7px;
+	font-weight: 900;
+	font-size: 12pt;
+	padding:8px;
 	color: #fff;
     background-color: #dc3545;
     border :1px solid #dc3545;
     cursor: pointer; 
     user-select: none;	
     font-family: GmarketSansMedium;
+    text-align: center;
 }
 
 .admin-tire-size-reg-delete:hover{
@@ -981,4 +1228,163 @@ a {
 }
 
 
+.admin-tire-reg-marking-input{
+	width: 50%;
+	font-family: GmarketSansMedium;
+	font-size: 15pt;
+	text-align: center;
+}
+.admin-tire-reg-pricefac-input{
+	width: 70%;
+	font-family: GmarketSansMedium;
+	font-size: 15pt;
+	text-align: center;
+}
+.admin-tire-reg-stock-input{
+	width: 40%;
+	font-family: GmarketSansMedium;
+	font-size: 15pt;
+	text-align: center;
+	
+}
 
+
+
+
+
+
+.updatecarbutton {
+	width: 130px;
+  height: 40px;
+  padding: 10px 25px;
+  border: 2px solid #000;
+  font-family: 'Lato', sans-serif;
+  top:5px;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+.updatecarbutton:after {
+  position: absolute;
+  content: " ";
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+.updatecarbutton:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.5),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+  color: #fff;
+}
+.updatecarbutton:hover:after {
+  -webkit-transform: scale(2) rotate(180deg);
+  transform: scale(2) rotate(180deg);
+  background: #000;
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.5),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+}
+
+
+.admin_tire_size_button{
+	width:100px;
+	margin:0px;
+	padding:10px 3px;
+	cursor: pointer;
+	color: #fff;
+    background-color: #198754;
+    border: none;
+    border-radius: 8px;
+   
+}
+.admin_tire_size_button:hover {
+	color: #fff;
+    background-color: #157347;
+
+}
+
+.modal_table td {
+	border: 1px solid black;
+
+}
+
+
+
+
+.upload-thumb {
+  max-width: 100px;
+  margin-top: 10px;
+}
+
+
+.update-upload-thumb {
+  max-width: 100px;
+  margin-top: 10px;
+}
+
+
+
+.admin-tire-img-container{
+	display: flex;
+	width: 100%;
+	margin: 10px;
+}
+.admin-tire-img-contain{
+	width: 49%;	
+}
+.admin-tire-img-title{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	color: #fff;
+	background: #6b6b6b;
+	border: 2px solid #6b6b6b;
+	min-height: 50px;
+}
+.admin-tire-img-content{
+	border: 2px solid #6b6b6b;
+	min-height: 50px;
+	display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+
+
+.custom-file-upload {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #999;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #fdfdfd;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+}
+
+.custom-file-upload:hover {
+  background-color: #e6e6e6;
+}
+
+.custom-file-upload:active {
+  background-color: #d9d9d9;
+}
+
+.custom-file-upload input[type="file"] {
+  display: none;
+}

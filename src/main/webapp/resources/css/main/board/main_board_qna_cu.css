@@ -1,0 +1,83 @@
+.board_qna_cu_rowAndValue {
+	display: grid;
+	grid-template-columns: 110px 1fr;
+	grid-template-rows: 51px 1fr;	/*?????*/
+	grid-template-areas:	"cu_title cu_titleValue"
+							"cu_text cu_textValue";
+							
+	width: 950px;
+	height: 450px;	/*?????*/
+	
+	border-top: 1px solid #000;
+}
+
+.board_qna_cu_rowAndValue div:nth-child(1) {
+	grid-area: cu_title;
+}
+.board_qna_cu_rowAndValue div:nth-child(2) {
+	grid-area: cu_titleValue;
+	display: flex;
+	align-items: center;
+}
+.board_qna_cu_rowAndValue div:nth-child(2) > input {
+	width: 100%;
+	height: 29px;
+	border: 1px solid #ddd;
+}
+.board_qna_cu_rowAndValue div:nth-child(3) {
+	grid-area: cu_text;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.board_qna_cu_rowAndValue div:nth-child(4) {
+	grid-area: cu_textValue;
+	padding-right: 21px;
+}
+.board_qna_cu_rowAndValue div:nth-child(4) > div > textarea {
+	width: 100%;
+	height: 331px;
+	
+	border: 1px solid #ddd;
+	
+	resize: none;
+}
+.board_qna_cu_rowAndValue div:nth-child(4) > div > div {
+	margin-top: 8px;
+}
+
+.board_qna_cu_rowAndValue > div {
+	border-bottom: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	padding: 15px;
+}
+.board_qna_cu_rowAndValue > div:nth-child(odd) {
+	background-color: #f5f5f5;
+	text-align: center;
+	font-weight: 400;
+}
+.board_qna_cu_rowAndValue > div:nth-child(even) {
+	border-right: 1px solid #ddd;
+}
+
+.board_qna_cu_important {
+	color: #d43301;
+}
+
+.board_qna_cu_request {
+	margin-top: 10px;
+	color: #767676;
+}
+
+.board_qna_cu_buttons {
+	display: flex;
+	
+	width: 950px;
+	height: 51px;
+	
+	margin-top: 10px;
+	margin-bottom: 120px;
+	
+	justify-content: center;
+	gap: 12px;
+}

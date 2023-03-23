@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.tireshoppingmall.home.admin.store.AdminStoreMapper">
+	<select id="getBranchCount" resultType="int">
+
+		select count(*)
+		from branch
+		where b_branchname
+		like
+		'%'||#{branchnameInput}||'%'
+		<if test="branchareaInput != ''">and b_area = #{branchareaInput} </if>
+	</select>
+
+
+	<select id="getBranchlist"
+		resultType="com.tireshoppingmall.home.admin.store.BranchDTO"
+		parameterType="com.tireshoppingmall.home.admin.store.SearchBranchDTO">
+
+	select *
+from
+(select rownum as rn, b_id, b_sortation, b_area, b_addr,
+b_name , b_time ,
+b_service , b_mapdata, b_manager , b_managernumber ,
+b_branchname,
+b_branchnumber ,b_cr ,b_email,b_file
+from(
+select * from
+branch where
+b_branchname like '%'||#{branchnameInput}||'%'
+<if test="branchareaInput != ''"> and b_area = #{branchareaInput} </if>
+)
+)  where rn &gt;= #{start} and rn &lt;= #{end}
+
+	</select>
+
+
+	<select id="getAllBranch"
+		resultType="com.tireshoppingmall.home.admin.store.BranchDTO">
+
+		select * from branch
+
+	</select>
+
+	<insert id="regBranch"
+		parameterType="com.tireshoppingmall.home.admin.store.BranchDTO">
+
+		insert into branch
+		values(#{b_id},#{b_sortation},#{b_area},#{b_addr},#{b_name},#{b_time},#{b_service},#{b_mapdata},#{b_manager},#{b_managernumber},#{b_branchname},#{b_branchnumber},#{b_cr},#{b_email},#{b_file})
+
+
+	</insert>
+
+	<select id="branchSearchbranchname" resultType="com.tireshoppingmall.home.admin.store.BranchDTO"
+		parameterType="com.tireshoppingmall.home.admin.store.SearchBranchDTO">
+
+		select * from branch where 
+		b_branchname like '%'||#{branchnameInput}||'%'
+		<if test="branchareaInput != ''"> and b_area = #{branchareaInput}  </if>
+
+	</select>
+
+	<!-- <select id="branchSearcharea" resultType="com.tireshoppingmall.home.admin.store.BranchDTO" 
+		parameterType="com.tireshoppingmall.home.admin.store.SearchBranchDTO"> select 
+		* from branch where b_area like '%'||#{branchareaInput}||'%' </select> -->
+
+	<select id="getbranch"
+		resultType="com.tireshoppingmall.home.admin.store.BranchDTO">
+
+		select * from branch where b_id = #{b_id}
+
+	</select>
+
+	<update id="updatebranch"
+		parameterType="com.tireshoppingmall.home.admin.store.BranchDTO">
+
+		update branch
+
+
+		set
+
+		b_sortation = #{b_sortation},
+		b_area =
+		#{b_area},
+		b_addr = #{b_addr},
+		b_name =
+		#{b_name},
+		b_time = #{b_time},
+		b_service = #{b_service},
+		b_mapdata =
+		#{b_mapdata},
+		b_manager =
+		#{b_manager},
+		b_managernumber =
+		#{b_managernumber},
+		b_branchname =
+		#{b_branchname},
+		b_branchnumber =
+		#{b_branchnumber},
+		b_cr = #{b_cr},
+		b_email = #{b_email},
+		b_file = #{b_file}
+
+
+		where b_id = #{b_id}
+
+	</update>
+
+	<delete id="deletebranch">
+
+		delete branch where b_id = #{b_id}
+
+
+	</delete>
+
+
+
+
+</mapper>

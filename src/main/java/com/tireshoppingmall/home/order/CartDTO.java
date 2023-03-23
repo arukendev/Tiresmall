@@ -14,6 +14,8 @@ public class CartDTO {
 	private int ti_pricegp;
 	private int ti_pricefac;
 	private String ti_marking;
+	private int ti_allpricegp;
+	private int ti_allpricefac;
 	
 	public CartDTO() {
 		super();
@@ -21,7 +23,8 @@ public class CartDTO {
 	}
 
 	public CartDTO(int tg_id, String tg_brand, String tg_name, String tg_img, int tg_dcrate, int ti_id, int ti_width,
-			int ti_ratio, int ti_inch, int ti_stock, int ti_pricegp, int ti_pricefac, String ti_marking) {
+			int ti_ratio, int ti_inch, int ti_stock, int ti_pricegp, int ti_pricefac, String ti_marking,
+			int ti_allpricegp, int ti_allpricefac) {
 		super();
 		this.tg_id = tg_id;
 		this.tg_brand = tg_brand;
@@ -36,6 +39,8 @@ public class CartDTO {
 		this.ti_pricegp = ti_pricegp;
 		this.ti_pricefac = ti_pricefac;
 		this.ti_marking = ti_marking;
+		this.ti_allpricegp = ti_allpricegp;
+		this.ti_allpricefac = ti_allpricefac;
 	}
 
 	public int getTg_id() {
@@ -140,5 +145,21 @@ public class CartDTO {
 
 	public void setTi_marking(String ti_marking) {
 		this.ti_marking = ti_marking;
+	}
+
+	public int getTi_allpricegp() {
+		return ti_allpricegp;
+	}
+
+	public void setTi_allpricegp(int ti_allpricegp) {
+		this.ti_allpricegp = ti_allpricegp;
+	}
+
+	public int getTi_allpricefac() {
+		return ti_allpricefac;
+	}
+
+	public void setTi_allpricefac(int ti_allpricefac) {
+		this.ti_allpricefac = ti_allpricefac;
 	}
 }

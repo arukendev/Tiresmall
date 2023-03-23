@@ -8,7 +8,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>대전 타이어쇼핑몰</title>
+<link
+rel="shortcut icon"
+href="resources/web/favicon.png"
+type="image/png"
+/>
+<link rel="icon" href="resources/web/favicon.png" type="image/png" />
 <link rel="stylesheet" href="resources/css/main/auth/auth.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

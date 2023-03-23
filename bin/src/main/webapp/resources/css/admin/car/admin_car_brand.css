@@ -1,0 +1,949 @@
+@charset "UTF-8";
+
+select {
+width: 200px; 
+padding: .8em .5em; 
+border: 1px solid #999;
+display: flex;
+margin-right:5px;
+}
+
+.brand-findselect{
+	
+	display: flex;
+	margin-left:5px;
+	margin-top:65px;
+	align-items: center;
+	position:relative;
+}
+
+.brand-findarea{
+	
+	
+	float:left;
+	
+}
+
+.b_img_css{
+	
+	width:150px;
+}
+
+
+
+
+
+.brandsearchButton {
+  background-color: #5F5F5F;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-left:20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  
+}
+
+.brandsearchButton:hover {
+  background-color: #FFFFFF;
+  color: #5F5F5F;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+
+
+
+.brand-text1{
+	float:left;
+	display: flex;
+	padding-top:6.5px;
+	padding-bottom:7px;
+	border: solid 2.5px;
+	border-radius: 10px 0 0 10px;
+	 padding-left: 2px;
+	 padding-right: 2px;
+	 background-color: #C0C0C0;
+	position:relative;
+}
+
+
+.brand-text2{
+float:left;
+	display: flex;
+	padding-top:7px;
+	padding-bottom:10px;
+	border: solid 2.5px;
+	border-radius: 10px 0 0 10px;
+	margin-left:20px;
+	top:0px;
+	 padding-left: 2px;
+	 padding-right: 2px;
+	 background-color: #C0C0C0;
+	position:relative;
+}
+
+.b_area2{
+	margin-right:5px;
+	
+}
+
+.brand-findareabutton{
+	
+ background-color: #5F5F5F;
+  color: #FFFFFF;
+  border: none;
+ padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+	
+}
+
+.brand-findareabutton:hover {
+  background-color: #FFFFFF;
+  color: #5F5F5F;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+
+.brandRegButton{
+	
+	  width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+	
+	 background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+	
+}
+
+.brandRegButton:hover{
+	
+	   background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+	
+}
+
+
+  
+
+
+
+.brandRegButton1{
+	 margin-left: auto;
+	  
+        position:relative;
+	
+}
+
+
+
+
+.branddata_div{
+	
+	width: 100%; 
+	  display: inline-block;
+	  text-align: center;
+	  margin-left:auto;
+	  margin-right:auto;
+	   line-height : 50px;
+	   background-color: black;
+	   color:white;
+}
+
+.branddata_div .branddata_div1{
+	height : 50px;
+	width: 50%;
+}
+
+.branddata_div .branddata_div2{
+	height : 50px;
+	width: 20%;
+}
+
+.branddata_div .branddata_div3{
+	height : 50px;
+	width: 20%;
+}
+
+.branddata_div .branddata_div4{
+	height : 50px;
+	width: 10%;
+	position: absolute;
+	left:90.2%;
+}
+
+
+
+.branddatalist_div{
+	width: 100%; 
+	  display: inline-block;
+	  text-align: center;
+	  margin-left:auto;
+	  margin-right:auto;
+	   line-height : 50px;
+	
+}
+
+.branddatalist_div1{
+	width: 50%;
+	 border: 1px solid #000;
+}
+
+.branddatalist_div2{
+	 border: 1px solid #000;
+	width: 20%;
+}
+
+.branddatalist_div3{
+	 border: 1px solid #000;
+	width: 20%;
+	
+}
+
+.branddatalist_div4{
+	 border: 1px solid #000;
+	width: 10%;
+	position: absolute;
+	left:90.2%;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+.custom-btn {
+  
+}
+
+.brand-paging-box{
+	
+	
+	text-align: center;
+	
+	
+}
+
+.regbuttonarea{
+	
+	border: 1px solid #000;
+	background-color: #fff;
+}
+
+.updatebrandbutton {
+	width: 130px;
+  height: 40px;
+  padding: 10px 25px;
+  border: 2px solid #000;
+  font-family: 'Lato', sans-serif;
+  top:5px;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+.updatebrandbutton:after {
+  position: absolute;
+  content: " ";
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+.updatebrandbutton:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.5),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+  color: #fff;
+}
+.updatebrandbutton:hover:after {
+  -webkit-transform: scale(2) rotate(180deg);
+  transform: scale(2) rotate(180deg);
+  background: #000;
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.5),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+}
+
+
+ #regpopup01{
+    display: none;
+}
+#regpopup01{
+width: 800px;
+height: 600px;
+position: absolute;
+top: 50%;
+left: 45%;
+margin: -250px 0 0 -250px;
+background-color: #fff;
+z-index: 2;
+    }
+.backon{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #00000054;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.close{
+  position:absolute;
+  top:-25px;
+  right: 0;
+  cursor:pointer;
+}
+
+.openPopup{
+
+  cursor:pointer;
+
+}
+
+
+#brandregpopup01{
+    display: none;
+}
+#brandregpopup01{
+width: 300px;
+height: 150px;
+position: absolute;
+top: 50%;
+left: 45%;
+margin: -250px 0 0 -250px;
+background-color: #fff;
+z-index: 2;
+    }
+.backon{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #00000054;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.close{
+  position:absolute;
+  top:-25px;
+  right: 0;
+  cursor:pointer;
+}
+
+.openPopup{
+
+  cursor:pointer;
+
+}
+
+
+
+#popup01{
+    display: none;
+}
+#popup01{
+width: 500px;
+height: 500px;
+position: absolute;
+top: 50%;
+left: 30%;
+margin: -50px 0 0 -250px;
+background-color: #fff;
+z-index: 2;
+    }
+.backon{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #00000054;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.close{
+  position:absolute;
+  top:-25px;
+  right: 0;
+  cursor:pointer;
+}
+
+.openPopup{
+
+  cursor:pointer;
+
+}
+
+
+
+#sido1{
+
+	float:left;
+	
+}
+
+#gugun1{
+	
+	
+	float:left;
+	
+}
+
+#inputid{
+	
+	
+	width:100px;
+	
+}
+
+#inputname{
+	
+
+	width:200px;
+}
+
+#inputaddr{
+	
+	
+	width:400px;
+	
+}
+
+#b_addr_i{
+	
+	width:400px;
+	
+}
+
+
+#b_time_i{
+
+width:400px;
+
+}
+
+
+#b_service_i{
+	
+	
+width:400px;
+	
+}
+
+
+#inputmapdata{
+	
+	width:300px;
+	
+}
+
+#inputregtime{
+	
+	
+	width:300px;
+}
+
+
+#service{
+	
+width:300px;	
+	
+}
+
+
+.regokbutton{
+	
+	text-align: center;
+
+}
+
+.regokbutton1{
+	
+	display :inline-block;
+	 padding-left: 40px;
+	 padding-right: 40px;
+	 padding-top:15px;
+	  padding-bottom: 15px;
+color: #fff;
+    cursor: pointer;
+    text-align:center;
+    border: none;
+    background-size: 100% 100%;
+
+    border-radius: 5px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+	
+	 background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
+
+
+
+
+.regokbutton1.hover{
+	
+	
+background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+
+.updateokbutton{
+	
+	
+	
+	text-align: center;
+	
+	
+	
+}
+
+
+.updateokbutton1{
+	
+	
+	display :inline-block;
+	 padding-left: 40px;
+	 padding-right: 40px;
+	 padding-top:15px;
+	  padding-bottom: 15px;
+color: #fff;
+    cursor: pointer;
+    text-align:center;
+    border: none;
+    background-size: 100% 100%;
+
+    border-radius: 5px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+	
+	 background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+   
+    
+}
+
+
+
+.updateokbutton1.hover{
+	
+	
+	display :inline-block;
+ 
+background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+   
+    
+}
+
+
+
+
+
+table {
+  border: 1px #a39485 solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+th {
+  text-align: left;
+}
+  
+thead {
+  font-weight: bold;
+  color: #fff;
+  background: #73685d;
+}
+  
+ td, th {
+  padding: 1em .5em;
+  vertical-align: middle;
+}
+  
+ td {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  background: #fff;
+}
+
+a {
+  color: #73685d;
+}
+  
+ @media all and (max-width: 768px) {
+    
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  
+  th {
+    text-align: right;
+  }
+  
+  table {
+    position: relative; 
+    padding-bottom: 0;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+  }
+  
+  thead {
+    float: left;
+    white-space: nowrap;
+  }
+  
+  tbody {
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    white-space: nowrap;
+  }
+  
+  tr {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  th {
+    border-bottom: 1px solid #a39485;
+  }
+  
+  td {
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  
+  }
+  
+ .brandinfoarea1{
+
+ }
+ 
+  .brandinfoarea2{
+   
+ }
+ 
+  .brandinfoarea3{
+ 
+ }
+ 
+  .brandinfoarea4{
+
+ }
+
+
+.brandnamestyle1{
+	
+		float:left;
+	display: flex;
+	padding-top:6.5px;
+	padding-bottom:7px;
+	border: solid 2.5px;
+	border-radius: 10px 0 0 10px;
+	 padding-left: 2px;
+	 padding-right: 2px;
+	 background-color: #C0C0C0;
+	position:relative;
+	margin-bottom: 20px;
+	
+}
+
+
+.brandnamestyle2{
+	
+		float:left;
+	display: flex;
+	padding-top:6.5px;
+	padding-bottom:7px;
+	border: solid 2.5px;
+	border-radius: 10px 0 0 10px;
+	 padding-left: 2px;
+	 padding-right: 2px;
+	 background-color: #C0C0C0;
+	position:relative;
+	margin-left:20px;
+	margin-bottom: 20px;
+	
+}
+
+.brandnamestyle3{
+	
+		float:left;
+	display: flex;
+	padding-top:6.5px;
+	padding-bottom:7px;
+	border: solid 2.5px;
+	border-radius: 10px 0 0 10px;
+	 padding-left: 2px;
+	 padding-right: 2px;
+	 background-color: #C0C0C0;
+	position:relative;
+	margin-bottom: 10px;
+	
+}
+
+.brandnamestyle4{
+	
+		float:left;
+	display: flex;
+	padding-top:6.5px;
+	padding-bottom:7px;
+	border: solid 2.5px;
+	border-radius: 10px 0 0 10px;
+	 padding-left: 2px;
+	 padding-right: 2px;
+	 background-color: #C0C0C0;
+	position:relative;
+	margin-left:20px;
+	margin-bottom: 10px;
+	
+}
+
+
+.brandinfoareasangdanframe{
+	
+	 text-align: center;
+	 
+}
+
+
+
+
+
+#updatecarpopup01{
+    display: none;
+}
+#updatecarpopup01{
+width: 500px;
+height: 500px;
+position: absolute;
+top: 50%;
+left: 50%;
+margin: -250px 0 0 -250px;
+background-color: #fff;
+z-index: 2;
+    }
+.backon{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #00000054;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.close{
+  position:absolute;
+  top:-25px;
+  right: 0;
+  cursor:pointer;
+}
+
+.openPopup{
+
+  cursor:pointer;
+
+}
+
+
+
+
+#updatebrandpopup01{
+    display: none;
+}
+#updatebrandpopup01{
+width: 800px;
+height: 200px;
+position: absolute;
+top: 50%;
+left: 40%;
+margin: -250px 0 0 -250px;
+background-color: #fff;
+z-index: 2;
+    }
+.backon{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #00000054;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.close{
+  position:absolute;
+  top:-25px;
+  right: 0;
+  cursor:pointer;
+  -webkit-text-stroke: 1px white;
+}
+
+.openPopup{
+
+  cursor:pointer;
+
+}
+
+.carbrandregokbutton{
+	
+	text-align: center;
+	
+}
+
+.carbrandregokbutton1{
+	
+	
+	display :inline-block;
+	
+}
+
+
+
+
+#updatecarbrandpopup01{
+    display: none;
+}
+#updatecarbrandpopup01{
+width: 500px;
+height: 500px;
+position: absolute;
+top: 50%;
+left: 50%;
+margin: -250px 0 0 -250px;
+background-color: #fff;
+z-index: 2;
+    }
+.backon{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #00000054;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.close{
+  position:absolute;
+  top:-25px;
+  right: 0;
+  cursor:pointer;
+}
+
+.openPopup{
+
+  cursor:pointer;
+
+}
+
+
+
+
+
+#popup01{
+    display: none;
+}
+#popup01{
+width: 500px;
+height: 500px;
+position: absolute;
+top: 50%;
+left: 50%;
+margin: -250px 0 0 -250px;
+background-color: #fff;
+z-index: 2;
+    }
+.backon{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #00000054;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.close{
+  position:absolute;
+  top:-25px;
+  right: 0;
+  cursor:pointer;
+}
+
+.openPopup{
+
+  cursor:pointer;
+
+}
+
+
+
+
+
+
+

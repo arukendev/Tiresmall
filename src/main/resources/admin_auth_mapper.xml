@@ -1,63 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tireshoppingmall.home.admin.auth.AdminAuthMapper">
+<mapper
+	namespace="com.tireshoppingmall.home.admin.auth.AdminAuthMapper">
 
 	<delete id="authDelete">
-		delete auth where a_id = #{a_id}
+		delete auth_user where u_id = #{u_id}
 	</delete>
-	
-	
+
+
 	<update id="authUpdate">
-		update auth 
-		set 
+		update auth_userinfo
+		set
 		<choose>
-			<when test="a_Sortation==1">
-				a_Sortation ='일반'
+			<when test="i_grade==1">
+				i_grade = 1
 			</when>
-			<when test="a_Sortation==2">
-				a_Sortation = '업체'
+			<when test="i_grade==2">
+				i_grade = 2
 			</when>
-			<when test="a_Sortation==3">
-				a_Sortation = '관리자'
+			<when test="i_grade==3">
+				i_grade = 3
 			</when>
 		</choose>
-		where a_id = #{a_id}
+		where i_no = #{i_id}
 	</update>
-	
+
 	<select id="getAuthCount" resultType="int">
 		select count(*)
-		from auth 
-		where 	
-		<if test="a_id != ''">
-			a_id= #{a_id} and 
-		</if>
-		a_name like '%'||#{a_name}||'%' 
+		from
+		auth_user u , auth_userinfo ui
+		where u.u_no = ui.i_no
+		i_name like
+		'%'||#{i_name}||'%'
 	</select>
-	
-	<select id="getAuth" resultType="com.tireshoppingmall.home.admin.auth.AuthDTO">
-	select * from (select 
-	rownum as rn,a_id,a_Sortation,a_name,a_phone,a_address,a_date,mc_number,mc_id,mc_model,mc_brand,mc_year
-	 from (select * from auth a left OUTER JOIN my_car mycar
-		on a.a_id = mycar.mc_id  where
-		<if test="a_id != ''">
-			a.a_id= #{a_id} and 
+
+	<select id="getAuth"
+		resultType="com.tireshoppingmall.home.admin.auth.AuthDTO">
+
+
+		select * from (
+		select rownum as rn,u_no,
+		u_id,u_logintype,i_no,i_name,i_phonenum,i_newdate,i_grade,i_email,
+		mc_number,mc_id,mc_model,mc_brand,mc_year
+		from (
+		select * from auth_user u
+		inner join auth_userinfo ui on u.u_no = ui.i_no
+		left OUTER JOIN my_car mc on u.u_no = mc.mc_id
+		where
+		<if test="u_id != ''">
+			u.u_id = #{u_id} and
 		</if>
-			a.a_name like '%'||#{a_name}||'%' 
-		<!--and a_carNum like '%'||#{a_carNum}||'%' -->
+		ui.i_name like '%'||#{i_name}||'%'
+		and mc.mc_carnumber like '%'||#{mc_carNumber}||'%'
 		<choose>
-			<when test="a_Sortation==2">
-				and a.a_Sortation = '일반'
+			<when test="i_grade == 1">
+				and ui.i_grade = '일반'
 			</when>
-			<when test="a_Sortation==3">
-				and a.a_Sortation = '업체'
+			<when test="i_grade == 2">
+				and ui.i_grade = '업체'
 			</when>
-			<when test="a_Sortation==4">
-				and a.a_Sortation = '관리자'
+			<when test="i_grade == 3">
+				and ui.i_grade = '관리자'
 			</when>
 		</choose>
-			order by a_date desc)
-			)where rn &gt;= #{start} and rn &lt;= #{end}
-	
+		order by ui.i_newdate desc)
+		)where rn &gt;= #{start} and rn &lt;= #{end}
+
 	</select>
-	
+
 </mapper>

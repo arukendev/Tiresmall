@@ -166,3 +166,39 @@ $(document).ready(
 					});
 
 		});
+
+function previewImagereg(event) {
+	  var input = event.target;
+	  var preview = document.querySelector('.preview-image .upload-thumb');
+	  var filename = input.files[0].name;
+	  var fileinputstyle = document.querySelector('.fileinputstyle');
+
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(event) {
+	      preview.src = event.target.result;
+	    }
+	    reader.readAsDataURL(input.files[0]);
+	  }
+
+	  fileinputstyle.textContent = filename;
+	
+	}
+
+function previewImage(event) {
+	  var input = event.target;
+	  var preview = document.querySelector('.preview-image .update-upload-thumb');
+	  var filename = input.files[0].name;
+	  var fileinputstyle = document.querySelector('.updatefileinputstyle');
+
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(event) {
+	      preview.src = event.target.result;
+	    }
+	    reader.readAsDataURL(input.files[0]);
+	  }
+
+	  fileinputstyle.textContent = filename;
+	
+	}

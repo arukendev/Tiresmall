@@ -23,6 +23,13 @@ const dropBrandA = document.querySelectorAll(".index_dropBrand_a");
 const dropStoreA = document.querySelectorAll(".index_dropStore_a");
 const dropBoardA = document.querySelectorAll(".index_dropBoard_a");
 
+for (let i = 0; i < dropSearchA.length; i++) {
+  const element = dropSearchA[i];
+  element.addEventListener("mouseenter", () => {
+    dropSearchImg.src = `resources/web/main/index/search/${i + 1}.jpg`;
+  });
+}
+
 for (let i = 0; i < dropBrandA.length; i++) {
   const element = dropBrandA[i];
   element.addEventListener("mouseenter", () => {
@@ -34,6 +41,13 @@ for (let i = 0; i < dropStoreA.length; i++) {
   const element = dropStoreA[i];
   element.addEventListener("mouseenter", () => {
     dropStoreImg.src = `resources/web/main/index/store/${i + 1}.jpg`;
+  });
+}
+
+for (let i = 0; i < dropBoardA.length; i++) {
+  const element = dropBoardA[i];
+  element.addEventListener("mouseenter", () => {
+    dropBoardImg.src = `resources/web/main/index/board/${i + 1}.jpg`;
   });
 }
 
@@ -52,6 +66,7 @@ searchMenu.addEventListener("mouseenter", () => {
   reset();
   searchMenu.style.borderBottomColor = "var(--red)";
   dropSearch.style.display = "block";
+  dropSearchImg.src = `resources/web/main/index/search/1.jpg`;
 });
 
 brandMenu.addEventListener("mouseenter", () => {
@@ -72,6 +87,7 @@ boardMenu.addEventListener("mouseenter", () => {
   reset();
   boardMenu.style.borderBottomColor = "var(--red)";
   dropBoard.style.display = "block";
+  dropBoardImg.src = `resources/web/main/index/board/1.jpg`;
 });
 
 function reset() {

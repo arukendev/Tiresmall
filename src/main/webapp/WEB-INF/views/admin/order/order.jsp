@@ -137,9 +137,9 @@
 				<div>
 					<div class="input_box1">
 						<div class="no-drag">기간검색</div>
-						<input type="text" id="datepicker" placeholder="시작"
+						<input type="text" id="datepicker" maxlength="10" placeholder="시작"
 							autocomplete="off" name="dateSearch1"> <input type="text"
-							id="datepicker1" placeholder="종료" autocomplete="off"
+							id="datepicker1" placeholder="종료" maxlength="10" autocomplete="off"
 							name="dateSearch2">
 					</div>
 					<div class="input_box2">
@@ -222,6 +222,8 @@
 								<td class="td_c3">${o.o_ordernumber }</td>
 								<td class="td_c4"><fmt:formatDate
 										pattern="yyyy-MM-dd HH:mm:ss" value="${o.o_orderdate }" /></td>
+								<td class="td_c00" style="display: none"><fmt:formatDate
+										pattern="yyyy-MM-dd" value="${o.o_tireinstalldate }" /></td>
 								<td class="td_c5">${o.o_name }</td>
 								<td class="td_c6">${o.o_phone }</td>
 								<td class="td_c7">${o.o_ordername }</td>

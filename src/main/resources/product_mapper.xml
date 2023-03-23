@@ -3,38 +3,26 @@
 <mapper namespace="com.tireshoppingmall.home.product.ProductMapper">
 	<select id="getProductGroupCount" resultType="int">
 		select count(*)
-        from tire_group
+        from tire_group, tire_brand
         where tg_brand like '%'||#{search}||'%'
-        <if test="search3 != ''">
-        	<choose>
-        		<when test="search2 != ''">
-	        		and tg_${search2} &gt;= #{search3}
-        		</when>
-        		<otherwise>
-        			and (tg_sedan &gt;= #{search3} or tg_suv &gt;= #{search3})
-        		</otherwise>
-       		</choose>
-        </if>
-        order by tg_id 
+       		<if test="search2 != ''">
+        		and tg_${search2} = 1
+       		</if>
+        and tg_brand = tb_name
+        order by tb_order, tg_id
 	</select>
 	<select id="getProductGroup" resultType="com.tireshoppingmall.home.product.ProductGroupDTO">
 		select *
         from (
         	select rownum as rn, tg_id, tg_brand, tg_name, tg_img, tg_text, tg_dcrate,  tg_print, tg_sedan, tg_suv
                 from (
-                    select * from tire_group
+                    select * from tire_group, tire_brand
                 where tg_brand like '%'||#{search}||'%'
-                <if test="search3 != ''">
-	                <choose>
-		        		<when test="search2 != ''">
-			        		and tg_${search2} &gt;= #{search3}
-		        		</when>
-		        		<otherwise>
-		        			and (tg_sedan &gt;= #{search3} or tg_suv &gt;= #{search3})
-		        		</otherwise>
-	        		</choose>
-        		</if>
-                order by tg_id
+	        		<if test="search2 != ''">
+		        		and tg_${search2} = 1
+	        		</if>
+                and tg_brand = tb_name
+        		order by tb_order, tg_id
             )
         )
         where rn &gt;= #{start} and rn &lt;= #{end}	

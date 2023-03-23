@@ -27,19 +27,19 @@
 			<br>
 			
 			<div>
-				<a class="board_sideMenuList board_faq" href="board.faq">FAQ</a>
+				<a class="board_sideMenuList board_faq" href="board.faq.read.search?f_sortation=">FAQ</a>
 			</div>
 			<div>
-				<a class="board_sideMenuList board_ask" href="board.ask.readall.check">1:1문의 <img class="board_askAndKakaoLogo" src="resources/web/main/board/askLogo.svg"/></a>
+				<a class="board_sideMenuList board_qna" href="board.qna.check">1:1문의 <img class="board_qnaAndKakaoLogo" src="resources/web/main/board/qnalogo.png"/></a>
 			</div>
 			<div>
-				<a class="board_kakao" onclick="board_openKakao()" style="cursor: pointer">카카오톡상담 <img class="board_askAndKakaoLogo" src="resources/web/main/board/kakaoLogo.png"/></a>
+				<a class="board_kakao" onclick="board_openKakao()" style="cursor: pointer">카카오톡상담 <img class="board_qnaAndKakaoLogo" src="resources/web/main/board/kakaologo.png"/></a>
 			</div>
 			
 			<br>
 			
 			<div>
-				<a class="board_sideMenuList board_notice" href="board.notice">공지사항</a>
+				<a class="board_sideMenuList board_notice" href="board.notice.read">공지사항</a>
 			</div>
 			<div>
 				<a class="board_sideMenuList board_event" href="board.event">이벤트</a>
@@ -49,7 +49,7 @@
 		<div class="board_sideInfo">
 			<i class="fa-solid fa-headphones"></i> 전화문의<br>
 			<span class="board_sideInfo_20px">
-			<a href='tel:010-4073-4447'><span class="board_sideInfo_bold">1234-5678</span></a><br>
+			<a href='tel:010-5125-8008'><span class="board_sideInfo_bold">010-5125-8008</span></a><br>
 			</span>
 			<br>
 			<i class="fa-solid fa-clock"></i> 운영시간<br>

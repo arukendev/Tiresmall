@@ -12,8 +12,6 @@ public class CarDTO {
 	private String c_brand;
 	private String c_ft;
 	private String c_bt;
-	private String c_fta;
-	private String c_bta;
 	private String c_print;
 	private MultipartFile file;
 	private String c_file;
@@ -82,21 +80,8 @@ public class CarDTO {
 		this.c_bt = c_bt;
 	}
 
-	public String getC_fta() {
-		return c_fta;
-	}
-
-	public void setC_fta(String c_fta) {
-		this.c_fta = c_fta;
-	}
-
-	public String getC_bta() {
-		return c_bta;
-	}
-
-	public void setC_bta(String c_bta) {
-		this.c_bta = c_bta;
-	}
+	
+	
 
 	public String getC_print() {
 		return c_print;
@@ -133,8 +118,6 @@ public class CarDTO {
 		this.c_brand = c_brand;
 		this.c_ft = c_ft;
 		this.c_bt = c_bt;
-		this.c_fta = c_fta;
-		this.c_bta = c_bta;
 		this.c_print = c_print;
 		this.file = file;
 		this.c_file = c_file;

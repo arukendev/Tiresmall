@@ -82,16 +82,22 @@ select * from branch where b_branchname like '%%'
 		c_brand varchar2(20 char) not null,
 		c_ft varchar2(40 char) not null,
 		c_bt varchar2(40 char) not null,
-		c_fta varchar2(40 char),
-		c_bta varchar2(40 char),
 		c_print varchar2(40 char) not null,
 		c_file varchar2(2000 char)
 );
 		
 		
-insert into Car values('2345','X101','2014','2016','에어백','대우','12313154','2534533',null,null,'출력','a.jpg');
-insert into Car values('434','X202','2013','2017','아기유모차','기아','12313154','2534533','123414',null,'출력','b.jpg');
-insert into Car values('8346','X203','2012','2018','선루프','BMW','12313154','2534533','1341233','123141515','출력','c.jpg');
+insert into Car values('159345','X101','2014','2016','에어백','대우','12313154','2534533','출력','a.jpg');
+insert into Car values('154344','X202','2013','2017','아기유모차','기아','12313154','2534533','출력','b.jpg');
+insert into Car values('15346','X203','2012','2018','선루프','BMW','12313154','2534533','출력','c.jpg');
+insert into Car values('12595935','X101','2014','2016','에어백','대우','12313154','2534533','출력','a.jpg');
+insert into Car values('512459994','X202','2013','2017','아기유모차','기아','12313154','2534533','출력','b.jpg');
+insert into Car values('1492596','X203','2012','2018','선루프','BMW','12313154','2534533','출력','c.jpg');
+insert into Car values('1925396','X203','2012','2018','선루프','BMW','12313154','2534533','출력','c.jpg');
+insert into Car values('1923596','X203','2012','2018','선루프','BMW','12313154','2534533','출력','c.jpg');
+insert into Car values('1942596','X203','2012','2018','선루프','BMW','12313154','2534533','출력','c.jpg');
+insert into Car values('19274596','X203','2012','2018','선루프','BMW','12313154','2534533','출력','c.jpg');
+insert into Car values('1926596','X203','2012','2018','선루프','BMW','12313154','2534533','출력','c.jpg');
 
 		
 		
@@ -161,6 +167,7 @@ insert into car_brand values('기아','2');
 insert into car_brand values('람보르기니','1');
 
 
+
 select * from car_brand;
 
 drop table car_brand;
@@ -192,3 +199,94 @@ FROM car_brand
 LEFT JOIN car ON car_brand.cb_name = car.c_brand
 GROUP BY car_brand.cb_name, car_brand.cb_order
 ORDER BY TO_NUMBER(car_brand.cb_order) ASC;
+
+
+SELECT *
+FROM (
+    SELECT rownum as rn,
+           c.c_id, c.c_name, c.c_year1, c.c_year2, c.c_option,
+           c.c_brand, c.c_ft, c.c_bt, c.c_print, c.c_file,
+           cb.cb_name, cb.cb_order
+    FROM Car c
+    INNER JOIN car_brand cb ON c.c_brand = cb.cb_name
+    WHERE c.c_name LIKE '%%'
+         
+
+    ORDER BY TO_NUMBER(cb.cb_order) ASC, c.c_brand ASC
+) 
+WHERE rn &gt;= #{start} and rn &lt;= #{end}
+
+
+
+
+SELECT *
+FROM (
+    SELECT rownum as rn,
+           c.c_id, c.c_name, c.c_year1, c.c_year2, c.c_option,
+           c.c_brand, c.c_ft, c.c_bt, c.c_print, c.c_file,
+           cb.cb_name, cb.cb_order
+    FROM Car c
+    INNER JOIN car_brand cb ON c.c_brand = cb.cb_name
+    WHERE c.c_name LIKE '%%'
+      
+           
+    ORDER BY TO_NUMBER(cb.cb_order) ASC, c.c_brand ASC
+) 
+
+
+
+SELECT *
+FROM (
+    SELECT rownum as rn,
+           c.c_id, c.c_name, c.c_year1, c.c_year2, c.c_option,
+           c.c_brand, c.c_ft, c.c_bt, c.c_print, c.c_file,
+           cb.cb_name, cb.cb_order
+    FROM Car c
+    INNER JOIN car_brand cb ON c.c_brand = cb.cb_name
+    WHERE c.c_name LIKE '%%'
+    ORDER BY TO_NUMBER(cb.cb_order) ASC, c.c_brand ASC
+)  WHERE rn >= 1 and rn <= 30
+
+
+
+
+select * from car;
+select * from car_brand;
+
+
+
+select * from(
+SELECT rownum as rn, c_id, c_name, c_year1, c_year2, c_option,
+           c_brand, c_ft, c_bt, c_print, c_file,
+           cb_name, cb_order
+FROM (
+	SELECT c.*, cb.*
+    FROM Car c
+    INNER JOIN car_brand cb ON c.c_brand = cb.cb_name
+    WHERE c.c_name LIKE '%%'
+    ORDER BY TO_NUMBER(cb.cb_order) ASC, c.c_brand ASC
+)
+)  WHERE rn >= 1 and rn <= 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

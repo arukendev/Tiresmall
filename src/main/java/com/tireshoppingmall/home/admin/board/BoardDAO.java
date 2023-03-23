@@ -66,19 +66,19 @@ public class BoardDAO {
 	}
 	
 
-/*	public void getAllNotice(HttpServletRequest req) {
+	/*	public void getAllNotice(HttpServletRequest req) {
 		
 		List<NoticeDTO> notice = ss.getMapper(AdminBoardMapper.class).getAllNotice();
 		req.setAttribute("notice", notice);
 		
 	}*/
 
-	public void search(HttpServletRequest req, SearchDTO sDTO) {
+	/*public void search(HttpServletRequest req, SearchDTO sDTO) {
 			String[] option = {"","안내","매장","프로모션"};
 			sDTO.setSelectOption(option[Integer.parseInt(req.getParameter("selectOption"))]);
 			List<NoticeDTO> notice = ss.getMapper(AdminBoardMapper.class).searchAllNotice(sDTO);
 			req.setAttribute("notice", notice);
-	}
+	}*/
 
 	public void regNotice(HttpServletRequest req, NoticeDTO nDTO) {
 		if(ss.getMapper(AdminBoardMapper.class).regNotice(nDTO) == 1) {
