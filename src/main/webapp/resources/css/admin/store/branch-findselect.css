@@ -947,3 +947,63 @@ z-index: 2;
 .custom-file-upload input[type="file"] {
   display: none;
 }
+
+
+
+
+.branch_searcharea {
+ display: flex;
+	justify-content:center;
+	align-items:center;
+	font-size: 15pt;
+	margin-right: 20px;
+	padding:6px;
+	border-radius:10px;
+	background-color: #181C32;
+	color:white;
+	height: 30px;
+}
+
+.branch_searcharea > div {
+  display: flex;
+  align-items: center;
+}
+
+.branch_searcharea select {
+ display: flex;
+	justify-content:center;
+	align-items:center;
+	font-size: 12pt;
+	margin-right: 20px;
+	padding:6px;
+	border-radius:10px;
+	background-color: white;
+	font-family: GmarketSansMedium;
+	height: 35px;
+	color:#181C32;
+	height: 30px;
+}
+
+
+.branch_searcharea label {
+  margin-right: 10px;
+}
+
+.branch_searcharea input {
+  height: 27px;
+  font-size: 11pt;
+  border-radius: 10px;
+  font-family: GmarketSansMedium;
+  margin-left: 10px;
+}
+
+
+.b_img_css{
+	max-width: 100px;
+	
+}
+
+.update-upload-thumb{
+	
+	max-width: 100px;
+}

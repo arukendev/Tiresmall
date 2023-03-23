@@ -403,6 +403,27 @@ display: flex;
 	text-align: center;
 }
 
+
+#paging-box{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: fixed;
+    bottom: 0px;
+}
+
+#paging-box a{
+	padding: 7px 7px;
+    margin: 5px;
+    background-color: #E4EAEC;
+    border-radius: 3px;
+}
+
 .regbuttonarea {
 	border: 1px solid #000;
 	background-color: #fff;
@@ -872,7 +893,7 @@ a {
 }
 
 .admin_car_year {
-	width: 10%;
+	width: 8%;
 }
 
 .admin_car_name {
@@ -884,7 +905,11 @@ a {
 }
 
 .admin_car_tiresize {
-	width: 31%;
+	width: 28%;
+}
+
+.admin_car_print {
+	width: 5%;
 }
 
 .authadmin_manage {
@@ -909,7 +934,7 @@ a {
 	border: 1px solid #343a40;
 }
 
-.admin_printBTN {
+.admin_car_printBTN {
 	border-radius: 7px;
 	padding: 6px;
 	color: #0d6efd;
@@ -922,13 +947,13 @@ a {
 	font-family: GmarketSansMedium;
 }
 
-.admin_printBTN:hover {
+.admin_car_printBTN:hover {
 	color: #fff;
 	background-color: #0d6efd;
 	border-color: #0d6efd;
 }
 
-.admin_notPrintBTN {
+.admin_car_notPrintBTN {
 	margin-left: 5px;
 	margin-right: 5px;
 	border-radius: 7px;
@@ -943,7 +968,7 @@ a {
 	font-family: GmarketSansMedium;
 }
 
-.admin_notPrintBTN:hover {
+.admin_car_notPrintBTN:hover {
 	color: #fff;
 	background-color: #212529;
 	border-color: #212529;
@@ -1212,7 +1237,7 @@ a {
 	border-radius:7px;
 	font-weight: 900;
 	font-size: 12pt;
-	padding:8px;
+	padding:5px;
 	color: #fff;
     background-color: #dc3545;
     border :1px solid #dc3545;
@@ -1387,4 +1412,9 @@ a {
 
 .custom-file-upload input[type="file"] {
   display: none;
+}
+
+.c_img_css{
+	max-width: 100px;
+	
 }
