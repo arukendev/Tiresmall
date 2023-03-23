@@ -142,6 +142,10 @@ add CONSTRAINT FK_tire_item
 create sequence tire_group_seq;
 create sequence tire_item_seq;
 
+ALTER SEQUENCE TIRE_GROUP_seq INCREMENT BY 30;  --시퀀스 증가해서 오류 고치기  다시 1로 바꿔줘야한다.
+ALTER SEQUENCE tire_item_seq INCREMENT BY 1;
+
+
 select * from tire_group;
 select * from tire_item;
 
@@ -208,3 +212,12 @@ select count(*) from tire_group left OUTER JOIN tire_item
 	on  tg_id = ti_tg_id
 
 delete from tire_brand where tb_name= 'BF굿리치타이어';
+
+
+
+--타이어 수정페이지
+select * from tire_group left OUTER JOIN tire_item
+	on tg_id = ti_tg_id where tg_id = 1;
+
+
+

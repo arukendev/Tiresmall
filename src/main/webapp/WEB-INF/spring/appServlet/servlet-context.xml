@@ -75,7 +75,7 @@
 	</beans:bean>
 
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-      <beans:property name="maxUploadSize" value="10485760" />
+      <beans:property name="maxUploadSize" value="52428800" />
       <beans:property name="defaultEncoding" value="utf-8" />
 	</beans:bean>
 	
@@ -85,6 +85,10 @@
 	</beans:bean>
 	<!-- board.BoardQna페이징 -->
 	<beans:bean id="bqco" class="com.tireshoppingmall.home.board.BoardQnaCountOption">
+		<beans:constructor-arg value="5"></beans:constructor-arg>
+	</beans:bean>
+	<!-- board.BoardNotice페이징 -->
+	<beans:bean id="bnco" class="com.tireshoppingmall.home.board.BoardNoticeCountOption">
 		<beans:constructor-arg value="5"></beans:constructor-arg>
 	</beans:bean>
 
@@ -126,7 +130,7 @@
 	<!-- admin.tireGroup 몇개씩 보여줄지 -->
 	<beans:bean id="admin_po"
 		class="com.tireshoppingmall.home.admin.tire.TireOption">
-		<beans:constructor-arg value="16"></beans:constructor-arg>
+		<beans:constructor-arg value="11"></beans:constructor-arg>
 	</beans:bean>
 
 
@@ -143,6 +147,12 @@
 	<beans:bean id="co"
 		class="com.tireshoppingmall.home.admin.car.CarOption">
 		<beans:constructor-arg value="10"></beans:constructor-arg>
+	</beans:bean>
+	
+	<!-- Event 몇개씩 보여줄지 -->
+	<beans:bean id="eo"
+		class="com.tireshoppingmall.home.admin.board.EventOption">
+		<beans:constructor-arg value="3"></beans:constructor-arg>
 	</beans:bean>
 
 </beans:beans>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tireshoppingmall.home.admin.auth.AdminAuthMapper">
+
+	<delete id="authDelete">
+		delete auth where a_id = #{a_id}
+	</delete>
+	
+	
+	<update id="authUpdate">
+		update auth 
+		set 
+		<choose>
+			<when test="a_Sortation==1">
+				a_Sortation ='일반'
+			</when>
+			<when test="a_Sortation==2">
+				a_Sortation = '업체'
+			</when>
+			<when test="a_Sortation==3">
+				a_Sortation = '관리자'
+			</when>
+		</choose>
+		where a_id = #{a_id}
+	</update>
+	
+	<select id="getAuthCount" resultType="int">
+		select count(*)
+		from auth 
+		where 	
+		<if test="a_id != ''">
+			a_id= #{a_id} and 
+		</if>
+		a_name like '%'||#{a_name}||'%' 
+	</select>
+	
+	<select id="getAuth" resultType="com.tireshoppingmall.home.admin.auth.AuthDTO">
+	select * from (select 
+	rownum as rn,a_id,a_Sortation,a_name,a_phone,a_address,a_date,mc_number,mc_id,mc_model,mc_brand,mc_year
+	 from (select * from auth a left OUTER JOIN my_car mycar
+		on a.a_id = mycar.mc_id  where
+		<if test="a_id != ''">
+			a.a_id= #{a_id} and 
+		</if>
+			a.a_name like '%'||#{a_name}||'%' 
+		<!--and a_carNum like '%'||#{a_carNum}||'%' -->
+		<choose>
+			<when test="a_Sortation==2">
+				and a.a_Sortation = '일반'
+			</when>
+			<when test="a_Sortation==3">
+				and a.a_Sortation = '업체'
+			</when>
+			<when test="a_Sortation==4">
+				and a.a_Sortation = '관리자'
+			</when>
+		</choose>
+			order by a_date desc)
+			)where rn &gt;= #{start} and rn &lt;= #{end}
+	
+	</select>
+	
+</mapper>

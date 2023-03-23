@@ -26,60 +26,60 @@
 						<td class="admin_tire_table_title">브랜드</td>
 						<td>
 							<div class="admin-tire-reg-radio-di">
-								<label class="admin-tire-teg-label"> <input type="radio"
-									name="tg_brand" value="1" class="admin-tire-teg-input">
+								<label class="admin-tire-teg-label"> 
+									<input type="radio"name="tg_brand" value="넥센타이어" class="admin-tire-teg-input">
 									<div class="rad-design"></div>
 									<div class="rad-text">넥센타이어</div>
-								</label> <label class="admin-tire-teg-label"> <input
-									type="radio" name="tg_brand" value="2"
-									class="admin-tire-teg-input">
+								</label> 
+								<label class="admin-tire-teg-label"> 
+									<input type="radio" name="tg_brand" value="금호타이어" class="admin-tire-teg-input">
 									<div class="rad-design"></div>
 									<div class="rad-text">금호타이어</div>
-								</label> <label class="admin-tire-teg-label"> <input
-									type="radio" name="tg_brand" value="3"
-									class="admin-tire-teg-input">
+								</label> 
+								<label class="admin-tire-teg-label"> 
+									<input type="radio" name="tg_brand" value="미쉐린타이어" class="admin-tire-teg-input">
 									<div class="rad-design"></div>
 									<div class="rad-text">미쉐린타이어</div>
-								</label> <label class="admin-tire-teg-label"> <input
-									type="radio" name="tg_brand" value="4"
-									class="admin-tire-teg-input">
+								</label> 
+								<label class="admin-tire-teg-label"> 
+									<input type="radio" name="tg_brand" value="콘티넨탈타이어"class="admin-tire-teg-input">
 									<div class="rad-design"></div>
 									<div class="rad-text">콘티넨탈타이어</div>
-								</label> <label class="admin-tire-teg-label"> <input
-									type="radio" name="tg_brand" value="5"
-									class="admin-tire-teg-input">
+								</label> 
+								<label class="admin-tire-teg-label"> 
+									<input type="radio" name="tg_brand" value="한국타이어" class="admin-tire-teg-input">
 									<div class="rad-design"></div>
 									<div class="rad-text">한국타이어</div>
-								</label> <label class="admin-tire-teg-label"> <input
-									type="radio" name="tg_brand" value="6"
-									class="admin-tire-teg-input">
+								</label> 
+								<label class="admin-tire-teg-label"> 
+									<input type="radio" name="tg_brand" value="요코하마타이어" class="admin-tire-teg-input">
 									<div class="rad-design"></div>
 									<div class="rad-text">요코하마타이어</div>
-								</label> <label class="admin-tire-teg-label"> <input
-									type="radio" name="tg_brand" value="7"
-									class="admin-tire-teg-input">
+								</label> 
+								<label class="admin-tire-teg-label"> 
+									<input type="radio" name="tg_brand" value="브리지스톤타이어" class="admin-tire-teg-input">
 									<div class="rad-design"></div>
 									<div class="rad-text">브리지스톤타이어</div>
-								</label> <label class="admin-tire-teg-label"> <input
-									type="radio" name="tg_brand" value="8"
-									class="admin-tire-teg-input">
+								</label> 
+								<label class="admin-tire-teg-label"> 
+								<input type="radio" name="tg_brand" value="굳이어타이어" class="admin-tire-teg-input">
 									<div class="rad-design"></div>
 									<div class="rad-text">굳이어타이어</div>
 								</label>
 							</div>
 							<div class="admin-tire-reg-radio-di">
-								<label class="admin-tire-teg-label"> <input type="radio"
-									name="tg_brand" value="9" class="admin-tire-teg-input">
+								<label class="admin-tire-teg-label"> 
+								<input type="radio"name="tg_brand" value="던롭타이어" class="admin-tire-teg-input">
 									<div class="rad-design"></div>
 									<div class="rad-text">던롭타이어</div>
-								</label> <label class="admin-tire-teg-label"> <input
-									type="radio" name="tg_brand" value="10"
-									class="admin-tire-teg-input">
+								</label> 
+								<label class="admin-tire-teg-label"> 
+								<input type="radio" name="tg_brand" value="피렐리타이어" class="admin-tire-teg-input">
 									<div class="rad-design"></div>
 									<div class="rad-text">피렐리타이어</div>
-								</label> <label class="admin-tire-teg-label"> <input
-									type="radio" name="tg_brand" value="11"
-									class="admin-tire-teg-input">
+								</label> 
+								<label class="admin-tire-teg-label"> 
+								<input type="radio" name="tg_brand" value="BF굿리치타이어" class="admin-tire-teg-input">
 									<div class="rad-design"></div>
 									<div class="rad-text">BF굿리치타이어</div>
 								</label>
@@ -106,13 +106,13 @@
 						<td class="admin_tire_table_title">출력</td>
 						<td>
 							<div class="admin-tire-reg-radio-di">
-								<label class="admin-tire-teg-label"> <input type="radio"
-									name="tg_print" class="admin-tire-teg-input" value="1">
+								<label class="admin-tire-teg-label"> 
+									<input type="radio"	name="tg_print" class="admin-tire-teg-input" value="1">
 									<div class="rad-design"></div>
 									<div class="rad-text">출력</div>
-								</label> <label class="admin-tire-teg-label"> <input
-									type="radio" name="tg_print" class="admin-tire-teg-input"
-									value="0" checked="checked">
+								</label> 
+								<label class="admin-tire-teg-label"> 
+									<input type="radio" name="tg_print" class="admin-tire-teg-input" value="0" checked="checked">
 									<div class="rad-design"></div>
 									<div class="rad-text">숨김</div>
 								</label>
@@ -120,17 +120,21 @@
 						</td>
 					</tr>
 					<tr>
+					
+					</tr>
+					<tr>
 						<td class="admin_tire_table_title">추천</td>
 						<td>
 							<div class="admin-tire-reg-radio-di">
-								<label class="admin-tire-teg-label"> <input
-									type="checkbox" name="tg_suv" class="admin-tire-teg-input"
-									value="1">
+								<label class="admin-tire-teg-label"> 
+									<input type="checkbox" name="tg_suv" class="admin-tire-teg-input" value="1">
+									<!-- <input type="hidden" name="tg_suv" class="admin-tire-teg-input" id="suv_check_hidden" value="0"> -->
 									<div class="rad-design"></div>
 									<div class="rad-text">SUV추천</div>
-								</label> <label class="admin-tire-teg-label"> <input
-									type="checkbox" name="tg_sedan" class="admin-tire-teg-input"
-									value="1">
+								</label> 
+								<label class="admin-tire-teg-label"> 
+									<input type="checkbox" name="tg_sedan" class="admin-tire-teg-input"  value="1">
+									<!-- <input type="hidden" name="tg_sedan" class="admin-tire-teg-input" id="sedan_check_hidden" value="0"> -->
 									<div class="rad-design"></div>
 									<div class="rad-text">승용차 추천</div>
 								</label>
@@ -193,7 +197,7 @@
 										<td class='admin-tire-size-reg-content'><span class='admin-tire-reg-name'></span></td>
 										<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-marking-input' name='ti_marking'></td>
 										<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-pricefac-input' name='ti_pricefac'>&nbsp;원</td>
-										<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-stock-input' name='ti_stock'>&nbsp;개</td>
+										<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-stock-input' name='ti_stock' value="0">&nbsp;개</td>
 										<td class='admin-tire-size-reg-content'><div
 												class='admin-tire-size-reg-delete'>삭제</div></td>
 									</tr>

@@ -30,24 +30,24 @@
 						<table class="modal_table">
 							<tr>
 								<td class="left_td">회원명</td>
-								<td><input name="a_name" id="userName_M" disabled="disabled" class="modalInput" placeholder="회원명"></td>
+								<td class="modal_table_td"><input name="a_name" id="userName_M" disabled="disabled" class="modalInput" placeholder="회원명"></td>
 							</tr>
 							<tr>
 								<td class="left_td">아이디</td>
-								<td><input name="q_id" id="userId_M" disabled="disabled" class="modalInput" placeholder="아이디"></td>
+								<td class="modal_table_td"><input name="q_id" id="userId_M" disabled="disabled" class="modalInput" placeholder="아이디"></td>
 							</tr>
 							<tr>
 								<td class="left_td">작성일</td>
-								<td><input name="q_date" id="date_M" disabled="disabled" class="modalInput" placeholder="작성일"></td>
+								<td class="modal_table_td"><input name="q_date" id="date_M" disabled="disabled" class="modalInput" placeholder="작성일"></td>
 							</tr>
 							<tr>
 								<td class="left_td">내용</td>
-								<td align="center" colspan="4"><textarea name="q_txt"
+								<td class="modal_table_td" align="center" colspan="4"><textarea name="q_txt"
 									id="txtInput_M"	disabled="disabled"></textarea></td>
 							</tr>
 							<tr>
 								<td class="left_td">답변</td>
-								<td align="center" colspan="4"><textarea name="q_reply_txt"
+								<td class="modal_table_td" align="center" colspan="4"><textarea name="q_reply_txt"
 										id="txtInput_Reply"></textarea></td>
 							</tr>
 						</table>

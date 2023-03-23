@@ -1,8 +1,10 @@
+@import "main_board_home.css";
 @import "main_board_faq.css";
 @import "main_board_qna.css";
 @import "main_board_qna_r.css";
 @import "main_board_qna_rd.css";
 @import "main_board_qna_cu.css";
+@import "main_board_qna_complete.css";
 @import "main_board_event_dialog.css";
 
 .board_mainContainer {
@@ -65,7 +67,7 @@
 }
 
 .board_qnaAndKakaoLogo {
-	width: 19px;
+	width: 20px;
 	vertical-align: bottom;
 }
 
@@ -81,6 +83,7 @@
 	*/
 	margin-top: auto;
 	margin-bottom: 50px;
+	line-height: 20px;
 }
 
 .board_sideInfo_20px {

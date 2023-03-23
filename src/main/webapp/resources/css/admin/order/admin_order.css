@@ -26,7 +26,10 @@ a:visited {
 }
 
 .DashBoard {
-	width: 100%;
+	height: 750px;
+    min-width: 1550px;
+    margin-top: 60px;
+    position: relative;
 }
 
 #order_modal {
@@ -60,15 +63,17 @@ a:visited {
     user-select:none;
 }
 
-.order_form {
+/* .order_form {
 	width: 100%;
 	background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
-}
+} */
 
 .order_form>div {
 	width: 100%;
-	height: 50px;
+	height: 60px;
 	display: flex;
+	position: absolute;
+	background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
 }
 
 .input_box1>div {
@@ -219,16 +224,14 @@ a:visited {
 }
 
 #paging-box{
-	display: flex;
+	position: relative;
+    display: flex;
+    top: -60px;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 40px;
-    position: relative;
-    top: 550px;
     background-color: white;
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 
 #paging-box a{

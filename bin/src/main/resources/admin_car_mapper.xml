@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.tireshoppingmall.home.admin.car.AdminCarMapper">
+	<select id="getCarCount" resultType="int" 
+	parameterType="com.tireshoppingmall.home.admin.car.SearchCarDTO">
+
+		select count(*)
+		from Car
+		where c_name
+		like
+		'%'||#{carnameInput}||'%'
+	<if test="carbrandInput != ''">and c_brand = #{carbrandInput} </if>
+	
+
+	</select>
+
+	<select id="getCarlists"
+		resultType="com.tireshoppingmall.home.admin.car.CarDTO" 
+		parameterType="com.tireshoppingmall.home.admin.car.SearchCarDTO">
+		
+		
+		
+		
+SELECT *
+FROM (
+    SELECT rownum as rn,
+           c.c_id, c.c_name, c.c_year1, c.c_year2, c.c_option,
+           c.c_brand, c.c_ft, c.c_bt, c.c_fta, c.c_bta, c.c_print, c.c_file,
+           cb.cb_name, cb.cb_order
+    FROM Car c
+    INNER JOIN car_brand cb ON c.c_brand = cb.cb_name
+    WHERE c.c_name LIKE '%' || #{carnameInput} || '%'
+        <if test="carbrandInput != ''">
+            AND c.c_brand = #{carbrandInput}
+        </if>
+    ORDER BY TO_NUMBER(cb.cb_order) ASC, c.c_brand ASC
+) 
+WHERE rn &gt;= #{start} and rn &lt;= #{end}
+ORDER BY TO_NUMBER(cb_order) ASC, c_brand ASC
+
+
+
+
+	</select>
+
+	<select id="getAllCar"
+		resultType="com.tireshoppingmall.home.admin.car.CarDTO">
+
+	SELECT *
+FROM Car c
+INNER JOIN car_brand cb ON c.c_brand = cb.cb_name
+ORDER BY cb.cb_order ASC;
+		
+
+	</select>
+
+
+	<insert id="regCar"
+		parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
+
+		insert into Car
+		values(#{c_id},#{c_name},#{c_year1},#{c_year2},#{c_option},#{c_brand},#{c_ft},#{c_bt},#{c_fta},#{c_bta},#{c_print},#{c_file})
+
+	</insert>
+	
+	<update id ="updatecar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
+	
+	update Car
+	
+	set
+	
+	
+	c_name = #{c_name},
+	
+	c_year1 = #{c_year1},
+	
+	c_year2 = #{c_year2},
+	
+	c_option = #{c_option},
+	
+	c_brand = #{c_brand},
+	
+	c_ft = #{c_ft},
+	
+	c_fta = #{c_fta},
+	
+	c_bt = #{c_bt},
+	
+	c_bta = #{c_bta},
+	
+	c_print = #{c_print}
+	
+	
+	where c_id = #{c_id}
+	
+	
+	</update>
+
+
+<delete id="deletecar">
+
+		delete Car where c_id = #{c_id}
+
+
+	</delete>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<select id="getAllCarBrands" resultType="com.tireshoppingmall.home.admin.car.CarBrandDTO">
+
+SELECT *
+FROM car_brand
+ORDER BY LENGTH(CB_ORDER), TO_NUMBER(CB_ORDER)
+
+</select>
+
+
+<delete id="deletebrandcar">
+  
+    delete from Car where c_brand = #{cb_name}
+</delete>
+
+<delete id="deletebrand">
+
+    delete from car_brand where cb_name = #{cb_name}
+</delete>
+
+<insert id="regbrand"
+		parameterType="com.tireshoppingmall.home.admin.car.CarBrandDTO">
+
+		insert into car_brand
+		values(#{cb_name},#{cb_order})
+
+	</insert>
+	
+<select id="getCarbrandselectlist" resultType="com.tireshoppingmall.home.admin.car.CarBrandDTO">
+ select cb_name
+  from car_brand
+  ORDER BY CAST(CB_ORDER AS NUMBER) ASC
+
+</select>
+
+<select id= "getallBrandCount" resultType="com.tireshoppingmall.home.admin.car.CarBrandDTO">
+
+  SELECT COALESCE(COUNT(car.c_id), 0) AS cb_ea
+FROM car_brand
+LEFT JOIN car ON car_brand.cb_name = car.c_brand
+GROUP BY car_brand.cb_name, car_brand.cb_order
+ORDER BY TO_NUMBER(car_brand.cb_order) ASC
+
+</select>
+
+
+<update id="updatebrandcar" parameterType="com.tireshoppingmall.home.admin.car.CarBrandDTO">
+  update Car 
+  set c_brand = #{new_cb_name}
+  where c_brand = #{old_cb_name}
+</update>
+
+<update id = "updatebrand" parameterType="com.tireshoppingmall.home.admin.car.CarBrandDTO">
+
+update car_brand
+    set 
+        cb_name = #{new_cb_name},
+        
+        cb_order = #{cb_order}
+        
+    where cb_name = #{old_cb_name}
+
+</update>
+
+
+</mapper>

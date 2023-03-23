@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class BoardFaqSelector {
 	private String f_sortation;
+	private int f_no;
 	private String faqSearchSelection;
 	private String faqSearch;
 	private BigDecimal begin;
@@ -12,10 +13,11 @@ public class BoardFaqSelector {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public BoardFaqSelector(String f_sortation, String faqSearchSelection, String faqSearch, BigDecimal begin,
+	public BoardFaqSelector(String f_sortation, int f_no, String faqSearchSelection, String faqSearch, BigDecimal begin,
 			BigDecimal last) {
 		super();
 		this.f_sortation = f_sortation;
+		this.f_no = f_no;
 		this.faqSearchSelection = faqSearchSelection;
 		this.faqSearch = faqSearch;
 		this.begin = begin;
@@ -26,6 +28,12 @@ public class BoardFaqSelector {
 	}
 	public void setF_sortation(String f_sortation) {
 		this.f_sortation = f_sortation;
+	}
+	public int getF_no() {
+		return f_no;
+	}
+	public void setF_no(int f_no) {
+		this.f_no = f_no;
 	}
 	public String getFaqSearchSelection() {
 		return faqSearchSelection;

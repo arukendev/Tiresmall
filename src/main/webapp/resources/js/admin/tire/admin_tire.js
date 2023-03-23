@@ -1,5 +1,7 @@
 $(function() {
-
+	//세단,suv 추천 일반 값 넘기기
+	tireGroupPrintCheck();
+	
 	//타이어 이름 같게만들기
 	tireRegName();
 	
@@ -23,8 +25,23 @@ $(function() {
 	//suv 추천
 	suvRecommend();
 	
+	//수정페이지 브랜드 체크드
+	tireBrandSelected();
+	
+	//수정페이지 체크드
+	tireHiddenSelected();
+	
 })
 
+//세단,suv 추천 일반 값 넘기기
+function tireGroupPrintCheck() {
+	if($("#suv_check").checked) {
+	    $("#suv_check_hidden").disabled = true;
+	}
+	if($("#sedan_check").checked) {
+	    $("#sedan_check_hidden").disabled = true;
+	}
+}
 
 
 // 타이어 그룹 삭제
@@ -79,10 +96,11 @@ function tireRegSizeAdd() {
 				"<td class='admin-tire-size-reg-content'><span class='admin-tire-reg-name'></span></td>" +
 				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-marking-input' name='ti_marking'></td>" +
 				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-pricefac-input' name='ti_pricefac'>&nbsp;원</td>" +
-				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-stock-input' name='ti_stock'>&nbsp;개</td>" +
+				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-stock-input' name='ti_stock' value='0'>&nbsp;개</td>" +
 				"<td class='admin-tire-size-reg-content'>" +
 				"<div class='admin-tire-size-reg-delete'>삭제</div></td>" +
 				"</tr>");
+		$(".admin-tire-reg-name").text($("#admin-tire-reg-name-input").val()); 
 	});
 }
 
@@ -90,7 +108,23 @@ function tireRegSizeAdd() {
 function tireRegSizeDelete() {
 	$(document).on("click",".admin-tire-size-reg-delete",function() {
 		$(this).closest("tr").remove();
+		if($(this).find($('#tiTgIdHidden')).val()==null){
+			$.ajax({
+				url : "admin.tire.size.delete",
+				data : {ti_tg_id},
+				success : function(data) {
+					if(date==1){
+						alert('삭제성공');						
+					}else{
+						alert('삭제실패');						
+						
+					}
+				}
+			});
+		}
 	});
+	
+	//에이젝스로 없애는것 추가하기
 }
 
 //타이어 등록페이지 타이어 사이즈 저장
@@ -217,6 +251,26 @@ function suvRecommend() {
 }
 
 
+function tireBrandSelected() {
+	let brand =  $('#tireBrandHidden').val();
+
+	$('input[value='+brand+']').attr("checked","checked"); 
+}
+
+function tireHiddenSelected() {
+	if($('#tirePrintHidden').val()==1){
+		$('.radioPrint').attr("checked","checked");
+	}else{
+		$('.radioNotPrint').attr("checked","checked");
+	}
+	if($('#tireSedanHidden').val()==1){
+		$('.sedanChecked').attr("checked","checked");		
+	};
+	
+	if($('#tireSUVHidden').val()==1){
+		$('.suvChecked').attr("checked","checked");		
+	};
+}
 
 
 

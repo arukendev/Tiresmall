@@ -29,12 +29,11 @@ create table auth_password(
 );
 
 create table auth_userInfo(
-	i_no number(5) primary key,
-    u_no number(5) NOT NULL,
+	i_no number(5) not null,
     i_name varchar2(10 char) not null,
     i_phonenum varchar2(15 char) UNIQUE NOT NULL,
     i_newdate date not null,
-    i_grade number(2) not null,
+    i_grade number(2) not null,			-- 1 : 일반  /  2 : 업체 / 3 : 관리자
       
      CONSTRAINT fk_info FOREIGN KEY(u_no)
     REFERENCES auth_user(u_no) ON DELETE CASCADE

@@ -9,15 +9,15 @@
 </head>
 <body>
 	<div class="board_faq_column">
-		<div><a href="board.faq.read.search?f_sortation=">전체</a></div>
-		<div><a href="board.faq.read.search?f_sortation=주문/배송">주문/배송</a></div>
-		<div><a href="board.faq.read.search?f_sortation=상품">상품</a></div>
-		<div><a href="board.faq.read.search?f_sortation=장착">장착</a></div>
-		<div><a href="board.faq.read.search?f_sortation=반품/교환/취소">반품/교환/취소</a></div>
-		<div><a href="board.faq.read.search?f_sortation=기타">기타</a></div>
+		<div id="<c:if test="${param.f_sortation == ''}">board_faq_column_selected</c:if>"><a href="board.faq.read.search?f_sortation=">전체</a></div>
+		<div id="<c:if test="${param.f_sortation == '주문/배송'}">board_faq_column_selected</c:if>"><a href="board.faq.read.search?f_sortation=주문/배송">주문/배송</a></div>
+		<div id="<c:if test="${param.f_sortation == '상품'}">board_faq_column_selected</c:if>"><a href="board.faq.read.search?f_sortation=상품">상품</a></div>
+		<div id="<c:if test="${param.f_sortation == '장착'}">board_faq_column_selected</c:if>"><a href="board.faq.read.search?f_sortation=장착">장착</a></div>
+		<div id="<c:if test="${param.f_sortation == '반품/교환/취소'}">board_faq_column_selected</c:if>"><a href="board.faq.read.search?f_sortation=반품/교환/취소">반품/교환/취소</a></div>
+		<div id="<c:if test="${param.f_sortation == '기타'}">board_faq_column_selected</c:if>"><a href="board.faq.read.search?f_sortation=기타">기타</a></div>
 	</div>
 	
-	<div>
+	<div class="board_faq_search">
 		<div>
 			<c:if test="${!empty faqSearch }">
 				"${faqSearch }"로 검색한 결과: ${faqCount }건
@@ -25,7 +25,7 @@
 		</div>
 		
 		<div>
-			<form action="board.faq.read.search">
+			<form class="board_faq_search_iroiro" action="board.faq.read.search">
 				<select name="faqSearchSelection">
 				    <option value="1" <c:if test="${faqSearchSelectionAfterSearch == 1 }">selected="selected"</c:if>>전체</option>
 				    <option value="2" <c:if test="${faqSearchSelectionAfterSearch == 2 }">selected="selected"</c:if>>제목</option>
@@ -48,20 +48,21 @@
 		<c:otherwise>
 			<div class="board_faq_listContainer">
 				<c:forEach var="f" items="${faqs }">
-					<div class="board_faq_list_top">
+					<div class="board_faq_list">
 						<div>
 							Q
-						</div>	
-						<div>
-							${f.f_title }
 						</div>
-					</div>
-					<div class="board_faq_list_bottom">
+						<input id="thisIsFaq${f.f_no }" type="radio" name="accordion">
+						<label for="thisIsFaq${f.f_no }"><span id="HideThisChevron"><i class="fa-solid fa-circle-chevron-down" style="color: #ab1e21; font-size: 20px; margin-right: 13px;"></i></span>${f.f_title }</label>
 						<div>
-							A
-						</div>
-						<div>
-							${f.f_txt }
+							<div id="board_faq_list_answer">
+								<div>
+									A
+								</div>
+								<div>
+									${f.f_txt }
+								</div>
+							</div>
 						</div>
 					</div>
 				</c:forEach>
@@ -81,10 +82,10 @@
 					<c:choose>
 						<c:when test="${pageNumber != 1 }">
 							<div>
-								<a href="board.faq.paging?pn=1"><i class="fa-solid fa-angles-left"></i></a>
+								<a href="board.faq.read.paging?pn=1"><i class="fa-solid fa-angles-left"></i></a>
 							</div>
 							<div>
-								<a href="board.faq.paging?pn=${pageNumber - 1 }"><i class="fa-solid fa-chevron-left"></i></a>
+								<a href="board.faq.read.paging?pn=${pageNumber - 1 }"><i class="fa-solid fa-chevron-left"></i></a>
 							</div>
 						</c:when>
 						<c:otherwise>
@@ -106,12 +107,12 @@
 						<c:choose>
 							<c:when test="${(page == param.pn) or (pageNumber == 1 and pageNumber == page) }">
 								<div class="board_faq_pagingButtons_selected">
-									<a href="board.faq.paging?pn=${page }" style="color: #fff;">${page }</a>
+									<a href="board.faq.read.paging?pn=${page }" style="color: #fff;">${page }</a>
 								</div>
 							</c:when>
 							<c:otherwise>
 								<div>
-									<a href="board.faq.paging?pn=${page }">${page }</a>
+									<a href="board.faq.read.paging?pn=${page }">${page }</a>
 								</div>
 							</c:otherwise>
 						</c:choose>
@@ -120,10 +121,10 @@
 					<c:choose>
 						<c:when test="${pageNumber != pageCount }">
 							<div>
-								<a href="board.faq.paging?pn=${pageNumber + 1 }"><i class="fa-solid fa-chevron-right"></i></a>
+								<a href="board.faq.read.paging?pn=${pageNumber + 1 }"><i class="fa-solid fa-chevron-right"></i></a>
 							</div>
 							<div>
-								<a href="board.faq.paging?pn=${pageCount }"><i class="fa-solid fa-angles-right"></i></a>
+								<a href="board.faq.read.paging?pn=${pageCount }"><i class="fa-solid fa-angles-right"></i></a>
 							</div>
 						</c:when>
 						<c:otherwise>

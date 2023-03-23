@@ -9,6 +9,11 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
     <title>Insert title here</title>
   </head>
   <body>
+    <c:if test="${empty sessionScope.cartSession}">
+      <script>
+        location.href = "/home";
+      </script>
+    </c:if>
     <form action="pay.complete" method="post" class="pay_container">
       <div class="pay_titles">
         <div class="pay_title_left">
@@ -80,7 +85,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
               <div class="pay_product_right">
                 <span class="pay_product_price"
                   ><fmt:formatNumber
-                    value="${tire.ti_stock * tire.ti_pricegp}"
+                    value="${tire.ti_allpricegp}"
                     type="currency"
                     currencySymbol=""
                   />원</span
@@ -88,12 +93,12 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 <input
                   type="hidden"
                   class="pay_final_price"
-                  value="${tire.ti_stock * tire.ti_pricegp}"
+                  value="${tire.ti_allpricegp}"
                 />
                 <input
                   type="hidden"
                   class="pay_finalFac_price"
-                  value="${tire.ti_stock * tire.ti_pricefac}"
+                  value="${tire.ti_allpricefac}"
                 />
               </div>
             </div>
@@ -148,7 +153,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 <span>장착예정일</span>
               </div>
               <div>
-                <input type="date" name="o_tireinstalldate" />
+                <input type="date" name="o_tireinstalldate" class="pay_date" />
               </div>
             </li>
           </ul>
@@ -172,7 +177,9 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                       type="text"
                       name="o_name"
                       value="${sessionScope.loginMember.i_name}"
+                      class="pay_customer_input"
                     />
+                    <span class="pay_customer_confirm"></span>
                   </div>
                 </li>
                 <li>
@@ -184,7 +191,10 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                       type="text"
                       name="o_phone"
                       value="${sessionScope.loginMember.i_phoneNum}"
+                      class="pay_phone_input"
+                      placeholder="-을 제외하고 입력해주세요"
                     />
+                    <span class="pay_phone_confirm"></span>
                   </div>
                 </li>
                 <li>
@@ -196,7 +206,90 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                       type="text"
                       name="o_email"
                       value="${sessionScope.loginMember.i_email}"
+                      class="pay_email_input"
                     />
+                    <span class="pay_email_confirm"></span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span>차량정보</span>
+                  </div>
+                  <div>
+                    <select name="o_caryear">
+                      <option value="">연식</option>
+                      <option value="2023">2023</option>
+                    </select>
+                    <select name="o_carbrand">
+                      <option value="">제조사</option>
+                      <option value="현대">현대</option>
+                    </select>
+                    <select name="o_carname">
+                      <option value="">차종</option>
+                      <option value="그랜절">그랜절</option>
+                    </select>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span>차량번호</span>
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      name="o_carnumber"
+                      value="${sessionScope.loginMember.i_carnum}"
+                      class="pay_carNum_input"
+                    />
+                    <span class="pay_carNum_confirm"></span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span>기타요청</span>
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      name="o_request"
+                      class="pay_request_input"
+                    />
+                  </div>
+                </li>
+              </ul>
+            </c:when>
+            <c:otherwise>
+              <ul class="pay_customerInfo">
+                <input type="hidden" name="o_sortation" value="0" />
+                <li>
+                  <div>
+                    <span>주문자명</span>
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      name="o_name"
+                      class="pay_customer_input"
+                    />
+                    <span class="pay_customer_confirm"></span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span>연락처</span>
+                  </div>
+                  <div>
+                    <input type="text" name="o_phone" class="pay_phone_input" />
+                    <span class="pay_phone_confirm"></span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span>이메일</span>
+                  </div>
+                  <div>
+                    <input type="text" name="o_email" class="pay_email_input" />
+                    <span class="pay_email_confirm"></span>
                   </div>
                 </li>
                 <li>
@@ -223,8 +316,9 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                     <input
                       type="text"
                       name="o_carnumber"
-                      value="${sessionScope.loginMember.i_carnum}"
+                      class="pay_carNum_input"
                     />
+                    <span class="pay_carNum_confirm"></span>
                   </div>
                 </li>
                 <li>
@@ -232,68 +326,11 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                     <span>기타요청</span>
                   </div>
                   <div>
-                    <input type="text" name="o_request" />
-                  </div>
-                </li>
-              </ul>
-            </c:when>
-            <c:otherwise>
-              <ul class="pay_customerInfo">
-                <input type="hidden" name="o_sortation" value="0" />
-                <li>
-                  <div>
-                    <span>주문자명</span>
-                  </div>
-                  <div>
-                    <input type="text" name="o_name" />
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>연락처</span>
-                  </div>
-                  <div>
-                    <input type="text" name="o_phone" />
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>이메일</span>
-                  </div>
-                  <div>
-                    <input type="text" name="o_email" />
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>차량정보</span>
-                  </div>
-                  <div>
-                    <select name="o_caryear">
-                      <option value="2023">2023</option>
-                    </select>
-                    <select name="o_carbrand">
-                      <option value="현대">현대</option>
-                    </select>
-                    <select name="o_carname">
-                      <option value="그랜절">그랜절</option>
-                    </select>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>차량번호</span>
-                  </div>
-                  <div>
-                    <input type="text" name="o_carnumber" />
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>기타요청</span>
-                  </div>
-                  <div>
-                    <input type="text" name="o_request" />
+                    <input
+                      type="text"
+                      name="o_request"
+                      class="pay_request_input"
+                    />
                   </div>
                 </li>
               </ul>
@@ -303,10 +340,21 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
             <span>결제 정보</span>
           </div>
           <div class="pay_payInfo">
-            <input type="radio" name="o_paymethod" value="현장결제" checked />
-            <label>현장결제</label>
-            <input type="radio" name="o_paymethod" value="무통장" />
-            <label>무통장</label>
+            <input
+              type="radio"
+              id="directpay"
+              name="o_paymethod"
+              value="현장결제"
+              checked
+            />
+            <label for="directpay">현장결제</label>
+            <input
+              type="radio"
+              id="nonbankpay"
+              name="o_paymethod"
+              value="무통장"
+            />
+            <label for="nonbankpay">무통장</label>
           </div>
         </div>
         <div class="pay_confirm">

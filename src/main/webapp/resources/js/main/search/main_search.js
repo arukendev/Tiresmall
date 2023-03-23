@@ -75,10 +75,12 @@ $(function() {
 					$('.tire-items').empty();
 					
 					if(data.tires[0] == undefined) {
-						$('tire-items').append($('tire-search-fail').first().clone());
+						$('.tire-items').css('display','none');
+						$('.tire-items').append($('tire-search-fail').first().clone());
 						$('.searchResultContainer').css('display','block');
 						$('.tire-search-fail').css('display','block');
 					} else {
+						$('.tire-items').css('display','grid');
 						$('.tire-search-fail').css('display','none');
 					}
 				
@@ -97,18 +99,16 @@ $(function() {
 						$(itemDIV).find(".tire-img").text(getImg);
 						$(itemDIV).find(".tire-brand").text(getBrand);
 						$(itemDIV).find(".tire-name").text(getName);
-						$(itemDIV).find(".tire-price").text("판매가 : " + getPrice + "원");
+						$(itemDIV).find(".tire-price").text(" ￦  " + getPrice + "원");
 						$(itemDIV).find(".tire-info-width").text(getWidth);
 						$(itemDIV).find(".tire-info-ratio").text(getRatio);
 						$(itemDIV).find(".tire-info-inch").text(getInch);
 						
 						$('.tire-items').append(itemDIV);
 						
-						
 					
-					
-					$('.show').css('display','flex');
-					$('.searchResultContainer').css('display','block');
+						$('.show').css('display','flex');
+						$('.searchResultContainer').css('display','block');
 									
 				});
 				}
