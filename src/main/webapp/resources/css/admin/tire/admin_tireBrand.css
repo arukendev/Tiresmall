@@ -100,14 +100,14 @@
 	padding-top: 3px;	
 }
 
-#admin-tire-brand-name{
+.admin-tire-brand-name{
 	width: 95%;
 	height:40px;
 	font-family: GmarketSansMedium;
 	font-size: 17pt;
 }
 
-#admin-tire-brand-order{
+.admin-tire-brand-order{
 	width:30px;
 	font-family: GmarketSansMedium;
 	font-size: 15pt;

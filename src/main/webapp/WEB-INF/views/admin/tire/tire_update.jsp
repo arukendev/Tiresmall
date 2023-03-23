@@ -14,6 +14,7 @@
 <body>
 	<input id="whatMenu" value="tire" type="hidden">
 	<input id="sm" value="1" type="hidden">
+	<input type="hidden" value="${tireGroup.tg_id }" id="tireIdHidden">
 	<input type="hidden" value="${tireGroup.tg_brand }" id="tireBrandHidden">
 	<input type="hidden" value="${tireGroup.tg_print }" id="tirePrintHidden">
 	<input type="hidden" value="${tireGroup.tg_sedan }" id="tireSedanHidden">
@@ -166,9 +167,9 @@
 								
 								<!--사이에 추가할때마다 생기고 지워지는 공간  밑은 추가되는것들 -->
 								<c:forEach items="${tireSizes }" var="ts">
-									<input type="hidden" value="${ts.ti_tg_id }" id="tiTgIdHidden">
 									<tr style='height: 50px;'>
 										<td class='admin-tire-size-reg-content'>
+											<input type="hidden" value="${ts.ti_id }" class="tiIdHidden">
 											<div class='admin-tire-reg-size-modal'>
 												<div class='admin-tire-reg-size-modal-container'>
 													<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>
@@ -202,7 +203,9 @@
 											<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-marking-input' name='ti_marking'  value="${ts.ti_marking }"></td>
 											<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-pricefac-input' name='ti_pricefac' value="${ts.ti_pricefac }">&nbsp;원</td>
 											<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-stock-input' name='ti_stock' value="${ts.ti_stock }">&nbsp;개</td>
-											<td class='admin-tire-size-reg-content'><div class='admin-tire-size-reg-delete'>삭제</div></td>
+											<td class='admin-tire-size-reg-content'>
+												<div class='admin-tire-size-reg-delete'>삭제</div>
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -216,7 +219,9 @@
 								<div class="admin-tire-img-contain">
 									<div class="admin-tire-img-title"
 										style="border-right: 2px solid white;">현재 이미지</div>
-									<div class="admin-tire-img-content"></div>
+									<div class="admin-tire-img-content">
+									<%-- 	<img src="/${savePath }/${tireGroup.img}"> --%>
+									</div>
 								</div>
 								<div class="admin-tire-img-contain">
 									<div class="admin-tire-img-title">이미지 등록</div>
@@ -238,7 +243,11 @@
 								<div class="admin-tire-img-contain">
 									<div class="admin-tire-img-title"
 										style="border-right: 2px solid white;">현재 이미지</div>
-									<div class="admin-tire-img-content"></div>
+									<div class="admin-tire-img-content">
+								<%-- 	<c:forEach items="filesName" var="f">
+										<img src="/${savePath }/${f}">
+									</c:forEach> --%>
+									</div>
 								</div>
 								<div class="admin-tire-img-contain">
 									<div class="admin-tire-img-title">이미지 등록</div>

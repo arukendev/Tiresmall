@@ -1,20 +1,15 @@
 package com.tireshoppingmall.home.admin.tire;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import com.tireshoppingmall.home.admin.auth.AuthDTO;
 
 
 @Controller
@@ -24,12 +19,10 @@ public class AdminTireController {
 	TireDAO tDAO;
 	
 	private boolean tireFirstReq;
-	private boolean tireDiscountRateFirstReq;
 	private boolean tireCharacteristicsFirstReq;
 
 	public AdminTireController() {
 		tireFirstReq=true;
-		tireDiscountRateFirstReq=true;
 		tireCharacteristicsFirstReq=true;
 	}
 	
@@ -74,6 +67,38 @@ public class AdminTireController {
 		return "admin/master";
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.print.onoff", method = RequestMethod.GET)
+	public int tirePrintOnOff(TireDTO tDTO) {	
+		
+		return tDAO.tirePrintOnOff(tDTO);
+	}
+	
+	//admin.tire.sedan.recommend
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.sedan.recommend", method = RequestMethod.GET)
+	public int tireSedanRecommend(TireDTO tDTO) {	
+		
+		return tDAO.tireSedanRecommend(tDTO);
+	}	
+	
+	//admin.tire.sev.recommend
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.suv.recommend", method = RequestMethod.GET)
+	public int tireSuvRecommend(TireDTO tDTO) {	
+		
+		return tDAO.tireSuvRecommend(tDTO);
+	}
+	//admin.tire.group.dcrate.change
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.group.dcrate.change", method = RequestMethod.GET)
+	public int tireGroupDcrateChange(TireDTO tDTO) {	
+		
+		return tDAO.tireGroupDcrateChange(tDTO);
+	}
+	
+	
+	
 	//admin.tire.reg.go
 	@RequestMapping(value = "/admin.tire.reg.go", method = RequestMethod.GET)
 	public String tireRegGo(HttpServletRequest req) {
@@ -113,10 +138,44 @@ public class AdminTireController {
 	@ResponseBody
 	@RequestMapping(value = "admin.tire.size.delete", method = RequestMethod.GET)
 	public int adminTireSizeDelete(TireDTO tDTO) {	
-		
 		return tDAO.tireSizeDelte(tDTO);
 	}
-	
+	//admin.tire.name.change
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.name.change", method = RequestMethod.GET)
+	public int adminTireNameChange(TireDTO tDTO) {	
+		return tDAO.tireNameChange(tDTO);
+	}
+	//admin.tire.text.change
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.text.change", method = RequestMethod.GET)
+	public int adminTireTextChange(TireDTO tDTO) {	
+		return tDAO.tireTextChange(tDTO);
+	}
+	//admin.tire.size.change
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.size.change", method = RequestMethod.GET)
+	public int adminTireSizeChange(TireDTO tDTO) {	
+		return tDAO.tireSizeChange(tDTO);
+	}
+	//admin.tire.marking.change
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.marking.change", method = RequestMethod.GET)
+	public int adminTireMarkingChange(TireDTO tDTO) {	
+		return tDAO.tireMarckingChange(tDTO);
+	}
+	//admin.tire.pricefac.change
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.pricefac.change", method = RequestMethod.GET)
+	public int adminTirePirceChange(TireDTO tDTO) {	
+		return tDAO.tirePriceChange(tDTO);
+	}
+	//admin.tire.stock.change
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.stock.change", method = RequestMethod.GET)
+	public int adminTireStockChange(TireDTO tDTO) {	
+		return tDAO.tireStockChange(tDTO);
+	}
 	
 	
 	//admin.tire.delete.go
@@ -130,28 +189,6 @@ public class AdminTireController {
 		req.setAttribute("subMenuPage", "tire/tire_subMenu.jsp");
 		req.setAttribute("contentPage", "tire/tire.jsp");
 		return "admin/master";
-	}
-	@ResponseBody
-	@RequestMapping(value = "admin.tire.print.onoff", method = RequestMethod.GET)
-	public int tirePrintOnOff(TireDTO tg) {	
-		
-		return tDAO.tirePrintOnOff(tg);
-	}
-	
-	//admin.tire.sedan.recommend
-	@ResponseBody
-	@RequestMapping(value = "admin.tire.sedan.recommend", method = RequestMethod.GET)
-	public int tireSedanRecommend(TireDTO tg) {	
-		
-		return tDAO.tireSedanRecommend(tg);
-	}	
-	
-	//admin.tire.sev.recommend
-	@ResponseBody
-	@RequestMapping(value = "admin.tire.suv.recommend", method = RequestMethod.GET)
-	public int tireSuvRecommend(TireDTO tg) {	
-		
-		return tDAO.tireSuvRecommend(tg);
 	}
 	
 	
@@ -180,29 +217,29 @@ public class AdminTireController {
 		req.setAttribute("contentPage", "tire/tire_brand.jsp");
 		return "admin/master";
 	}
-	
-	
-	
-	
-	
-	
-	
-	//admin.tire.discount.go
-	@RequestMapping(value = "/admin.tire.discount.go", method = RequestMethod.GET)
-	public String tireDiscountGo(HttpServletRequest req) {
+	//admin.tire.brand.print.onoff
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.brand.print.onoff", method = RequestMethod.GET)
+	public int tireSBrandPrintOnoff(TireDTO tDTO) {	
 		
-		
-
-		if (tireDiscountRateFirstReq) {
-			tDAO.calcAllTireCount();
-			tireDiscountRateFirstReq = false;
-		}	
-		
-
-		req.setAttribute("subMenuPage", "tire/tire_subMenu.jsp");
-		req.setAttribute("contentPage", "tire/tire_discount.jsp");
-		return "admin/master";
+		return tDAO.tireSBrandPrintOnoff(tDTO);
 	}
+	
+	//admin.tire.brand.name.change
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.brand.name.change", method = RequestMethod.GET)
+	public int tireSBrandNameChange(TireDTO tDTO) {	
+		System.out.println("여긴옴??223");
+		return tDAO.tireSBrandNameChange(tDTO);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//admin.tire.charicteristic.go
 	@RequestMapping(value = "/admin.tire.charicteristic.go", method = RequestMethod.GET)

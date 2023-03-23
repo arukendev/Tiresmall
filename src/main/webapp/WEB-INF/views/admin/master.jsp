@@ -25,7 +25,7 @@
 			<div id="menuTitle2" onclick="location.href='admin.tire.go'">타이어상품 관리</div>
 			<div id="menuTitle3" onclick="location.href='admin.car.go'">차종 관리</div>
 			<div id="menuTitle4" onclick="location.href='admin.auth.go'">회원 관리</div>
-			<div id="menuTitle5" onclick="location.href='admin.rental.go'">렌탈 관리</div>
+			<!-- <div id="menuTitle5" onclick="location.href='admin.rental.go'">렌탈 관리</div> -->
 			<div id="menuTitle6" onclick="location.href='admin.store.go'">장착점 관리</div>
 			<div id="menuTitle7" onclick="location.href='admin.notice.go'">게시판 관리</div>
 		</nav>

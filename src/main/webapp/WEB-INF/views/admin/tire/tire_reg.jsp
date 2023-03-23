@@ -171,7 +171,7 @@
 														<div class='admin-tire-reg-size-modal-input'>
 															<input class='tire_input_width'>
 															<span class='size-span'>/</span>
-															<input class='tire_input_ratio'>
+															<input class='tire_input_ratio'o>
 															<span class='size-span'>R</span>
 															<input class='tire_input_inch'>
 														</div>

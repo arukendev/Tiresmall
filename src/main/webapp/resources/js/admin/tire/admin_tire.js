@@ -1,6 +1,8 @@
 $(function() {
 	//세단,suv 추천 일반 값 넘기기
 	tireGroupPrintCheck();
+	//타이어 할인률 설정
+	tireGroupDcrate();
 	
 	//타이어 이름 같게만들기
 	tireRegName();
@@ -25,12 +27,29 @@ $(function() {
 	//suv 추천
 	suvRecommend();
 	
-	//수정페이지 브랜드 체크드
+	//수정페이지작업들
+	
+	// 브랜드 체크드
 	tireBrandSelected();
 	
-	//수정페이지 체크드
+	// 체크드
 	tireHiddenSelected();
+	//타이어이름 변경시
+	tireNameFocusout();
+	//타이어 텍스트 변경시
+	tireTextFocusout();
 	
+	//타이어 사이즈tr 포커스아웃시 
+	tireMarkingChange();
+	tirePriceChange();
+	tireStockChange();
+	
+	
+	//타이어 브랜드 작업
+	//출력 여부
+	 BrnadprintOnOff();
+	 //에이젝스 저장
+	 tireBrandForcusout()
 })
 
 //세단,suv 추천 일반 값 넘기기
@@ -42,6 +61,28 @@ function tireGroupPrintCheck() {
 	    $("#sedan_check_hidden").disabled = true;
 	}
 }
+
+//타이어 할인률 설정
+function tireGroupDcrate() {
+	let dcrateBefor="";
+	$(document).on("click",".admin_tire_dcrate_input",function() {
+		dcrateBefor = $(this).val(); 
+	})
+	$(".admin_tire_dcrate_input").focusout(function() {
+		let tg_dcrate = $(this).val(); 
+		let tg_id = $(this).siblings().val();
+		if(dcrateBefor != tg_dcrate && tg_dcrate != ""){
+			$.ajax({
+				url : "admin.tire.group.dcrate.change",
+				data : {tg_id,tg_dcrate},
+				success : function(data) {
+				}
+			});
+		}	
+	});
+}
+
+
 
 
 // 타이어 그룹 삭제
@@ -69,7 +110,7 @@ function tireRegSizeAdd() {
 				"<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>" +
 				"<div class='admin-tire-reg-size-modal-input'>" +
 				"<div class='admin-tire-reg-size-modal-input'>" +
-				"<input class='tire_input_width'>" +
+				"<input class='tire_input_width'>" + /*oninput='this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');'*/ 
 				"<span class='size-span'>/</span>" +
 				"<input class='tire_input_ratio'>" +
 				"<span class='size-span'>R</span>" +
@@ -107,24 +148,18 @@ function tireRegSizeAdd() {
 //타이어 등록페이지 사이즈 삭제
 function tireRegSizeDelete() {
 	$(document).on("click",".admin-tire-size-reg-delete",function() {
-		$(this).closest("tr").remove();
-		if($(this).find($('#tiTgIdHidden')).val()==null){
+
+		let ti_id =$(this).closest("tr").find($(".tiIdHidden")).val();; 
+		if(ti_id!=null){
 			$.ajax({
 				url : "admin.tire.size.delete",
-				data : {ti_tg_id},
+				data : {ti_id},
 				success : function(data) {
-					if(date==1){
-						alert('삭제성공');						
-					}else{
-						alert('삭제실패');						
-						
-					}
 				}
 			});
 		}
+		$(this).closest("tr").remove();
 	});
-	
-	//에이젝스로 없애는것 추가하기
 }
 
 //타이어 등록페이지 타이어 사이즈 저장
@@ -144,8 +179,21 @@ function tireRegSizeReg() {
 		$(this).closest("tr").find(".tire_size_reg_width").attr('value',width);
 		$(this).closest("tr").find(".tire_size_reg_ratio").attr('value',ratio);
 		$(this).closest("tr").find(".tire_size_reg_inch").attr('value',inch);
-
 		
+		
+		let ti_id =$(this).closest("tr").find($(".tiIdHidden")).val(); 
+		if(ti_id !=null){
+			let ti_width=$(this).closest("tr").find($(".tire_input_width")).val()
+			let ti_ratio=$(this).closest("tr").find($(".tire_input_ratio")).val()
+			let ti_inch=$(this).closest("tr").find($(".tire_input_inch")).val()
+			$.ajax({
+				url : "admin.tire.size.change",
+				data : {ti_id,ti_width,ti_ratio,ti_inch},
+				success : function(data) {
+				}
+			});
+		}
+
 		$(".admin-tire-reg-size-modal").css("display","none");
 	});
 	
@@ -250,13 +298,13 @@ function suvRecommend() {
 	});
 }
 
-
+//브랜드 체크
 function tireBrandSelected() {
 	let brand =  $('#tireBrandHidden').val();
 
 	$('input[value='+brand+']').attr("checked","checked"); 
 }
-
+//selecter 체크
 function tireHiddenSelected() {
 	if($('#tirePrintHidden').val()==1){
 		$('.radioPrint').attr("checked","checked");
@@ -272,9 +320,139 @@ function tireHiddenSelected() {
 	};
 }
 
+//타이어이름 인풋창 밖으로 나갈떄 이름 변경
+function tireNameFocusout() {
+	
+	let tg_nameBefor = $("#admin-tire-reg-name-input").val();
+
+	$("#admin-tire-reg-name-input").focusout(function() {
+		let tg_name = $(this).val();
+		if(tg_nameBefor != tg_name){
+			let tg_id= $("#tireIdHidden").val();
+			$.ajax({
+				url : "admin.tire.name.change",
+				data : {tg_name,tg_id},
+				success : function(data) {
+				}
+			});
+		}
+	});
+}
+//타이어텍스트 인풋창 밖으로 나갈떄 내용변경
+function tireTextFocusout() {
+	let tg_textbefor = $('#admin-tire-reg-txt-input').val();
+	$("#admin-tire-reg-txt-input").focusout(function(){
+		let tg_text = $(this).val();
+		if(tg_textbefor != tg_text){
+			let tg_id= $("#tireIdHidden").val();
+			$.ajax({
+				url : "admin.tire.text.change",
+				data : {tg_text,tg_id},
+				success : function(data) {
+				}
+			});
+		}
+	});
+}
 
 
+function tireMarkingChange() {
+	$(".admin-tire-reg-marking-input").focusout(function(){
+		let ti_id = $(this).closest("tr").find($(".tiIdHidden")).val();
+		if(ti_id != null){
+			let ti_marking = $(this).val();	
+			$.ajax({
+				url : "admin.tire.marking.change",
+				data : {ti_marking,ti_id},
+				success : function(data) {
+				}
+			});
+		}
+	});
+	
+}
 
+function tirePriceChange() {
+	$(".admin-tire-reg-pricefac-input").focusout(function(){
+		let ti_id = $(this).closest("tr").find($(".tiIdHidden")).val();
+		if(ti_id != null){
+			let ti_pricefac = $(this).val();
+			$.ajax({
+				url : "admin.tire.pricefac.change",
+				data : {ti_pricefac,ti_id},
+				success : function(data) {	
+				}
+			});
+		}
+	
+	});
+}
+
+function tireStockChange() {
+	$(".admin-tire-reg-stock-input").focusout(function(){
+		let ti_id=$(this).closest("tr").find($(".tiIdHidden")).val();
+		if(ti_id != null){
+			let ti_stock = $(this).val();
+			$.ajax({
+				url : "admin.tire.stock.change",
+				data : {ti_stock,ti_id},
+				success : function(data) {
+				}
+			});
+		}
+	
+	});
+}
+//브랜드 출력 미출력
+function BrnadprintOnOff() {
+	$(".brandPrintBtn").click(function() {
+		let onoff =	$(this).text();
+		let tb_name = $(this).val();
+		let tb_ea = onoff == '출력' ? 0 : 1;	
+		let btnEl = $(this);
+		$.ajax({
+			url : "admin.tire.brand.print.onoff",
+			data : {tb_ea,tb_name},
+			success : function(data) {
+				if(data == 1){
+					btnEl.text('출력');
+					btnEl.attr('class','admin_printBTN brandPrintBtn');
+				}else{
+					btnEl.attr('class', 'admin_notPrintBTN brandPrintBtn');
+					btnEl.text('숨김');
+				}
+			}
+		});
+	});
+}
+//타이어 브랜드 입력 후
+function tireBrandForcusout() {
+	//타이어 브랜드명 변경
+	/*let brandNameBefor="";
+	$(".admin-tire-brand-name").click(function name() {
+		brandNameBefor=$(this).val();
+	});
+	$(".admin-tire-brand-name").focusout(function() {
+		let tb_name=$(this).val();
+		if(brandNameBefor!=tb_name && tb_name!=""){
+			alert(tb_name);
+			$.ajax({
+				url : "admin.tire.brand.name.change",
+				data : {tb_name,brandNameBefor},
+				success : function(data) {
+					alert('성공');
+				}
+			});
+		}
+	});*/
+	//타이어 브랜드 출력 순 변경
+	$(".admin-tire-brand-order").focusout(function() {
+		
+	});
+	
+	
+	
+}
 
 
 

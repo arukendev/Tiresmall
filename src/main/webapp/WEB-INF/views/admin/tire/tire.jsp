@@ -59,7 +59,8 @@
 					<td class="admin_tire_content_title admin_tire_print" style="border-right: 1px solid white;">출력</td>
 					<td class="admin_tire_content_title admin_tire_sedanPrint" style="border-right: 1px solid white;">승용추천</td>
 					<td class="admin_tire_content_title admin_tire_SUVPrint" style="border-right: 1px solid white;">SUV추천</td>
-					<td class="admin_tire_content_title authadmin_tire_sizeNum_date" style="border-right: 1px solid white;">사이즈</td>
+					<td class="admin_tire_content_title admin_tire_dcrate" style="border-right: 1px solid white;">할인률</td>
+					<td class="admin_tire_content_title admin_tire_sizeNum_date" style="border-right: 1px solid white;">사이즈</td>
 					<td class="admin_tire_content_title admin_tire_management">관리</td>
 				</tr>
 				<c:if test="${empty tires}">
@@ -100,6 +101,10 @@
 									<button class="admin_notPrintBTN suvRecommend" value="${t.tg_id }">일반</button>
 								</c:otherwise>
 							</c:choose>
+						</td>
+						<td class="admin_tire_table_td">
+							<input value="${t.tg_dcrate }" class="admin_tire_dcrate_input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">%
+							<input type="hidden" value="${t.tg_id }">
 						</td>
 						<td class="admin_tire_table_td">${t.tg_num }개</td>
 						<td id="tire_Btn" class="admin_tire_table_td">

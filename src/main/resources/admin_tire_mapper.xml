@@ -114,23 +114,15 @@
 	set tg_suv = #{tg_suv}
 	where tg_id = #{tg_id}
 </update>
+<update id="tireGroupDcrateChange">
+	update tire_group
+	set tg_dcrate = #{tg_dcrate}
+	where tg_id = #{tg_id}
+</update>
 
 
 
 
-<!--타이어 브랜드  -->
-<select id="getTireBrand" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
-	select * from tire_brand order by tb_order
-</select>
-
-<select id="getTireBrandCount" resultType="int">
-	select count(*) from tire_group left OUTER JOIN tire_item
-	on  tg_id = ti_tg_id where tg_brand = #{val}
-</select>
-
-<delete id="deleteTireBrand">
-	delete from tire_brand where tb_name= #{tb_name}
-</delete>
 
 
 <insert id="tireGroupReg">
@@ -147,13 +139,13 @@
 <insert id="tierItemReg">
 	insert into tire_item values(tire_item_seq.nextval,#{ti_tg_id},#{ti_width},#{ti_ratio},#{ti_inch},#{ti_stock},#{ti_pricefac},#{ti_marking})
 </insert>
-<!-- 여기서 여러번 등록하는곳 -->
+<!-- 여기서 여러번 등록하는곳 		MyBatis에서 여러번 등록-->
 <!-- <insert id= "tierItemReg2">
 	insert into
 		tire_item
 		(TI_ID,TI_TG_ID,TI_WIDTH,TI_RATIO,TI_INCH,TI_STOCK,TI_PRICEFAC,TI_MARKING,)
 		values
-		<foreach collection="TireListDTO"></foreach>
+		<foreach collection="TireListDTO"> List<TireDTO></foreach>
 </insert>
  -->
 <select id="getTireGroupDetail" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
@@ -173,7 +165,66 @@
 	and ti_tg_id = #{val}
 </select>
 <delete id="tireSizeDelete">
-	delete from tire_item where ti_tg_id= #{val}
+	delete from tire_item where ti_id= #{val}
 </delete>
+
+<update id="tireNameChage">
+	update tire_group
+	set tg_name = #{tg_name}
+	where tg_id=#{tg_id}
+</update>
+
+<update id="tireTextChage">
+	update tire_group
+	set tg_text = #{tg_text}
+	where tg_id=#{tg_id}
+</update>
+
+<update id="tireSizeChage">
+	update tire_item
+	set ti_width=#{ti_width},ti_ratio=#{ti_ratio},ti_inch=#{ti_inch}
+	where ti_id=#{ti_id}
+</update>
+<update id="tireMarckingChange">
+	update tire_item
+	set ti_marking = #{ti_marking}
+	where ti_id=#{ti_id}
+</update>
+<update id="tirePriceChange">
+	update tire_item
+	set ti_pricefac = #{ti_pricefac}
+	where ti_id=#{ti_id}
+</update>
+<update id="tireStockChange">
+	update tire_item
+	set ti_stock = #{ti_stock}
+	where ti_id=#{ti_id}
+</update>
+
+<!--타이어 브랜드  -->
+<select id="getTireBrand" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
+	select * from tire_brand order by tb_order
+</select>
+
+<select id="getTireBrandCount" resultType="int">
+	select count(*) from tire_group left OUTER JOIN tire_item
+	on  tg_id = ti_tg_id where tg_brand = #{val}
+</select>
+
+<delete id="deleteTireBrand">
+	delete from tire_brand where tb_name= #{tb_name}
+</delete>
+
+<update id="tireBrandPrintOnOff">
+	update tire_brand
+	set tb_ea = #{tb_ea}
+	where tb_name= #{tb_name}
+</update>
+<!-- <update id="tireSBrandNameChange">
+	update tire_brand
+	set tb_name = #{tb_name}
+	where tb_name= #{brandNameBefor}
+</update> -->
+
 
 </mapper>

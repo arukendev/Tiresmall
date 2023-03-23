@@ -42,15 +42,15 @@
 			<c:forEach items="${brands }" var="t" varStatus="status">
 				<tr id="admin_tire_brands_content">
 					<td class="admin_tire_table_td">${status.count}</td>
-					<td class="admin_tire_table_td"><input id="admin-tire-brand-name" value=" ${t.tb_name }" name="tb_name"></td>
-					<td class="admin_tire_table_td"><input id="admin-tire-brand-order" value=" ${t.tb_order }" name="tb_order ">번</td>
+					<td class="admin_tire_table_td"><input class="admin-tire-brand-name" value="${t.tb_name }" name="tb_name"></td>
+					<td class="admin_tire_table_td"><input class="admin-tire-brand-order" value="${t.tb_order }" name="tb_order ">번</td>
 					<td class="admin_tire_table_td">
 						<c:choose>
 							<c:when test="${t.tb_ea ==1 }">
-								<button class="admin_printBTN">출력</button>
+								<button class="admin_printBTN brandPrintBtn" value="${t.tb_name }">출력</button>
 							</c:when>
 							<c:otherwise>
-								<button class="admin_notPrintBTN">숨김</button>
+								<button class="admin_notPrintBTN brandPrintBtn" value="${t.tb_name }">숨김</button>
 							</c:otherwise>
 						</c:choose>
 					</td>
