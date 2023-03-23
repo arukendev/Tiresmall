@@ -1,3 +1,6 @@
+
+
+
 function deletecb1(cbbbb) {
 	let ok = confirm('정말 삭제하시겠습니까?');
 	if (ok) {
@@ -275,4 +278,48 @@ function previewImage(event) {
 	  fileinputstyle.textContent = filename;
 	
 	}
+
+
+
+
+$(document).ready(function() {
+		carprintOnOff();
+	});
+
+
+
+function carprintOnOff() {
+	$(".carprintbtn").click(function() {
+		let onoff = $(this).text();
+		let c_id = $(this).val();
+		let c_print = onoff == '출력' ? 0 : 1;
+
+		  console.log("c_id: ", c_id);
+	        console.log("c_print: ", c_print);
+		
+		let btnEl = $(this);
+	
+		$.ajax({
+    url: "admin.car.print.onoff",
+    data: {
+        c_print,  // 수정 필요
+        c_id
+    },
+    success: function(data) {
+
+				
+				if (data === 1) {
+					btnEl.text('출력');
+					btnEl.attr('class', 'carprintbtn admin_car_printBTN');
+				} else {
+		
+					btnEl.attr('class', 'carprintbtn admin_car_notPrintBTN');
+					btnEl.text('미출력');
+				}
+			}
+		});
+	});
+}
+
+
 

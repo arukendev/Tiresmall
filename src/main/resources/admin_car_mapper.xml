@@ -122,6 +122,15 @@ ORDER BY cb.cb_order ASC;
 
 
 
+<update id="carprintOnOff">
+
+update Car
+	set c_print = #{c_print}
+	where c_id = #{c_id}
+
+
+</update>
+
 
 
 
@@ -193,6 +202,8 @@ update car_brand
     where cb_name = #{old_cb_name}
 
 </update>
+
+
 
 
 </mapper>

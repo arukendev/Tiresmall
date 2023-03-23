@@ -12,6 +12,9 @@
 	href="resources/css/admin/car/admin_car.css">
 <link rel="stylesheet" href="resources/css/admin/board/notice_board.css">
 <script src="resources/js/admin/car/admin_car.js"></script>
+<script src="resources/js/admin/car/validcheck.js"></script>
+<script src="resources/js/admin/car/carregvaluecheck.js"></script>
+<script src="resources/js/admin/car/carupdatevaluecheck.js"></script>
 <script type="text/javascript">
 
 
@@ -97,10 +100,11 @@ function addSize2() {
 				<tr>
 					<td class="admin_car_content_title admin_car_no" style="border-right: 1px solid white;">No.</td>
 					<td class="admin_car_content_title admin_car_brand" style="border-right: 1px solid white;">메이커</td>
-					<td class="admin_car_content_title admin_year" style="border-right: 1px solid white;">연식</td>
+					<td class="admin_car_content_title admin_car_year" style="border-right: 1px solid white;">연식</td>
 					<td class="admin_car_content_title admin_car_name" style="border-right: 1px solid white;">차종</td>
 					<td class="admin_car_content_title admin_car_option" style="border-right: 1px solid white;">옵션</td>
 					<td class="admin_car_content_title admin_car_tiresize" style="border-right: 1px solid white;">타이어사이즈</td>
+					<td class="admin_car_content_title admin_car_print" style="border-right: 1px solid white;">출력</td>
 					<td class="admin_car_content_title authadmin_manage" style="border-right: 1px solid white;">관리</td>
 				</tr>
 			
@@ -127,6 +131,16 @@ function addSize2() {
 						</td>	
 						<td class="admin_car_table_td">
 						앞 :${c.c_ft } / 뒤 :${c.c_bt }
+						</td>
+						<td class="admin_car_table_td">
+						
+						<c:choose>
+								<c:when test="${c.c_print == 1 }">
+									<button class="carprintbtn admin_car_printBTN" value="${c.c_id }">출력</button></c:when>
+								<c:otherwise>
+									<button class="carprintbtn admin_car_notPrintBTN" value="${c.c_id }">미출력</button></c:otherwise>
+							</c:choose>
+						
 						</td>
 						<td class="admin_car_table_td">
 						<button class="updatecarbutton"
@@ -178,7 +192,7 @@ function addSize2() {
 		<div class="close">X</div>
 
 		<div>
-			<form action="reg.car.do" method="post" name="regform"
+			<form action="reg.car.do" method="post" name="carregform"
 				onsubmit="return carregcall();" enctype="multipart/form-data">
 				<table border="1" class="modal_table">
 				<tr>
@@ -211,8 +225,8 @@ function addSize2() {
 
 					<td style="background-color: #3399ff; text-align: center;">출력</td>
 					<td><select name="c_print" id="c_print">
-					<option value='출력'>출력</option>
-					<option value='숨김'>숨김</option>
+					<option value='1'>출력</option>
+					<option value='0'>숨김</option>
 					</select></td>
 					</tr>
 					<tr>
@@ -230,8 +244,8 @@ function addSize2() {
   </div>
   <div id="sizeInputs">
     <div style="display: block;">
-      <div class="ftinputstyle" style="float: left;"><input style="height: 30px; width:198px;" name="c_ft" id="c_ft" class="c_ftinput"></div>
-      <div class="btinputstyle" style="float: left;"><input style="height: 30px; width:193px;" name="c_bt" id="c_bt" class="c_btinput"></div>
+      <div class="ftinputstyle" style="float: left;"><input style="height: 30px; width:198px;" name="c_ft" id="c_ft" class="c_ftinput  jsp-input"></div>
+      <div class="btinputstyle" style="float: left;"><input style="height: 30px; width:193px;" name="c_bt" id="c_bt" class="c_btinput  jsp-input"></div>
       <div class="tmreginputstyle" style="float: left;">기본 타이어입니다.</div></div>
     </div>
     
@@ -276,7 +290,7 @@ function addSize2() {
     <div>
     
     <div>
-			<form action="admin.car.update.do" method="post" name="updateform"
+			<form action="admin.car.update.do" method="post" name="carupdateform"
 				onsubmit="return carupdatecall();" enctype="multipart/form-data">
 				<table border="1" class="">
 				
@@ -303,8 +317,8 @@ function addSize2() {
 					<tr>
 					<td style="background-color: #3399ff; text-align: center;">출력</td>
 					<td><select name="c_print" id="c_print_u" >
-					<option value='출력'>출력</option>
-					<option value='숨김'>숨김</option>
+					<option value='1'>출력</option>
+					<option value='0'>숨김</option>
 					</select></td>
 					</tr>
 					<tr>

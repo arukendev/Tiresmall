@@ -103,6 +103,7 @@
 	set tg_print = #{tg_print}
 	where tg_id = #{tg_id}
 </update>
+
 <update id="tireSedanRecommend">
 	update tire_group
 	set tg_sedan = #{tg_sedan}

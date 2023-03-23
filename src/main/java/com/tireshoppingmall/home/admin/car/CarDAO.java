@@ -39,6 +39,8 @@ public class CarDAO {
 	
 	
 	private int allCarCount;
+
+
 	
 	public int getAllCarCount() {
 		return allCarCount;
@@ -196,9 +198,9 @@ public void updateCar(MultipartFile file, CarDTO c, HttpServletRequest req) {
 		SearchCarDTO search = (SearchCarDTO) req.getSession().getAttribute("cars");
 		int CarCount = 0;
 		
-		System.out.println("WWWWWWWWWWWWWWWW");
+	
 		System.out.println(search);
-		System.out.println("WWWWWWWWWWWWWWWW");
+
 		
 		if (search == null) {
 			System.out.println("null입니다");
@@ -218,9 +220,9 @@ public void updateCar(MultipartFile file, CarDTO c, HttpServletRequest req) {
 			
 		}
 		List<CarDTO> Car = ss.getMapper(AdminCarMapper.class).getCarlists(search);
-		System.out.println("@@@@@@@@@@@@@");
+		
 		System.out.println(Car);
-		System.out.println("@@@@@@@@@@@@@");
+	
 		System.out.println(count);
 		System.out.println(allCarCount);
 		int pageCount = (int) Math.ceil(CarCount / (double) count);
@@ -282,17 +284,17 @@ public void updateCar(MultipartFile file, CarDTO c, HttpServletRequest req) {
 
 	
 	public void getallCarBrands(Model m) {
-		System.out.println("!!!!!!!!!!!");
+		
 		m.addAttribute("carbrands", ss.getMapper(AdminCarMapper.class).getAllCarBrands());
-		System.out.println("!!!!!!!!!!!");
+	
 		
 	}
 
 	public void getallBrandCount(CarBrandDTO c,Model m) {
 		m.addAttribute("carcount", ss.getMapper(AdminCarMapper.class).getallBrandCount(c));
-		System.out.println("@@@@@@@@@@");
+		
 		System.out.println(m);
-		System.out.println("@@@@@@@@@@");
+	
 
 	
 	
@@ -325,6 +327,21 @@ public void updatebrand(CarBrandDTO c, HttpServletRequest req) {
 		System.out.println("수정실패");
 	}
 	
+}
+
+public int carprintOnOff(CarDTO c) {
+if (ss.getMapper(AdminCarMapper.class).carprintOnOff(c) == 1) {
+	System.out.println("**************************");
+	System.out.println(ss.getMapper(AdminCarMapper.class).carprintOnOff(c));
+	System.out.println("**************************");
+	return c.getC_print();
+}
+	
+	else {
+		
+	return 0;
+	
+}
 }
 	
 	
