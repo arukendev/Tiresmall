@@ -161,7 +161,7 @@
 	<select id="getQnaCount" resultType="int">
 		select count(*)
 		from qna q, auth_user au, auth_userinfo aui
-		where q.q_u_no = au.u_no and au.u_no = aui.u_no
+		where q.q_u_no = au.u_no and au.u_no = aui.i_no
 		and q_title like '%'||#{titleInput}||'%'
         and u_id like '%'||#{idInput}||'%'
         and i_name like '%'||#{nameInput}||'%'
@@ -171,14 +171,14 @@
 	<select id="getQna" resultType="com.tireshoppingmall.home.admin.board.QnaDTO">
 		select * from
         (select rownum as rn, q_no, q_u_no, q_title, q_txt, q_date, q_reply_has, u_id, i_name
-        from(select * from qna q, auth_user au, auth_userinfo aui where q.q_u_no = au.u_no and au.u_no = aui.u_no and
+        from(select * from qna q, auth_user au, auth_userinfo aui where q.q_u_no = au.u_no and au.u_no = aui.i_no and
        		<if test="nameInput != ''">
          	  aui.i_name = #{nameInput} and
 			</if>
 			<if test="idInput != ''">	
           	  au.u_id = #{idInput} and
             </if>
-           	  q.q_title like '%'||#{titleInput}||'%' order by q_no))
+           	  q.q_title like '%'||#{titleInput}||'%' order by q_date desc))
         where rn &gt;= #{start} and rn &lt;= #{end}
 	</select>
         

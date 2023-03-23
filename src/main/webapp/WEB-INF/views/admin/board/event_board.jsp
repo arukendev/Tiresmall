@@ -149,15 +149,13 @@
 
 		<c:forEach var="page" begin="1" end="${pageCount }">
 			<c:choose>
-				<c:when
-					test="${page eq param.p or (curPage == 1 and curPage == page)}}">
+				<c:when test="${page eq param.p or (curPage == 1 and curPage == page)}">
 					<a style="color: white; background-color: #333;"
-						href="event.page.change?p=${page }" style="color: #00BFFF">${page }
+						href="event.page.change?p=${page }">${page }
 					</a>
 				</c:when>
 				<c:otherwise>
-					<a style="color: black;" href="event.page.change?p=${page }">${page }
-					</a>
+					<a style="color: black;" href="event.page.change?p=${page }">${page }</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>

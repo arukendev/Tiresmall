@@ -70,15 +70,15 @@
 				<div>
 					<div class="input_box2">
 						<div class="no-drag">회원명</div>
-						<input name="nameInput" id="a_name">
+						<input name="nameInput" id="a_name" value="${search.nameInput }">
 					</div>
 					<div class="input_box1">
 						<div class="no-drag">회원아이디</div>
-						<input name="idInput" id="q_id">
+						<input name="idInput" id="q_id" value="${search.idInput }">
 					</div>
 					<div class="input_box">
 						<div class="no-drag">제목</div>
-						<input name="titleInput" id="q_title">
+						<input name="titleInput" id="q_title" value="${search.titleInput }">
 					</div>
 					<div class="button_box">
 						<button id="searchBtn" class="noticeBtn">검색</button>
