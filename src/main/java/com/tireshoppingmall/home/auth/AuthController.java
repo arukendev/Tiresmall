@@ -139,14 +139,14 @@ public class AuthController {
 	@RequestMapping(value = "/authReg.go", method = RequestMethod.GET)
 	public String authRegGo(HttpServletRequest req) {
 		
-		String socialID = req.getParameter("socialID");
-	
-		//소셜로그인으로 회원가입하는 경우
-		if (!(socialID.equals(""))) {
-			req.setAttribute("socialID", socialID);
-			return "main/auth/authRegSocial";
-		}
 		return "main/auth/authReg";
+	}
+	@RequestMapping(value = "/authRegSocial.go", method = RequestMethod.GET)
+	public String authRegSOGo(HttpServletRequest req,MemberDTO mDTO) {
+		mDTO=(MemberDTO) req.getAttribute("mDTO");
+		System.out.println(mDTO.getI_email());
+		req.setAttribute("mDTO", mDTO);
+		return "main/auth/authRegSocial";
 	}
 	
 	
@@ -198,7 +198,7 @@ public class AuthController {
 	@RequestMapping(value = "/login/oauth_kakao")
 	public String oauthKakao(
 			@RequestParam(value = "code", required = false) String code
-			, Model model,HttpServletRequest req,RedirectAttributes rttr) throws Exception {
+			, Model model,HttpServletRequest req,RedirectAttributes rttr,MemberDTO mDTO) throws Exception {
 
 		System.out.println("#########" + code);
         String access_Token = lsDAO.getAccessToken(code);
@@ -207,8 +207,8 @@ public class AuthController {
         
         HashMap<String, Object> userInfo = lsDAO.getUserInfo(access_Token);
        //System.out.println("###access_Token#### : " + access_Token);
-       // System.out.println("###userInfo#### : " + userInfo.get("email"));
-       // System.out.println("###nickname#### : " + userInfo.get("nickname"));
+        System.out.println("###userInfo#### : " + userInfo.get("email"));
+        System.out.println("###nickname#### : " + userInfo.get("nickname"));
        System.out.println("###KAKAOID#### : " + userInfo.get("kakaoID"));
        
         JsonObject kakaoInfo =  new JsonObject();
@@ -225,9 +225,27 @@ public class AuthController {
         	model.addAttribute("content", "main/home/home.jsp");
                return "redirect:/"; //본인 원하는 경로 설정
 		}else {
+			mDTO.setI_email(userInfo.get("email")+"");
+	        mDTO.setU_id(socialID);
+	        mDTO.setU_logintype("2");
+	        mDTO.setI_carbrand("empty");
+	        mDTO.setI_carname("empty");
+	        mDTO.setI_carnum("empty");
+	        mDTO.setI_caryear("2014");
+	        
+//	        if (lsDAO.regMemberSocial(req,mDTO)) {
+//				lsDAO.login(socialID,req);
+//				mDAO.loginCheck(req);   
+//				req.setAttribute("content", "main/home/home.jsp");
+//				return "redirect:/"; //본인 원하는 경로 설정}
+//			}
+//			req.setAttribute("content", "main/home/home.jsp");
+//			return "redirect:/"; //본인 원하는 경로 설정}
+//	        
+	        
 			//필요한 추가 정보를 얻기 위한 회원가입 페이지로 이동
-			rttr.addFlashAttribute("socialID", socialID);
-			return "redirect:/authTermsOfUse.go";
+			rttr.addAttribute("mDTO", mDTO);
+			return "redirect:/authRegSocial.go";
 		}
         
        
@@ -266,7 +284,18 @@ public class AuthController {
         mDTO.setU_id(id);
         mDTO.setI_name(name);
         mDTO.setI_phoneNum(phoneNum);
-        mDTO.setU_logintype("3");//소셜로그인 네이버의 경우 3
+        mDTO.setU_logintype("3");
+        mDTO.setI_carbrand("empty");
+        mDTO.setI_carname("empty");
+        mDTO.setI_carnum("empty");
+        mDTO.setI_caryear("2014");
+        
+        
+        
+        
+        
+        
+      //소셜로그인 네이버의 경우 3
 //        System.out.println("테스트"+email);
 //        System.out.println("테스트"+id);
 //        System.out.println("테스트"+ mobile);

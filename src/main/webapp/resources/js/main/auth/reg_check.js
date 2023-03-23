@@ -91,10 +91,10 @@ function joinCheck() {
 //	console.log('6'+phoneNumInput);
 	 
 	// 자동차 정보 입력 페이지로 이동 후 가입하기 누를 시 가입처리
-	if (carInfoConfirm.value == 2 ) {
-		$("#i_email").attr("disabled", false);
-		return true;
-	}
+//	if (carInfoConfirm.value == 2 ) {
+//		$("#i_email").attr("disabled", false);
+//		return true;
+//	}
 	
 //	 //전화번호 입력 검사
 //    if(phoneNumInput.length != 11){
@@ -176,17 +176,17 @@ function joinCheck() {
 		return false;
 	}
     
-    var regOK = confirm('차량정보를 입력하시겠습니까?(선택)');
-	   
-	if (regOK) {
-		$(".join_box").css("display","none");
-		$(".join_box_carInfo").css("display","block");
-		carInfoConfirm.value = 2;
-		return false;
-	}else {
-		$("#i_email").attr("disabled", false);
-		return ture;
-	}
+//    var regOK = confirm('차량정보를 입력하시겠습니까?(선택)');
+//	   
+//	if (regOK) {
+//		$(".join_box").css("display","none");
+//		$(".join_box_carInfo").css("display","block");
+//		carInfoConfirm.value = 2;
+//		return false;
+//	}else {
+//		$("#i_email").attr("disabled", false);
+//		return ture;
+//	}
     
    
     

@@ -1,12 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link
+rel="shortcut icon"
+href="resources/web/favicon.png"
+type="image/png"
+/>
+<link rel="icon" href="resources/web/favicon.png" type="image/png" />
 <link rel="stylesheet" href="resources/css/main/auth/auth.css">
-<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" >
 		$( document ).ready(function() {
 			history.replaceState({}, null, location.pathname);
@@ -17,8 +27,11 @@
 	<form  action="authRegSocial.do"  method="post" 
 		name="join_form" onsubmit="return joinCheck();">
 		<h1>${socialID}</h1>
+		<input name="u_id" type="hidden" value="${mDTO.getUid}">
 		<input name="u_id" type="hidden" value="${socialID}">
-		<input name="u_logintype" type="hidden" value="2"> <!--카카오 소셜로그인의 경우 로그인 타입 2 -->
+		<input name="u_id" type="hidden" value="${socialID}">
+		<input name="u_id" type="hidden" value="${socialID}">
+		<input name="u_id" type="hidden" value="${socialID}">
 		<div id="join_container">
 			<div id="join_logo">
 				<a href="/home">

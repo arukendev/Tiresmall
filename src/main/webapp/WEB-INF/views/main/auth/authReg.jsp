@@ -26,9 +26,9 @@ type="image/png"
 		<!-- 홈페이지 회원 가입의 경우 타입 1번 -->
 		<input name="u_logintype" value="1" type="hidden">
 		<!-- default value는 1 , 이메일 인증완료시 value 2 -->
-		<input name="emailConfirm" value="1" type="hidden"> <input
-			name="carInfoConfirm" value="1" type="hidden">
-
+		<input name="emailConfirm" value="1" type="hidden">
+		
+		
 		<div id="join_container">
 			<div id="join_logo">
 				<a href="/home"> <img alt="" src="resources/web/logo.png">
@@ -59,7 +59,7 @@ type="image/png"
 			<div class="join_box">
 				<div class="join_title">휴대폰번호</div>
 				<div id="phoneNum_input">
-					<input name="i_phoneNum" type="number">
+					<input name="i_phoneNum" type="number" maxlength="11">
 				</div>
 			</div>
 			<div class="join_box">
@@ -78,7 +78,6 @@ type="image/png"
 				<div class="join_title">브랜드</div>
 				<div id="name_input">
 					<select id="i_carbrand" name="i_carbrand" onchange="selectBrand()">
-						<option value="">--브랜드를 선택해주세요--</option>
 						<option value="Hyundai">현대</option>
 						<option value="Kia">기아</option>
 						<option value="GM Korea">GM 대한민국</option>
@@ -153,7 +152,7 @@ type="image/png"
 			<div class="join_box_carInfo">
 				<div class="join_title">연식</div>
 				<div id="name_input">
-					<input name="i_caryear">
+					<input name="i_caryear" maxlength="4" type="number">
 				</div>
 			</div>
 			<div class="join_box_carInfo">
