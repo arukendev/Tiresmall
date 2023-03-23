@@ -133,7 +133,6 @@
 	</delete>
 	
 	
-	
 	<select id="getNoticeCount" resultType="java.lang.Integer">
 		select count(*)
 		from notice
@@ -153,18 +152,24 @@
         where rownumber &gt;= #{begin} and rownumber &lt;= #{last}
 	</select>
 	
-	<select id="readdetailQna" resultType="com.tireshoppingmall.home.board.BoardNoticeDTO">
+	<select id="readdetailNotice" resultType="com.tireshoppingmall.home.board.BoardNoticeDTO">
 		select *
 		from notice
 		where n_no = #{n_no}
 	</select>
 	
 	
-	
+	<!-- 
 	<select id="getEventCount" resultType="java.lang.Integer">
 		select count(*)
 		from event
 	</select>
+	 -->
+	<select id="readEvent" resultType="com.tireshoppingmall.home.board.BoardEventDTO">
+		select *
+		from event
+	</select>
+	<!-- 
 	<select id="readEvent" resultType="com.tireshoppingmall.home.board.BoardEventDTO">
 		select *
         from (
@@ -179,6 +184,7 @@
         )
         where rownumber &gt;= #{begin} and rownumber &lt;= #{last}
 	</select>
+	-->
 	
 	<select id="readdetailEvent" resultType="com.tireshoppingmall.home.board.BoardEventDTO">
 		select *
