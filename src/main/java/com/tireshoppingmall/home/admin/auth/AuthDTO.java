@@ -6,117 +6,169 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
 public class AuthDTO {
-	private String a_id;
-	private String a_pw;
-	private String a_Sortation;
-	private String a_name;
-	private String a_phone;
-	private String a_address;
-	private Date a_date;
 
+	// auth_user
+	private int u_no;
+	private String u_id;
+	private String u_loginType;
+
+	// auth_userinfo
+	private int i_no;
+	private String i_name;
+	private String i_phoneNum;
+	private Date i_newDate;
+	private int i_grade;
+	private String i_email;
+
+	// auth_password
+	private int pw_no;
+	private String pw_salt;
+	private String pw_password;
+	private Date pw_update;
 
 	// my_car
-
 	private String mc_number;
 	private String mc_id;
 	private String mc_model;
 	private String mc_brand;
 	private int mc_year;
 
-	
-	//페이징작업
+	// 페이징작업
 	private BigDecimal start;
 	private BigDecimal end;
-	
-	
-	
+
 	public AuthDTO() {
 	}
 
-	public AuthDTO(String a_id, String a_pw, String a_Sortation, String a_name, String a_phone, String a_address,
-			Date a_date, String mc_number, String mc_id, String mc_model, String mc_brand, int mc_year) {
+	public AuthDTO(int u_no, String u_id, String u_loginType, int i_no, String i_name, String i_phoneNum,
+			Date i_newDate, int i_grade, String i_email, int pw_no, String pw_salt, String pw_password, Date pw_update,
+			String mc_number, String mc_id, String mc_model, String mc_brand, int mc_year, BigDecimal start,
+			BigDecimal end) {
 		super();
-		this.a_id = a_id;
-		this.a_pw = a_pw;
-		this.a_Sortation = a_Sortation;
-		this.a_name = a_name;
-		this.a_phone = a_phone;
-		this.a_address = a_address;
-		this.a_date = a_date;
+		this.u_no = u_no;
+		this.u_id = u_id;
+		this.u_loginType = u_loginType;
+		this.i_no = i_no;
+		this.i_name = i_name;
+		this.i_phoneNum = i_phoneNum;
+		this.i_newDate = i_newDate;
+		this.i_grade = i_grade;
+		this.i_email = i_email;
+		this.pw_no = pw_no;
+		this.pw_salt = pw_salt;
+		this.pw_password = pw_password;
+		this.pw_update = pw_update;
 		this.mc_number = mc_number;
 		this.mc_id = mc_id;
 		this.mc_model = mc_model;
 		this.mc_brand = mc_brand;
 		this.mc_year = mc_year;
-	}
-
-	
-
-	public AuthDTO(String a_id, String a_Sortation, String a_name, String mc_number, BigDecimal start, BigDecimal end) {
-		super();
-		this.a_id = a_id;
-		this.a_Sortation = a_Sortation;
-		this.a_name = a_name;
-		this.mc_number = mc_number;
 		this.start = start;
 		this.end = end;
 	}
 
-
-	public String getA_id() {
-		return a_id;
+	public int getU_no() {
+		return u_no;
 	}
 
-	public void setA_id(String a_id) {
-		this.a_id = a_id;
+	public void setU_no(int u_no) {
+		this.u_no = u_no;
 	}
 
-	public String getA_pw() {
-		return a_pw;
+	public String getU_id() {
+		return u_id;
 	}
 
-	public void setA_pw(String a_pw) {
-		this.a_pw = a_pw;
+	public void setU_id(String u_id) {
+		this.u_id = u_id;
 	}
 
-	public String getA_Sortation() {
-		return a_Sortation;
+	public String getU_loginType() {
+		return u_loginType;
 	}
 
-	public void setA_Sortation(String a_Sortation) {
-		this.a_Sortation = a_Sortation;
+	public void setU_loginType(String u_loginType) {
+		this.u_loginType = u_loginType;
 	}
 
-	public String getA_name() {
-		return a_name;
+	public int getI_no() {
+		return i_no;
 	}
 
-	public void setA_name(String a_name) {
-		this.a_name = a_name;
+	public void setI_no(int i_no) {
+		this.i_no = i_no;
 	}
 
-	public String getA_phone() {
-		return a_phone;
+	public String getI_name() {
+		return i_name;
 	}
 
-	public void setA_phone(String a_phone) {
-		this.a_phone = a_phone;
+	public void setI_name(String i_name) {
+		this.i_name = i_name;
 	}
 
-	public String getA_address() {
-		return a_address;
+	public String getI_phoneNum() {
+		return i_phoneNum;
 	}
 
-	public void setA_address(String a_address) {
-		this.a_address = a_address;
+	public void setI_phoneNum(String i_phoneNum) {
+		this.i_phoneNum = i_phoneNum;
 	}
 
-	public Date getA_date() {
-		return a_date;
+	public Date getI_newDate() {
+		return i_newDate;
 	}
 
-	public void setA_date(Date a_date) {
-		this.a_date = a_date;
+	public void setI_newDate(Date i_newDate) {
+		this.i_newDate = i_newDate;
+	}
+
+	public int getI_grade() {
+		return i_grade;
+	}
+
+	public void setI_grade(int i_grade) {
+		this.i_grade = i_grade;
+	}
+
+	public String getI_email() {
+		return i_email;
+	}
+
+	public void setI_email(String i_email) {
+		this.i_email = i_email;
+	}
+
+	public int getPw_no() {
+		return pw_no;
+	}
+
+	public void setPw_no(int pw_no) {
+		this.pw_no = pw_no;
+	}
+
+	public String getPw_salt() {
+		return pw_salt;
+	}
+
+	public void setPw_salt(String pw_salt) {
+		this.pw_salt = pw_salt;
+	}
+
+	public String getPw_password() {
+		return pw_password;
+	}
+
+	public void setPw_password(String pw_password) {
+		this.pw_password = pw_password;
+	}
+
+	public Date getPw_update() {
+		return pw_update;
+	}
+
+	public void setPw_update(Date pw_update) {
+		this.pw_update = pw_update;
 	}
 
 	public String getMc_number() {
@@ -174,28 +226,19 @@ public class AuthDTO {
 	public void setEnd(BigDecimal end) {
 		this.end = end;
 	}
+
+	@Override
+	public String toString() {
+		return "AuthDTO [u_no=" + u_no + ", u_id=" + u_id + ", u_loginType=" + u_loginType + ", i_no=" + i_no
+				+ ", i_name=" + i_name + ", i_phoneNum=" + i_phoneNum + ", i_newDate=" + i_newDate + ", i_grade="
+				+ i_grade + ", i_email=" + i_email + ", pw_no=" + pw_no + ", pw_salt=" + pw_salt + ", pw_password="
+				+ pw_password + ", pw_update=" + pw_update + ", mc_number=" + mc_number + ", mc_id=" + mc_id
+				+ ", mc_model=" + mc_model + ", mc_brand=" + mc_brand + ", mc_year=" + mc_year + ", start=" + start
+				+ ", end=" + end + "]";
+	}
+
 	
 	public static void AuthPagsing(HttpServletRequest req) {
 		req.getSession().setAttribute("authDTO", null);
 	}
-	
-	
-	
-	
-	
-	
-
-	@Override
-	public String toString() {
-		return "AuthDTO [a_id=" + a_id + ", a_pw=" + a_pw + ", a_Sortation=" + a_Sortation + ", a_name=" + a_name
-				+ ", a_phone=" + a_phone + ", a_address=" + a_address + ", a_date=" + a_date + ", mc_number="
-				+ mc_number + ", mc_id=" + mc_id + ", mc_model=" + mc_model + ", mc_brand=" + mc_brand + ", mc_year="
-				+ mc_year + ", start=" + start + ", end=" + end + "]";
-	}
-
-	
-
-	
-	
-	
 }

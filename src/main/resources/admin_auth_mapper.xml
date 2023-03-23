@@ -27,11 +27,13 @@
 
 	<select id="getAuthCount" resultType="int">
 		select count(*)
-		from
-		auth_user u , auth_userinfo ui
-		where u.u_no = ui.i_no
-		i_name like
-		'%'||#{i_name}||'%'
+		from auth_user u , auth_userinfo ui
+		where u.u_no =
+		ui.i_no and
+		i_name like '%'||#{i_name}||'%'
+		<if test="i_grade != 0">
+			and i_grade like '%'||#{i_grade}||'%'
+		</if>
 	</select>
 
 	<select id="getAuth"
@@ -43,28 +45,25 @@
 		u_id,u_logintype,i_no,i_name,i_phonenum,i_newdate,i_grade,i_email,
 		mc_number,mc_id,mc_model,mc_brand,mc_year
 		from (
-		select * from auth_user u
+		select * from auth_user
+		u
 		inner join auth_userinfo ui on u.u_no = ui.i_no
-		left OUTER JOIN my_car mc on u.u_no = mc.mc_id
+		left OUTER JOIN my_car
+		mc on u.u_no = mc.mc_id
 		where
 		<if test="u_id != ''">
 			u.u_id = #{u_id} and
 		</if>
 		ui.i_name like '%'||#{i_name}||'%'
-		and mc.mc_carnumber like '%'||#{mc_carNumber}||'%'
-		<choose>
-			<when test="i_grade == 1">
-				and ui.i_grade = '일반'
-			</when>
-			<when test="i_grade == 2">
-				and ui.i_grade = '업체'
-			</when>
-			<when test="i_grade == 3">
-				and ui.i_grade = '관리자'
-			</when>
-		</choose>
+		<if test="mc_number != ''">
+		and mc.mc_number = #{mc_number}
+		</if>
+		<if test="i_grade != 0">
+			and ui.i_grade = #{i_grade}
+		</if>
 		order by ui.i_newdate desc)
-		)where rn &gt;= #{start} and rn &lt;= #{end}
+		)where rn &gt;= #{start} and rn &lt;=
+		#{end}
 
 	</select>
 

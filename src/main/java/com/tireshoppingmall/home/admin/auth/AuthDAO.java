@@ -28,7 +28,8 @@ public class AuthDAO {
 	}
 
 	public void calcAllAuthCount() {
-		AuthDTO startEnd = new AuthDTO("","","","",null, null);
+		AuthDTO startEnd = new AuthDTO();
+		startEnd.setI_name("");
 		allAuthCount = ss.getMapper(AdminAuthMapper.class).getAuthCount(startEnd);	
 	}
 	
@@ -42,20 +43,29 @@ public class AuthDAO {
 		int authCount = 0;
 		if (paging == null) {
 			paging = new AuthDTO();
-			paging.setA_id("");
-			paging.setA_Sortation("");
-			paging.setA_name("");
+			paging.setU_id("");
+			paging.setI_name("");
 			paging.setMc_number("");
+			paging.setI_grade(0);
 			paging.setStart(new BigDecimal(start));
 			paging.setEnd(new BigDecimal(end));
 			authCount = allAuthCount;
+			System.out.println(start);
+			System.out.println(end);
+			System.out.println(allAuthCount);
 		}else {
+			
 			paging.setStart(new BigDecimal(start));
 			paging.setEnd(new BigDecimal(end));
 			authCount = ss.getMapper(AdminAuthMapper.class).getAuthCount(paging);
 		}
+		System.out.println(paging.toString());
 		
 		List<AuthDTO> manyAuth = ss.getMapper(AdminAuthMapper.class).getAuth(paging);
+		for (AuthDTO aa : manyAuth) {
+			System.out.println(aa.toString());
+		}
+		System.out.println(manyAuth);
 		int pageCount = (int) Math.ceil(authCount / (double) count);
 	
 		req.setAttribute("count", count);
