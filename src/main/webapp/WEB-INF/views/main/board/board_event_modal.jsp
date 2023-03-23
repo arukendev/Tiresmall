@@ -13,18 +13,20 @@
 	<div class="swiper mySwiper">
 	    <div class="swiper-wrapper">
 	    	<c:forEach var="e" items="${events }">
-			    <div class="swiper-slide">
-					<div class="board_event_modal_card">
-						<div class="board_event_modal_image">
-							<a href="#"><img src="resources/web/main/board/${e.e_mainimg }"/></a>
+	    		<c:if test="${e.e_popup == 1 }">
+				    <div class="swiper-slide">
+						<div class="board_event_modal_card">
+							<div class="board_event_modal_image">
+								<a href="#"><img src="resources/upload-event/${e.e_mainimg }"/></a>
+							</div>
+							<form class="board_event_modal_buttons" method="dialog">
+								<button onclick="clickToSetBoardEventModalCookie();">오늘은 그만 보기</button>
+								<div></div>
+								<button>닫기</button>
+							</form>
 						</div>
-						<form class="board_event_modal_buttons" method="dialog">
-							<button onclick="clickToSetBoardEventModalCookie();">오늘은 그만 보기</button>
-							<div></div>
-							<button>닫기</button>
-						</form>
 					</div>
-				</div>
+	    		</c:if>
 	    	</c:forEach>
 		</div>
 	</div>

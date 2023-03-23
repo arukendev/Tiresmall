@@ -32,7 +32,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 style="cursor: pointer"
                 >카카오톡상담
                 <img
-                  src="resources/web/main/board/kakaoLogo.png"
+                  src="resources/web/main/board/kakaologo.png"
                   style="width: 16px"
               /></a>
             </div>
@@ -173,9 +173,15 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <ul class="index_dropBoard index_dropWrapper">
             <li class="index_dropMenu_menu">
               <div class="index_dropMenu_txt">
-                <a class="index_dropBoard_a" href="board.faq.read">FAQ</a>
+                <a
+                  class="index_dropBoard_a"
+                  href="board.faq.read.search?f_sortation="
+                  >FAQ</a
+                >
                 <a class="index_dropBoard_a" href="board.qna.check">1:1 문의</a>
-                <a class="index_dropBoard_a" href="board.notice">공지사항</a>
+                <a class="index_dropBoard_a" href="board.notice.read"
+                  >공지사항</a
+                >
                 <a class="index_dropBoard_a" href="board.event">이벤트</a>
               </div>
               <div class="index_dropMenu_img">
@@ -227,6 +233,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <script src="resources/js/main/search/main_search.js"></script>
     <script src="resources/js/main/board/main_board_kakao.js"></script>
     <script src="resources/js/main/board/main_board_whereAmI.js"></script>
+    <script src="resources/js/main/board/main_board_qna_complete.js"></script>
     <script src="resources/js/main/board/main_board_deleteQna.js"></script>
     <script src="resources/js/main/board/main_board_event.js"></script>
   </body>

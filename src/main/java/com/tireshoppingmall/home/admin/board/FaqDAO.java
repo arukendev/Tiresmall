@@ -59,6 +59,7 @@ public class FaqDAO {
 		req.setAttribute("pageCount", pageCount);
 		req.setAttribute("faqs", faq);
 		req.setAttribute("curPage", pageNo);
+		req.setAttribute("searchVal", search.getTitleInput());
 	}
 	
 	/*	public void getAllFaq(HttpServletRequest req) {

@@ -15,16 +15,28 @@ public interface BoardMapper {
 
 	List<BoardQnaDTO> readQna(AuthUserDTO auDTO);
 
-	BoardQnaDTO readdetailQna(BoardQnaDTO a);
-	BoardQnaReplyDTO readQnaReply(BoardQnaDTO a);
+	BoardQnaDTO readdetailQna(BoardQnaDTO bqDTO);
+	BoardQnaReplyDTO readQnaReply(BoardQnaDTO bqDTO);
 
-	int createQna(BoardQnaDTO a);
+	int createQna(BoardQnaDTO bqDTO);
 
-	int updateQna(BoardQnaDTO a);
+	int updateQna(BoardQnaDTO bqDTO);
 	
-	int deleteQna(BoardQnaDTO a);
+	int deleteQna(BoardQnaDTO bqDTO);
 	
 	
-
-	List<BoardEventDTO> readEvent(BoardEventDTO e);
+	
+	int getNoticeCount(BoardNoticeSelector forIroiro);
+	
+	List<BoardNoticeDTO> readNotice(BoardNoticeSelector forIroiro);
+	
+	BoardNoticeDTO readdetailNotice(BoardNoticeDTO bnDTO);
+	
+	
+	
+	int getEventCount(BoardEventSelector forIroiro);
+	
+	List<BoardEventDTO> readEvent(BoardEventDTO beDTO);
+	
+	BoardEventDTO readdetailEvent(BoardEventDTO beDTO);
 }

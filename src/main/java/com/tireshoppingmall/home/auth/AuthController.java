@@ -11,12 +11,16 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,10 +51,42 @@ public class AuthController {
     private String apiResult = null;
     
     @Autowired
+    private JavaMailSender mailSender;
+    
+    @Autowired
     private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
         this.naverLoginBO = naverLoginBO;
     }
     
+    @RequestMapping(value = "/mailCheck", method = RequestMethod.GET)
+    @ResponseBody
+    public String mailCheck(@RequestParam("sm_email") String sm_email) throws Exception{
+        int serti = (int)((Math.random()* (99999 - 10000 + 1)) + 10000);
+        
+        String from = "cwy1231@naver.com";//보내는 이 메일주소
+        String to = sm_email;
+        String title = "회원가입시 필요한 인증번호 입니다.";
+        String content = "[인증번호] "+ serti +" 입니다. <br/> 인증번호 확인란에 기입해주십시오.";
+        String num = "";
+        try {
+        	
+        	MimeMessage mail = mailSender.createMimeMessage();
+            MimeMessageHelper mailHelper = new MimeMessageHelper(mail, true, "UTF-8");
+            
+            mailHelper.setFrom(from);
+            mailHelper.setTo(to);
+            mailHelper.setSubject(title);
+            mailHelper.setText(content, true);       
+            
+            mailSender.send(mail);
+            num = Integer.toString(serti);
+            
+        } catch(Exception e) {
+            num = "error";
+        }
+        return num;
+    }
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String goLogin(HttpSession session,Model model) {
 		 /* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */

@@ -32,7 +32,9 @@ public class CartDAO {
 
 	public int directPay(CartDTO cDTO, HttpServletRequest req) {
 		ArrayList<CartDTO> cList = (ArrayList<CartDTO>) req.getSession().getAttribute("cartSession");
-		cList.clear();
+		if (cList.size() >= 1) {
+			cList.clear();
+		}
 		cList.add(cDTO);
 		return 1;
 	}

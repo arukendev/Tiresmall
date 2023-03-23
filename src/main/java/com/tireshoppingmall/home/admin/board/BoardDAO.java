@@ -54,15 +54,12 @@ public class BoardDAO {
 			noticeCount = ss.getMapper(AdminBoardMapper.class).getNoticeCount(search);
 		}
 		List<NoticeDTO> notices = ss.getMapper(AdminBoardMapper.class).getNotice(search);
-		System.out.println(count);
-		System.out.println(allNoticeCount);
 		int pageCount = (int) Math.ceil(noticeCount / (double) count);
-		System.out.println(noticeCount);
-		System.out.println(pageCount);
 	
 		req.setAttribute("pageCount", pageCount);
 		req.setAttribute("notices", notices);
 		req.setAttribute("curPage", pageNo);
+		req.setAttribute("searchVal", search.getTitleInput());
 	}
 	
 

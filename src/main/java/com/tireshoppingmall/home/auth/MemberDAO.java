@@ -41,6 +41,7 @@ public class MemberDAO {
 
 		if(ss.getMapper(MemberMapper.class).regMember(mDTO)>=3) {
 			System.out.println("가입성공");
+			System.out.println(mDTO.getI_caryear());
 			req.setAttribute("resultMem", "가입성공");
 		}else {
 			req.setAttribute("resultMem", "가입실패");
@@ -50,14 +51,16 @@ public class MemberDAO {
 	public void login(MemberDTO mDTO, HttpServletRequest req) {
 		
 		int checkMemberInDB = ss.getMapper(MemberMapper.class).checkMember(mDTO);//반환값이 1이면 입력한 값과 db 값이 일치
-
+		System.out.println("0--------!!"+checkMemberInDB);
 		if (checkMemberInDB == 1) {
+			System.out.println("1--------!!"+checkMemberInDB);
 				AuthUserDTO member = ss.getMapper(MemberMapper.class).getMember(mDTO);
 				req.getSession().setAttribute("loginMember", member);
 				req.getSession().setMaxInactiveInterval(60 * 10);
 			
 		} else {
 			req.setAttribute("resultMem", "Can not find user");
+			System.out.println("2--------!!"+checkMemberInDB);
 		}	
 	}
 

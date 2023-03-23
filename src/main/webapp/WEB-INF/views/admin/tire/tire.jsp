@@ -85,6 +85,7 @@
 						<td class="admin_tire_table_td">
 							<c:choose>
 								<c:when test="${t.tg_sedan ==1 }">
+
 									<button class="admin_printBTN sedanRecommend"  value="${t.tg_id }">추천</button>
 								</c:when>
 								<c:otherwise>

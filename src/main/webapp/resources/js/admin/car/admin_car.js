@@ -1,3 +1,6 @@
+
+
+
 function deletecb1(cbbbb) {
 	let ok = confirm('정말 삭제하시겠습니까?');
 	if (ok) {
@@ -97,6 +100,13 @@ function updatecar(id, name, year1, year2, option, brand, ft, bt, print, c_file)
 	$('.updatefileinputstyle').html(c_file);
 	$('#c_file_u').attr('readonly', true);
 	
+	 const carImg = document.getElementById('carImg');
+	  carImg.src = `resources/web/${c_file}`;
+	  
+	  document.querySelector('.update-upload-thumb').addEventListener('load', function() {
+		  document.getElementById('carImg').style.display = 'none';
+		});
+	  
 	 //...
 
 	// c_ft_u와 c_bt_u에서 값을 가져온 뒤 콤마로 분할하여 배열로 저장
@@ -124,8 +134,25 @@ function updatecar(id, name, year1, year2, option, brand, ft, bt, print, c_file)
 		var btValue = i < btArray.length ? btArray[i] : "";
 		$('#updatesizeInputs .ftinputstyle:eq(' + i + ') input').val(ftValue);
 		$('#updatesizeInputs .btinputstyle:eq(' + i + ') input').val(btValue);
+		
+		
+		
+		
 	}
+	
+	
+	if (file) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      $(".preview-image .update-upload-thumb").attr("src", e.target.result);
+	    };
+	    reader.readAsDataURL(file);
+	  }
+
+	
+	
 }
+ 
 
 function updatecb1(name, order) {
 
@@ -251,4 +278,48 @@ function previewImage(event) {
 	  fileinputstyle.textContent = filename;
 	
 	}
+
+
+
+
+$(document).ready(function() {
+		carprintOnOff();
+	});
+
+
+
+function carprintOnOff() {
+	$(".carprintbtn").click(function() {
+		let onoff = $(this).text();
+		let c_id = $(this).val();
+		let c_print = onoff == '출력' ? 0 : 1;
+
+		  console.log("c_id: ", c_id);
+	        console.log("c_print: ", c_print);
+		
+		let btnEl = $(this);
+	
+		$.ajax({
+    url: "admin.car.print.onoff",
+    data: {
+        c_print,  // 수정 필요
+        c_id
+    },
+    success: function(data) {
+
+				
+				if (data === 1) {
+					btnEl.text('출력');
+					btnEl.attr('class', 'carprintbtn admin_car_printBTN');
+				} else {
+		
+					btnEl.attr('class', 'carprintbtn admin_car_notPrintBTN');
+					btnEl.text('미출력');
+				}
+			}
+		});
+	});
+}
+
+
 
