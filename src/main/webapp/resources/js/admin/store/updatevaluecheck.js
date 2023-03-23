@@ -72,6 +72,32 @@ if(isEmpty(b_mapdata)){
 	
 }
 
+//지도 좌표 형식 검사
+if(isNotMapType(b_mapdata)){
+	alert('"위도값, 경도값"으로 입력해주세요. 공백 유의');
+	b_mapdata.focus();
+	
+	return false;
+}
+
+
+// 담당자 전화번호 형식 검사
+if(isNotTelNum(b_managernumber) || !lessThan(b_managernumber,14)){
+	alert('유효하지 않은 전화번호입니다.')
+	b_managernumber.focus();
+	
+	return false;
+}
+
+// 매장 전화번호 형식 검사
+if(isNotTelNum(b_branchnumber) || !lessThan(b_branchnumber,14)){
+	alert('유효하지 않은 전화번호입니다.')
+	b_branchnumber.focus();
+	
+	return false;
+}
+
+
 
 
 
