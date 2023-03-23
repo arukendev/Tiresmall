@@ -118,6 +118,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <ul class="index_dropBrand index_dropWrapper">
             <li class="index_dropMenu_menu">
               <div class="index_dropMenu_txt">
+                <a class="index_dropBrand_a" href="product.brand?b=&p=1"
+                  >전체타이어</a
+                >
                 <a class="index_dropBrand_a" href="product.brand?b=넥센&p=1"
                   >넥센타이어</a
                 >
@@ -171,9 +174,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <li class="index_dropMenu_menu">
               <div class="index_dropMenu_txt">
                 <a class="index_dropBoard_a" href="board.faq.read">FAQ</a>
-                <a class="index_dropBoard_a" href="board.qna.check"
-                  >1:1 문의</a
-                >
+                <a class="index_dropBoard_a" href="board.qna.check">1:1 문의</a>
                 <a class="index_dropBoard_a" href="board.notice">공지사항</a>
                 <a class="index_dropBoard_a" href="board.event">이벤트</a>
               </div>

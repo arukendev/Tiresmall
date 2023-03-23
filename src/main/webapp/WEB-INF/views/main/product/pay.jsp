@@ -9,6 +9,11 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
     <title>Insert title here</title>
   </head>
   <body>
+    <c:if test="${empty sessionScope.cartSession}">
+      <script>
+        location.href = "/home";
+      </script>
+    </c:if>
     <form action="pay.complete" method="post" class="pay_container">
       <div class="pay_titles">
         <div class="pay_title_left">
@@ -80,7 +85,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
               <div class="pay_product_right">
                 <span class="pay_product_price"
                   ><fmt:formatNumber
-                    value="${tire.ti_stock * tire.ti_pricegp}"
+                    value="${tire.ti_allpricegp}"
                     type="currency"
                     currencySymbol=""
                   />원</span
@@ -88,12 +93,12 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 <input
                   type="hidden"
                   class="pay_final_price"
-                  value="${tire.ti_stock * tire.ti_pricegp}"
+                  value="${tire.ti_allpricegp}"
                 />
                 <input
                   type="hidden"
                   class="pay_finalFac_price"
-                  value="${tire.ti_stock * tire.ti_pricefac}"
+                  value="${tire.ti_allpricefac}"
                 />
               </div>
             </div>

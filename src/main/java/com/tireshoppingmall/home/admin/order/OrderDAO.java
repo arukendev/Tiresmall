@@ -67,13 +67,15 @@ public class OrderDAO {
 		for (OrderDTO order : orders) {
 			ArrayList<TireDTO> order_tires = new ArrayList<TireDTO>();
 //			order.getO_product(); 4/2, 6/2
-			String splitProduct[] = order.getO_product().split(","); // 1/2,2/2
+			String splitProduct[] = order.getO_product().split(","); // 4/2,6/2
 			for (String product : splitProduct) {
-				int tirePK = Integer.parseInt(product.charAt(0) + ""); // 4 , 6
-				int tireCount = product.charAt(2);
-				List<TireDTO> tireListDto = ss.getMapper(AdminTireMapper.class).getTireGroupforDetail(tirePK);
+				String tirePK[] = (product.split("/")); // 4 , 6
+				String pk = tirePK[0];
+				String tireCount = tirePK[1];
+				System.out.println(pk);
+				List<TireDTO> tireListDto = ss.getMapper(AdminTireMapper.class).getTireGroupforDetail(pk);
 					for (TireDTO tDto : tireListDto) {
-						tDto.setTi_count(Integer.parseInt(product.charAt(2) + ""));
+						tDto.setTi_count(Integer.parseInt(tireCount));
 						order_tires.add(tDto);
 						
 						System.out.println(tDto);

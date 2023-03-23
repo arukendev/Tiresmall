@@ -162,7 +162,7 @@
 <select id="getTireGroupforDetail" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
 	select * from tire_group, tire_item
 	where ti_tg_id = tg_id
-	and ti_tg_id = #{val}
+	and ti_id = #{val}
 </select>
 <delete id="tireSizeDelete">
 	delete from tire_item where ti_id= #{val}

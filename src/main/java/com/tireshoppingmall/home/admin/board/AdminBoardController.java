@@ -1,18 +1,23 @@
 package com.tireshoppingmall.home.admin.board;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.stereotype.Controller;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.tireshoppingmall.home.admin.board.BoardDAO;
-import com.tireshoppingmall.home.admin.board.NoticeDTO;
-import com.tireshoppingmall.home.admin.board.SearchDTO;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
 public class AdminBoardController {
@@ -21,6 +26,8 @@ public class AdminBoardController {
 	private boolean faqFirstReq;
 	private boolean qnaFirstReq;
 
+	private boolean eventFirstReq;
+	
 	@Autowired
 	private BoardDAO bDAO;
 
@@ -29,11 +36,15 @@ public class AdminBoardController {
 
 	@Autowired
 	private QnaDAO qnaDAO;
+	
+	@Autowired
+	private EventDAO eventDAO;
 
 	public AdminBoardController() {
 		noticeFirstReq = true;
 		faqFirstReq = true;
 		qnaFirstReq = true;
+		eventFirstReq = true;
 	}
 
 	/* notice DAO */
@@ -233,4 +244,81 @@ public class AdminBoardController {
 		req.setAttribute("contentPage", "board/qna_board.jsp");
 		return "admin/master";
 	}
+	
+	/*event DAO*/
+	
+	@RequestMapping(value = "/admin.event.go", method = RequestMethod.GET)
+	public String event(HttpServletRequest req) {
+		
+		if (eventFirstReq) {
+			eventDAO.calcAllEventCount();
+			System.out.println("총량: " + eventDAO.getAllEventCount());
+			eventFirstReq = false;
+		}
+		SearchDTO.clearSearch(req);
+		eventDAO.getEvent(1, req);
+		
+		req.setAttribute("subMenuPage", "board/board_subMenu.jsp");
+		req.setAttribute("contentPage", "board/event_board.jsp");
+		return "admin/master";
+		
+	}
+	
+	@RequestMapping(value = "/event.page.change", method = RequestMethod.GET)
+	public String pagingEvent(HttpServletRequest req, @RequestParam int p) {
+		eventDAO.getEvent(p, req);
+		
+		req.setAttribute("subMenuPage", "board/board_subMenu.jsp");
+		req.setAttribute("contentPage", "board/event_board.jsp");
+		return "admin/master";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/event.switch.popup", method = RequestMethod.GET)
+	public int eventSwitchPopup(HttpServletRequest req, EventDTO eventDTO) {
+		return eventDAO.switchPopup(eventDTO);
+	}
+
+	@RequestMapping(value = "/event.detail", method = RequestMethod.GET)
+	public String eventDetail(HttpServletRequest req, EventDTO eventDTO) {
+		eventDAO.eventDetail(eventDTO, req);
+		req.setAttribute("subMenuPage", "board/board_subMenu.jsp");
+		req.setAttribute("contentPage", "board/event_detail.jsp");
+		return "admin/master";
+	}
+
+	
+	@ResponseBody
+	@RequestMapping(value = "/event.detail.update", method = RequestMethod.POST)
+	public int eventDetailUpdate(HttpServletRequest req, EventDTO eventDTO) {
+		return eventDAO.updateEvent(eventDTO);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/event.detail.updateFile", method = RequestMethod.POST)
+	public String eventDetailUpdateFile(MultipartHttpServletRequest mf, EventDTO eventDto) {
+		return eventDAO.updateImg(mf, eventDto);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/event.delete", method = RequestMethod.GET)
+	public int eventDelete(EventDTO eventDto, HttpServletRequest req) {
+		return eventDAO.deleteEvent(eventDto, req);
+	}
+
+	
+    @InitBinder
+    protected void initBinder(WebDataBinder binder){
+        DateFormat  dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat,true));
+    }
+	
+	
+	@RequestMapping(value = "/event.reg", method = RequestMethod.POST)
+	public String eventReg(@RequestParam(value="mainimg") MultipartFile mainimg,@RequestParam(value="detailimg[]") List<MultipartFile> detailimg, EventDTO eventDto) {
+		eventDAO.regEvent(mainimg, detailimg, eventDto);
+		
+		return "redirect:admin.event.go";
+	}
+	
 }

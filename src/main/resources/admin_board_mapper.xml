@@ -182,5 +182,84 @@
         where rn &gt;= #{start} and rn &lt;= #{end}
 	</select>
         
+	<!-- EVENT 페이징 (event 갯수 카운트) -->
+	<select id="getEventCount" resultType="int">
+		select count(*)
+		from event
+<!--
+		where 
+ 		and q_title like '%'||#{titleInput}||'%'
+        and q_id like '%'||#{idInput}||'%'
+        and a_name like '%'||#{nameInput}||'%' -->
+	</select>
+	
+	<!-- Event 페이징-->
+	<select id="getEvent" resultType="com.tireshoppingmall.home.admin.board.EventDTO">
+		select * from
+        (select rownum as rn, e_no, e_title, e_date, e_content, e_duration,e_popup,e_mainimg,e_detailimg,e_status
+        from(select * from event e
+        <!-- 
+       		<if test="nameInput != ''">
+         	  a.a_name = #{nameInput} and
+			</if>
+			<if test="idInput != ''">	
+          	  q.q_id = #{idInput} and
+            </if>
+           	  q.q_title like '%'||#{titleInput}||'%' 
+         -->
+           	  order by e_date desc
+         ))
+        where rn &gt;= #{start} and rn &lt;= #{end}
+	</select>
+        
+    <!-- popup 제어 on/off 업데이트 -->
+        <update id="switchPopup">
+        	update event
+        	set e_popup = #{e_popup}
+        	where e_no = #{e_no}
+        </update>
+        
+        
+    <!-- 이벤트 디테일 (1개 조회)-->    
+        <select id="eventDetail" resultType="com.tireshoppingmall.home.admin.board.EventDTO">
+        	select * from event where e_no=#{e_no}
+        </select>
+        
+    <!-- 이벤트 수정 -->
+		<update id="eventUpdate">
+			update event
+			<set>
+				<choose>
+					<when test="e_title != null">
+							e_title = #{e_title}
+					</when>
+					<when test="e_content != null">
+							e_content = #{e_content}
+					</when>
+					<when test="e_duration != null">
+							e_duration = #{e_duration}
+					</when>
+					<when test="e_mainimg != null">
+							e_mainimg = #{e_mainimg}
+					</when>
+					<when test="e_detailimg != null">
+							e_detailimg = #{e_detailimg}
+					</when>
+					<when test="e_status != null">
+							e_status = #{e_status}
+					</when>
+				</choose>
+			</set>
+			where e_no = #{e_no}
+		</update>
+        
+        <!-- 이벤트 삭제 -->
+        <delete id="eventDelete">
+        	delete event where e_no = #{e_no}
+        </delete>
+        <!-- 이벤트 등록 -->
+	<insert id="eventReg">
+		insert into event values(event_seq.nextval, #{e_title},sysdate,#{e_content},#{e_duration},#{e_popup},#{e_mainimg},#{e_detailimg},#{e_status})
+	</insert>
 
 </mapper>

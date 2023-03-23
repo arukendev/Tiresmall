@@ -34,7 +34,11 @@ public class MainOrderDAO {
 		mODTO.setO_product(orderProduct);
 		mODTO.setO_price(priceValue + "");
 		System.out.println(mODTO);
-		ss.getMapper(MainOrderMapper.class).setOrder(mODTO);
+		if (ss.getMapper(MainOrderMapper.class).setOrder(mODTO) == 1) {
+			System.out.println("등록성공");
+		} else {
+			System.out.println("등록실패");
+		}
 	}
 	
 }

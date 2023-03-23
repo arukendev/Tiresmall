@@ -19,7 +19,7 @@ public interface AdminTireMapper {
 
 	int deleteTireGroup(TireDTO tg);
 
-	List<TireDTO> getTireGroupforDetail(int tirePK);//어디서 씀????
+	List<TireDTO> getTireGroupforDetail(String tirePK);
 
 	int tirePrintOnOff(TireDTO tg);
 

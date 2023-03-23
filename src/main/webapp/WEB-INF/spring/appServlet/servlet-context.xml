@@ -144,5 +144,11 @@
 		class="com.tireshoppingmall.home.admin.car.CarOption">
 		<beans:constructor-arg value="10"></beans:constructor-arg>
 	</beans:bean>
+	
+	<!-- Event 몇개씩 보여줄지 -->
+	<beans:bean id="eo"
+		class="com.tireshoppingmall.home.admin.board.EventOption">
+		<beans:constructor-arg value="3"></beans:constructor-arg>
+	</beans:bean>
 
 </beans:beans>

@@ -137,9 +137,9 @@
 				<div>
 					<div class="input_box1">
 						<div class="no-drag">기간검색</div>
-						<input type="text" id="datepicker" placeholder="시작"
+						<input type="text" id="datepicker" maxlength="10" placeholder="시작"
 							autocomplete="off" name="dateSearch1"> <input type="text"
-							id="datepicker1" placeholder="종료" autocomplete="off"
+							id="datepicker1" placeholder="종료" maxlength="10" autocomplete="off"
 							name="dateSearch2">
 					</div>
 					<div class="input_box2">

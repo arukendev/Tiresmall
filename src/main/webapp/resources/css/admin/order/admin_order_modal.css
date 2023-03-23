@@ -2,6 +2,7 @@
 
 .order_modalcontent {
 	width: 70%;
+	padding-top: 30px;
 }
 
 .modal_table {
@@ -12,7 +13,7 @@
 }
 
 .left_td_long{
-	background-color: black;
+	background-color: #333333;
 	color: white;
 	border: 1px solid white;
 }
@@ -22,14 +23,18 @@
 }
 
 .left_td_tire{
-	background-color: black;
+	background-color: #333333;
 	color: white;
 }
 
+#product-table{
+	border-collapse: collapse;
+}
 
 .modal_table td {
 	text-align: center;
 	height: 35px;
+	border: 1px solid;
 }
 
 .modal_content_td{
@@ -38,7 +43,7 @@
 }
 
 .left_td{
-	background-color: black;
+	background-color: #333333;
 	border: 1px solid white;
 	color: white;
 	width: 15%;
@@ -46,6 +51,13 @@
 
 .modal_table tr {
 	width: 100%;
+}
+
+.tire_th{
+	background-color: black;
+	color: white;
+	border: 1px solid white;
+	padding: 5px;
 }
 
 .tire_th:nth-child(1) {
@@ -66,7 +78,7 @@
 
 .order_header {
 	display: flex;
-	background-color: #fffa65;
+	background-color: #CCCCCC;
 	align-items: center;
 	justify-content: center;
 	height: 70px;
