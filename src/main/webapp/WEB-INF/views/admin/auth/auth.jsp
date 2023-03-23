@@ -104,24 +104,24 @@
 				<div id="auth_searchBox">
 					<div class="auth_searchTitle">
 						<div>
-							구분 <select id="auth_sortation" name="a_Sortation">
-								<option value="1">전체</option>
-								<option value="2">일반</option>
-								<option value="3">업체</option>
-								<option value="4">관리자</option>
+							구분 <select id="auth_sortation" name="i_grade">
+								<option value="0">전체</option>
+								<option value="1">일반</option>
+								<option value="2">업체</option>
+								<option value="3">관리자</option>
 							</select>
 						</div>
 					</div>
 					<div class="auth_searchTitle">
 						<div class="auth_searchID">
 							<label for="auth_searchid">아이디</label> <input id="auth_searchid"
-								name="a_id">
+								name="u_id">
 						</div>
 					</div>
 					<div class="auth_searchTitle">
 						<div class="auth_search_name">
 							<label for="auth_searchname">이름</label> <input
-								id="auth_searchname" name="a_name">
+								id="auth_searchname" name="i_name">
 						</div>
 					</div>
 					<!-- <div class="auth_searchTitle">
@@ -160,7 +160,23 @@
 				<c:forEach items="${manyAuth }" var="a" varStatus="status">
 					<tr id="manyAuth_content">
 						<td class="auth_table_td">${status.count + (curPage-1)*count}</td>
-						<td class="auth_table_td">${a.i_grade }</td>
+						
+						<td class="auth_table_td">
+						<c:choose>
+						<c:when test="${a.i_grade == 0 }">
+							전체
+						</c:when>
+						<c:when test="${a.i_grade == 1 }">
+							일반
+						</c:when>
+						<c:when test="${a.i_grade == 2 }">
+							업체
+						</c:when>
+						<c:when test="${a.i_grade == 3 }">
+							관리자
+						</c:when>
+						</c:choose>
+						</td>
 						<td class="auth_table_td">${a.u_id }</td>
 						<td class="auth_table_td">${a.i_name }</td>
 						<td class="auth_table_td">${a.i_phoneNum }</td>
