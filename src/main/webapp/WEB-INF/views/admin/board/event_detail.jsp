@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="resources/css/admin/board/event_modal.css">
 </head>
 <body style="text-align: center;">
+	<input id="whatMenu" value="notice" type="hidden">
+	<input id="sm" value="4" type="hidden"> 
 	<div class="event-wrap">
 		<h3>- 이벤트 상세 페이지 -</h3> 
 		<div class="event-item">

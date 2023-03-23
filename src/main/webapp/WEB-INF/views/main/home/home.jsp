@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
+    <script
+		src="https://code.jquery.com/jquery-3.6.3.js"
+		integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+		crossorigin="anonymous">
+    </script>
   </head>
   <body>
     <div class="home_container">
@@ -162,11 +168,12 @@ pageEncoding="UTF-8"%>
         </div>
       </section>
     </div>
-    <c:if test="${!empty events}">
 		<dialog class="board_event_modal_dialog">
+    		<c:forEach var="e" items="${events }">
+				<input type="hidden" class="dialog-val" value="${e.e_popup }">
+    		</c:forEach>
 			<jsp:include page="${eventModal}"></jsp:include>
 		<dialog>
-    </c:if>
     <script src="resources/js/main/home/main_home.js"></script>
   </body>
 </html>
