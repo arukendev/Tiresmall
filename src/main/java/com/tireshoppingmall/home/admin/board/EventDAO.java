@@ -54,9 +54,6 @@ public class EventDAO {
 
 		if (search == null) {
 			search = new SearchDTO();
-//			search.setTitleInput("");
-//			search.setNameInput("");
-//			search.setIdInput("");
 			search.setStart(new BigDecimal(start));
 			search.setEnd(new BigDecimal(end));
 			eventCount = allEventCount;
@@ -65,6 +62,8 @@ public class EventDAO {
 			search.setEnd(new BigDecimal(end));
 			eventCount = ss.getMapper(AdminBoardMapper.class).getEventCount(search);
 		}
+		System.out.println(eventCount);
+		System.out.println(pageNo);
 		List<EventDTO> event = ss.getMapper(AdminBoardMapper.class).getEvent(search);
 		int pageCount = (int) Math.ceil(eventCount / (double) count);
 		req.setAttribute("pageCount", pageCount);
