@@ -88,12 +88,10 @@ $(document).on("click", ".save-btn", function (e) {
   let updateBtn = col3El.find(".detail-updateBtn");
   let saveBtn = col3El.find(".save-btn");
   let cancleBtn = col3El.find(".cancle-btn");
-
   let type = updateBtn.val();
   let e_no = $("#e_no").text();
   let url = "event.detail.update?e_no=";
   url += e_no + "&";
-
   if (type == "title-btn") {
     col2Input.attr("name", "e_title");
     url += "e_title=";
@@ -142,6 +140,8 @@ $(document).on("click", ".imgbtn", function (e) {
   let event_row = $(this).closest(".event-row");
   let col2El = event_row.find(".event-col2");
   let col3El = event_row.find(".event-col3");
+  let updateBtn = col3El.find(".detail-updateBtn");
+  let type = updateBtn.val();
   let imgEl = col2El.find(".e_img");
   let imgEl2 = imgEl.clone();
   // 파일을 여러개 선택할 수 있으므로 files 라는 객체에 담긴다.
@@ -151,7 +151,18 @@ $(document).on("click", ".imgbtn", function (e) {
     alert("파일을 선택해주세요");
     return;
   }
-  const formData = new FormData($("#uploadForm")[0]);
+  console.log(type);
+  if(type == 'main-btn'){
+	  console.log('main');
+	  $("input[name=e_type]").val(type);
+  }else if(type == 'detail-btn'){
+	  $("input[name=e_type]").val(type);
+	  console.log('detail');
+  }
+  console.log( $("input[name=e_type]").val());
+  
+  let formData = new FormData($("#uploadForm")[0]);
+  
   for (var i = 0; i < $(imgEl2)[0].files.length; i++) {
     formData.append("file" + i, $(imgEl2)[0].files[i]);
   }
@@ -164,8 +175,6 @@ $(document).on("click", ".imgbtn", function (e) {
     data: formData,
     success: function (data) {
       let fileNames = data.split("!");
-      console.log(data);
-      console.log(fileNames);
       let cnt = fileNames.length;
       if (fileNames.length > 1) {
         cnt--;

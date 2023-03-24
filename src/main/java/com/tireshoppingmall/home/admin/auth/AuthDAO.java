@@ -29,6 +29,7 @@ public class AuthDAO {
 
 	public void calcAllAuthCount() {
 		AuthDTO startEnd = new AuthDTO();
+		startEnd.setU_id("");
 		startEnd.setI_name("");
 		allAuthCount = ss.getMapper(AdminAuthMapper.class).getAuthCount(startEnd);	
 	}
@@ -42,6 +43,7 @@ public class AuthDAO {
 		AuthDTO paging = (AuthDTO)req.getSession().getAttribute("authDTO");
 		int authCount = 0;
 		if (paging == null) {
+			System.out.println("null일때");
 			paging = new AuthDTO();
 			paging.setU_id("");
 			paging.setI_name("");
@@ -50,17 +52,13 @@ public class AuthDAO {
 			paging.setStart(new BigDecimal(start));
 			paging.setEnd(new BigDecimal(end));
 			authCount = allAuthCount;
-			System.out.println(start);
-			System.out.println(end);
-			System.out.println(allAuthCount);
 		}else {
-			
+			System.out.println("아닐때");
 			paging.setStart(new BigDecimal(start));
 			paging.setEnd(new BigDecimal(end));
 			authCount = ss.getMapper(AdminAuthMapper.class).getAuthCount(paging);
 		}
 		System.out.println(paging.toString());
-		
 		List<AuthDTO> manyAuth = ss.getMapper(AdminAuthMapper.class).getAuth(paging);
 		for (AuthDTO aa : manyAuth) {
 			System.out.println(aa.toString());

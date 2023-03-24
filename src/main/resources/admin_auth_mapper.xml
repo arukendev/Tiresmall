@@ -44,7 +44,7 @@
 		select * from (
 		select rownum as rn,u_no,
 		u_id,u_logintype,i_no,i_name,i_phonenum,i_newdate,i_grade,i_email,
-		mc_number,mc_id,mc_model,mc_brand,mc_year
+		mc_number,mc_id,mc_carname,mc_brand,mc_year
 		from (
 		select * from auth_user
 		u

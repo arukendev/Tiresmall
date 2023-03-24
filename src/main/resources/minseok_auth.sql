@@ -180,6 +180,17 @@ create table tire_brand(
     tb_order number(3) not null        --순서 출력
 );
 
+create table tire_brand(
+    tb_id number(4) primary key,
+    tb_name varchar2(100 char) not null,
+    tb_ea number(2) not null,           --1은 출력 0은 미출력
+    tb_order number(3) not null        --순서 출력
+);
+create tb_id_seq;
+
+
+drop table tire_brand;
+
 
 insert into tire_brand values('넥센타이어','1','1');
 insert into tire_brand values('금호타이어','1','2');
