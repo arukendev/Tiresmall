@@ -147,6 +147,7 @@
 			from (
 				select *
 				from notice
+				order by n_date desc
 			)
         )
         where rownumber &gt;= #{begin} and rownumber &lt;= #{last}
@@ -180,6 +181,7 @@
 			from (
 				select *
 				from event
+				order by e_date desc
 			)
         )
         where rownumber &gt;= #{begin} and rownumber &lt;= #{last}
