@@ -78,6 +78,9 @@ public class FaqDAO {
 	}*/
 
 	public void regFaq(HttpServletRequest req, FaqDTO faqDTO) {
+		String f_txt = faqDTO.getF_txt();
+		faqDTO.setF_txt(f_txt.replace("\r\n", "<br>"));
+		
 		if(ss.getMapper(AdminBoardMapper.class).regFaq(faqDTO) == 1) {
 			allFaqCount++;
 			System.out.println("등록 성공");
@@ -88,6 +91,9 @@ public class FaqDAO {
 	}
 
 	public void updateFaq(HttpServletRequest req, FaqDTO faqDTO) {
+		String f_txt = faqDTO.getF_txt();
+		faqDTO.setF_txt(f_txt.replace("\r\n", "<br>"));
+		
 		if(ss.getMapper(AdminBoardMapper.class).updateFaq(faqDTO) >= 1) {
 			System.out.println("업뎃 성공");
 		}else {

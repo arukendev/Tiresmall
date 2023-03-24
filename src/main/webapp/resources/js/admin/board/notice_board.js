@@ -9,7 +9,7 @@ function updateNotice(id,sortation,title,txt,date) {
 	$(idInput).val(id);
 	$(titleInput).val(title);
 	$(sortationM).val(sortation);
-	$(txtInput).val(txt);
+	$(txtInput).text(txt.replaceAll("<br>", "\r\n"));
 	$("#n_date").val(date);
 	 
 	$("#reg_modal").attr("action", "update.notice.do")
@@ -22,7 +22,7 @@ function updateFaq(id,sortation,title,txt,date) {
 	$(idInput).val(id);
 	$(titleInput).val(title);
 	$(sortationM).val(sortation);
-	$(txtInput).val(txt);
+	$(txtInput).text(txt.replaceAll("<br>", "\r\n"));
 	$("#f_date").val(date);
 	
 	$("#reg_modal").attr("action", "update.faq.do")

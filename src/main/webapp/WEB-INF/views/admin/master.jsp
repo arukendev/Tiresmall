@@ -4,8 +4,14 @@ pageEncoding="UTF-8"%>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Insert title here</title>
+    <title>관리자 페이지</title>
     <link rel="stylesheet" href="resources/css/admin/master.css" />
+     <link
+      rel="shortcut icon"
+      href="resources/web/favicon.png"
+      type="image/png"
+    />
+    <link rel="icon" href="resources/web/favicon.png" type="image/png" />
     <script
       src="https://code.jquery.com/jquery-3.6.3.js"
       integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="

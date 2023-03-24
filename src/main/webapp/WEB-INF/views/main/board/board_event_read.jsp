@@ -9,32 +9,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="board_notice_r_column">
+	<div class="board_event_r_column">
 		<div>번호</div>
 		<div>제목</div>
-		<div>등록일</div>
+		<div>진행여부</div>
 	</div>
 	
 	<c:choose>
-		<c:when test="${empty notices }">
-			<div class="board_notice_r_none">
+		<c:when test="${empty events }">
+			<div class="board_event_r_none">
 				<div>
-					등록된 공지사항이 없습니다
+					등록된 이벤트가 없습니다
 				</div>
 			</div>
 		</c:when>
 		<c:otherwise>
-			<c:set var="num" value="${noticeCount - ((pageNumber - 1) * countPerPage) }"/>
-			<c:forEach var="n" items="${notices }">
-				<div class="board_notice_r_list">
+			<c:set var="num" value="${eventCount - ((pageNumber - 1) * countPerPage) }"/>
+			<c:forEach var="e" items="${events }">
+				<div class="board_event_r_list">
 					<div>
 						${num }
 					</div>
 					<div>
-						<a href="board.notice.readdetail?n_no=${n.n_no}">${n.n_title }</a>
+						<a href="board.event.readdetail?e_no=${e.e_no}">${e.e_title }</a>
 					</div>
 					<div>
-						<fmt:formatDate value="${n.n_date }" pattern="yyyy-MM-dd"/>
+						${e.e_status }
 					</div>
 				</div>
 				<c:set var="num" value="${num-1 }"/>
@@ -42,22 +42,22 @@
 		</c:otherwise>
 	</c:choose>
 	
-	<div class="board_notice_r_buttons">
+	<div class="board_event_r_buttons">
 		<div></div>
 		
 		<c:choose>
-			<c:when test="${empty notices }">
+			<c:when test="${empty events }">
 				<div></div>
 			</c:when>
 			<c:otherwise>
-				<div class="board_notice_r_pagingButtons">
+				<div class="board_event_r_pagingButtons">
 					<c:choose>
 						<c:when test="${pageNumber != 1 }">
 							<div>
-								<a href="board.notice.read.paging?pn=1"><i class="fa-solid fa-angles-left"></i></a>
+								<a href="board.event.read.paging?pn=1"><i class="fa-solid fa-angles-left"></i></a>
 							</div>
 							<div>
-								<a href="board.notice.read.paging?pn=${pageNumber - 1 }"><i class="fa-solid fa-chevron-left"></i></a>
+								<a href="board.event.read.paging?pn=${pageNumber - 1 }"><i class="fa-solid fa-chevron-left"></i></a>
 							</div>
 						</c:when>
 						<c:otherwise>
@@ -78,13 +78,13 @@
 					<c:forEach var="page" begin="1" end="${pageCount }">
 						<c:choose>
 							<c:when test="${(page == param.pn) or (pageNumber == 1 and pageNumber == page) }">
-								<div class="board_notice_r_pagingButtons_selected">
-									<a href="board.notice.read.paging?pn=${page }" style="color: #fff;">${page }</a>
+								<div class="board_event_r_pagingButtons_selected">
+									<a href="board.event.read.paging?pn=${page }" style="color: #fff;">${page }</a>
 								</div>
 							</c:when>
 							<c:otherwise>
 								<div>
-									<a href="board.notice.read.paging?pn=${page }">${page }</a>
+									<a href="board.event.read.paging?pn=${page }">${page }</a>
 								</div>
 							</c:otherwise>
 						</c:choose>
@@ -93,10 +93,10 @@
 					<c:choose>
 						<c:when test="${pageNumber != pageCount }">
 							<div>
-								<a href="board.notice.read.paging?pn=${pageNumber + 1 }"><i class="fa-solid fa-chevron-right"></i></a>
+								<a href="board.event.read.paging?pn=${pageNumber + 1 }"><i class="fa-solid fa-chevron-right"></i></a>
 							</div>
 							<div>
-								<a href="board.notice.read.paging?pn=${pageCount }"><i class="fa-solid fa-angles-right"></i></a>
+								<a href="board.event.read.paging?pn=${pageCount }"><i class="fa-solid fa-angles-right"></i></a>
 							</div>
 						</c:when>
 						<c:otherwise>

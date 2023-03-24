@@ -5,7 +5,11 @@
 @import "main_board_qna_rd.css";
 @import "main_board_qna_cu.css";
 @import "main_board_qna_complete.css";
+@import "main_board_notice_r.css";
+@import "main_board_notice_rd.css";
 @import "main_board_event_dialog.css";
+@import "main_board_event_r.css";
+@import "main_board_event_rd.css";
 
 .board_mainContainer {
 	display: grid;

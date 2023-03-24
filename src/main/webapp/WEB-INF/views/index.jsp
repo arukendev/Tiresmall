@@ -182,7 +182,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <a class="index_dropBoard_a" href="board.notice.read"
                   >공지사항</a
                 >
-                <a class="index_dropBoard_a" href="board.event">이벤트</a>
+                <a class="index_dropBoard_a" href="board.event.read">이벤트</a>
               </div>
               <div class="index_dropMenu_img">
                 <img
