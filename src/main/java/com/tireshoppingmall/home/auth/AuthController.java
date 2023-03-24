@@ -224,6 +224,25 @@ public class AuthController {
 	
 	
 	
+	@ResponseBody
+	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
+	public int idCheck(@RequestParam("id") String id,Model model) {
+		
+		int cnt = lsDAO.checkIdkko(id);
+		System.out.println("cnt : " + cnt);
+		return cnt;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/idFind", method = RequestMethod.POST)
+	public String idFind(HttpServletRequest req) {
+		String name = req.getParameter("i_name");
+		int phoneNum = Integer.parseInt(req.getParameter("i_phoneNum"));
+		System.out.println("name" + name);
+		System.out.println("num" + name);
+		String findID= mDAO.idFind(name,phoneNum);
+		System.out.println("findID : " + findID);
+		return findID;
+	}
 	
 	@RequestMapping(value = "/findEmail.go", method = RequestMethod.GET)
 	public String findEmailGo(Model model) {

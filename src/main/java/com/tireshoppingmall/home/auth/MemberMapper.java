@@ -27,5 +27,8 @@ public interface MemberMapper {
 
 	int updateInfo(MemberDTO mDTO);
 
+	String idFind(String name, int phoneNum);
+
+
 
 }

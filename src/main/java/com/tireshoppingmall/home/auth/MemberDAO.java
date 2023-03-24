@@ -176,6 +176,12 @@ public class MemberDAO {
 		return ss.getMapper(MemberMapper.class).updateInfo(mDTO);
 	}
 
+	public String idFind(String name, int phoneNum) {
+
+		return ss.getMapper(MemberMapper.class).idFind(name,phoneNum);
+	}
+
+	
 	
 	 
 	
