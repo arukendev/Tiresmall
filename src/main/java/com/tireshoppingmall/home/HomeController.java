@@ -26,6 +26,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(BoardEventDTO e, HttpServletRequest req) {
+		hDAO.checkAdmin(req);
 		eDAO.readEvent(e, req);
 		req.setAttribute("eventModal", "../board/board_event_modal.jsp");
 		req.setAttribute("content", "main/home/home.jsp");

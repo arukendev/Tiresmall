@@ -252,7 +252,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                     <input
                       type="text"
                       name="o_carnumber"
-                      value="${sessionScope.loginMember.i_carnum}"
+                      value="${sessionScope.loginMember.mc_number}"
                       class="pay_carNum_input"
                     />
                     <span class="pay_error pay_carNum_confirm"></span>
@@ -373,21 +373,31 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
             <span>결제 정보</span>
           </div>
           <div class="pay_payInfo">
-            <input
-              type="radio"
-              id="directpay"
-              name="o_paymethod"
-              value="현장결제"
-              checked
-            />
-            <label for="directpay">현장결제</label>
-            <input
-              type="radio"
-              id="nonbankpay"
-              name="o_paymethod"
-              value="무통장"
-            />
-            <label for="nonbankpay">무통장</label>
+            <div class="pay_directpay">
+              <input
+                type="radio"
+                id="directpay"
+                name="o_paymethod"
+                value="현장결제"
+                checked
+              />
+              <label for="directpay">현장결제</label>
+            </div>
+            <div class="pay_nonbankpay">
+              <input
+                type="radio"
+                id="nonbankpay"
+                name="o_paymethod"
+                value="무통장"
+              />
+              <label for="nonbankpay">무통장 입금</label>
+            </div>
+          </div>
+          <div class="pay_nonbankpay_content">
+            <span>예금주 김준범</span>
+            <span>농협 356-1434-7356-03</span>
+            <span>입금자 명</span>
+            <input type="text" />
           </div>
         </div>
         <div class="pay_confirm">
