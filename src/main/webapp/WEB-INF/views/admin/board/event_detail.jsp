@@ -115,8 +115,9 @@
 			</div>
 		</div>
 	</div>
-	 <form id="uploadForm">
+ <form id="uploadForm">
 	 	<input type="hidden" name="e_no" value="${event.e_no }">
+	 	<input type="hidden" name="e_type">
 	 	<input type="hidden" name="e_mainimg" value="${event.e_mainimg }">
 	 	<input type="hidden" name="e_detailimg" value="${event.e_detailimg }">
   </form>
