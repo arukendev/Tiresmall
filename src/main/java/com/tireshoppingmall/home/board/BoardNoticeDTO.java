@@ -1,5 +1,6 @@
 package com.tireshoppingmall.home.board;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class BoardNoticeDTO {
@@ -9,11 +10,14 @@ public class BoardNoticeDTO {
 	private String n_title;
 	private String n_txt;
 	private Date n_date;
+	private BigDecimal begin;
+	private BigDecimal last;
 	public BoardNoticeDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public BoardNoticeDTO(int rownumber, int n_no, String n_sortation, String n_title, String n_txt, Date n_date) {
+	public BoardNoticeDTO(int rownumber, int n_no, String n_sortation, String n_title, String n_txt, Date n_date,
+			BigDecimal begin, BigDecimal last) {
 		super();
 		this.rownumber = rownumber;
 		this.n_no = n_no;
@@ -21,6 +25,8 @@ public class BoardNoticeDTO {
 		this.n_title = n_title;
 		this.n_txt = n_txt;
 		this.n_date = n_date;
+		this.begin = begin;
+		this.last = last;
 	}
 	public int getRownumber() {
 		return rownumber;
@@ -57,5 +63,17 @@ public class BoardNoticeDTO {
 	}
 	public void setN_date(Date n_date) {
 		this.n_date = n_date;
+	}
+	public BigDecimal getBegin() {
+		return begin;
+	}
+	public void setBegin(BigDecimal begin) {
+		this.begin = begin;
+	}
+	public BigDecimal getLast() {
+		return last;
+	}
+	public void setLast(BigDecimal last) {
+		this.last = last;
 	}
 }

@@ -9,7 +9,7 @@ function updateNotice(id,sortation,title,txt,date) {
 	$(idInput).val(id);
 	$(titleInput).val(title);
 	$(sortationM).val(sortation);
-	$(txtInput).val(txt);
+	$(txtInput).text(txt.replaceAll("<br>", "\r\n"));
 	$("#n_date").val(date);
 	 
 	$("#reg_modal").attr("action", "update.notice.do")
@@ -22,7 +22,7 @@ function updateFaq(id,sortation,title,txt,date) {
 	$(idInput).val(id);
 	$(titleInput).val(title);
 	$(sortationM).val(sortation);
-	$(txtInput).val(txt);
+	$(txtInput).text(txt.replaceAll("<br>", "\r\n"));
 	$("#f_date").val(date);
 	
 	$("#reg_modal").attr("action", "update.faq.do")
@@ -59,7 +59,8 @@ $('#notice_reg_modal').click(function() {
 	$(idInput).val('');
 	$(titleInput).val('');
 	$(sortationM).val('');
-	$(txtInput).val('');
+	// $(txtInput).val('');
+	$(txtInput).text(txt.replaceAll("<br>", "\r\n"));
 	$("#n_date").val('');
 	//모달 on
 	$("#reg_modal").attr("action", "reg.notice.do")
@@ -73,7 +74,8 @@ $('#faq_reg_modal').click(function() {
 	$(idInput).val('');
 	$(titleInput).val('');
 	$(sortationM).val('');
-	$(txtInput).val('');
+	// $(txtInput).val('');
+	$(txtInput).text(txt.replaceAll("<br>", "\r\n"));
 	$("#f_date").val('');
 	//모달 on
 	$("#reg_modal").attr("action", "reg.faq.do")

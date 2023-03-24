@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="resources/css/admin/board/event_modal.css">
 </head>
 <body>
-	<input id="whatMenu" value="event" type="hidden">
+	<input id="whatMenu" value="notice" type="hidden">
 	<input id="sm" value="4" type="hidden">
 	<div id="event-modal" class="event_modal hidden" style="display: none;">
 
