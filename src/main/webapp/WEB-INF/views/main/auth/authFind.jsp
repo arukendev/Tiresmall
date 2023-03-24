@@ -8,21 +8,10 @@ pageEncoding="UTF-8"%>
     <meta charset="UTF-8" />
     <title>대전 타이어쇼핑몰</title>
     <link rel="stylesheet" href="resources/css/main/auth/auth.css" />
-    <link
-      rel="shortcut icon"
-      href="resources/web/favicon.png"
-      type="image/png"
-    />
-    <link rel="icon" href="resources/web/favicon.png" type="image/png" />
-    <script
-      src="https://code.jquery.com/jquery-3.6.3.js"
-      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      type="text/javascript"
-      src="resources/js/main/auth/termOfUse.js"
-    ></script>
+    <link rel="shortcut icon" href="resources/web/favicon.png" type="image/png"/>
+    <link rel="icon" href="resources/web/favicon.png" type="image/png"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="resources/js/main/auth/termOfUse.js"></script>
   </head>
   <body>
     <div id="find_container">

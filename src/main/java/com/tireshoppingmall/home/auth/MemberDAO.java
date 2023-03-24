@@ -89,70 +89,6 @@ public class MemberDAO {
 		System.out.println(aDTO.getU_no());
 		req.setAttribute("orders", ss.getMapper(MemberMapper.class).getMyOrder(aDTO)); 
 		
-	
-	/*	try {
-			
-			int count = oo.getOrderCountPerPage();
-			int start = (pageNo - 1) * count + 1;
-			int end = start + (count - 1);
-
-			OrderSearchDTO orderSearch = (OrderSearchDTO) req.getSession().getAttribute("orderSearchDTO");
-			int orderCount = 0;
-			if (orderSearch == null) {
-				orderSearch = new OrderSearchDTO(new BigDecimal(start), new BigDecimal(end), "", "", "", "", "");
-				orderCount = allOrderCount;
-				System.out.println("null이면---" + allOrderCount);
-			} else {
-				orderSearch.setStart(new BigDecimal(start));
-				orderSearch.setEnd(new BigDecimal(end));
-				orderCount = ss.getMapper(AdminOrderMapper.class).getOrderCount(orderSearch);
-			}
-
-			List<OrderDTO> orders = ss.getMapper(AdminOrderMapper.class).getOrder(orderSearch);
-			for (OrderDTO order : orders) {
-				ArrayList<TireDTO> order_tires = new ArrayList<TireDTO>();
-//				order.getO_product(); 4/2, 6/2
-				String splitProduct[] = order.getO_product().split(","); // 1/2,2/2
-				for (String product : splitProduct) {
-					int tirePK = Integer.parseInt(product.charAt(0) + ""); // 4 , 6
-					int tireCount = product.charAt(2);
-					List<TireDTO> tireListDto = ss.getMapper(AdminTireMapper.class).getTireGroupforDetail(tirePK);
-						for (TireDTO tDto : tireListDto) {
-							tDto.setTi_count(Integer.parseInt(product.charAt(2) + ""));
-							order_tires.add(tDto);
-							
-							System.out.println(tDto);
-						}
-						System.out.println(tireCount);
-					
-				}
-				order.setO_products(order_tires);
-				
-			}
-
-			int pageCount = (int) Math.ceil(orderCount / (double) count);
-			req.setAttribute("orders", orders);
-			req.setAttribute("pageCount", pageCount);
-			req.setAttribute("curPage", pageNo);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.err.println("실패---------------------");
-			}*/
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 
 	public void deleteMember(HttpServletRequest req, int u_no) {
@@ -176,9 +112,14 @@ public class MemberDAO {
 		return ss.getMapper(MemberMapper.class).updateInfo(mDTO);
 	}
 
-	public String idFind(String name, int phoneNum) {
-
-		return ss.getMapper(MemberMapper.class).idFind(name,phoneNum);
+	public String idFind(String nameInput, String phoneNumInput) {
+		
+		System.out.println("dd--"+nameInput +"cc---"+phoneNumInput);
+		
+		HashMap<Integer,String> hm = new HashMap<Integer,String>();
+		hm.put(1, nameInput);
+		hm.put(2, phoneNumInput);
+		return ss.getMapper(MemberMapper.class).idFind(hm);
 	}
 
 	

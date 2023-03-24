@@ -31,6 +31,7 @@ function cartDelete(id) {
 
 function changeCartQuantity(element, plus) {
   const cartProduct = element.closest(".cart_product");
+  const cartTiId = cartProduct.querySelector(".cart_ti_id");
   const cPPElement = cartProduct.querySelector(".cart_product_price");
   const cSIElement = cartProduct.querySelector(".cart_ti_stock");
   const cFiPElement = cartProduct.querySelector(".cart_final_price");
@@ -61,6 +62,20 @@ function changeCartQuantity(element, plus) {
   cSIElement.value = ccInput;
   cFiPElement.value = cppValue;
   cFaPElement.value = cpfValue;
+  $.ajax({
+    url: "cart.update",
+    type: "POST",
+    data: {
+      ti_id: cartTiId.value,
+      ti_stock: ccInput,
+      ti_allpricegp: cppValue,
+      ti_allpricefac: cpfValue,
+    },
+    success: function () {},
+    error: function () {
+      location.reload();
+    },
+  });
   changeAllPrice();
 }
 

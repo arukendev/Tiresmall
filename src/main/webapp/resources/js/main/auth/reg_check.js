@@ -206,10 +206,12 @@ function checkId(){
         success:function(cnt){ //컨트롤러에서 넘어온 cnt값을 받는다 
             if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
                 $('#checkID_input').css("color","green"); 
-                $('#checkID_input').append("사용 가능한 아이디입니다");
+                $('#checkID_input').html("");
+                $('#checkID_input').html("사용 가능한 아이디입니다");
             } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-            	  $('#checkID_input').css("color","red"); 
-                  $('#checkID_input').append("사용 불가능한 아이디입니다");
+            	 $('#checkID_input').css("color","red");
+            	 $('#checkID_input').html("");
+            	$('#checkID_input').html("사용 불가능한 아이디입니다");
             }
         },
         error:function(){

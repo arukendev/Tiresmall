@@ -99,8 +99,6 @@ public class TireDAO {
 		
 		for (TireDTO t : brands) {
 			t.setTb_num(ss.getMapper(AdminTireMapper.class).getTireBrandCount(t.getTb_name()));
-			System.out.println(t.getTb_name());
-			System.out.println(t.getTb_num()+"개");
 		}
 		req.setAttribute("brands",brands);
 		
@@ -109,7 +107,6 @@ public class TireDAO {
 		
 		if(ss.getMapper(AdminTireMapper.class).deleteTireBrand(tb)==1) {
 			req.setAttribute("r", "삭제성공");
-			allTireCount-=1;
 		}else {
 			req.setAttribute("r", "삭제실패");
 		}
@@ -118,7 +115,7 @@ public class TireDAO {
 	public void deleteTireGroup(HttpServletRequest req, TireDTO tg) {
 		if(ss.getMapper(AdminTireMapper.class).deleteTireGroup(tg)==1) {
 			req.setAttribute("r", "삭제성공");
-			allTireCount-=1;
+			allTireCount--;
 			pDAO.setAllProductGroupCount(pDAO.getAllProductGroupCount() - 1);
 		}else {
 			req.setAttribute("r", "삭제실패");
@@ -132,14 +129,11 @@ public class TireDAO {
 
 		
 		String savePath = servletContext.getRealPath("resources/web/main/tire");
-		System.out.println("일단 시작");
-		
-		
-		
-		
+
 		try {
 			pDAO.setAllProductGroupCount(pDAO.getAllProductGroupCount() + 1);
-			allTireCount +=1;
+			
+			allTireCount++;
 			
 			String fileName = file.getOriginalFilename();
 			System.out.println("원래 파일이름 : "+fileName);
@@ -177,6 +171,7 @@ public class TireDAO {
 				
 				}
 				System.out.println("파일들 업로드 성공~~~~~~~~!!!!!!!!!!!");
+				System.out.println(savePath);
 			}
 			
 			//db에 저장된 값 확인
@@ -200,6 +195,7 @@ public class TireDAO {
 			for (int i = 0; i < tDTO.getTi_width().length; i++) {
 				System.out.println("여기는??" +tDTO.getTi_marking()[i]);
 				Map<String, String> tireSize = new HashMap<String, String>();
+				//bigdecimal  못찾아서 형변환해줌.....ㅠㅠ
 				tireSize.put("ti_tg_id", Integer.toString(tDTO.getTi_tg_id()));
 				tireSize.put("ti_marking", tDTO.getTi_marking()[i]);
 				tireSize.put("ti_width", Integer.toString(tDTO.getTi_width()[i]));
@@ -230,13 +226,15 @@ public class TireDAO {
 	    
 		} 	
 	}
-	public void getTireItem(TireDTO tDTO, HttpServletRequest req) {
-		
+	public void getTireItem(TireDTO tDTO, HttpServletRequest req) {		
 		TireDTO tireGroup =ss.getMapper(AdminTireMapper.class).getTireGroupDetail(tDTO.getTg_id());
 		
 		List<TireDTO> tireSizes = ss.getMapper(AdminTireMapper.class).getTireItem(tDTO);
 
+		String[] filesName = tireGroup.getTg_detail().split("!");
+
 		req.setAttribute("tireGroup", tireGroup);
+		req.setAttribute("filesName", filesName);
 		req.setAttribute("tireSizes", tireSizes);
 		
 	}
@@ -251,35 +249,115 @@ public class TireDAO {
 	
 	
 	
-	public int tirePrintOnOff(TireDTO tg) {
-		if(ss.getMapper(AdminTireMapper.class).tirePrintOnOff(tg) == 1) {
-				return tg.getTg_print();
+	public int tirePrintOnOff(TireDTO tDTO) {
+		if(ss.getMapper(AdminTireMapper.class).tirePrintOnOff(tDTO) == 1) {
+				return tDTO.getTg_print();
 		}else {
 			return 0;
 		}
 	}
-	public int tireSedanRecommend(TireDTO tg) {
-		if(ss.getMapper(AdminTireMapper.class).tireSedanRecommend(tg) == 1) {
-			return tg.getTg_sedan();
+	public int tireSedanRecommend(TireDTO tDTO) {
+		if(ss.getMapper(AdminTireMapper.class).tireSedanRecommend(tDTO) == 1) {
+			return tDTO.getTg_sedan();
 		}else {
 			return 0;
 		}
 	}
-	public int tireSuvRecommend(TireDTO tg) {
-		if(ss.getMapper(AdminTireMapper.class).tireSuvRecommend(tg) == 1) {
-			return tg.getTg_suv();
+	public int tireSuvRecommend(TireDTO tDTO) {
+		if(ss.getMapper(AdminTireMapper.class).tireSuvRecommend(tDTO) == 1) {
+			return tDTO.getTg_suv();
 		}else {
 			return 0;
 		}
 	}
+	
+	public int tireGroupDcrateChange(TireDTO tDTO) {
+		if(ss.getMapper(AdminTireMapper.class).tireGroupDcrateChange(tDTO) == 1) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+	
+	
+	
 	public int tireSizeDelte(TireDTO tDTO) {
-		System.out.println("여긴1");
-		if(ss.getMapper(AdminTireMapper.class).tireSizeDelete(tDTO.getTi_tg_id())==1) {
-			System.out.println("여긴2");
+		if(ss.getMapper(AdminTireMapper.class).tireSizeDelete(tDTO.getTi_id())==1) {
 			return 1;
 		}
 		return 0;
 	}
+	public int tireNameChange(TireDTO tDTO) {
+		if(ss.getMapper(AdminTireMapper.class).tireNameChage(tDTO)==1) {
+			return 1;
+		}
+		return 0;
+	}
+	public int tireTextChange(TireDTO tDTO) {
+		if(ss.getMapper(AdminTireMapper.class).tireTextChage(tDTO)==1) {
+			return 1;
+		}
+		return 0;
+	}
+	public int tireSizeChange(TireDTO tDTO) {
+		if(ss.getMapper(AdminTireMapper.class).tireSizeChage(tDTO)==1) {
+			return 1;
+		}
+		return 0;
+	}
+	public int tireMarckingChange(TireDTO tDTO) {
+		if(ss.getMapper(AdminTireMapper.class).tireMarckingChange(tDTO)==1) {
+			return 1;
+		}
+		return 0;
+	}
+	public int tirePriceChange(TireDTO tDTO) {
+		if(ss.getMapper(AdminTireMapper.class).tirePriceChange(tDTO)==1) {
+			return 1;
+		}
+		return 0;
+	}
+	public int tireStockChange(TireDTO tDTO) {
+		if(ss.getMapper(AdminTireMapper.class).tireStockChange(tDTO)==1) {
+			return 1;
+		}
+		return 0;
+	}
+	public int tireSBrandPrintOnoff(TireDTO tDTO) {
+		if(ss.getMapper(AdminTireMapper.class).tireBrandPrintOnOff(tDTO) == 1) {
+			return tDTO.getTb_ea();
+		}else {
+			return 0;
+		}
+	}
+	public int tireSBrandNameChange(TireDTO tDTO) {
+		if(ss.getMapper(AdminTireMapper.class).tireSBrandNameChange(tDTO) == 1) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+	public int tireBrandOrderChange(TireDTO tDTO) {
+		if(ss.getMapper(AdminTireMapper.class).tireBrandOrderChange(tDTO) == 1) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+	
+	
+	public void regTireBrand(HttpServletRequest req, TireDTO tDTO) {
+		ss.getMapper(AdminTireMapper.class).regTireBrand(tDTO);
+		
+	}
+	public int adminTireSizeNewInsertReg(TireDTO tDTO) {
+		if(ss.getMapper(AdminTireMapper.class).adminTireSizeNewInsertReg(tDTO) == 1) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+
 	
 	
 	

@@ -112,7 +112,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 <span>장착점 선택</span>
               </div>
               <div>
-                <select name="o_storeshop">
+                <select class="pay_store" name="o_storeshop">
                   <option value="타이어쇼핑몰">타이어쇼핑몰</option>
                   <option value="타이어테크 죽동점">타이어테크 죽동점</option>
                   <option value="논산 타이어쇼핑몰">논산 타이어쇼핑몰</option>
@@ -126,7 +126,9 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 <span>장착점 주소</span>
               </div>
               <div>
-                <span>대전광역시 서구 신갈마로 83 (갈마동)</span>
+                <span class="pay_storeAddress"
+                  >대전광역시 서구 신갈마로 83 (갈마동)</span
+                >
               </div>
             </li>
             <li>
@@ -134,7 +136,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 <span>전화번호</span>
               </div>
               <div>
-                <span>042 - 545 - 8008</span>
+                <span class="pay_storePhone">042 - 545 - 8008</span>
               </div>
             </li>
             <li>
@@ -153,8 +155,8 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 <span>장착예정일</span>
               </div>
               <div>
-                <input type="date" name="o_tireinstalldate" class="pay_date" />
-                <span class="pay_date_confirm"></span>
+                <input name="o_tireinstalldate" class="pay_date" />
+                <span class="pay_error pay_date_confirm"></span>
               </div>
             </li>
           </ul>
@@ -180,7 +182,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                       value="${sessionScope.loginMember.i_name}"
                       class="pay_customer_input"
                     />
-                    <span class="pay_customer_confirm"></span>
+                    <span class="pay_error pay_customer_confirm"></span>
                   </div>
                 </li>
                 <li>
@@ -195,7 +197,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                       class="pay_phone_input"
                       placeholder="-을 제외하고 입력해주세요"
                     />
-                    <span class="pay_phone_confirm"></span>
+                    <span class="pay_error pay_phone_confirm"></span>
                   </div>
                 </li>
                 <li>
@@ -209,7 +211,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                       value="${sessionScope.loginMember.i_email}"
                       class="pay_email_input"
                     />
-                    <span class="pay_email_confirm"></span>
+                    <span class="pay_error pay_email_confirm"></span>
                   </div>
                 </li>
                 <li>
@@ -219,16 +221,27 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                   <div>
                     <select name="o_caryear">
                       <option value="">연식</option>
-                      <option value="2023">2023</option>
+                      <c:forEach var="years" items="${carYears}">
+                        <option value="${years.carYear}">
+                          ${years.carYear}
+                        </option>
+                      </c:forEach>
                     </select>
                     <select name="o_carbrand">
                       <option value="">제조사</option>
-                      <option value="현대">현대</option>
+                      <c:forEach var="brands" items="${carBrands}">
+                        <option value="${brands.cb_name}">
+                          ${brands.cb_name}
+                        </option>
+                      </c:forEach>
                     </select>
                     <select name="o_carname">
                       <option value="">차종</option>
-                      <option value="그랜절">그랜절</option>
+                      <c:forEach var="names" items="${carNames}">
+                        <option value="${names.c_name}">${names.c_name}</option>
+                      </c:forEach>
                     </select>
+                    <span class="pay_error pay_car_confirm"></span>
                   </div>
                 </li>
                 <li>
@@ -242,7 +255,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                       value="${sessionScope.loginMember.i_carnum}"
                       class="pay_carNum_input"
                     />
-                    <span class="pay_carNum_confirm"></span>
+                    <span class="pay_error pay_carNum_confirm"></span>
                   </div>
                 </li>
                 <li>
@@ -272,7 +285,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                       name="o_name"
                       class="pay_customer_input"
                     />
-                    <span class="pay_customer_confirm"></span>
+                    <span class="pay_error pay_customer_confirm"></span>
                   </div>
                 </li>
                 <li>
@@ -280,8 +293,13 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                     <span>연락처</span>
                   </div>
                   <div>
-                    <input type="text" name="o_phone" class="pay_phone_input" />
-                    <span class="pay_phone_confirm"></span>
+                    <input
+                      type="text"
+                      name="o_phone"
+                      placeholder="-을 제외하고 입력해주세요"
+                      class="pay_phone_input"
+                    />
+                    <span class="pay_error pay_phone_confirm"></span>
                   </div>
                 </li>
                 <li>
@@ -290,7 +308,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                   </div>
                   <div>
                     <input type="text" name="o_email" class="pay_email_input" />
-                    <span class="pay_email_confirm"></span>
+                    <span class="pay_error pay_email_confirm"></span>
                   </div>
                 </li>
                 <li>
@@ -300,16 +318,27 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                   <div>
                     <select name="o_caryear">
                       <option value="">연식</option>
-                      <option value="2023">2023</option>
+                      <c:forEach var="years" items="${carYears}">
+                        <option value="${years.carYear}">
+                          ${years.carYear}
+                        </option>
+                      </c:forEach>
                     </select>
                     <select name="o_carbrand">
                       <option value="">제조사</option>
-                      <option value="현대">현대</option>
+                      <c:forEach var="brands" items="${carBrands}">
+                        <option value="${brands.cb_name}">
+                          ${brands.cb_name}
+                        </option>
+                      </c:forEach>
                     </select>
                     <select name="o_carname">
                       <option value="">차종</option>
-                      <option value="그랜절">그랜절</option>
+                      <c:forEach var="names" items="${carNames}">
+                        <option value="${names.c_name}">${names.c_name}</option>
+                      </c:forEach>
                     </select>
+                    <span class="pay_error pay_car_confirm"></span>
                   </div>
                 </li>
                 <li>
@@ -322,7 +351,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                       name="o_carnumber"
                       class="pay_carNum_input"
                     />
-                    <span class="pay_carNum_confirm"></span>
+                    <span class="pay_error pay_carNum_confirm"></span>
                   </div>
                 </li>
                 <li>
