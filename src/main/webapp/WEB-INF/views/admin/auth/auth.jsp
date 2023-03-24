@@ -47,16 +47,14 @@
 										</div>
 									</div>
 									<div class="auth_modal_content">
-										<div class="auth_modal_input auth_modal_addr">
-											주소 <input type="text" id="auth_address" name="a_address" />
-										</div>
-									</div>
-									<div class="auth_modal_content">
 										<div class="auth_modal_input  auth_modal_car">
 											차량번호 <input type="text" id="auth_carNUm" name="mc_number" />
 										</div>
 										<div class="auth_modal_input">
-											차량명 <input type="text" id="auth_carModel" name="mc_model" />
+											제조사 <input type="text" id="auth_carBrand" name="mc_brand" />
+										</div>
+										<div class="auth_modal_input">
+											차량명 <input type="text" id="auth_carName" name="mc_model" />
 										</div>
 										<div class="auth_modal_input">
 											차량년식 <input type="text" id="auth_carYear" name="mc_year" />
@@ -91,7 +89,7 @@
 						</div>
 						<div id="auth_modal_btn">
 							<button id="auth_modal_update">수정</button>
-							<div id="auth_modal_cancel ">취소</div>
+							<div id="auth_modal_cancel">취소</div>
 						</div>
 					</div>
 				</form>
@@ -185,10 +183,10 @@
 						<td class="auth_table_td"><fmt:formatDate
 								value="${a.i_newDate }" pattern="yyyy-MM-dd" /></td>
 						<td id="auth_Btn" class="auth_table_td">
-							<%-- <button class="admin_notPrintBTN auth_update"
-								onclick="updateauth('${a.a_id }','${a.a_Sortation }','${a.a_name }','${a.a_phone }','${a.a_address }'
-												,'${a.mc_number }','${a.mc_model }','${a.mc_year }')">
-								수정</button> --%>
+							<button class="admin_notPrintBTN auth_update"
+								onclick="updateauth('${a.u_id }','${a.i_grade }','${a.i_name }','${a.i_phoneNum }'
+												,'${a.mc_number }','${a.mc_carName }','${a.mc_brand }','${a.mc_year }')">
+								수정</button> 
 							<button type="button" onclick="deleteAuth('${a.u_id }')" class="admin_deleteBTN">삭제</button>
 						</td>
 					</tr>

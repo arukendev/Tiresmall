@@ -75,6 +75,7 @@ public class AuthDAO {
 	public void authDelete(HttpServletRequest req, AuthDTO aDTO) {
 		if(ss.getMapper(AdminAuthMapper.class).authDelete(aDTO)==1) {
 			req.setAttribute("r", "삭제 성공");
+			allAuthCount--;
 		}
 		
 	}

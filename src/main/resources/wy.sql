@@ -18,13 +18,12 @@ ALTER TABLE auth_userInfo ADD i_email VARCHAR(25) NOT NULL;
 delete from auth_user where u_no=1;
     
 create table auth_password(
-	pw_no number(5) primary key,
-    u_no number(5) NOT NULL,
+	pw_no number(5) not null,
     pw_salt varchar2(20 char) not null,
     pw_password varchar2(20 char) not null,
     pw_update date not null,
       
-     CONSTRAINT fk_code FOREIGN KEY(u_no)
+     CONSTRAINT fk_code FOREIGN KEY(pw_no)
     REFERENCES auth_user(u_no) ON DELETE CASCADE
 );
 

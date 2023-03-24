@@ -29,7 +29,7 @@ public class AuthDTO {
 	// my_car
 	private String mc_number;
 	private String mc_id;
-	private String mc_model;
+	private String mc_carName;
 	private String mc_brand;
 	private int mc_year;
 
@@ -42,7 +42,7 @@ public class AuthDTO {
 
 	public AuthDTO(int u_no, String u_id, String u_loginType, int i_no, String i_name, String i_phoneNum,
 			Date i_newDate, int i_grade, String i_email, int pw_no, String pw_salt, String pw_password, Date pw_update,
-			String mc_number, String mc_id, String mc_model, String mc_brand, int mc_year, BigDecimal start,
+			String mc_number, String mc_id, String mc_carName, String mc_brand, int mc_year, BigDecimal start,
 			BigDecimal end) {
 		super();
 		this.u_no = u_no;
@@ -60,7 +60,7 @@ public class AuthDTO {
 		this.pw_update = pw_update;
 		this.mc_number = mc_number;
 		this.mc_id = mc_id;
-		this.mc_model = mc_model;
+		this.mc_carName = mc_carName;
 		this.mc_brand = mc_brand;
 		this.mc_year = mc_year;
 		this.start = start;
@@ -187,12 +187,12 @@ public class AuthDTO {
 		this.mc_id = mc_id;
 	}
 
-	public String getMc_model() {
-		return mc_model;
+	public String getmc_carName() {
+		return mc_carName;
 	}
 
-	public void setMc_model(String mc_model) {
-		this.mc_model = mc_model;
+	public void setmc_carName(String mc_carName) {
+		this.mc_carName = mc_carName;
 	}
 
 	public String getMc_brand() {
@@ -233,7 +233,7 @@ public class AuthDTO {
 				+ ", i_name=" + i_name + ", i_phoneNum=" + i_phoneNum + ", i_newDate=" + i_newDate + ", i_grade="
 				+ i_grade + ", i_email=" + i_email + ", pw_no=" + pw_no + ", pw_salt=" + pw_salt + ", pw_password="
 				+ pw_password + ", pw_update=" + pw_update + ", mc_number=" + mc_number + ", mc_id=" + mc_id
-				+ ", mc_model=" + mc_model + ", mc_brand=" + mc_brand + ", mc_year=" + mc_year + ", start=" + start
+				+ ", mc_carName=" + mc_carName + ", mc_brand=" + mc_brand + ", mc_year=" + mc_year + ", start=" + start
 				+ ", end=" + end + "]";
 	}
 
