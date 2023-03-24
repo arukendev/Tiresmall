@@ -47,16 +47,14 @@
 										</div>
 									</div>
 									<div class="auth_modal_content">
-										<div class="auth_modal_input auth_modal_addr">
-											주소 <input type="text" id="auth_address" name="a_address" />
-										</div>
-									</div>
-									<div class="auth_modal_content">
 										<div class="auth_modal_input  auth_modal_car">
 											차량번호 <input type="text" id="auth_carNUm" name="mc_number" />
 										</div>
 										<div class="auth_modal_input">
-											차량명 <input type="text" id="auth_carModel" name="mc_model" />
+											제조사 <input type="text" id="auth_carBrand" name="mc_brand" />
+										</div>
+										<div class="auth_modal_input">
+											차량명 <input type="text" id="auth_carName" name="mc_model" />
 										</div>
 										<div class="auth_modal_input">
 											차량년식 <input type="text" id="auth_carYear" name="mc_year" />
@@ -91,7 +89,7 @@
 						</div>
 						<div id="auth_modal_btn">
 							<button id="auth_modal_update">수정</button>
-							<div id="auth_modal_cancel ">취소</div>
+							<div id="auth_modal_cancel">취소</div>
 						</div>
 					</div>
 				</form>
@@ -104,24 +102,24 @@
 				<div id="auth_searchBox">
 					<div class="auth_searchTitle">
 						<div>
-							구분 <select id="auth_sortation" name="a_Sortation">
-								<option value="1">전체</option>
-								<option value="2">일반</option>
-								<option value="3">업체</option>
-								<option value="4">관리자</option>
+							구분 <select id="auth_sortation" name="i_grade">
+								<option value="0">전체</option>
+								<option value="1">일반</option>
+								<option value="2">업체</option>
+								<option value="3">관리자</option>
 							</select>
 						</div>
 					</div>
 					<div class="auth_searchTitle">
 						<div class="auth_searchID">
 							<label for="auth_searchid">아이디</label> <input id="auth_searchid"
-								name="a_id">
+								name="u_id">
 						</div>
 					</div>
 					<div class="auth_searchTitle">
 						<div class="auth_search_name">
 							<label for="auth_searchname">이름</label> <input
-								id="auth_searchname" name="a_name">
+								id="auth_searchname" name="i_name">
 						</div>
 					</div>
 					<!-- <div class="auth_searchTitle">
@@ -156,24 +154,40 @@
 					</tr>
 
 				</c:if>
-
+				
 				<c:forEach items="${manyAuth }" var="a" varStatus="status">
 					<tr id="manyAuth_content">
 						<td class="auth_table_td">${status.count + (curPage-1)*count}</td>
-						<td class="auth_table_td">${a.a_Sortation }</td>
-						<td class="auth_table_td">${a.a_id }</td>
-						<td class="auth_table_td">${a.a_name }</td>
-						<td class="auth_table_td">${a.a_phone }</td>
+						
+						<td class="auth_table_td">
+						<c:choose>
+						<c:when test="${a.i_grade == 0 }">
+							전체
+						</c:when>
+						<c:when test="${a.i_grade == 1 }">
+							일반
+						</c:when>
+						<c:when test="${a.i_grade == 2 }">
+							업체
+						</c:when>
+						<c:when test="${a.i_grade == 3 }">
+							관리자
+						</c:when>
+						</c:choose>
+						</td>
+						<td class="auth_table_td">${a.u_id }</td>
+						<td class="auth_table_td">${a.i_name }</td>
+						<td class="auth_table_td">${a.i_phoneNum }</td>
 						<td class="auth_table_td">${a.mc_number }<c:if
 								test="${empty a.mc_number}">차 번호 없음</c:if></td>
 						<td class="auth_table_td"><fmt:formatDate
-								value="${a.a_date }" pattern="yyyy-MM-dd" /></td>
+								value="${a.i_newDate }" pattern="yyyy-MM-dd" /></td>
 						<td id="auth_Btn" class="auth_table_td">
 							<button class="admin_notPrintBTN auth_update"
-								onclick="updateauth('${a.a_id }','${a.a_Sortation }','${a.a_name }','${a.a_phone }','${a.a_address }'
-												,'${a.mc_number }','${a.mc_model }','${a.mc_year }')">
-								수정</button>
-							<button type="button" onclick="deleteAuth('${a.a_id }')" class="admin_deleteBTN">삭제</button>
+								onclick="updateauth('${a.u_id }','${a.i_grade }','${a.i_name }','${a.i_phoneNum }'
+												,'${a.mc_number }','${a.mc_carName }','${a.mc_brand }','${a.mc_year }')">
+								수정</button> 
+							<button type="button" onclick="deleteAuth('${a.u_id }')" class="admin_deleteBTN">삭제</button>
 						</td>
 					</tr>
 				</c:forEach>

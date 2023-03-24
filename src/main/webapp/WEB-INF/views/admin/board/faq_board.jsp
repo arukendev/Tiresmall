@@ -78,7 +78,7 @@
 					</div>
 					<div class="input_box">
 						<div class="no-drag">제목</div>
-						<input name="titleInput" id="f_title">
+						<input name="titleInput" id="f_title" value="${searchVal }">
 					</div>
 					<div class="button_box">
 						<button id="searchBtn" class="noticeBtn color-1">검색</button>

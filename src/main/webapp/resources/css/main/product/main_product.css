@@ -119,14 +119,10 @@
 	background-color: rgba(0,0,0,0.1);
 }
 
-.product_img_border{
-	position: absolute;
-	top: 5px;
-	left: 5px;
-	width: 291px;
-	height: 291px;
-	border: 1px solid #AB1E21;
-	background-color: rgba(255,255,255,0.1);
+.product_item_img{
+	width: 290px;
+	height: 290px;
+	border: 1px solid white;
 }
 
 .product_item:hover .product_item_hidden {
@@ -138,6 +134,10 @@
 .product_item:hover .product_item_detail{
 	background-color: #AB1E21;
 	color: white;
+}
+
+.product_item:hover .product_item_img{
+	border: 1px solid #AB1E21;
 }
 
 .product_item_img img{

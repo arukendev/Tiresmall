@@ -74,6 +74,7 @@ public class QnaDAO {
 		req.setAttribute("pageCount", pageCount);
 		req.setAttribute("qnas", qna);
 		req.setAttribute("curPage", pageNo);
+		req.setAttribute("search", search);
 	}
 	
 	public void searchQnA(SearchDTO SearchDTO, HttpServletRequest req) {

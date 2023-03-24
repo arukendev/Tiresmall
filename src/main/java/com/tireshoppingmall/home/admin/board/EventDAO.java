@@ -54,9 +54,6 @@ public class EventDAO {
 
 		if (search == null) {
 			search = new SearchDTO();
-//			search.setTitleInput("");
-//			search.setNameInput("");
-//			search.setIdInput("");
 			search.setStart(new BigDecimal(start));
 			search.setEnd(new BigDecimal(end));
 			eventCount = allEventCount;
@@ -65,6 +62,8 @@ public class EventDAO {
 			search.setEnd(new BigDecimal(end));
 			eventCount = ss.getMapper(AdminBoardMapper.class).getEventCount(search);
 		}
+		System.out.println(eventCount);
+		System.out.println(pageNo);
 		List<EventDTO> event = ss.getMapper(AdminBoardMapper.class).getEvent(search);
 		int pageCount = (int) Math.ceil(eventCount / (double) count);
 		req.setAttribute("pageCount", pageCount);
@@ -91,8 +90,6 @@ public class EventDAO {
 	}
 
 	public int updateEvent(EventDTO eventDTO) {
-		System.out.println(eventDTO.toString());
-
 		return ss.getMapper(AdminBoardMapper.class).eventUpdate(eventDTO);
 	}
 
@@ -100,7 +97,6 @@ public class EventDAO {
 		Iterator<String> files = mf.getFileNames();
 		String path = servletContext.getRealPath("resources/upload-event/");
 
-		System.out.println(eventDto.toString());
 		String mainimg_old = eventDto.getE_mainimg();
 		String detailimg_old = eventDto.getE_detailimg();
 		StringBuilder sb = new StringBuilder();
@@ -111,7 +107,6 @@ public class EventDAO {
 			UUID uuid = UUID.randomUUID();
 			String[] uuids = uuid.toString().split("-");
 			String uniqueName = uuids[0] + uuids[1] + uuids[2];
-			System.out.println(uniqueName);
 			try {
 				mFile.transferTo(new File(path + uniqueName + extension));
 				sb.append(uniqueName + extension + "!");
@@ -119,8 +114,8 @@ public class EventDAO {
 				e.printStackTrace();
 			}
 		}
-		int cnt = new StringTokenizer(sb.toString(), "!").countTokens();
-		if (cnt == 1) {
+		String type = mf.getParameter("e_type");
+		if (type.equals("main-btn")) {
 			eventDto.setE_mainimg(sb.toString().replace("!", ""));
 		} else {
 			eventDto.setE_mainimg(null);
@@ -130,11 +125,10 @@ public class EventDAO {
 		System.out.println(sb.toString());
 		System.out.println(eventDto.toString());
 		if (ss.getMapper(AdminBoardMapper.class).eventUpdate(eventDto) == 1) {
-			if (mainimg_old != eventDto.getE_mainimg() && eventDto.getE_mainimg() != null) {
+			if (type.equals("main-btn")) {
 				new File(path + mainimg_old).delete();
 				return eventDto.getE_mainimg();
-			} else if (detailimg_old != eventDto.getE_detailimg()) {
-				System.out.println("삭제 되니?");
+			} else {
 				String[] dio = detailimg_old.split("!");
 				for (String d : dio) {
 					new File(path + d).delete();

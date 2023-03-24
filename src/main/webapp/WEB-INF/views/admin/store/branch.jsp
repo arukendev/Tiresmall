@@ -212,7 +212,7 @@
 
 					<tr>
 						<td style="background-color: #0ec492">지도데이터</td>
-						<td><input name="b_mapdata" id="inputmapdata"></td>
+						<td><input name="b_mapdata" id="inputmapdata" placeholder="입력예)37.544500, 127.044444"></td>
 					</tr>
 
 					<tr>

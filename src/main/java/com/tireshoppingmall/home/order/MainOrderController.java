@@ -15,6 +15,7 @@ public class MainOrderController {
 	
 	@RequestMapping(value = "/pay.go", method = RequestMethod.GET)
 	public String goPay(HttpServletRequest req) {
+		mODAO.getCarInfo(req);
 		req.setAttribute("content", "main/product/pay.jsp");
 		return "index";
 	}

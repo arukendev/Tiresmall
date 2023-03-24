@@ -7,10 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="resources/css/admin/tire/admin_tireBrand.css">
-	<link rel="stylesheet"
-	href="resources/css/admin/tire/admin_tire.css">
+<link rel="stylesheet"href="resources/css/admin/tire/admin_tireBrand.css">
+<link rel="stylesheet"href="resources/css/admin/tire/admin_tire.css">
 <script src="resources/js/admin/tire/admin_tire.js"></script>
 </head>
 <body>
@@ -20,9 +18,47 @@
 	<div class="container sub">
 		<div id="admin_tire_brand">
 			<div id="admin_brand_menu_title"><h1>타이어브랜드관리페이지</h1></div>
-			<div id="admin_tireBrand_reg" onclick="">신규등록</div>
+			<div id="admin_tireBrand_reg">신규등록</div>
 		</div>
 
+		<form action="admin.tire.brand.reg">
+			<div class='admin-tire-reg-size-modal'>
+				<div class='admin-tire-reg-size-modal-container'>
+					<div class='admin-tire-reg-size-modal-title'>브랜드 등록</div>
+					<div class='admin-tire-reg-size-modal-input'>
+						<div class='admin-tire-reg-size-modal-input'>
+							<div class="admin-tire-brand-size-modal-title">
+								<div class="tire-brand-reg-title">브랜드명</div>
+								<div><input class="tire-brand-input" name="tb_name"></div>
+							</div>
+							<div class="admin-tire-brand-size-modal-title">
+								<div class="tire-brand-reg-title">출력순서</div>
+								<div><input class="tire-brand-input" name="tb_order"></div>
+							</div>
+							<div class="admin-tire-brand-size-modal-title">
+								<div class="tire-brand-reg-title">출력여부</div>
+								<div class="admin-tire-reg-radio-di">
+									<label class="admin-tire-teg-label"> 
+										<input type="radio"	name="tb_ea" value="1">
+										출력
+									</label> 
+									<label class="admin-tire-teg-label"> 
+										<input type="radio" name="tb_ea"  value="0" checked="checked">
+										숨김
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class='admin-tire-reg-size-modal-button'>
+							<button class='admin_tire_reg_in admin-tire-reg-size-modal-button1'>입력</button>
+							<div class='admin_tire_reg_cen admin-tire-reg-size-modal-button2'>취소</div>
+						</div>
+					</div>
+				</div>
+			</div> 
+		</form>
+		
+		
 		<table id="admin_tire_brand_content">
 			<tr>
 				<td class="admin_tire_content_title admin_tire_brand_no" style="border-right: 2px solid white">No.</td>
@@ -42,15 +78,15 @@
 			<c:forEach items="${brands }" var="t" varStatus="status">
 				<tr id="admin_tire_brands_content">
 					<td class="admin_tire_table_td">${status.count}</td>
-					<td class="admin_tire_table_td"><input id="admin-tire-brand-name" value=" ${t.tb_name }" name="tb_name"></td>
-					<td class="admin_tire_table_td"><input id="admin-tire-brand-order" value=" ${t.tb_order }" name="tb_order ">번</td>
+					<td class="admin_tire_table_td"><!-- <input class="admin-tire-brand-name" value="" name="tb_name"> -->${t.tb_name }</td>
+					<td class="admin_tire_table_td"><input class="admin-tire-brand-order" value="${t.tb_order }" name="tb_order ">번</td>
 					<td class="admin_tire_table_td">
 						<c:choose>
 							<c:when test="${t.tb_ea ==1 }">
-								<button class="admin_printBTN">출력</button>
+								<button class="admin_printBTN brandPrintBtn" value="${t.tb_name }">출력</button>
 							</c:when>
 							<c:otherwise>
-								<button class="admin_notPrintBTN">숨김</button>
+								<button class="admin_notPrintBTN brandPrintBtn" value="${t.tb_name }">숨김</button>
 							</c:otherwise>
 						</c:choose>
 					</td>
@@ -61,7 +97,6 @@
 				</tr>
 			</c:forEach>
 		</table>
-		
 	</div>
 </body>
 </html>

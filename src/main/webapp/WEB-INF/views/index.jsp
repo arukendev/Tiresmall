@@ -17,6 +17,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     />
     <link rel="icon" href="resources/web/favicon.png" type="image/png" />
     <link rel="stylesheet" href="resources/css/index.css" />
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css"
+    />
   </head>
   <body>
     <div class="index_shadow"></div>
@@ -179,7 +183,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   >FAQ</a
                 >
                 <a class="index_dropBoard_a" href="board.qna.check">1:1 문의</a>
-                <a class="index_dropBoard_a" href="board.notice.read">공지사항</a>
+                <a class="index_dropBoard_a" href="board.notice.read"
+                  >공지사항</a
+                >
                 <a class="index_dropBoard_a" href="board.event">이벤트</a>
               </div>
               <div class="index_dropMenu_img">
@@ -225,6 +231,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       </footer>
     </div>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="//code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
     <script src="resources/js/index.js"></script>
     <script src="resources/js/main/order/cart.js"></script>
     <script src="resources/js/main/order/pay.js"></script>
