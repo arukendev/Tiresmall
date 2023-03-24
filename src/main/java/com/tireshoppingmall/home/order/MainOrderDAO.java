@@ -1,6 +1,7 @@
 package com.tireshoppingmall.home.order;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,21 @@ public class MainOrderDAO {
 	
 	@Autowired
 	private SqlSession ss;
+	
+	public void getCarInfo(HttpServletRequest req) {
+		ArrayList<CarYear> carYears = new ArrayList<CarYear>();
+		for (int i = 2024; i > 1990; i--) {
+			CarYear carYear = new CarYear();
+			carYear.setCarYear(i);
+			carYears.add(carYear);
+		}
+		List<CarName> carNames = ss.getMapper(MainOrderMapper.class).getCarName();
+		List<CarBrand> carBrands = ss.getMapper(MainOrderMapper.class).getCarBrand();
+		
+		req.setAttribute("carYears", carYears);
+		req.setAttribute("carNames", carNames);
+		req.setAttribute("carBrands", carBrands);
+	}
 
 	public void setValues(HttpServletRequest req, MainOrderDTO mODTO) {
 		ArrayList<CartDTO> cList = (ArrayList<CartDTO>) req.getSession().getAttribute("cartSession");
@@ -36,6 +52,7 @@ public class MainOrderDAO {
 		System.out.println(mODTO);
 		if (ss.getMapper(MainOrderMapper.class).setOrder(mODTO) == 1) {
 			System.out.println("등록성공");
+			cList.clear();
 		} else {
 			System.out.println("등록실패");
 		}

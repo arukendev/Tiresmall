@@ -30,9 +30,10 @@
 		from auth_user u , auth_userinfo ui
 		where u.u_no =
 		ui.i_no and
+		u_id like '%'||#{u_id}||'%' and
 		i_name like '%'||#{i_name}||'%'
 		<if test="i_grade != 0">
-			and i_grade like '%'||#{i_grade}||'%'
+			and i_grade = #{i_grade}
 		</if>
 	</select>
 
@@ -52,10 +53,10 @@
 		mc on u.u_no = mc.mc_id
 		where
 		<if test="u_id != ''">
-			u.u_id = #{u_id} and
+			u.u_id like '%'||#{u_id}||'%' and
 		</if>
 		ui.i_name like '%'||#{i_name}||'%'
-		<if test="mc_number != ''">
+		<if test="mc_number != null">
 		and mc.mc_number = #{mc_number}
 		</if>
 		<if test="i_grade != 0">
