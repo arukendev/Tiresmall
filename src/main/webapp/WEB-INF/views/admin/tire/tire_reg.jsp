@@ -169,11 +169,11 @@
 													<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>
 													<div class='admin-tire-reg-size-modal-input'>
 														<div class='admin-tire-reg-size-modal-input'>
-															<input class='tire_input_width'>
+															<input class='tire_input_width'name='ti_width'>
 															<span class='size-span'>/</span>
-															<input class='tire_input_ratio'o>
+															<input class='tire_input_ratio' name='ti_ratio'>
 															<span class='size-span'>R</span>
-															<input class='tire_input_inch'>
+															<input class='tire_input_inch' name='ti_inch' >
 														</div>
 														<div class='admin-tire-reg-size-modal-button'>
 															<div class='admin_tire_reg_in admin-tire-reg-size-modal-button1'>입력</div>
@@ -189,9 +189,6 @@
 												<span class='tire_ratio size-span'>--</span>
 												<span class='size-span'>R</span>
 												<span class='tire_inch size-span'>--</span>
-												<input class='tire_size_reg_width' value='' name='ti_inch' type='hidden'>
-												<input class='tire_size_reg_ratio' value='' name='ti_ratio' type='hidden'>
-												<input class='tire_size_reg_inch' value='' name='ti_width' type='hidden'>
 											</div>
 										</td>
 										<td class='admin-tire-size-reg-content'><span class='admin-tire-reg-name'></span></td>
@@ -260,7 +257,6 @@
 								<div class="admin_tire_reg_deleteBTN" onclick="history.back()">취소</div> 
 							</div>
 						</td>
-						
 					</tr>
 				</table>
 			</form>

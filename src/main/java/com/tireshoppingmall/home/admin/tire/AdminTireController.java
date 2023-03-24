@@ -176,6 +176,13 @@ public class AdminTireController {
 	public int adminTireStockChange(TireDTO tDTO) {	
 		return tDAO.tireStockChange(tDTO);
 	}
+	//admin.tire.size.newInsert.reg
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.size.newInsert.reg", method = RequestMethod.GET)
+	public int adminTireSizeNewInsertReg(TireDTO tDTO) {	
+		return tDAO.adminTireSizeNewInsertReg(tDTO);
+	}
+	
 	
 	
 	//admin.tire.delete.go
@@ -233,11 +240,25 @@ public class AdminTireController {
 		return tDAO.tireSBrandNameChange(tDTO);
 	}
 	
+	//admin.tire.brand.order.change
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.brand.order.change", method = RequestMethod.GET)
+	public int tireSBrandOrderChange(TireDTO tDTO) {	
+		System.out.println("여긴옴??223");
+		return tDAO.tireBrandOrderChange(tDTO);
+	}
 	
-	
-	
-	
-	
+	//admin.tire.brand.reg
+	@RequestMapping(value = "/admin.tire.brand.reg", method = RequestMethod.GET)
+	public String tireBrandTRegDo(HttpServletRequest req,TireDTO tDTO) {
+		
+
+		tDAO.regTireBrand(req,tDTO);
+		tDAO.getTireBrand(req);
+		req.setAttribute("subMenuPage", "tire/tire_subMenu.jsp");
+		req.setAttribute("contentPage", "tire/tire_brand.jsp");
+		return "admin/master";
+	}
 	
 	
 	

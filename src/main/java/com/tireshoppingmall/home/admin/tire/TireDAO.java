@@ -107,7 +107,6 @@ public class TireDAO {
 		
 		if(ss.getMapper(AdminTireMapper.class).deleteTireBrand(tb)==1) {
 			req.setAttribute("r", "삭제성공");
-			allTireCount-=1;
 		}else {
 			req.setAttribute("r", "삭제실패");
 		}
@@ -116,7 +115,7 @@ public class TireDAO {
 	public void deleteTireGroup(HttpServletRequest req, TireDTO tg) {
 		if(ss.getMapper(AdminTireMapper.class).deleteTireGroup(tg)==1) {
 			req.setAttribute("r", "삭제성공");
-			allTireCount-=1;
+			allTireCount--;
 			pDAO.setAllProductGroupCount(pDAO.getAllProductGroupCount() - 1);
 		}else {
 			req.setAttribute("r", "삭제실패");
@@ -133,7 +132,8 @@ public class TireDAO {
 
 		try {
 			pDAO.setAllProductGroupCount(pDAO.getAllProductGroupCount() + 1);
-			allTireCount +=1;
+			
+			allTireCount++;
 			
 			String fileName = file.getOriginalFilename();
 			System.out.println("원래 파일이름 : "+fileName);
@@ -171,6 +171,7 @@ public class TireDAO {
 				
 				}
 				System.out.println("파일들 업로드 성공~~~~~~~~!!!!!!!!!!!");
+				System.out.println(savePath);
 			}
 			
 			//db에 저장된 값 확인
@@ -225,16 +226,13 @@ public class TireDAO {
 	    
 		} 	
 	}
-	public void getTireItem(TireDTO tDTO, HttpServletRequest req) {
-		String savePath = servletContext.getRealPath("resources/web/main/tire");
-		
+	public void getTireItem(TireDTO tDTO, HttpServletRequest req) {		
 		TireDTO tireGroup =ss.getMapper(AdminTireMapper.class).getTireGroupDetail(tDTO.getTg_id());
 		
 		List<TireDTO> tireSizes = ss.getMapper(AdminTireMapper.class).getTireItem(tDTO);
 
 		String[] filesName = tireGroup.getTg_detail().split("!");
-		
-		req.setAttribute("savePath", savePath);
+
 		req.setAttribute("tireGroup", tireGroup);
 		req.setAttribute("filesName", filesName);
 		req.setAttribute("tireSizes", tireSizes);
@@ -334,6 +332,26 @@ public class TireDAO {
 	}
 	public int tireSBrandNameChange(TireDTO tDTO) {
 		if(ss.getMapper(AdminTireMapper.class).tireSBrandNameChange(tDTO) == 1) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+	public int tireBrandOrderChange(TireDTO tDTO) {
+		if(ss.getMapper(AdminTireMapper.class).tireBrandOrderChange(tDTO) == 1) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+	
+	
+	public void regTireBrand(HttpServletRequest req, TireDTO tDTO) {
+		ss.getMapper(AdminTireMapper.class).regTireBrand(tDTO);
+		
+	}
+	public int adminTireSizeNewInsertReg(TireDTO tDTO) {
+		if(ss.getMapper(AdminTireMapper.class).adminTireSizeNewInsertReg(tDTO) == 1) {
 			return 1;
 		}else {
 			return 0;

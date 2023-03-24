@@ -107,48 +107,9 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="admin_tire_table_title">출력</td>
-						<td>
-							<div class="admin-tire-reg-radio-di">
-								<label class="admin-tire-teg-label"> 
-									<input type="radio"	name="tg_print" class="radioPrint admin-tire-teg-input" value="1">
-									<div class="rad-design"></div>
-									<div class="rad-text">출력</div>
-								</label> 
-								<label class="admin-tire-teg-label"> 
-									<input type="radio" name="tg_print" class="radioNotPrint admin-tire-teg-input" value="0">
-									<div class="rad-design"></div>
-									<div class="rad-text">숨김</div>
-								</label>
-							</div>
-						</td>
-					</tr>
-					<tr>
-					
-					</tr>
-					<tr>
-						<td class="admin_tire_table_title">추천</td>
-						<td>
-							<div class="admin-tire-reg-radio-di">
-								<label class="admin-tire-teg-label"> 
-									<input type="checkbox" name="tg_suv" class="suvChecked admin-tire-teg-input" value="1">
-									<!-- <input type="hidden" name="tg_suv" class="admin-tire-teg-input" id="suv_check_hidden" value="0"> -->
-									<div class="rad-design"></div>
-									<div class="rad-text">SUV추천</div>
-								</label> 
-								<label class="admin-tire-teg-label"> 
-									<input type="checkbox" name="tg_sedan" class="sedanChecked admin-tire-teg-input"  value="1">
-									<!-- <input type="hidden" name="tg_sedan" class="admin-tire-teg-input" id="sedan_check_hidden" value="0"> -->
-									<div class="rad-design"></div>
-									<div class="rad-text">승용차 추천</div>
-								</label>
-							</div>
-						</td>
-					</tr>
-					<tr>
 						<td class="admin_tire_table_title">타이어사이즈</td>
 						<td>
-							<div id="admin_tire_size_button">사이즈추가</div>
+							<div id="admin_tire_update_size_button">사이즈추가</div>
 							<table id="admin-tire-size-reg">
 								<tr>
 									<td class="admin-tire-size-reg-title admin-tire-size"
@@ -175,11 +136,11 @@
 													<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>
 													<div class='admin-tire-reg-size-modal-input'>
 														<div class='admin-tire-reg-size-modal-input'>
-															<input class='tire_input_width' value="${ts.ti_width }">
+															<input class='tire_input_width' value="${ts.ti_width }"name='ti_width'>
 															<span class='size-span'>/</span>
-															<input class='tire_input_ratio' value="${ts.ti_ratio }">
+															<input class='tire_input_ratio' value="${ts.ti_ratio }" name='ti_ratio'>
 															<span class='size-span'>R</span>
-															<input class='tire_input_inch' value="${ts.ti_inch }">
+															<input class='tire_input_inch' value="${ts.ti_inch }" name='ti_inch'>
 														</div>
 														<div class='admin-tire-reg-size-modal-button'>
 															<div class='admin_tire_reg_in admin-tire-reg-size-modal-button1'>입력</div>
@@ -194,9 +155,6 @@
 													<span class='tire_ratio size-span'>${ts.ti_ratio }</span>
 													<span class='size-span'>R</span>
 													<span class='tire_inch size-span'>${ts.ti_inch }</span>
-													<input class='tire_size_reg_width' value='' name='ti_inch' type='hidden'>
-													<input class='tire_size_reg_ratio' value='' name='ti_ratio' type='hidden'>
-													<input class='tire_size_reg_inch' value='' name='ti_width' type='hidden'>
 												</div>
 											</td>
 											<td class='admin-tire-size-reg-content'><span class='admin-tire-reg-name'>${tireGroup.tg_name }</span></td>
@@ -208,6 +166,8 @@
 											</td>
 										</tr>
 									</c:forEach>
+					
+									
 								</tbody>
 							</table>
 						</td>
@@ -220,7 +180,7 @@
 									<div class="admin-tire-img-title"
 										style="border-right: 2px solid white;">현재 이미지</div>
 									<div class="admin-tire-img-content">
-									<%-- 	<img src="/${savePath }/${tireGroup.img}"> --%>
+										<img src="resources/web/main/tire/${tireGroup.tg_img}">
 									</div>
 								</div>
 								<div class="admin-tire-img-contain">
@@ -244,9 +204,9 @@
 									<div class="admin-tire-img-title"
 										style="border-right: 2px solid white;">현재 이미지</div>
 									<div class="admin-tire-img-content">
-								<%-- 	<c:forEach items="filesName" var="f">
-										<img src="/${savePath }/${f}">
-									</c:forEach> --%>
+										<c:forEach items="${filesName}" var="f">
+											<img src="resources/web/main/tire/${f}"><br />
+										</c:forEach>
 									</div>
 								</div>
 								<div class="admin-tire-img-contain">
@@ -265,8 +225,7 @@
 					<tr>
 						<td colspan="2">
 							<div id="admin_tire_reg_button">
-								<button class="admin-tire-reg-size-modal-button1">저장</button> 
-								<div class="admin_tire_reg_deleteBTN" onclick="history.back()">취소</div> 
+								<div class="admin-tire-reg-size-modal-button1" onclick="history.back()">완료</div> 
 							</div>
 						</td>					
 					</tr>

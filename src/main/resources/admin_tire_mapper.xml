@@ -226,6 +226,21 @@
 	set tb_name = #{tb_name}
 	where tb_name= #{brandNameBefor}
 </update> -->
+<update id="tireBrandOrderChange">
+	update tire_brand
+	set tb_order = #{tb_order}
+	where tb_name= #{tb_name}
+</update>
+
+<insert id="regTireBrand">
+	insert into tire_brand values(#{tb_name},#{tb_ea},#{tb_order})
+</insert>
+
+<insert id="adminTireSizeNewInsertReg">
+	insert into tire_item values(tire_item_seq.nextval,#{ti_tg_id},#{ti_width},#{ti_ratio},#{ti_inch},#{ti_stock},#{ti_pricefac},#{ti_marking})
+</insert>
+
+
 
 
 </mapper>

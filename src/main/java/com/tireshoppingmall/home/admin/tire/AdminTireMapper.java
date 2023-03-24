@@ -59,4 +59,10 @@ public interface AdminTireMapper {
 
 	int tireGroupDcrateChange(TireDTO tDTO);
 
+	int tireBrandOrderChange(TireDTO tDTO);
+
+	int regTireBrand(TireDTO tDTO);
+
+	int adminTireSizeNewInsertReg(TireDTO tDTO);
+
 }
