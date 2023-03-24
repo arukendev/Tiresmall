@@ -23,5 +23,7 @@ public interface MemberMapper {
 
 	int checkPw(MemberDTO mDTO);
 
+	int deleteMember(int u_no);
+
 
 }

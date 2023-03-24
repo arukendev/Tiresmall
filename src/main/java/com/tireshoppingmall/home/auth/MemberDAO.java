@@ -155,6 +155,22 @@ public class MemberDAO {
 		
 	}
 
+	public void deleteMember(HttpServletRequest req, int u_no) {
+		
+		
+		if (ss.getMapper(MemberMapper.class).deleteMember(u_no) ==1 ) {
+			System.out.println("삭제완료");
+			logout(req);
+		} 
+		
+		
+		
+		
+		
+		
+		
+	}
+
 	
 	 
 	

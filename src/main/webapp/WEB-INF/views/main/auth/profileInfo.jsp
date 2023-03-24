@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<scriptsrc="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="resources/js/main/auth/main_auth.js"></script>
 </head>
 <body>
 
@@ -42,8 +44,8 @@
 				<div id="profileInfo_item_info"><input name="i_carnum" value="${personalInfomation.i_carnum }"></div>
 			</div>	
 		<div id="profileInfo_btns">
-			<button type="button" onclick="location.href='/updateInfo'">회원 정보 수정</button>
-			<button>회원 탈퇴</button>
+			<button type="button" onclick="location.href='updateInfo'" onsubmit="return updateCheck()">회원 정보 수정</button>
+			<button type="button" onclick="deleteOK(${personalInfomation.u_no})">회원 탈퇴</button>
 		</div>
 	</div>	
 

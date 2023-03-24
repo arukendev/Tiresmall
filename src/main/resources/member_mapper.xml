@@ -17,7 +17,9 @@
 	insert all 
 		into auth_user values(auth_user_seq.nextval, #{u_id}, 1) 
 		into auth_password values(auth_user_seq.nextval , 'test' , 'social', sysdate)
-		into auth_userinfo values(auth_user_seq.nextval , #{i_name} ,#{i_phoneNum},sysdate, 1,#{i_email}) 
+		into auth_userinfo values(auth_user_seq.nextval , #{i_name} ,#{i_phoneNum},sysdate, 1,#{i_email})
+		into my_car values(#{i_carnum} , auth_user_seq.nextval ,#{i_carname},
+		#{i_carbrand}, #{i_caryear}) 
 		SELECT * FROM DUAL
 </insert>
 
@@ -57,6 +59,9 @@
 	select * from product_order where O_SORTATION=#{u_no}
 </select>
 
+<delete id="deleteMember" >
+	delete auth_user where u_no=#{u_no}
+</delete>
 
 
 </mapper>

@@ -136,6 +136,31 @@ public class AuthController {
 		req.setAttribute("content", "main/home/home.jsp");
 		return "index";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/updateInfo", method = RequestMethod.GET)
+	public String updateInfo(MemberDTO mDTO, HttpServletRequest req) {
+		
+		mDAO.logout(req);
+		mDAO.loginCheck( req);
+		req.setAttribute("content", "main/home/home.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "/deleteMember", method = RequestMethod.GET)
+	public String deleteMember(MemberDTO mDTO, HttpServletRequest req) {
+		int u_no = Integer.parseInt(req.getParameter("u_no"));
+		if (mDAO.loginCheck(req)) {
+			mDAO.deleteMember(req,u_no);
+			req.setAttribute("content", "main/home/home.jsp");
+			return "index";
+		}
+		req.setAttribute("content", "main/home/home.jsp");
+		return "index";
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "/authReg.go", method = RequestMethod.GET)
 	public String authRegGo(HttpServletRequest req) {
 		
@@ -143,9 +168,7 @@ public class AuthController {
 	}
 	@RequestMapping(value = "/authRegSocial.go", method = RequestMethod.GET)
 	public String authRegSOGo(HttpServletRequest req,MemberDTO mDTO) {
-		mDTO=(MemberDTO) req.getAttribute("mDTO");
-		System.out.println(mDTO.getI_email());
-		req.setAttribute("mDTO", mDTO);
+		System.out.println(req.getParameter("socialID"));
 		return "main/auth/authRegSocial";
 	}
 	
@@ -225,26 +248,8 @@ public class AuthController {
         	model.addAttribute("content", "main/home/home.jsp");
                return "redirect:/"; //본인 원하는 경로 설정
 		}else {
-			mDTO.setI_email(userInfo.get("email")+"");
-	        mDTO.setU_id(socialID);
-	        mDTO.setU_logintype("2");
-	        mDTO.setI_carbrand("empty");
-	        mDTO.setI_carname("empty");
-	        mDTO.setI_carnum("empty");
-	        mDTO.setI_caryear("2014");
-	        
-//	        if (lsDAO.regMemberSocial(req,mDTO)) {
-//				lsDAO.login(socialID,req);
-//				mDAO.loginCheck(req);   
-//				req.setAttribute("content", "main/home/home.jsp");
-//				return "redirect:/"; //본인 원하는 경로 설정}
-//			}
-//			req.setAttribute("content", "main/home/home.jsp");
-//			return "redirect:/"; //본인 원하는 경로 설정}
-//	        
-	        
-			//필요한 추가 정보를 얻기 위한 회원가입 페이지로 이동
-			rttr.addAttribute("mDTO", mDTO);
+			
+			rttr.addFlashAttribute("socialID", socialID);
 			return "redirect:/authRegSocial.go";
 		}
         
