@@ -131,7 +131,6 @@ public class TireDAO {
 		String savePath = servletContext.getRealPath("resources/web/main/tire");
 
 		try {
-			pDAO.setAllProductGroupCount(pDAO.getAllProductGroupCount() + 1);
 			
 			allTireCount++;
 			
@@ -172,6 +171,7 @@ public class TireDAO {
 				}
 				System.out.println("파일들 업로드 성공~~~~~~~~!!!!!!!!!!!");
 				System.out.println(savePath);
+				pDAO.setAllProductGroupCount(pDAO.getAllProductGroupCount() + 1);
 			}
 			
 			//db에 저장된 값 확인
