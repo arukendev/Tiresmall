@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
     <meta charset="UTF-8" />
     <title>관리자 페이지</title>
     <link rel="stylesheet" href="resources/css/admin/master.css" />
-     <link
+    <link
       rel="shortcut icon"
       href="resources/web/favicon.png"
       type="image/png"
@@ -57,9 +57,6 @@ pageEncoding="UTF-8"%>
     </div>
     <!--위 내용이 나올때는 top 120px  -->
 
-    <div id="adminContent">
-      <jsp:include page="${contentPage }"></jsp:include>
-    </div>
     <script src="resources/js/admin/board/event_board.js"></script>
   </body>
 </html>

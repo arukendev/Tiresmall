@@ -16,8 +16,7 @@ type="image/png"
 />
 <link rel="icon" href="resources/web/favicon.png" type="image/png" />
 <link rel="stylesheet" href="resources/css/main/auth/auth.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="resources/js/main/auth/reg_check.js"></script>
 </head>
 <body>
@@ -26,9 +25,9 @@ type="image/png"
 		<!-- 홈페이지 회원 가입의 경우 타입 1번 -->
 		<input name="u_logintype" value="1" type="hidden">
 		<!-- default value는 1 , 이메일 인증완료시 value 2 -->
-		<input name="emailConfirm" value="1" type="hidden"> <input
-			name="carInfoConfirm" value="1" type="hidden">
-
+		<input name="emailConfirm" value="1" type="hidden">
+		
+		
 		<div id="join_container">
 			<div id="join_logo">
 				<a href="/home"> <img alt="" src="resources/web/logo.png">
@@ -37,7 +36,8 @@ type="image/png"
 			<div class="join_box">
 				<div class="join_title">아이디</div>
 				<div id="id_input">
-					<input name="u_id">
+					<input name="u_id" oninput="checkId()">
+					<span id="checkID_input"></span>
 				</div>
 			</div>
 			<div class="join_box">
@@ -59,7 +59,7 @@ type="image/png"
 			<div class="join_box">
 				<div class="join_title">휴대폰번호</div>
 				<div id="phoneNum_input">
-					<input name="i_phoneNum" type="number">
+					<input name="i_phoneNum" type="number" maxlength="11">
 				</div>
 			</div>
 			<div class="join_box">
@@ -77,8 +77,7 @@ type="image/png"
 			<div class="join_box_carInfo">
 				<div class="join_title">브랜드</div>
 				<div id="name_input">
-					<select id="i_carbrand" name="i_carbrand" onchange="selectBrand()">
-						<option value="">--브랜드를 선택해주세요--</option>
+					<select id="mc_brand" name="mc_brand" onchange="selectBrand()">
 						<option value="Hyundai">현대</option>
 						<option value="Kia">기아</option>
 						<option value="GM Korea">GM 대한민국</option>
@@ -86,18 +85,13 @@ type="image/png"
 						<option value="SsangYong">쌍용</option>
 						<option value="BMW Korea">BMW 대한민국</option>
 						<option value="Mercedes-Benz Korea">메르세데스-벤츠 코리아</option>
-						<option value="Audi Korea">아우디 코리아</option>
-						<option value="Volkswagen Korea">폭스바겐 코리아</option>
-						<option value="Toyota">도요타</option>
-						<option value="Honda">혼다</option>
-						<option value="Nissan">니산</option>
 					</select>
 				</div>
 			</div>
 			<div class="join_box_carInfo">
 				<div class="join_title">차량모델</div>
 				<div id="name_input">
-					<select id="i_carname" name="i_carname">
+					<select id="mc_carname" name="mc_carname">
 						<optgroup label="Hyundai">
 							<option value="그랜저">그랜저</option>
 							<option value="소나타">소나타</option>
@@ -153,13 +147,13 @@ type="image/png"
 			<div class="join_box_carInfo">
 				<div class="join_title">연식</div>
 				<div id="name_input">
-					<input name="i_caryear">
+					<input name="mc_year" maxlength="4" type="number">
 				</div>
 			</div>
 			<div class="join_box_carInfo">
 				<div class="join_title">차량번호</div>
 				<div id="name_input">
-					<input name="i_carnum">
+					<input name="mc_number">
 				</div>
 			</div>
 

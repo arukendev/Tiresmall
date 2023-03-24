@@ -39,6 +39,30 @@ public interface AdminTireMapper {
 
 	TireDTO getTireGroupDetail(int tg_id);
 
-	int tireSizeDelete(int ti_tg_id);
+	int tireSizeDelete(int ti_id);
+	
+	int tireNameChage(TireDTO tDTO);
+
+	int tireTextChage(TireDTO tDTO);
+
+	int tireSizeChage(TireDTO tDTO);
+
+	int tireMarckingChange(TireDTO tDTO);
+
+	int tirePriceChange(TireDTO tDTO);
+
+	int tireStockChange(TireDTO tDTO);
+
+	int tireBrandPrintOnOff(TireDTO tDTO);
+
+	int tireSBrandNameChange(TireDTO tDTO);
+
+	int tireGroupDcrateChange(TireDTO tDTO);
+
+	int tireBrandOrderChange(TireDTO tDTO);
+
+	int regTireBrand(TireDTO tDTO);
+
+	int adminTireSizeNewInsertReg(TireDTO tDTO);
 
 }

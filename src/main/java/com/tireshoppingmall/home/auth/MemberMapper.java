@@ -8,7 +8,7 @@ public interface MemberMapper {
 
 	int regMember(MemberDTO mDTO);
 
-	int checkMember(MemberDTO mDTO);
+	String checkMember(MemberDTO mDTO);
 
 	int checkIDkko(String kakaoID);
 
@@ -19,6 +19,16 @@ public interface MemberMapper {
 	int regMemberSocial(MemberDTO mDTO);
 
 	List<OrderDTO> getMyOrder(AuthUserDTO aDTO);
+
+
+	int checkPw(MemberDTO mDTO);
+
+	int deleteMember(int u_no);
+
+	int updateInfo(MemberDTO mDTO);
+
+	String idFind(String name, int phoneNum);
+
 
 
 }

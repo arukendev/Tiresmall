@@ -83,7 +83,7 @@
     color: white;
     font-family: GmarketSansMedium;
     cursor: pointer; 
-  user-select: none;	
+  	user-select: none;	
 }
 
 #admin_tire_reg{
@@ -139,7 +139,7 @@
 	width: 5%;
 }
 .admin_tire_brand{
-	width: 18%;
+	width: 16%;
 }
 .admin_tire_name{
 	width: 31%;
@@ -153,11 +153,14 @@
 .admin_tire_SUVPrint{
 	width:8%;
 }
-.authadmin_tire_sizeNum_date{
-	width:10%;
+.admin_tire_dcrate{
+	width:8%;
+}
+.admin_tire_sizeNum_date{
+	width: 6%;
 }
 .admin_tire_management{
-	width: 12%;
+	width: 10%;
 }
 
 
@@ -174,6 +177,15 @@
 	padding-top: 3px;
 	border: 1px solid #343a40;	
 }
+
+.admin_tire_dcrate_input{
+	width:42px;
+	font-family: GmarketSansMedium;
+	font-size: 17pt;
+	text-align: right;
+	border: none;
+}
+
 
 .admin_printBTN{
 	border-radius:7px;

@@ -122,6 +122,11 @@ public class AuthController {
 			return "redirect: board.qna.check";
 		}
 		
+		
+		
+		
+		
+		
 	}
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logoutDo(MemberDTO mDTO, HttpServletRequest req) {
@@ -131,17 +136,65 @@ public class AuthController {
 		req.setAttribute("content", "main/home/home.jsp");
 		return "index";
 	}
+	
+	@RequestMapping(value = "/updateInfo", method = RequestMethod.GET)
+	public String updateInfo(MemberDTO mDTO, HttpServletRequest req,Model model,AuthUserDTO aDTO) {
+		
+		if (mDAO.loginCheck( req)) {
+			AuthUserDTO m = (AuthUserDTO) req.getSession().getAttribute("loginMember");
+			mDTO.setU_id(m.getU_id());
+			
+			 System.out.println(mDAO.updateInfo(mDTO)); 
+			if (mDAO.updateInfo(mDTO)>=1) {
+
+				
+					lsDAO.login(m.getU_id(), req);
+					aDTO = (AuthUserDTO) req.getSession().getAttribute("loginMember");
+					model.addAttribute("content", "main/auth/myProfile.jsp");
+					model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> myProfile");
+					model.addAttribute("board_whereAmITwo", "나의 회원정보");
+//		    	System.out.println(aDTO.getMc_brand());
+//		    	System.out.println(aDTO.getMc_carname());
+//		    	System.out.println(aDTO.getMc_number());
+//		    	System.out.println(aDTO.getMc_year());
+					model.addAttribute("personalInfomation",aDTO);
+					model.addAttribute("profile_contents", "profileInfo.jsp");
+					return "index";
+				
+				
+				
+				
+				
+			}
+		}
+		
+		req.setAttribute("content", "main/home/home.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "/deleteMember", method = RequestMethod.GET)
+	public String deleteMember(MemberDTO mDTO, HttpServletRequest req) {
+		int u_no = Integer.parseInt(req.getParameter("u_no"));
+		if (mDAO.loginCheck(req)) {
+			mDAO.deleteMember(req,u_no);
+			req.setAttribute("content", "main/home/home.jsp");
+			return "index";
+		}
+		req.setAttribute("content", "main/home/home.jsp");
+		return "index";
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "/authReg.go", method = RequestMethod.GET)
 	public String authRegGo(HttpServletRequest req) {
 		
-		String socialID = req.getParameter("socialID");
-	
-		//소셜로그인으로 회원가입하는 경우
-		if (!(socialID.equals(""))) {
-			req.setAttribute("socialID", socialID);
-			return "main/auth/authRegSocial";
-		}
 		return "main/auth/authReg";
+	}
+	@RequestMapping(value = "/authRegSocial.go", method = RequestMethod.GET)
+	public String authRegSOGo(HttpServletRequest req,MemberDTO mDTO) {
+		System.out.println(req.getParameter("socialID"));
+		return "main/auth/authRegSocial";
 	}
 	
 	
@@ -171,6 +224,25 @@ public class AuthController {
 	
 	
 	
+	@ResponseBody
+	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
+	public int idCheck(@RequestParam("id") String id,Model model) {
+		
+		int cnt = lsDAO.checkIdkko(id);
+		System.out.println("cnt : " + cnt);
+		return cnt;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/idFind", method = RequestMethod.POST)
+	public String idFind(HttpServletRequest req) {
+		String name = req.getParameter("i_name");
+		int phoneNum = Integer.parseInt(req.getParameter("i_phoneNum"));
+		System.out.println("name" + name);
+		System.out.println("num" + name);
+		String findID= mDAO.idFind(name,phoneNum);
+		System.out.println("findID : " + findID);
+		return findID;
+	}
 	
 	@RequestMapping(value = "/findEmail.go", method = RequestMethod.GET)
 	public String findEmailGo(Model model) {
@@ -193,7 +265,7 @@ public class AuthController {
 	@RequestMapping(value = "/login/oauth_kakao")
 	public String oauthKakao(
 			@RequestParam(value = "code", required = false) String code
-			, Model model,HttpServletRequest req,RedirectAttributes rttr) throws Exception {
+			, Model model,HttpServletRequest req,RedirectAttributes rttr,MemberDTO mDTO) throws Exception {
 
 		System.out.println("#########" + code);
         String access_Token = lsDAO.getAccessToken(code);
@@ -202,8 +274,8 @@ public class AuthController {
         
         HashMap<String, Object> userInfo = lsDAO.getUserInfo(access_Token);
        //System.out.println("###access_Token#### : " + access_Token);
-       // System.out.println("###userInfo#### : " + userInfo.get("email"));
-       // System.out.println("###nickname#### : " + userInfo.get("nickname"));
+        System.out.println("###userInfo#### : " + userInfo.get("email"));
+        System.out.println("###nickname#### : " + userInfo.get("nickname"));
        System.out.println("###KAKAOID#### : " + userInfo.get("kakaoID"));
        
         JsonObject kakaoInfo =  new JsonObject();
@@ -220,9 +292,9 @@ public class AuthController {
         	model.addAttribute("content", "main/home/home.jsp");
                return "redirect:/"; //본인 원하는 경로 설정
 		}else {
-			//필요한 추가 정보를 얻기 위한 회원가입 페이지로 이동
+			
 			rttr.addFlashAttribute("socialID", socialID);
-			return "redirect:/authTermsOfUse.go";
+			return "redirect:/authRegSocial.go";
 		}
         
        
@@ -261,7 +333,18 @@ public class AuthController {
         mDTO.setU_id(id);
         mDTO.setI_name(name);
         mDTO.setI_phoneNum(phoneNum);
-        mDTO.setU_logintype("3");//소셜로그인 네이버의 경우 3
+        mDTO.setU_logintype("3");
+        mDTO.setMc_brand("empty");
+        mDTO.setMc_carname("empty");
+        mDTO.setMc_number("empty");
+        mDTO.setMc_year("2014");
+        
+        
+        
+        
+        
+        
+      //소셜로그인 네이버의 경우 3
 //        System.out.println("테스트"+email);
 //        System.out.println("테스트"+id);
 //        System.out.println("테스트"+ mobile);
@@ -274,6 +357,7 @@ public class AuthController {
         
       //반환값이 1이면 기존 가입한 회원, 0이면 가입하지 않은 회원
         if (lsDAO.checkIdkko(id)==1) {
+        	System.out.println("로그인 성공");
         	lsDAO.login(id,req);
         	mDAO.loginCheck(req);   
         	model.addAttribute("content", "main/home/home.jsp");
@@ -312,6 +396,10 @@ public class AuthController {
     	model.addAttribute("board_whereAmITwo", "나의 회원정보");
     	
     	aDTO = (AuthUserDTO) req.getSession().getAttribute("loginMember");
+    	System.out.println(aDTO.getMc_brand());
+    	System.out.println(aDTO.getMc_carname());
+    	System.out.println(aDTO.getMc_number());
+    	System.out.println(aDTO.getMc_year());
     	model.addAttribute("personalInfomation",aDTO);
     	model.addAttribute("profile_contents", "profileInfo.jsp");
     	

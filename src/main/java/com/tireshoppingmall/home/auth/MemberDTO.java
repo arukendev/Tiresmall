@@ -8,21 +8,20 @@ public class MemberDTO {
 	private String i_phoneNum;
 	private String i_email;
 	private String u_logintype;
-	private String i_carbrand;
-	private String i_carname;
-	private String i_caryear;
-	private String i_carnum;
+	private String mc_brand;
+	private String mc_carname;
+	private String mc_year;
+	private String mc_number;
 	
 	
 	public MemberDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
+
+
 	public MemberDTO(String u_id, String pw_password, String i_name, String i_phoneNum, String i_email,
-			String u_logintype, String i_carbrand, String i_carname, String i_caryear, String i_carnum) {
+			String u_logintype, String mc_brand, String mc_carname, String mc_year, String mc_number) {
 		super();
 		this.u_id = u_id;
 		this.pw_password = pw_password;
@@ -30,12 +29,11 @@ public class MemberDTO {
 		this.i_phoneNum = i_phoneNum;
 		this.i_email = i_email;
 		this.u_logintype = u_logintype;
-		this.i_carbrand = i_carbrand;
-		this.i_carname = i_carname;
-		this.i_caryear = i_caryear;
-		this.i_carnum = i_carnum;
+		this.mc_brand = mc_brand;
+		this.mc_carname = mc_carname;
+		this.mc_year = mc_year;
+		this.mc_number = mc_number;
 	}
-
 
 
 	public String getU_id() {
@@ -43,11 +41,9 @@ public class MemberDTO {
 	}
 
 
-
 	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
-
 
 
 	public String getPw_password() {
@@ -55,11 +51,9 @@ public class MemberDTO {
 	}
 
 
-
 	public void setPw_password(String pw_password) {
 		this.pw_password = pw_password;
 	}
-
 
 
 	public String getI_name() {
@@ -67,11 +61,9 @@ public class MemberDTO {
 	}
 
 
-
 	public void setI_name(String i_name) {
 		this.i_name = i_name;
 	}
-
 
 
 	public String getI_phoneNum() {
@@ -79,11 +71,9 @@ public class MemberDTO {
 	}
 
 
-
 	public void setI_phoneNum(String i_phoneNum) {
 		this.i_phoneNum = i_phoneNum;
 	}
-
 
 
 	public String getI_email() {
@@ -91,11 +81,9 @@ public class MemberDTO {
 	}
 
 
-
 	public void setI_email(String i_email) {
 		this.i_email = i_email;
 	}
-
 
 
 	public String getU_logintype() {
@@ -103,60 +91,53 @@ public class MemberDTO {
 	}
 
 
-
 	public void setU_logintype(String u_logintype) {
 		this.u_logintype = u_logintype;
 	}
 
 
-
-	public String getI_carbrand() {
-		return i_carbrand;
+	public String getMc_brand() {
+		return mc_brand;
 	}
 
 
-
-	public void setI_carbrand(String i_carbrand) {
-		this.i_carbrand = i_carbrand;
+	public void setMc_brand(String mc_brand) {
+		this.mc_brand = mc_brand;
 	}
 
 
-
-	public String getI_carname() {
-		return i_carname;
+	public String getMc_carname() {
+		return mc_carname;
 	}
 
 
-
-	public void setI_carname(String i_carname) {
-		this.i_carname = i_carname;
+	public void setMc_carname(String mc_carname) {
+		this.mc_carname = mc_carname;
 	}
 
 
-
-	public String getI_caryear() {
-		return i_caryear;
+	public String getMc_year() {
+		return mc_year;
 	}
 
 
-
-	public void setI_caryear(String i_caryear) {
-		this.i_caryear = i_caryear;
+	public void setMc_year(String mc_year) {
+		this.mc_year = mc_year;
 	}
 
 
-
-	public String getI_carnum() {
-		return i_carnum;
+	public String getMc_number() {
+		return mc_number;
 	}
 
 
-
-	public void setI_carnum(String i_carnum) {
-		this.i_carnum = i_carnum;
+	public void setMc_number(String mc_number) {
+		this.mc_number = mc_number;
 	}
-
-
+	
+	
+	
+	
 
 
 
