@@ -14,7 +14,17 @@ function clickToSetBoardEventModalCookie() {
 	setBoardEventModalCookie("boardEventModalCookie", "done" , 1);	// 쿠키명 , 쿠키값 , 기간(1=>하루)
 }
 
+let val = 0;
+$(".dialog_val").each(function(i,el) {
+	val += parseInt($(el).val());
+	if (val > 0) {
+		return;
+	}
+});
+
 if (document.cookie.indexOf("boardEventModalCookie=done") < 0){ 
-	const dialog = document.querySelector(".board_event_modal_dialog");
-	dialog.showModal();
+	if (val > 0) {
+		const dialog = document.querySelector(".board_event_modal_dialog");
+		dialog.showModal();
+	}
 }

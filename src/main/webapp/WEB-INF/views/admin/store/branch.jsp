@@ -35,24 +35,25 @@
 		<div class="branch-findarea">
 
 			<form action="branch.search.branchname">
-				<div class="branch-text1">주소 선택</div>
-
-				<select name="b_area1" id="listsido1">
+		
+<div class="branch_searcharea" style="float: left;">
+				주소 <select name="b_area1" id="listsido1" style="margin-left: 20px;">
 				</select> <select name="b_area2" id="listgugun1"></select> <input
 					name="branchnameInput" value="" type="hidden">
-				<button class="branch-findareabutton">주소 검색</button>
-
+</div>
+				<button class="branch-findareabutton" style="float: left; ">주소 검색</button>
 			</form>
 		</div>
-		<div class="branch-text2" style="float: left;">장착점명</div>
-
+	
 		<form name="branchsearchform" action="branch.search.branchname">
-
+<div class="branch_searcharea" style="float: left; margin-left: 20px;">
+				장착점명
 			<input name="branchnameInput"
-				style="text-align: center; height: 38px;"
+				style="text-align: center;"
 				onkeypress="JavaScript:press(this.form)"> <input
 				name="branchareaInput" value="" type="hidden">
-			<button class="branchsearchButton" style="float: right;">장착점명
+				</div>
+			<button class="branchsearchButton" style="float: left;">장착점명
 				검색</button>
 
 		</form>
@@ -102,7 +103,7 @@
 					'${b.b_name }','${b.b_time }',
 					'${b.b_service }','${b.b_mapdata }','${b.b_manager }',
 					'${b.b_managernumber}','${b.b_branchname}','${b.b_branchnumber}',
-					'${b.b_cr}','${b.b_email}')">수정</button>
+					'${b.b_cr}','${b.b_email}','${b.b_file }')">수정</button>
 					<button type="button" class="updatebranchbutton"
 					id="updatebranch('${b.b_id}')" onclick="deletebranch('${b.b_id}')">삭제</button>
 						</td>
@@ -114,38 +115,27 @@
 	
 			
 
-	<c:if test="${empty branchs}">
-		<table>
-			<tr>
-				<td colspan="5" style="text-align: center;">데이터가 존재하지않습니다.</td>
-			</tr>
-		</table>
-	</c:if>
-
-
 	
 	
 	
 	
-	<div id="paging-box" class="branch-paging-box">
+	<div id="paging-box">
 		<c:if test="${curPage != 1 }">
-			<a href="branch.page.change?p=${curPage - 1 }">이전</a>
+			<a style="color: black;" href="branch.page.change?p=${curPage - 1 }">이전</a>
 		</c:if>
 
 		<c:forEach var="page" begin="1" end="${pageCount }">
 			<c:choose>
-				<c:when
-					test="${page eq param.p or (curPage == 1 and curPage == page)}">
-					<a style="color: black" href="branch.page.change?p=${page }">${page }
-					</a>
-				</c:when>
-				<c:otherwise>
-					<a href="branch.page.change?p=${page }">${page } </a>
-				</c:otherwise>
-			</c:choose>
+					<c:when test="${page eq param.p or (curPage == 1 and curPage == page)}">
+						<a style="color:white; background-color: #333;" href="notice.page.change?p=${page }">${page } </a>
+					</c:when>
+					<c:otherwise>
+						<a style="color: black;" href="branch.page.change?p=${page }">${page } </a>
+					</c:otherwise>
+				</c:choose>
 		</c:forEach>
 		<c:if test="${curPage != pageCount }">
-			<a href="branch.page.change?p=${curPage + 1 }">다음</a>
+			<a style="color: black;" href="branch.page.change?p=${curPage + 1 }">다음</a>
 		</c:if>
 	</div>
 	
@@ -361,7 +351,9 @@
 						
     <div class="preview-image" style="float: left;">
       <div class="upload-display" style="float: left;">
-        <div class="upload-thumb-wrap" style="float: left;"><img class="update-upload-thumb"></div>
+        <div class="upload-thumb-wrap" style="float: left;">
+         <div><img class="b_img_css" id="branchImg" src="resources/web/(기존에 저장된 파일명)"></div>
+        <div><img class="update-upload-thumb"></div></div>
       </div>
     </div>
     <div class="updatefileinputstyle" style="float: left; margin-top: 20px;"></div>

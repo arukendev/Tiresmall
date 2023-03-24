@@ -81,7 +81,7 @@ $('document').ready(
 
 
 function updatebranch(id, sortation, area, addr, name, time, service, mapdata,
-	    manager, managernumber, branchname, branchnumber, cr, email) {
+	    manager, managernumber, branchname, branchnumber, cr, email,b_file) {
 
 
 
@@ -108,7 +108,7 @@ function updatebranch(id, sortation, area, addr, name, time, service, mapdata,
 	    $('#b_branchnumber_i').val(branchnumber);
 	    $('#b_cr_i').val(cr);
 	    $('#b_email_i').val(email);
-	   
+	    $('.updatefileinputstyle').html(b_file);
 	    
 	    var areaArray = area.split("\t");
 	    var sido = areaArray[0];
@@ -122,14 +122,25 @@ function updatebranch(id, sortation, area, addr, name, time, service, mapdata,
 	      })
 	      .prop("selected", true);
 
+	    const branchImg = document.getElementById('branchImg');
+	    branchImg.src = `resources/web/${b_file}`;
 
-	    console.log(areaArray);
-	    console.log("sido : " + sido);
-	    console.log("@@@@@@WWWWW@@@@@@@@@");
-	    console.log("gugun : " + gugun);
-	    console.log("@@@@@@WWWWW@@@@@@@@@");
+	    document.querySelector('.update-upload-thumb').addEventListener('load', function() {
+			  document.getElementById('branchImg').style.display = 'none';
+			});
+	    
+	    
+		if (file) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      $(".preview-image .update-upload-thumb").attr("src", e.target.result);
+		    };
+		    reader.readAsDataURL(file);
+		  }
+
 	  }
 	
+
 
 
 function press(f){

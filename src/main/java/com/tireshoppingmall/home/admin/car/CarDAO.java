@@ -39,6 +39,8 @@ public class CarDAO {
 	
 	
 	private int allCarCount;
+
+
 	
 	public int getAllCarCount() {
 		return allCarCount;
@@ -107,21 +109,66 @@ public class CarDAO {
 	        e.printStackTrace();
 	    }
 	}
-
-	public void updateCar(MultipartFile file, CarDTO c, HttpServletRequest req) {
-		
-		
-		if (ss.getMapper(AdminCarMapper.class).updatecar(c) == 1) {
-			System.out.println("수정완료");
-		
-		
-	}else {
-		System.out.println("수정실패");
-		
-		
-	}
 	
+	
+public void updateCar(MultipartFile file, CarDTO c, HttpServletRequest req) {
+		
+		
+		
+		String fileRealName = c.getFile().getOriginalFilename(); 
+		long size = file.getSize(); 
+		
+		System.out.println("파일명 : "  + fileRealName);
+		System.out.println("용량크기(byte) : " + size);
+		
+		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
+		String uploadFolder = servletContext.getRealPath("resources/web");
+		
+		
+		UUID uuid = UUID.randomUUID();
+		System.out.println(uuid.toString());
+		String[] uuids = uuid.toString().split("-");
+		
+		String uniqueName = uuids[0];
+		System.out.println("생성된 고유문자열" + uniqueName);
+		System.out.println("확장자명" + fileExtension);
+		
+		
+
+		File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);  // 적용 후
+		
+	
+		try {
+			c.getFile().transferTo(saveFile);
+			c.setC_file(uniqueName+fileExtension);
+			AdminCarMapper mm = ss.getMapper(AdminCarMapper.class);
+			System.out.println("upload successed!");
+			req.setAttribute("fileName", uniqueName+fileExtension);
+			
+		
+			if (mm.updatecar(c) == 1) {
+				System.out.println(c);
+	            System.out.println("수정성공");
+	   
+	        } else {
+	        	System.out.println("수정실패");
+	            
+	        }
+
+	    } catch (IllegalStateException e) {
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
 	}
+
+
+	
+		
+		
+	
+	
+	
 
 	public void deletecar(CarDTO c, HttpServletRequest req) {
 		if (ss.getMapper(AdminCarMapper.class).deletecar(c) == 1) {
@@ -151,9 +198,9 @@ public class CarDAO {
 		SearchCarDTO search = (SearchCarDTO) req.getSession().getAttribute("cars");
 		int CarCount = 0;
 		
-		System.out.println("WWWWWWWWWWWWWWWW");
+	
 		System.out.println(search);
-		System.out.println("WWWWWWWWWWWWWWWW");
+
 		
 		if (search == null) {
 			System.out.println("null입니다");
@@ -173,9 +220,9 @@ public class CarDAO {
 			
 		}
 		List<CarDTO> Car = ss.getMapper(AdminCarMapper.class).getCarlists(search);
-		System.out.println("@@@@@@@@@@@@@");
+		
 		System.out.println(Car);
-		System.out.println("@@@@@@@@@@@@@");
+	
 		System.out.println(count);
 		System.out.println(allCarCount);
 		int pageCount = (int) Math.ceil(CarCount / (double) count);
@@ -237,17 +284,17 @@ public class CarDAO {
 
 	
 	public void getallCarBrands(Model m) {
-		System.out.println("!!!!!!!!!!!");
+		
 		m.addAttribute("carbrands", ss.getMapper(AdminCarMapper.class).getAllCarBrands());
-		System.out.println("!!!!!!!!!!!");
+	
 		
 	}
 
 	public void getallBrandCount(CarBrandDTO c,Model m) {
 		m.addAttribute("carcount", ss.getMapper(AdminCarMapper.class).getallBrandCount(c));
-		System.out.println("@@@@@@@@@@");
+		
 		System.out.println(m);
-		System.out.println("@@@@@@@@@@");
+	
 
 	
 	
@@ -272,12 +319,29 @@ public void updatebrand(CarBrandDTO c, HttpServletRequest req) {
 	
 	
 	if (mm.updatebrand(c) == 1) {
-		System.out.println("수정완료");
+	System.out.println(c);
+
 		mm.updatebrandcar(c);
+		System.out.println("수정완료");
 	}else {
 		System.out.println("수정실패");
 	}
 	
+}
+
+public int carprintOnOff(CarDTO c) {
+if (ss.getMapper(AdminCarMapper.class).carprintOnOff(c) == 1) {
+	System.out.println("**************************");
+	System.out.println(ss.getMapper(AdminCarMapper.class).carprintOnOff(c));
+	System.out.println("**************************");
+	return c.getC_print();
+}
+	
+	else {
+		
+	return 0;
+	
+}
 }
 	
 	

@@ -135,5 +135,7 @@
 #event-reg-btn-box{
 	min-width: 1300px;
 	height: 45px;
+	display: flex;
+    align-items: center;
 	background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
 }

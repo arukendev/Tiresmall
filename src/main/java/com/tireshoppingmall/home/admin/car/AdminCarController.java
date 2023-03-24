@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -161,6 +162,15 @@ public class AdminCarController {
 		return "admin/master";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/admin.car.print.onoff", method = RequestMethod.GET)
+	public int carprintOnOff(CarDTO c, HttpServletRequest req) {
+		
+		
+		return cDAO.carprintOnOff(c);
+		
+		
+	}
 	
 	
 	

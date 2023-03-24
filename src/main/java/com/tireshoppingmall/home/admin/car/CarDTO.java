@@ -12,10 +12,17 @@ public class CarDTO {
 	private String c_brand;
 	private String c_ft;
 	private String c_bt;
-	private String c_print;
+	private int c_print;
 	private MultipartFile file;
 	private String c_file;
 	
+	@Override
+	public String toString() {
+		return "CarDTO [c_id=" + c_id + ", c_name=" + c_name + ", c_year1=" + c_year1 + ", c_year2=" + c_year2
+				+ ", c_option=" + c_option + ", c_brand=" + c_brand + ", c_ft=" + c_ft + ", c_bt=" + c_bt + ", c_print="
+				+ c_print + ", file=" + file + ", c_file=" + c_file + "]";
+	}
+
 	public String getC_id() {
 		return c_id;
 	}
@@ -80,14 +87,11 @@ public class CarDTO {
 		this.c_bt = c_bt;
 	}
 
-	
-	
-
-	public String getC_print() {
+	public int getC_print() {
 		return c_print;
 	}
 
-	public void setC_print(String c_print) {
+	public void setC_print(int c_print) {
 		this.c_print = c_print;
 	}
 
@@ -108,7 +112,7 @@ public class CarDTO {
 	}
 
 	public CarDTO(String c_id, String c_name, String c_year1, String c_year2, String c_option, String c_brand,
-			String c_ft, String c_bt, String c_fta, String c_bta, String c_print, MultipartFile file, String c_file) {
+			String c_ft, String c_bt, int c_print, MultipartFile file, String c_file) {
 		super();
 		this.c_id = c_id;
 		this.c_name = c_name;
@@ -128,5 +132,6 @@ public class CarDTO {
 		// TODO Auto-generated constructor stub
 	}
 	
+
 	
 }

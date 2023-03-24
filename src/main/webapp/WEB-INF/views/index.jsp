@@ -179,7 +179,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   >FAQ</a
                 >
                 <a class="index_dropBoard_a" href="board.qna.check">1:1 문의</a>
-                <a class="index_dropBoard_a" href="board.notice.read">공지사항</a>
+                <a class="index_dropBoard_a" href="board.notice.read"
+                  >공지사항</a
+                >
                 <a class="index_dropBoard_a" href="board.event">이벤트</a>
               </div>
               <div class="index_dropMenu_img">

@@ -54,9 +54,6 @@ public class EventDAO {
 
 		if (search == null) {
 			search = new SearchDTO();
-//			search.setTitleInput("");
-//			search.setNameInput("");
-//			search.setIdInput("");
 			search.setStart(new BigDecimal(start));
 			search.setEnd(new BigDecimal(end));
 			eventCount = allEventCount;
@@ -65,6 +62,8 @@ public class EventDAO {
 			search.setEnd(new BigDecimal(end));
 			eventCount = ss.getMapper(AdminBoardMapper.class).getEventCount(search);
 		}
+		System.out.println(eventCount);
+		System.out.println(pageNo);
 		List<EventDTO> event = ss.getMapper(AdminBoardMapper.class).getEvent(search);
 		int pageCount = (int) Math.ceil(eventCount / (double) count);
 		req.setAttribute("pageCount", pageCount);
@@ -119,8 +118,8 @@ public class EventDAO {
 				e.printStackTrace();
 			}
 		}
-		int cnt = new StringTokenizer(sb.toString(), "!").countTokens();
-		if (cnt == 1) {
+		String type = mf.getParameter("e_type");
+		if (type.equals("main-btn")) {
 			eventDto.setE_mainimg(sb.toString().replace("!", ""));
 		} else {
 			eventDto.setE_mainimg(null);
@@ -130,13 +129,18 @@ public class EventDAO {
 		System.out.println(sb.toString());
 		System.out.println(eventDto.toString());
 		if (ss.getMapper(AdminBoardMapper.class).eventUpdate(eventDto) == 1) {
-			if (mainimg_old != eventDto.getE_mainimg() && eventDto.getE_mainimg() != null) {
+			
+			System.err.println(mainimg_old);
+			System.err.println(eventDto.getE_mainimg());
+			
+			if (type.equals("main-btn")) {
 				new File(path + mainimg_old).delete();
 				return eventDto.getE_mainimg();
-			} else if (detailimg_old != eventDto.getE_detailimg()) {
+			} else {
 				System.out.println("삭제 되니?");
 				String[] dio = detailimg_old.split("!");
 				for (String d : dio) {
+					System.out.println(d);
 					new File(path + d).delete();
 				}
 				return eventDto.getE_detailimg();

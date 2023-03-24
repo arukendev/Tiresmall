@@ -159,9 +159,9 @@ public class BoardController {
 		return "index";
 	}
 	
-	/*
 	@RequestMapping(value = "/board.notice.read", method = RequestMethod.GET)
 	public String boardNoticeRead(HttpServletRequest req, Model model) {
+		req.getSession().setAttribute("NoticeIroiro", null);
 		bnDAO.readNotice(1, req);
 		
 		model.addAttribute("content", "main/board/board.jsp");
@@ -182,8 +182,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/board.notice.readdetail", method = RequestMethod.GET)
-	public String boardNoticeReaddetail(BoardQnaDTO bq, HttpServletRequest req, Model model) {
-		bnDAO.readdetailNotice(bq, req);
+	public String boardNoticeReaddetail(BoardNoticeDTO bn, HttpServletRequest req, Model model) {
+		bnDAO.readdetailNotice(bn, req);
 		
 		model.addAttribute("content", "main/board/board.jsp");
 		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 공지사항");
@@ -191,7 +191,6 @@ public class BoardController {
 		model.addAttribute("board_contents", "board_notice_readdetail.jsp");
 		return "index";
 	}
-	 * */
 	
 	@RequestMapping(value = "/board.event", method = RequestMethod.GET)
 	public String boardEvent(Model model) {

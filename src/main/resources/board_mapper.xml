@@ -133,8 +133,62 @@
 	</delete>
 	
 	
+	<select id="getNoticeCount" resultType="java.lang.Integer">
+		select count(*)
+		from notice
+	</select>
+	<select id="readNotice" resultType="com.tireshoppingmall.home.board.BoardNoticeDTO">
+		select *
+        from (
+			select	rownum as rownumber,
+					n_no,
+					n_title,
+					n_date
+			from (
+				select *
+				from notice
+			)
+        )
+        where rownumber &gt;= #{begin} and rownumber &lt;= #{last}
+	</select>
 	
+	<select id="readdetailNotice" resultType="com.tireshoppingmall.home.board.BoardNoticeDTO">
+		select *
+		from notice
+		where n_no = #{n_no}
+	</select>
+	
+	
+	<!-- 
+	<select id="getEventCount" resultType="java.lang.Integer">
+		select count(*)
+		from event
+	</select>
+	 -->
 	<select id="readEvent" resultType="com.tireshoppingmall.home.board.BoardEventDTO">
-		select * from event
+		select *
+		from event
+	</select>
+	<!-- 
+	<select id="readEvent" resultType="com.tireshoppingmall.home.board.BoardEventDTO">
+		select *
+        from (
+			select	rownum as rownumber,
+					e_no,
+					e_title,
+					e_status
+			from (
+				select *
+				from event
+			)
+        )
+        where rownumber &gt;= #{begin} and rownumber &lt;= #{last}
+	</select>
+	-->
+	
+	<select id="readdetailEvent" resultType="com.tireshoppingmall.home.board.BoardEventDTO">
+		select *
+		from event
+		where e_no = #{e_no}
 	</select>
 </mapper>
