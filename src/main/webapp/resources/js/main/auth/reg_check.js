@@ -192,7 +192,7 @@ function joinCheck() {
     
     
 	
-	
+    $("#i_email").attr("disabled", false);
 	return ture;
 };	
 

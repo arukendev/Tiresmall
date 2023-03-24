@@ -25,5 +25,7 @@ public interface MemberMapper {
 
 	int deleteMember(int u_no);
 
+	int updateInfo(MemberDTO mDTO);
+
 
 }

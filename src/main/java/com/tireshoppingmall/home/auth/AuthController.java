@@ -137,12 +137,37 @@ public class AuthController {
 		return "index";
 	}
 	
-	@ResponseBody
 	@RequestMapping(value = "/updateInfo", method = RequestMethod.GET)
-	public String updateInfo(MemberDTO mDTO, HttpServletRequest req) {
+	public String updateInfo(MemberDTO mDTO, HttpServletRequest req,Model model,AuthUserDTO aDTO) {
 		
-		mDAO.logout(req);
-		mDAO.loginCheck( req);
+		if (mDAO.loginCheck( req)) {
+			AuthUserDTO m = (AuthUserDTO) req.getSession().getAttribute("loginMember");
+			mDTO.setU_id(m.getU_id());
+			
+			 System.out.println(mDAO.updateInfo(mDTO)); 
+			if (mDAO.updateInfo(mDTO)>=1) {
+
+				
+					lsDAO.login(m.getU_id(), req);
+					aDTO = (AuthUserDTO) req.getSession().getAttribute("loginMember");
+					model.addAttribute("content", "main/auth/myProfile.jsp");
+					model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> myProfile");
+					model.addAttribute("board_whereAmITwo", "나의 회원정보");
+//		    	System.out.println(aDTO.getMc_brand());
+//		    	System.out.println(aDTO.getMc_carname());
+//		    	System.out.println(aDTO.getMc_number());
+//		    	System.out.println(aDTO.getMc_year());
+					model.addAttribute("personalInfomation",aDTO);
+					model.addAttribute("profile_contents", "profileInfo.jsp");
+					return "index";
+				
+				
+				
+				
+				
+			}
+		}
+		
 		req.setAttribute("content", "main/home/home.jsp");
 		return "index";
 	}
@@ -290,10 +315,10 @@ public class AuthController {
         mDTO.setI_name(name);
         mDTO.setI_phoneNum(phoneNum);
         mDTO.setU_logintype("3");
-        mDTO.setI_carbrand("empty");
-        mDTO.setI_carname("empty");
-        mDTO.setI_carnum("empty");
-        mDTO.setI_caryear("2014");
+        mDTO.setMc_brand("empty");
+        mDTO.setMc_carname("empty");
+        mDTO.setMc_number("empty");
+        mDTO.setMc_year("2014");
         
         
         
@@ -352,10 +377,10 @@ public class AuthController {
     	model.addAttribute("board_whereAmITwo", "나의 회원정보");
     	
     	aDTO = (AuthUserDTO) req.getSession().getAttribute("loginMember");
-    	System.out.println(aDTO.getI_carbrand());
-    	System.out.println(aDTO.getI_carname());
-    	System.out.println(aDTO.getI_carnum());
-    	System.out.println(aDTO.getI_caryear());
+    	System.out.println(aDTO.getMc_brand());
+    	System.out.println(aDTO.getMc_carname());
+    	System.out.println(aDTO.getMc_number());
+    	System.out.println(aDTO.getMc_year());
     	model.addAttribute("personalInfomation",aDTO);
     	model.addAttribute("profile_contents", "profileInfo.jsp");
     	

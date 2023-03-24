@@ -38,10 +38,10 @@ public class MemberDAO {
 	private SqlSession ss;
 	
 	public void regMember(HttpServletRequest req, MemberDTO mDTO) {
-		System.out.println("값-------"+mDTO.getI_carnum());
+		System.out.println("값-------"+mDTO.getMc_number());
 		if(ss.getMapper(MemberMapper.class).regMember(mDTO)>=3) {
 			System.out.println("가입성공");
-			System.out.println(mDTO.getI_caryear());
+			System.out.println(mDTO.getMc_year());
 			req.setAttribute("resultMem", "가입성공");
 		}else {
 			req.setAttribute("resultMem", "가입실패");
@@ -58,7 +58,7 @@ public class MemberDAO {
 		System.out.println("0--------!!"+checkMemberInDB);
 		if (checkMemberInDB != null ) {
 			System.out.println("-----------아이디 성공");
-				System.out.println("값이 뭘까"+mDTO.getI_carnum() +"이사이에");
+				System.out.println("값이 뭘까"+mDTO.getMc_number() +"이사이에");
 				if (checkMemberInDB.equals(mDTO.getPw_password())) {
 					System.out.println("비밀번호 성공");
 					AuthUserDTO member = ss.getMapper(MemberMapper.class).getMember(mDTO);
@@ -169,6 +169,11 @@ public class MemberDAO {
 		
 		
 		
+	}
+
+	public int updateInfo(MemberDTO mDTO) {
+		
+		return ss.getMapper(MemberMapper.class).updateInfo(mDTO);
 	}
 
 	

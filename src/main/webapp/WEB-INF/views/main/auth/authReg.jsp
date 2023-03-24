@@ -77,7 +77,7 @@ type="image/png"
 			<div class="join_box_carInfo">
 				<div class="join_title">브랜드</div>
 				<div id="name_input">
-					<select id="i_carbrand" name="i_carbrand" onchange="selectBrand()">
+					<select id="mc_brand" name="mc_brand" onchange="selectBrand()">
 						<option value="Hyundai">현대</option>
 						<option value="Kia">기아</option>
 						<option value="GM Korea">GM 대한민국</option>
@@ -85,18 +85,13 @@ type="image/png"
 						<option value="SsangYong">쌍용</option>
 						<option value="BMW Korea">BMW 대한민국</option>
 						<option value="Mercedes-Benz Korea">메르세데스-벤츠 코리아</option>
-						<option value="Audi Korea">아우디 코리아</option>
-						<option value="Volkswagen Korea">폭스바겐 코리아</option>
-						<option value="Toyota">도요타</option>
-						<option value="Honda">혼다</option>
-						<option value="Nissan">니산</option>
 					</select>
 				</div>
 			</div>
 			<div class="join_box_carInfo">
 				<div class="join_title">차량모델</div>
 				<div id="name_input">
-					<select id="i_carname" name="i_carname">
+					<select id="mc_carname" name="mc_carname">
 						<optgroup label="Hyundai">
 							<option value="그랜저">그랜저</option>
 							<option value="소나타">소나타</option>
@@ -152,13 +147,13 @@ type="image/png"
 			<div class="join_box_carInfo">
 				<div class="join_title">연식</div>
 				<div id="name_input">
-					<input name="i_caryear" maxlength="4" type="number">
+					<input name="mc_year" maxlength="4" type="number">
 				</div>
 			</div>
 			<div class="join_box_carInfo">
 				<div class="join_title">차량번호</div>
 				<div id="name_input">
-					<input name="i_carnum">
+					<input name="mc_number">
 				</div>
 			</div>
 
