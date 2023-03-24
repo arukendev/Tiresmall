@@ -62,7 +62,7 @@
 						<td class="admin_car_table_td"> ${cb.cb_order }</td>
 						<td class="admin_car_table_td">
 							<button type="button"  class ="updatecarbrandbutton" onclick="updatecb1('${cb.cb_name}','${cb.cb_order }')">수정</button>
-            <button type="button"   class ="updatecarbrandbutton" onclick="deletecb1('${cb.cb_name}')">삭제</button>
+            <button type="button"   class ="deletecarbrandbutton" onclick="deletecb1('${cb.cb_name}')">삭제</button>
 							</td>
 					
 					</tr>

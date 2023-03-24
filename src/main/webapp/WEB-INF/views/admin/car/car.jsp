@@ -148,7 +148,7 @@ function addSize2() {
 					'${c.c_year1 }','${c.c_year2 } ',
 					'${c.c_option }','${c.c_brand }',
 					'${c.c_ft }','${c.c_bt }','${c.c_print}','${c.c_file }')">수정</button>
-					<button type="button" class="updatecarbutton"
+					<button type="button" class="deletecarbutton"
 					id="updatecar('${c.c_id}')" onclick="deletecar('${c.c_id}')">삭제</button>
 						</td>
 						

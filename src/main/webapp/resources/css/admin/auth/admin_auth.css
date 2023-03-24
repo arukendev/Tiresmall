@@ -82,19 +82,33 @@
 }
 
 
+
 #searchBtn button{
-	display: flex;
-    background: #181C32;
-    margin-left: 20px;
-    border-radius: 5px;
-    border: 1px solid #000;
-    padding: 8px 10px;
-    font-size: 1em;
-    cursor: pointer;
-    color: white;
-    font-family: GmarketSansMedium;
-	user-select: none;	
+  background-color: #5F5F5F;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-left:20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin: 20px;
+  position: absolute;
+  top:60px;
 }
+
+#searchBtn button:hover {
+	 background-color: #FFFFFF;
+  color: #5F5F5F;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
 
 
 .auth_content_title{

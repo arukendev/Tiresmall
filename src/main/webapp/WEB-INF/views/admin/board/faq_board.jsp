@@ -81,8 +81,8 @@
 						<input name="titleInput" id="f_title" value="${searchVal }">
 					</div>
 					<div class="button_box">
-						<button id="searchBtn" class="noticeBtn color-1">검색</button>
-						<button type="button" class="noticeBtn color-2"
+						<button id="searchBtn" class="noticeregBtn">검색</button>
+						<button type="button" class="noticeregBtn"
 							id="faq_reg_modal">신규 등록</button>
 					</div>
 				</div>
@@ -95,7 +95,7 @@
 							<th class="th_head">구분</th>
 							<th class="th_head">제목</th>
 							<th class="th_head">게시일</th>
-							<th class="th_head"></th>
+							<th class="th_head">관리</th>
 						</tr>
 						<c:if test="${empty faqs}">
 							<tr>
