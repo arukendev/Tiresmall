@@ -3,71 +3,61 @@
 <mapper namespace="com.tireshoppingmall.home.auth.MemberMapper">
 
 <insert id="regMember"  parameterType="com.tireshoppingmall.home.auth.MemberDTO">
-	<choose>
-		<when test="i_carnum != ''">
 		insert all 
 		into auth_user values(auth_user_seq.nextval, #{u_id}, 1) 
 		into auth_password values(auth_user_seq.nextval , 'test' , #{pw_password}, sysdate)
 		into auth_userinfo values(auth_user_seq.nextval , #{i_name} ,#{i_phoneNum},sysdate, 1,#{i_email})
-		into my_car values(#{i_carnum, jdbcType=VARCHAR} , auth_user_seq.nextval ,#{i_carname, jdbcType=VARCHAR},
-		#{i_carbrand, jdbcType=VARCHAR}, #{i_caryear, jdbcType=VARCHAR} )
-		</when>
-		<otherwise>
-		insert all 
-		into auth_user values(auth_user_seq.nextval, #{u_id}, 1) 
-		into auth_password values(auth_user_seq.nextval , 'test' , #{pw_password}, sysdate)
-		into auth_userinfo values(auth_user_seq.nextval , #{i_name} ,#{i_phoneNum},sysdate, 1,#{i_email})
-		</otherwise>
-	</choose>
+		into my_car values(#{mc_number} , auth_user_seq.nextval ,#{mc_carname},
+		#{mc_brand}, #{mc_year})
 		SELECT * FROM DUAL
 </insert>
 
 
 <insert id="regMemberSocial"  parameterType="com.tireshoppingmall.home.auth.MemberDTO">
 	insert all 
-	into auth_user values(auth_user_seq.nextval, #{u_id},#{u_logintype}) 
-	into auth_password values(auth_password_seq.nextval,auth_user_seq.nextval , 'test' , 'social', sysdate)
-	into auth_userinfo values(auth_userinfo_seq.nextval,auth_user_seq.nextval , #{i_name} ,#{i_phoneNum},sysdate, 1
-	,#{i_email},#{i_carbrand, jdbcType=VARCHAR},#{i_carname, jdbcType=VARCHAR},#{i_caryear
-	, jdbcType=VARCHAR},#{i_carnum, jdbcType=VARCHAR}) 
-	SELECT * FROM DUAL
+		into auth_user values(auth_user_seq.nextval, #{u_id}, 1) 
+		into auth_password values(auth_user_seq.nextval , 'test' , 'social', sysdate)
+		into auth_userinfo values(auth_user_seq.nextval , #{i_name} ,#{i_phoneNum},sysdate, 1,#{i_email})
+		into my_car values(#{mc_number} , auth_user_seq.nextval ,#{mc_carname},
+		#{mc_brand}, #{mc_year})
+		SELECT * FROM DUAL
 </insert>
 
-<select id="checkMember" resultType="int">
-	select count(*) from auth_user,auth_password
-	where auth_user.u_no= auth_password.pw_no 
-	and u_id=#{u_id} and pw_password=#{pw_password}
+<select id="checkMember" resultType="string">
+	select pw_password from auth_user,auth_password 
+	where u_no=pw_no and u_id=#{u_id}
 </select>
 
 <select id="getMember" resultType="com.tireshoppingmall.home.auth.AuthUserDTO">
 	select *
 	from auth_user,auth_userinfo
-	<if test="i_carnum != ''">
 	,my_car 
-	</if>
 	where auth_user.u_no=auth_userinfo.i_no 
-	<if test="i_carnum != ''">
 	and auth_user.u_no= my_car.mc_id 
-	</if>
 	and u_id=#{u_id}
 		
 </select>
 <select id="getSocialMember" resultType="com.tireshoppingmall.home.auth.AuthUserDTO">
 	select *
 	from auth_user,auth_userinfo 
-	where auth_user.u_no=auth_userinfo.i_no
+	,my_car 
+	where auth_user.u_no=auth_userinfo.i_no 
+	and auth_user.u_no= my_car.mc_id 
 	and u_id=#{socialID}
 </select>
 
 
 <select id="checkIDkko" resultType="int">
-	select count(*) from auth_user where u_id=#{kakaoID}
+	select count(*) from auth_user where u_id=#{ID}
 </select>
 
 <select id="getMyOrder" resultType="com.tireshoppingmall.home.admin.order.OrderDTO">
 	select * from product_order where O_SORTATION=#{u_no}
 </select>
 
+<delete id="deleteMember" >
+	delete auth_user where u_no=#{u_no}
+</delete>
 
 
 </mapper>

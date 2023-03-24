@@ -91,10 +91,10 @@ function joinCheck() {
 //	console.log('6'+phoneNumInput);
 	 
 	// 자동차 정보 입력 페이지로 이동 후 가입하기 누를 시 가입처리
-	if (carInfoConfirm.value == 2 ) {
-		$("#i_email").attr("disabled", false);
-		return true;
-	}
+//	if (carInfoConfirm.value == 2 ) {
+//		$("#i_email").attr("disabled", false);
+//		return true;
+//	}
 	
 //	 //전화번호 입력 검사
 //    if(phoneNumInput.length != 11){
@@ -176,25 +176,50 @@ function joinCheck() {
 		return false;
 	}
     
-    var regOK = confirm('차량정보를 입력하시겠습니까?(선택)');
-	   
-	if (regOK) {
-		$(".join_box").css("display","none");
-		$(".join_box_carInfo").css("display","block");
-		carInfoConfirm.value = 2;
-		return false;
-	}else {
-		$("#i_email").attr("disabled", false);
-		return ture;
-	}
+//    var regOK = confirm('차량정보를 입력하시겠습니까?(선택)');
+//	   
+//	if (regOK) {
+//		$(".join_box").css("display","none");
+//		$(".join_box_carInfo").css("display","block");
+//		carInfoConfirm.value = 2;
+//		return false;
+//	}else {
+//		$("#i_email").attr("disabled", false);
+//		return ture;
+//	}
     
    
     
     
 	
-	
+    $("#i_email").attr("disabled", false);
 	return ture;
 };	
+
+
+function checkId(){
+    var id = document.querySelector("input[name=u_id]").value
+    $.ajax({
+        url:'./idCheck', //Controller에서 요청 받을 주소
+        type:'post', //POST 방식으로 전달
+        data:{id:id},
+        success:function(cnt){ //컨트롤러에서 넘어온 cnt값을 받는다 
+            if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
+                $('#checkID_input').css("color","green"); 
+                $('#checkID_input').append("사용 가능한 아이디입니다");
+            } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+            	  $('#checkID_input').css("color","red"); 
+                  $('#checkID_input').append("사용 불가능한 아이디입니다");
+            }
+        },
+        error:function(){
+            alert("에러입니다");
+        }
+    });
+    };
+
+
+
 
 //
 //function emailCheck() {

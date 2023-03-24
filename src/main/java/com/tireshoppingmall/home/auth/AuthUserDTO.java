@@ -10,10 +10,10 @@ public class AuthUserDTO {
 	private String i_name;
 	private String i_phoneNum;
 	private String i_email;
-	private String i_carbrand;
-	private String i_carname;
-	private String i_caryear;
-	private String i_carnum;
+	private String mc_brand;
+	private String mc_carname;
+	private String mc_year;
+	private String mc_number;
 	
 	// 1:1문의 페이징관련
 	private BigDecimal begin;
@@ -25,7 +25,7 @@ public class AuthUserDTO {
 	}
 
 	public AuthUserDTO(String u_no, String u_id, int u_logintype, String i_name, String i_phoneNum, String i_email,
-			String i_carbrand, String i_carname, String i_caryear, String i_carnum, BigDecimal begin, BigDecimal last) {
+			String mc_brand, String mc_carname, String mc_year, String mc_number, BigDecimal begin, BigDecimal last) {
 		super();
 		this.u_no = u_no;
 		this.u_id = u_id;
@@ -33,10 +33,10 @@ public class AuthUserDTO {
 		this.i_name = i_name;
 		this.i_phoneNum = i_phoneNum;
 		this.i_email = i_email;
-		this.i_carbrand = i_carbrand;
-		this.i_carname = i_carname;
-		this.i_caryear = i_caryear;
-		this.i_carnum = i_carnum;
+		this.mc_brand = mc_brand;
+		this.mc_carname = mc_carname;
+		this.mc_year = mc_year;
+		this.mc_number = mc_number;
 		this.begin = begin;
 		this.last = last;
 	}
@@ -89,36 +89,36 @@ public class AuthUserDTO {
 		this.i_email = i_email;
 	}
 
-	public String getI_carbrand() {
-		return i_carbrand;
+	public String getMc_brand() {
+		return mc_brand;
 	}
 
-	public void setI_carbrand(String i_carbrand) {
-		this.i_carbrand = i_carbrand;
+	public void setMc_brand(String mc_brand) {
+		this.mc_brand = mc_brand;
 	}
 
-	public String getI_carname() {
-		return i_carname;
+	public String getMc_carname() {
+		return mc_carname;
 	}
 
-	public void setI_carname(String i_carname) {
-		this.i_carname = i_carname;
+	public void setMc_carname(String mc_carname) {
+		this.mc_carname = mc_carname;
 	}
 
-	public String getI_caryear() {
-		return i_caryear;
+	public String getMc_year() {
+		return mc_year;
 	}
 
-	public void setI_caryear(String i_caryear) {
-		this.i_caryear = i_caryear;
+	public void setMc_year(String mc_year) {
+		this.mc_year = mc_year;
 	}
 
-	public String getI_carnum() {
-		return i_carnum;
+	public String getMc_number() {
+		return mc_number;
 	}
 
-	public void setI_carnum(String i_carnum) {
-		this.i_carnum = i_carnum;
+	public void setMc_number(String mc_number) {
+		this.mc_number = mc_number;
 	}
 
 	public BigDecimal getBegin() {
@@ -136,6 +136,8 @@ public class AuthUserDTO {
 	public void setLast(BigDecimal last) {
 		this.last = last;
 	}
+
+	
 
 	
 

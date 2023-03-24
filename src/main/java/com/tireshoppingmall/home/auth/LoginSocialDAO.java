@@ -145,15 +145,16 @@ public class LoginSocialDAO {
 	    }
 
 
-		public int checkIdkko(String kakaoID) {
+		public int checkIdkko(String ID) {
 			
-			return ss.getMapper(MemberMapper.class).checkIDkko(kakaoID);
+			return ss.getMapper(MemberMapper.class).checkIDkko(ID);
 			
 		}
 
 
 		public void login(String socialID, HttpServletRequest req) {
-		
+			
+			System.out.println("소셜아이디 : " + socialID);
 			AuthUserDTO member = ss.getMapper(MemberMapper.class).getSocialMember(socialID);
 			req.getSession().setAttribute("loginMember", member);
 			req.getSession().setMaxInactiveInterval(60 * 10);
