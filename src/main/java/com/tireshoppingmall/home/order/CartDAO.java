@@ -29,6 +29,18 @@ public class CartDAO {
 		}
 		return 1;
 	}
+	
+	public int updateCart(CartDTO cDTO, HttpServletRequest req) {
+		ArrayList<CartDTO> cList = (ArrayList<CartDTO>) req.getSession().getAttribute("cartSession");
+		for (CartDTO cartSession : cList) {
+			if (cartSession.getTi_id() == cDTO.getTi_id()) {
+				cartSession.setTi_stock(cDTO.getTi_stock());
+				cartSession.setTi_allpricegp(cDTO.getTi_allpricegp());
+				cartSession.setTi_allpricefac(cDTO.getTi_allpricefac());
+			}
+		}
+		return 1;
+	}
 
 	public int directPay(CartDTO cDTO, HttpServletRequest req) {
 		ArrayList<CartDTO> cList = (ArrayList<CartDTO>) req.getSession().getAttribute("cartSession");
@@ -38,5 +50,4 @@ public class CartDAO {
 		cList.add(cDTO);
 		return 1;
 	}
-
 }
