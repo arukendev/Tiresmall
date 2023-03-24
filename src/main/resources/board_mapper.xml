@@ -164,6 +164,7 @@
 	<select id="readEventModal" resultType="com.tireshoppingmall.home.board.BoardEventDTO">
 		select *
 		from event
+		order by e_date
 	</select>
 	
 	<select id="getEventCount" resultType="java.lang.Integer">
@@ -192,4 +193,11 @@
 		from event
 		where e_no = #{e_no}
 	</select>
+	<!-- 
+	<select id="readDetailimgs" resultType="string">
+		select e_detailimg
+		from event
+		where e_no = #{e_no}
+	</select>
+	 -->
 </mapper>

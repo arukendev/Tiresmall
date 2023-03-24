@@ -11,7 +11,12 @@
 <body>
 	<div class="board_event_r_column">
 		<div>번호</div>
-		<div>제목</div>
+		<div>
+			<img src="resources/web/main/board/eventicon.png"/>
+			<div>
+				항상 멋진 이벤트로 여러분께 찾아뵙겠습니다!
+			</div>
+		</div>
 		<div>진행여부</div>
 	</div>
 	
@@ -34,7 +39,29 @@
 						<a href="board.event.readdetail?e_no=${e.e_no}">${e.e_title }</a>
 					</div>
 					<div>
-						${e.e_status }
+						<c:choose>
+							<c:when test="${e.e_status == '진행중'}">
+								<div>
+									<span style="font-weight: 500;">${e.e_status }</span>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div>
+									${e.e_status }
+								</div>
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+							<c:when test="${e.e_status == '진행중'}">
+								<div>
+									<img class="tire-rotate" src="resources/web/main/board/qnacomplete.png"/>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div>
+								</div>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<c:set var="num" value="${num-1 }"/>

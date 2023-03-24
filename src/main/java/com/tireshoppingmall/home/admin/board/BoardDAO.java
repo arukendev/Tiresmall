@@ -78,6 +78,9 @@ public class BoardDAO {
 	}*/
 
 	public void regNotice(HttpServletRequest req, NoticeDTO nDTO) {
+		String n_txt = nDTO.getN_txt();
+		nDTO.setN_txt(n_txt.replace("\r\n", "<br>"));
+		
 		if(ss.getMapper(AdminBoardMapper.class).regNotice(nDTO) == 1) {
 			req.setAttribute("regR", "등록 성공");
 			allNoticeCount++;
@@ -88,6 +91,9 @@ public class BoardDAO {
 	}
 
 	public void updateNotice(HttpServletRequest req, NoticeDTO nDTO) {
+		String n_txt = nDTO.getN_txt();
+		nDTO.setN_txt(n_txt.replace("\r\n", "<br>"));
+		
 		if(ss.getMapper(AdminBoardMapper.class).updateNotice(nDTO) >= 1) {
 			req.setAttribute("updateR", "업데이트 성공");
 		}else {

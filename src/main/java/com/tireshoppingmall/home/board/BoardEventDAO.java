@@ -63,5 +63,6 @@ public class BoardEventDAO {
 		BoardEventDTO event = (BoardEventDTO) ss.getMapper(BoardMapper.class).readdetailEvent(beDTO);
 		
 		req.setAttribute("event", event);
+		req.setAttribute("detailimgs", event.getE_detailimg().split("!"));
 	}
 }

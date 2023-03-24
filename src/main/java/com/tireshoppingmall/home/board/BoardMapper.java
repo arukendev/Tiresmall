@@ -41,4 +41,7 @@ public interface BoardMapper {
 	List<BoardEventDTO> readEvent(BoardEventDTO be);
 	
 	BoardEventDTO readdetailEvent(BoardEventDTO be);
+	/*
+	List<String> readDetailimgs(BoardEventDTO beDTO);
+	 */
 }

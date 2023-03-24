@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="resources/css/admin/board/event_board.css">
 <link rel="stylesheet" href="resources/css/admin/board/event_modal.css">
+<link rel="stylesheet" href="resources/css/admin/tire/admin_tire.css">
 </head>
 <body style="text-align: center;">
 	<input id="whatMenu" value="notice" type="hidden">

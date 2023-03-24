@@ -89,7 +89,7 @@
 	
 	<!-- board.BoardFaq페이징 -->
 	<beans:bean id="bfco" class="com.tireshoppingmall.home.board.BoardFaqCountOption">
-		<beans:constructor-arg value="7"></beans:constructor-arg>
+		<beans:constructor-arg value="5"></beans:constructor-arg>
 	</beans:bean>
 	<!-- board.BoardQna페이징 -->
 	<beans:bean id="bqco" class="com.tireshoppingmall.home.board.BoardQnaCountOption">

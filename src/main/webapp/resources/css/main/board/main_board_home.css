@@ -83,6 +83,9 @@
 .board_qna_home > div:nth-child(3) > a > img {
 	width: 100px;
 }
+.board_qna_home > div:nth-child(3) > a > img:hover {
+	width: 110px;
+}
 .board_qna_home > div:nth-child(4) {
 	grid-area: qh_kakao;
 	
@@ -110,4 +113,7 @@
 .board_qna_home > div:nth-child(4) > img {
 	width: 100px;
 	cursor: pointer;
+}
+.board_qna_home > div:nth-child(4) > img:hover {
+	width: 110px;
 }

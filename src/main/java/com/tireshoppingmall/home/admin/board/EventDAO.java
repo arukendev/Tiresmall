@@ -156,8 +156,13 @@ public class EventDAO {
 		return ss.getMapper(AdminBoardMapper.class).eventDelete(eventDto);
 	}
 
-
+	/*
 	public void regEvent(MultipartFile mainimg, List<MultipartFile> detailimg, EventDTO eventDto) {
+	 */
+	public void regEvent(MultipartFile mainimg, List<MultipartFile> detailimg, EventDTO eventDto) {
+		String e_content = eventDto.getE_content();
+		eventDto.setE_content(e_content.replace("\r\n", "<br>"));
+		
 		String path = servletContext.getRealPath("resources/upload-event/");
 		UUID uuid = UUID.randomUUID();
 		String[] uuids = uuid.toString().split("-");

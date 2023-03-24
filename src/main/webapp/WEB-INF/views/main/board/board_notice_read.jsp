@@ -11,7 +11,12 @@
 <body>
 	<div class="board_notice_r_column">
 		<div>번호</div>
-		<div>제목</div>
+		<div>
+			<img src="resources/web/main/board/noticeicon.png"/>
+			<div>
+				고객 여러분께 전달드리는 공지사항입니다.
+			</div>
+		</div>
 		<div>등록일</div>
 	</div>
 	

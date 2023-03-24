@@ -56,6 +56,9 @@ pageEncoding="UTF-8"%>
       </div>
     </div>
     <!--위 내용이 나올때는 top 120px  -->
+    <div id="adminContent">
+		<jsp:include page="${contentPage }"></jsp:include>
+	</div>
 
     <script src="resources/js/admin/board/event_board.js"></script>
   </body>
