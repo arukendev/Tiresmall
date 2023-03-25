@@ -23,7 +23,6 @@
 <body>
 	<form action="authRegSocial.do" method="post" name="join_form"
 		onsubmit="return joinCheck();">
-		<h1>${socialID}</h1>
 		<input name="u_id" type="hidden" value="${socialID}"> 
 		<input name="u_logintype" type="hidden" value="2"> 
 		<div id="join_container">
@@ -146,11 +145,5 @@
 
 
 
-
-
-
-
-
-	</div>
 </body>
 </html>

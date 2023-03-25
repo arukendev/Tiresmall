@@ -73,8 +73,3 @@ function updateCheck() {
 	
 	
 }
-
-
-
-
-

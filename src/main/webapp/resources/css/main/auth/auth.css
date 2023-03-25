@@ -353,20 +353,7 @@ body {
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
-#findID_btn{
-	font-family: 'Black Han Sans', sans-serif;
-	font-size: 26pt;
-	width: 300px;
-	height: 46px;
-	background: var(--color-basicRed);
-	border-radius: 10px;
-	color: white;
-	box-shadow: 2px 2px 2px 2px gray;
-	border: none;
-	cursor:pointer;
-	}
-
-#findPW_btn{
+#find_btn button{
 	font-family: 'Black Han Sans', sans-serif;
 	font-size: 26pt;
 	width: 300px;
@@ -445,12 +432,7 @@ body {
 	
 }
 
-#result_id{
-	display:none;
-	color:blue;
-	font-size: 50pt;
-	font-family: 'Do Hyeon', sans-serif;
-}
+
 
 
 
