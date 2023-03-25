@@ -4,6 +4,9 @@ const dateInput = $('#date_M')
 const qnaNum = $('#noInput_M')
 const qnaTxt = $('#txtInput_M')
 const replyTxt = $('#txtInput_Reply')
+/*
+const replyTxt = $('#txtInput_Reply')
+ * */
 const qnaDate = $('#date_M')
 
 $('.qna_modal_go').click(function() {
@@ -24,7 +27,7 @@ $('.qna_modal_go').click(function() {
 		} else if (i == 2) {
 			$(qnaId).val($(c).text());
 		} else if (i == 3) {
-			$(qnaTxt).val($(c).text());
+			$(qnaTxt).val($(".ad_qna_txt").val());
 		} else if (i == 4) {
 			$(qnaDate).val($(c).text());
 		} else if(i ==5){
@@ -33,7 +36,11 @@ $('.qna_modal_go').click(function() {
 					url : "get.reply.do",
 					data : {q_reply_board_no},
 					success : function(data) {
+					$(replyTxt).val(data.q_reply_txt.replaceAll("<br>", "\r\n"));
+					/*
+					$(replyTxt).text(txt.replaceAll("<br>", "\r\n"));
 					$(replyTxt).val(data.q_reply_txt);
+					 * */
 					}
 				});
 				

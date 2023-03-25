@@ -83,7 +83,7 @@
 		<div class="DashBoard">
 				<div class="DashBoard nb_content">
 					<div id="event-reg-btn-box">수정하시려면 사진이나 제목을 눌러주세요.
-					<button id="event-reg-btn" class= "noticeregBtn">등록</button>
+					<button id="event-reg-btn" class= "noticeregBtn">신규 등록</button>
 					</div>
 					<table class="notice_content">
 						<tr>
