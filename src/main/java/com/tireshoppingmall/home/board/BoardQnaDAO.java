@@ -72,6 +72,9 @@ public class BoardQnaDAO {
 	}
 	
 	public void updateQna(BoardQnaDTO bqDTO, HttpServletRequest req) {
+		String q_txt = bqDTO.getQ_txt();
+		bqDTO.setQ_txt(q_txt.replace("\r\n", "<br>"));
+		
 		if (ss.getMapper(BoardMapper.class).updateQna(bqDTO) == 1) {
 			req.setAttribute("result", "update성공");
 		} else {

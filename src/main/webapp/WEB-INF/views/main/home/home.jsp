@@ -95,8 +95,9 @@ pageEncoding="UTF-8"%>
         <div class="home_board_box">
           <div class="home_title home_board_title">
             <h1>공지사항</h1>
-            <a href="board.notice">더 보기</a>
+            <a href="board.notice.read">더 보기</a>
           </div>
+          <!-- 
           <ul class="home_board_content">
             <li>공지사항 1</li>
             <li>공지사항 2</li>
@@ -104,18 +105,33 @@ pageEncoding="UTF-8"%>
             <li>공지사항 4</li>
             <li>공지사항 5</li>
           </ul>
+           -->
+          <ul class="home_board_content">
+            <c:forEach var="n" items="${notices }" begin="0" end="4">
+				<li><a href="board.notice.readdetail?n_no=${n.n_no}">${n.n_title }</a></li>
+			</c:forEach>
+          </ul>
         </div>
         <div class="home_board_box">
           <div class="home_title home_board_title">
             <h1>이벤트</h1>
-            <a href="board.event">더 보기</a>
+            <a href="board.event.read">더 보기</a>
           </div>
+          <!-- 
           <ul class="home_board_content">
             <li>이벤트 1</li>
             <li>이벤트 2</li>
             <li>이벤트 3</li>
             <li>이벤트 4</li>
             <li>이벤트 5</li>
+          </ul>
+           -->
+          <ul class="home_board_content">
+			<c:forEach var="e" items="${events }" begin="0" end="4">
+				<c:if test="${e.e_popup == 1}">
+					<li><a href="board.event.readdetail?e_no=${e.e_no}">${e.e_title }</a></li>
+				</c:if>
+			</c:forEach>
           </ul>
         </div>
       </section>
@@ -170,7 +186,7 @@ pageEncoding="UTF-8"%>
     </div>
 		<dialog class="board_event_modal_dialog">
     		<c:forEach var="e" items="${events }">
-				<input type="hidden" class="dialog-val" value="${e.e_popup }">
+				<input type="hidden" class="dialog_val" value="${e.e_popup }">
     		</c:forEach>
 			<jsp:include page="${eventModal}"></jsp:include>
 		<dialog>
