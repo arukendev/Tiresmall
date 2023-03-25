@@ -247,10 +247,15 @@ function tireRegSizeReg() {
 //타이어 등록페이지 사진css
 function tireRegImgReg() {
 	$("#file1").on('change',function(){
+		alert($("#file1").val());
 		var arSplitUrl = $("#file1").val().split("\\");
 		var nArLength = arSplitUrl.length;
 		var fileName = arSplitUrl[nArLength-1];
 		$(".upload-name1").val(fileName);
+		
+		
+		
+		
 	});
 	$("#file2").on('change',function(){
 		var arSplitUrl = $("#file2").val().split("\\");
@@ -258,6 +263,11 @@ function tireRegImgReg() {
 		var fileName = arSplitUrl[nArLength-1];
 		$(".upload-name2").val(fileName);
 	});
+	
+	
+	
+	
+	
 }
 
 // 타이어브랜드 삭제
