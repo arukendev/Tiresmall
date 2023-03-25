@@ -73,7 +73,7 @@
 						<input name="nameInput" id="a_name" value="${search.nameInput }">
 					</div>
 					<div class="input_box1">
-						<div class="no-drag">회원아이디</div>
+						<div class="no-drag" style="font-size: 17px;">회원아이디</div>
 						<input name="idInput" id="q_id" value="${search.idInput }">
 					</div>
 					<div class="input_box">
@@ -81,7 +81,7 @@
 						<input name="titleInput" id="q_title" value="${search.titleInput }">
 					</div>
 					<div class="button_box">
-						<button id="searchBtn" class="noticeBtn">검색</button>
+						<button id="searchBtn" class="noticesearchbtn">검색</button>
 					</div>
 				</div>
 
