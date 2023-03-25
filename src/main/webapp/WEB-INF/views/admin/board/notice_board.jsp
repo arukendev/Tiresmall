@@ -64,7 +64,7 @@
 			<form class="notice_form" action="search.do">
 				<div>
 					<div class="select_box">
-						<div class="no-drag">구분</div>
+								<div class="no-drag">구분</div>
 						<select name="selectOption" id="sortationSelect"
 							class="notice_select">
 							<option value="0">전체</option>
@@ -78,8 +78,8 @@
 						<input name="titleInput" id="n_title" value="${searchVal }">
 					</div>
 					<div class="button_box">
-						<button id="searchBtn" class="noticeBtn color-1">검색</button>
-						<button type="button" class="noticeBtn color-2"
+						<button id="searchBtn" class="noticeregBtn">검색</button>
+						<button type="button" class="noticeregBtn"
 							id="notice_reg_modal">신규 등록</button>
 					</div>
 				</div>

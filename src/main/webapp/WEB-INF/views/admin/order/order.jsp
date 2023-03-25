@@ -147,7 +147,7 @@
 						<input name="nameInput" id="o_name">
 					</div>
 					<div class="input_box3">
-						<div class="no-drag">주문자전화</div>
+						<div class="no-drag" style="font-size: 17px;">주문자전화</div>
 						<input name="phoneInput" placeholder="010 제외" id="o_phone">
 					</div>
 					<div class="input_box4">

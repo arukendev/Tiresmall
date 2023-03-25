@@ -59,18 +59,18 @@
 			<beans:list>
 				<beans:value>classpath:home_mapper.xml</beans:value>
 				<beans:value>classpath:admin_auth_mapper.xml</beans:value>
-				<beans:value>classpath:admin_board_mapper.xml</beans:value>
+				 <beans:value>classpath:admin_board_mapper.xml</beans:value> 
 				<beans:value>classpath:admin_car_mapper.xml</beans:value>
 				<beans:value>classpath:admin_order_mapper.xml</beans:value>
 				<beans:value>classpath:admin_store_mapper.xml</beans:value>
 				<beans:value>classpath:admin_tire_mapper.xml</beans:value>
 				<beans:value>classpath:admin_rental_mapper.xml</beans:value>
 				<beans:value>classpath:member_mapper.xml</beans:value>
-				<beans:value>classpath:board_mapper.xml</beans:value>
+			<!--	<beans:value>classpath:board_mapper.xml</beans:value> -->
 				<beans:value>classpath:product_mapper.xml</beans:value>
 				<beans:value>classpath:search_mapper.xml</beans:value>
 				<beans:value>classpath:store_mapper.xml</beans:value>
-				<beans:value>classpath:order_mapper.xml</beans:value>
+			<!--	<beans:value>classpath:order_mapper.xml</beans:value> -->
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -80,13 +80,13 @@
 		<beans:constructor-arg name="sqlSessionFactory"
 			ref="sqlSessionFactory" />
 	</beans:bean>
-	
+
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10485760" />
 		<beans:property name="defaultEncoding" value="utf-8" />
 	</beans:bean>
-	
+
 	<!-- board.BoardFaq페이징 -->
 	<beans:bean id="bfco" class="com.tireshoppingmall.home.board.BoardFaqCountOption">
 		<beans:constructor-arg value="5"></beans:constructor-arg>

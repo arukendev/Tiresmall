@@ -2,27 +2,15 @@
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="resources/js/main/auth/main_auth.js"></script>
   <head>
     <meta charset="UTF-8" />
     <title>대전 타이어쇼핑몰</title>
     <link rel="stylesheet" href="resources/css/main/auth/auth.css" />
-    <link
-      rel="shortcut icon"
-      href="resources/web/favicon.png"
-      type="image/png"
-    />
-    <link rel="icon" href="resources/web/favicon.png" type="image/png" />
-    <script
-      src="https://code.jquery.com/jquery-3.6.3.js"
-      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      type="text/javascript"
-      src="resources/js/main/auth/termOfUse.js"
-    ></script>
+    <link rel="shortcut icon" href="resources/web/favicon.png" type="image/png"/>
+    <link rel="icon" href="resources/web/favicon.png" type="image/png"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="resources/js/main/auth/termOfUse.js"></script>
+    <script type="text/javascript" src="resources/js/main/auth/main_auth.js"></script>
   </head>
   <body>
     <div id="find_container">
@@ -49,27 +37,27 @@ pageEncoding="UTF-8"%>
             <input name="i_phoneNum" />
           </div>
           <div id="find_btn">
-            <button id="findID_btn">아이디 찾기</button>
+            <button id="idFnd_btn" >아이디 찾기</button>
           </div>
         </div>
-        <span id="result_id" ></span>
+        <h1 id="result_id" ></h1>
         <!-- 비밀번호 화면 -->
         <div id="find_pw">
           <div id="find_input">
             <span>이메일</span>
-            <input name="a_email" type="email" required />
+            <input name="i_email" type="email" required />
           </div>
           <div id="find_input">
             <span>이름</span>
-            <input name="a_name" />
+            <input name="i_namePW" />
           </div>
           <div id="find_input">
             <span>전화번호</span>
-            <input name="a_phoneNum" />
+            <input name="I_phoneNumPW" />
           </div>
 
           <div id="find_btn">
-            <button id="findPW_btn" >비밀번호 찾기</button>
+            <button>비밀번호 찾기</button>
           </div>
         </div>
       </div>
