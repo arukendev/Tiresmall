@@ -51,11 +51,13 @@
 	select count(*) from auth_user where u_id=#{ID}
 </select>
 
-<select id="getMyOrder" resultType="com.tireshoppingmall.home.admin.order.OrderDTO">
+<select id="getMyOrder" resultType="com.tireshoppingmall.home.order.MainOrderDTO">
 	select * from product_order where O_SORTATION=#{u_no}
 </select>
 
-
+<select id="getTireInfo" resultType="com.tireshoppingmall.home.order.CartDTO">
+	select * from tire_group, tire_item where tg_id = ti_tg_id and ti_id = #{tireId}
+</select>
 
 <delete id="deleteMember" >
 	delete auth_user where u_no=#{u_no}

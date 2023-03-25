@@ -6,3 +6,92 @@
   --color-basicRed: #b20433;
   --color-grayLigt: #e6e4e3;
 }
+
+.myOrder_order {
+  border: 1px solid #ddd;
+  margin-bottom: 30px;
+}
+
+.myOrder_num {
+  font-size: 22px;
+  font-weight: 400;
+  padding: 20px 0;
+}
+
+.myOrder_title {
+  display: grid;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 20px;
+  grid-template-columns: 1fr 200px 200px;
+  border-bottom: 1px solid #ddd;
+}
+
+.myOrder_title div:not(.myOrder_title div:first-child) {
+  display: flex;
+  justify-content: center;
+}
+
+.myOrder_items {
+  display: grid;
+  grid-template-columns: 100px 1fr 200px 200px;
+  align-items: center;
+  padding: 20px 20px 20px 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.myOrder_product_info {
+  display: flex;
+  padding: 0 10px;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.myOrder_product_brand {
+  font-size: 16px;
+  color: #666;
+}
+
+.myOrder_product_name {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.myOrder_product_size {
+  color: #666;
+}
+
+.myOrder_quantity_box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.myOrder_quantity {
+  color: var(--red);
+  font-weight: 400;
+}
+
+.myOrder_insDate,
+.myOrder_step {
+  display: flex;
+  justify-content: center;
+}
+
+.myOrder_insDate {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.myOrder_last {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  padding: 20px;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.myOrder_last div span:last-child {
+  color: var(--red);
+}

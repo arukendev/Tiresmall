@@ -162,4 +162,13 @@ public class CartDTO {
 	public void setTi_allpricefac(int ti_allpricefac) {
 		this.ti_allpricefac = ti_allpricefac;
 	}
+
+	@Override
+	public String toString() {
+		return "CartDTO [tg_id=" + tg_id + ", tg_brand=" + tg_brand + ", tg_name=" + tg_name + ", tg_img=" + tg_img
+				+ ", tg_dcrate=" + tg_dcrate + ", ti_id=" + ti_id + ", ti_width=" + ti_width + ", ti_ratio=" + ti_ratio
+				+ ", ti_inch=" + ti_inch + ", ti_stock=" + ti_stock + ", ti_pricegp=" + ti_pricegp + ", ti_pricefac="
+				+ ti_pricefac + ", ti_marking=" + ti_marking + ", ti_allpricegp=" + ti_allpricegp + ", ti_allpricefac="
+				+ ti_allpricefac + "]";
+	}
 }

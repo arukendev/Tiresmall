@@ -2,6 +2,7 @@ package com.tireshoppingmall.home.auth;
 
 import java.util.List;
 
+import com.tireshoppingmall.home.order.CartDTO;
 import com.tireshoppingmall.home.order.MainOrderDTO;
 
 public interface MemberMapper {
@@ -28,6 +29,8 @@ public interface MemberMapper {
 	int updateInfo(MemberDTO mDTO);
 
 	String idFind(AuthUserDTO aDTO);
+
+	CartDTO getTireInfo(String tireId);
 
 
 

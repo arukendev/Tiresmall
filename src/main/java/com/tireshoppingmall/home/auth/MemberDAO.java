@@ -27,6 +27,7 @@ import com.tireshoppingmall.home.admin.tire.AdminTireMapper;
 import com.tireshoppingmall.home.admin.tire.TireDTO;
 import com.tireshoppingmall.home.auth.MemberDTO;
 import com.tireshoppingmall.home.auth.MemberMapper;
+import com.tireshoppingmall.home.order.CartDTO;
 import com.tireshoppingmall.home.order.MainOrderDTO;
 
 
@@ -90,6 +91,7 @@ public class MemberDAO {
 		System.out.println(aDTO.getU_no());
 		String tireId = null;
 		String quantity = null;
+		ArrayList<CartDTO> productList = new ArrayList<CartDTO>();
 		List<MainOrderDTO> orders = ss.getMapper(MemberMapper.class).getMyOrder(aDTO);
 		req.setAttribute("orders", orders);
 		System.out.println(orders);
@@ -99,12 +101,15 @@ public class MemberDAO {
 				for (String product : products) {
 					tireId = product.split("/")[0];
 					quantity = product.split("/")[1];
+					System.out.println(tireId);
+					CartDTO cDTO = ss.getMapper(MemberMapper.class).getTireInfo(tireId);
+					cDTO.setTi_stock(Integer.parseInt(quantity));
+					productList.add(cDTO);
 				}
 			}
-			System.out.println(tireId);
-			System.out.println(quantity);
 		}
-		
+		req.setAttribute("productList", productList);
+		System.out.println(productList);
 	}
 
 	public void deleteMember(HttpServletRequest req, int u_no) {
