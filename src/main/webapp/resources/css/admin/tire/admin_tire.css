@@ -64,30 +64,8 @@
 	font-family: GmarketSansMedium;
 }
 
-#searchBtn{
-	display: flex;
-	flex:1;
-	justify-content: space-between;
-	min-width: 300px;
-}
-
-#searchBtn button{
-	display: flex;
-    background: #181C32;
-    margin-left: 20px;
-    border-radius: 5px;
-    border: 1px solid #000;
-    padding: 8px 10px;
-    font-size: 1em;
-    cursor: pointer;
-    color: white;
-    font-family: GmarketSansMedium;
-    cursor: pointer; 
-  	user-select: none;	
-}
-
-#admin_tire_reg{
-  margin-right:30px;
+.searchtirebtn{
+	
   background-color: #5F5F5F;
   color: #FFFFFF;
   border: none;
@@ -95,6 +73,8 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
+ position:absolute;
+ top:110px;
   margin-left:20px;
   font-size: 16px;
   font-weight: bold;
@@ -102,14 +82,17 @@
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  user-select: none;	
+  margin: 20px;
+  
 }
 
-#admin_tire_reg:hover {
+.searchtirebtn:hover {
   background-color: #FFFFFF;
   color: #5F5F5F;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
 }
+
+
 
 #admin_tire_content{
 	margin-left:10px;
@@ -124,6 +107,32 @@
 }
 
 
+#admin_tire_reg{
+  background-color: #5F5F5F;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+ position:absolute;
+ right:5px;
+top:110px;
+  margin-left:20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin: 20px;
+}
+
+#admin_tire_reg:hover {
+	 background-color: #FFFFFF;
+  color: #5F5F5F;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
 
 .admin_tire_content_title{
     font-size: 15pt;

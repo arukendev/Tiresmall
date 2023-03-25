@@ -100,6 +100,7 @@ public class AdminCarController {
 		cDAO.deletecar(c,req);
 
 		cDAO.getCarbrandselectlist(m);
+		cDAO.getCarlist(1, req);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car.jsp");
 		return "admin/master";

@@ -43,8 +43,8 @@
 						</div>
 					</div>
 					<div id="searchBtn">
-						<button>검색</button>
-						<div id="admin_tire_reg"
+						<button class="searchtirebtn">검색</button>
+						<div id="admin_tire_reg" 
 							onclick="location.href='admin.tire.reg.go'">신규등록</div>
 					</div>
 				</div>

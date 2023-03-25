@@ -76,17 +76,21 @@ function updatecar(id, name, year1, year2, option, brand, ft, bt, print, c_file)
 				});
 
 				$("body").on(
-						"click",
-						function(event) {
-							if (event.target.className == 'close'
-									|| event.target.className == 'backon') {
-								 $(".preview-image .update-upload-thumb").attr("src", "");
-								    $(".updatefileinputstyle").text("");
-								$("#updatecarpopup01").hide(); // close버튼 이거나
-																// 뒷배경 클릭시 팝업 삭제
-								$(".backon").hide();
-							}
-						});
+					    "click",
+					    function(event) {
+					        if (event.target.className == 'close'
+					            || event.target.className == 'backon') {
+					            $(".preview-image .update-upload-thumb").attr("src", "");
+					            $(".updatefileinputstyle").text("");
+					            $("#updatecarpopup01").hide(); // close버튼 이거나 뒷배경 클릭시 팝업 삭제
+					            $(".backon").hide();
+
+					            // 업로드 요소 초기화
+					            $("#c_file_u").val(""); // 파일 선택 input 초기화
+					            $(".updatefileinputstyle").text("No file selected"); // 파일명 출력 초기화
+					            $(".update-upload-thumb").attr("src", ""); // 미리보기 이미지 초기화
+					        }
+					    });
 
 			});
 

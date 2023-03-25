@@ -104,7 +104,7 @@
 					'${b.b_service }','${b.b_mapdata }','${b.b_manager }',
 					'${b.b_managernumber}','${b.b_branchname}','${b.b_branchnumber}',
 					'${b.b_cr}','${b.b_email}','${b.b_file }')">수정</button>
-					<button type="button" class="updatebranchbutton"
+					<button type="button" class="deletebranchbutton"
 					id="updatebranch('${b.b_id}')" onclick="deletebranch('${b.b_id}')">삭제</button>
 						</td>
 						
