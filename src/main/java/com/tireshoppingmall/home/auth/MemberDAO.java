@@ -112,14 +112,9 @@ public class MemberDAO {
 		return ss.getMapper(MemberMapper.class).updateInfo(mDTO);
 	}
 
-	public String idFind(String nameInput, String phoneNumInput) {
+	public String idFind(AuthUserDTO aDTO) {
 		
-		System.out.println("dd--"+nameInput +"cc---"+phoneNumInput);
-		
-		HashMap<Integer,String> hm = new HashMap<Integer,String>();
-		hm.put(1, nameInput);
-		hm.put(2, phoneNumInput);
-		return ss.getMapper(MemberMapper.class).idFind(hm);
+		return ss.getMapper(MemberMapper.class).idFind(aDTO);
 	}
 
 	

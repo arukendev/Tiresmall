@@ -63,5 +63,12 @@
 	set mc_number=#{mc_number},mc_carname=#{mc_carname},mc_brand=#{mc_brand},mc_year=#{mc_year} 
 	where u_id=#{u_id}
 </update>
+<select id="idFind" resultType="string">
+	select u_id from auth_user,auth_userinfo 
+	where u_no=i_no and 
+	i_name=#{i_name} and i_phoneNum=#{i_phoneNum}
+</select>
+
+
 
 </mapper>

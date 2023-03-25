@@ -162,10 +162,6 @@ public class AuthController {
 					model.addAttribute("profile_contents", "profileInfo.jsp");
 					return "index";
 				
-				
-				
-				
-				
 			}
 		}
 		
@@ -235,11 +231,16 @@ public class AuthController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/idFind", method = RequestMethod.POST)
-	public String idFind(@Param("nameInput") String nameInput,@Param("phoneNumInput") String phoneNumInput) {
+	public String idFind(@Param("nameInput") String nameInput
+			,@Param("phoneNumInput") String phoneNumInput
+			,AuthUserDTO aDTO) {
 
 		System.out.println("name" + nameInput);
 		System.out.println("num" + phoneNumInput);
-		String findID= mDAO.idFind(nameInput,phoneNumInput);
+		aDTO.setI_name(nameInput);
+		aDTO.setI_phoneNum(phoneNumInput);
+		
+		String findID= mDAO.idFind(aDTO);
 		System.out.println("findID : " + findID);
 		return findID;
 	}
@@ -315,11 +316,6 @@ public class AuthController {
         model.addAttribute("result", apiResult);
         System.out.println("result"+apiResult);
        
-        
-//        HashMap<String, Object> userInfo = new HashMap<String, Object>();
-        
-        
-        
         JsonElement element = JsonParser.parseString(apiResult);
         
         JsonObject object = element.getAsJsonObject();
@@ -339,22 +335,7 @@ public class AuthController {
         mDTO.setMc_number("empty");
         mDTO.setMc_year("2014");
         
-        
-        
-        
-        
-        
-      //소셜로그인 네이버의 경우 3
-//        System.out.println("테스트"+email);
-//        System.out.println("테스트"+id);
-//        System.out.println("테스트"+ mobile);
-//        System.out.println("테스트"+ name);
-        
-//        userInfo.put("email", email);
-//        userInfo.put("id", socialID);
-//        userInfo.put("name", name);
-//        userInfo.put("mobile", mobile);
-        
+
       //반환값이 1이면 기존 가입한 회원, 0이면 가입하지 않은 회원
         if (lsDAO.checkIdkko(id)==1) {
         	System.out.println("로그인 성공");
