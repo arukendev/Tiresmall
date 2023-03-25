@@ -1,5 +1,6 @@
 package com.tireshoppingmall.home.auth;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.tireshoppingmall.home.admin.order.OrderDTO;
@@ -27,7 +28,7 @@ public interface MemberMapper {
 
 	int updateInfo(MemberDTO mDTO);
 
-	String idFind(String name, int phoneNum);
+	String idFind(AuthUserDTO aDTO);
 
 
 

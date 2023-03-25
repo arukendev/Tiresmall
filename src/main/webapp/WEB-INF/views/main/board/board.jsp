@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="board_mainContainer">
+	<div class="board_mainContainerSinnzidai">
 		<div class="board_title">
 			${board_whereAmITwo }
 		</div>
@@ -42,18 +42,20 @@
 				<a class="board_sideMenuList board_notice" href="board.notice.read">공지사항</a>
 			</div>
 			<div>
-				<a class="board_sideMenuList board_event" href="board.event">이벤트</a>
+				<a class="board_sideMenuList board_event" href="board.event.read">이벤트</a>
 			</div>
 		</div>
 		
-		<div class="board_sideInfo">
+		<div class="board_sideVoid"></div>
+		
+		<div class="board_sideInfoSinnzidai">
 			<i class="fa-solid fa-headphones"></i> 전화문의<br>
-			<span class="board_sideInfo_20px">
+			<span class="board_sideInfoSinnzidai_20px">
 			<a href='tel:010-5125-8008'><span class="board_sideInfo_bold">010-5125-8008</span></a><br>
 			</span>
 			<br>
 			<i class="fa-solid fa-clock"></i> 운영시간<br>
-			<span class="board_sideInfo_20px">
+			<span class="board_sideInfoSinnzidai_20px">
 			평일<span class="tab">&#9;</span><span class="board_sideInfo_bold">08:30 - 19:00</span><br>
 			토요일<span class="tab">&#9;</span><span class="board_sideInfo_bold">08:30 - 16:00</span><br>
 			</span>

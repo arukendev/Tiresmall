@@ -30,7 +30,7 @@
 			</div>
 			<div class="profileInfo_item">
 				<div id="profileInfo_item_title">자동차브랜드</div>
-				<div id="profileInfo_item_info"><%-- <input name="mc_brand" value="${personalInfomation.mc_brand }"> --%>
+				<div id="profileInfo_item_info">
 				<select id="mc_brand" name="mc_brand" onchange="selectBrand()" value="${personalInfomation.mc_brand }" >
 						<option value="Hyundai" 
 						<c:if test="${personalInfomation.mc_brand eq 'Hyundai' }">selected</c:if> >현대</option>

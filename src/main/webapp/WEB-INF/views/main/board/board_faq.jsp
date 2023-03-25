@@ -19,9 +19,11 @@
 	
 	<div class="board_faq_search">
 		<div>
-			<c:if test="${!empty faqSearch }">
-				"${faqSearch }"로 검색한 결과: ${faqCount }건
-			</c:if>
+			<div>
+				<c:if test="${!empty faqSearchAfterSearch }">
+					"${faqSearchAfterSearch }"로 검색한 결과: ${faqCount }건
+				</c:if>
+			</div>
 		</div>
 		
 		<div>

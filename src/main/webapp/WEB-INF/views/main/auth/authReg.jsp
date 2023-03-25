@@ -37,8 +37,8 @@ type="image/png"
 				<div class="join_title">아이디</div>
 				<div id="id_input">
 					<input name="u_id" oninput="checkId()">
-					<span id="checkID_input"></span>
 				</div>
+				<span id="checkID_result"></span>
 			</div>
 			<div class="join_box">
 				<div class="join_title">비밀번호</div>

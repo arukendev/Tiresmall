@@ -1,0 +1,119 @@
+.board_event_rd_rowAndValue {
+	display: grid;
+	grid-template-columns: 110px 1fr;
+	grid-template-rows: 51px 51px;
+	grid-template-areas:	"ro_title ro_titleValue"
+							"ro_status ro_statusValue"
+							"ro_img ro_img"
+							"ro_textBlank ro_text";
+	
+	width: 950px;
+	
+	border-top: 1px solid #000;
+}
+
+.board_event_rd_rowAndValue > div:nth-child(1) {
+	grid-area: ro_title;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	
+	background-color: #f5f5f5;
+	text-align: center;
+	font-weight: 400;
+}
+.board_event_rd_rowAndValue > div:nth-child(2) {
+	grid-area: ro_titleValue;
+	border-right: 1px solid #ddd;
+}
+.board_event_rd_rowAndValue > div:nth-child(3) {
+	grid-area: ro_status;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	
+	background-color: #f5f5f5;
+	text-align: center;
+	font-weight: 400;
+}
+.board_event_rd_rowAndValue > div:nth-child(4) {
+	grid-area: ro_statusValue;
+	border-right: 1px solid #ddd;
+	
+	display: flex;
+	justify-content: space-between
+}
+.board_event_rd_rowAndValue > div:nth-child(4) > div:nth-child(1) {
+}
+.board_event_rd_rowAndValue > div:nth-child(4) > div:nth-child(2) {
+	position: relative;
+	right: 724px;
+    bottom: 5px;
+}
+.board_event_rd_rowAndValue > div:nth-child(4) > div > img {
+	width: 30px;
+}
+.board_event_rd_rowAndValue > div:nth-child(5) {
+	grid-area: ro_img;
+	/*
+	display: flex;
+	justify-content: center;
+	*/
+	align-items: center;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	
+	background-color: #f5f5f5;
+	text-align: center;
+	font-weight: 400;
+}
+.board_event_rd_rowAndValue div:nth-child(5) > div {
+	/*
+	display: flex;
+	justify-content: center;
+	*/
+	align-items: center;
+	border-left: none;
+	border-right: none;
+}
+.board_event_rd_rowAndValue div:nth-child(5) > div > img{
+	width: 700px;
+	object-fit: cover;
+}
+.board_event_rd_rowAndValue div:nth-child(6) {
+	grid-area: ro_textBlank;
+	border-top: none;
+	border-right: none;
+	border-left: 1px solid #ddd;
+}
+.board_event_rd_rowAndValue div:nth-child(7) {
+	grid-area: ro_text;
+	border-right: 1px solid #ddd;
+}
+
+.board_event_rd_rowAndValue > div {
+	border-bottom: 1px solid #ddd;
+	padding: 15px;
+}
+.board_event_rd_rowAndValue > div:nth-child(odd) {
+	/*
+	*/
+}
+.board_event_rd_rowAndValue > div:nth-child(even) {
+	/*
+	border-right: 1px solid #ddd;
+	*/
+}
+
+
+
+.board_event_rd_buttons {
+	display: flex;
+	
+	width: 950px;
+	height: 51px;
+	
+	margin-top: 20px;
+	margin-bottom: 120px;
+	
+	justify-content: center;
+	gap: 12px;
+}

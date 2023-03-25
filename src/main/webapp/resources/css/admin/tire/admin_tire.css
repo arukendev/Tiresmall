@@ -196,7 +196,7 @@ top:110px;
 }
 
 
-.admin_printBTN{
+.admin_printBTN, .save-btn, .imgbtn {
 	border-radius:7px;
 	padding:6px;
 	color: #0d6efd;
@@ -208,7 +208,7 @@ top:110px;
     user-select: none;
     font-family: GmarketSansMedium;	
 }
-.admin_printBTN:hover{
+.admin_printBTN:hover, .save-btn:hover, .imgbtn:hover {
 	color: #fff;
     background-color: #0d6efd;
     border-color: #0d6efd;
@@ -216,7 +216,7 @@ top:110px;
 
     
 
-.admin_notPrintBTN{
+.admin_notPrintBTN, .detail-updateBtn, .cancle-btn {
 	margin-left:5px;
 	margin-right:5px;
 	border-radius:7px;
@@ -230,13 +230,13 @@ top:110px;
     user-select: none;
     font-family: GmarketSansMedium;	
 }
-.admin_notPrintBTN:hover{
+.admin_notPrintBTN:hover, .detail-updateBtn:hover, .cancle-btn:hover {
 	color: #fff;
     background-color: #212529;
     border-color: #212529;
 }
 
-.admin_deleteBTN{
+.admin_deleteBTN, .event-del-btn {
 	margin-left:5px;
 	margin-right:5px;
 	border-radius:7px;
@@ -251,7 +251,7 @@ top:110px;
     font-family: GmarketSansMedium;
 }
 
-.admin_deleteBTN:hover{
+.admin_deleteBTN:hover, .event-del-btn:hover {
 	color: #fff;
     background-color: #dc3545;
     border-color: #dc3545;

@@ -13,30 +13,35 @@ public interface BoardMapper {
 	
 	int getQnaCount(AuthUserDTO forU_id);
 
-	List<BoardQnaDTO> readQna(AuthUserDTO auDTO);
+	List<BoardQnaDTO> readQna(AuthUserDTO au);
 
-	BoardQnaDTO readdetailQna(BoardQnaDTO bqDTO);
-	BoardQnaReplyDTO readQnaReply(BoardQnaDTO bqDTO);
+	BoardQnaDTO readdetailQna(BoardQnaDTO bq);
+	BoardQnaReplyDTO readQnaReply(BoardQnaDTO bq);
 
-	int createQna(BoardQnaDTO bqDTO);
+	int createQna(BoardQnaDTO bq);
 
-	int updateQna(BoardQnaDTO bqDTO);
+	int updateQna(BoardQnaDTO bq);
 	
-	int deleteQna(BoardQnaDTO bqDTO);
-	
-	
-	
-	int getNoticeCount(BoardNoticeSelector forIroiro);
-	
-	List<BoardNoticeDTO> readNotice(BoardNoticeSelector forIroiro);
-	
-	BoardNoticeDTO readdetailNotice(BoardNoticeDTO bnDTO);
+	int deleteQna(BoardQnaDTO bq);
 	
 	
 	
-	int getEventCount(BoardEventSelector forIroiro);
+	int getNoticeCount(BoardNoticeDTO bn);
 	
-	List<BoardEventDTO> readEvent(BoardEventDTO beDTO);
+	List<BoardNoticeDTO> readNotice(BoardNoticeDTO bn);
 	
-	BoardEventDTO readdetailEvent(BoardEventDTO beDTO);
+	BoardNoticeDTO readdetailNotice(BoardNoticeDTO bn);
+	
+	
+	
+	List<BoardEventDTO> readEventModal(BoardEventDTO be);
+
+	int getEventCount(BoardEventDTO be);
+	
+	List<BoardEventDTO> readEvent(BoardEventDTO be);
+	
+	BoardEventDTO readdetailEvent(BoardEventDTO be);
+	/*
+	List<String> readDetailimgs(BoardEventDTO beDTO);
+	 */
 }
