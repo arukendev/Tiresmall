@@ -7,7 +7,7 @@
 		    o_no_seq.nextval,
 		    #{o_sortation},
 		    #{o_ordernumber},
-		    sysdate,
+		    CURRENT_DATE,
 		    #{o_ordername},
 		    #{o_product},
 		    #{o_price},
