@@ -65,11 +65,18 @@
 
 
 .board_faq_search {
+	position: relative;
+	
 	display: flex;
     width: 950px;
     margin-top: 50px;
     margin-bottom: 10px;
     justify-content: space-between;
+}
+.board_faq_search > div > div {
+	position: absolute;
+	top: 13px;
+    left: 13px;
 }
 .board_faq_search_iroiro {
 	display: flex;
@@ -87,6 +94,10 @@
 	height: 34px;
 	
 	border: 1px solid #ddd;
+	
+	outline: none;
+	
+	padding: 6px;
 }
 .board_faq_search_iroiro button {
 	width: 42px;

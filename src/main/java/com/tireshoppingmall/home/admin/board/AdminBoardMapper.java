@@ -32,12 +32,13 @@ public interface AdminBoardMapper {
 
 	List<QnaDTO> searchQnA(SearchDTO SearchDTO);
 
+	int countQnAReply(QnaReplyDTO qnaReplyDTO);
 	int insertQnAReply(QnaReplyDTO qnaReplyDTO);
+	void updateQna(QnaReplyDTO qnaReplyDTO);
+	int updateQnAReply(QnaReplyDTO qnaReplyDTO);
 
 	QnaReplyDTO getReply(QnaReplyDTO qnaReplyDTO);
-
-	void updateQna(QnaReplyDTO qnaReplyDTO);
-
+	
 	int getNoticeCount(SearchDTO search);
 
 	List<NoticeDTO> getNotice(SearchDTO search);

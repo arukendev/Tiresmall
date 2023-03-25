@@ -41,7 +41,7 @@
 					<div>
 						<c:choose>
 							<c:when test="${e.e_status == '진행중'}">
-								<div>
+								<div style="padding-top: 2px;">
 									<span style="font-weight: 500;">${e.e_status }</span>
 								</div>
 							</c:when>

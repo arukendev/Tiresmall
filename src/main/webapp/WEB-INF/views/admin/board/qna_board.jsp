@@ -20,7 +20,10 @@
 	<div id="qna_modal" class="qna_modal hidden"
 		style="display: none;">
 
+		<form id="update_modal" action="qna.reply.reg.do">
+		<!-- 
 		<form id="update_modal" action="update.qna.do">
+		 -->
 			<div class="modal-wrapper">
 				<div class="notice_modalcontent">
 					<div class="notice_header">QnA</div>
@@ -108,7 +111,9 @@
 									</td>
 									<td class="td_c2">${q.i_name }</td>
 									<td class="td_c3">${q.u_id }</td>
-									<td class="td_c4">${q.q_title }</td>
+									<td class="td_c4">${q.q_title }
+										<input type="hidden" class="ad_qna_txt" value="${q.q_txt}">
+									</td>
 									<td class="td_c5"><fmt:formatDate
 											pattern="yyyy-MM-dd HH:mm:ss" value="${q.q_date }" /></td>
 									<td class="td_c6">
