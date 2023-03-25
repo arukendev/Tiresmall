@@ -121,6 +121,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 </select>
               </div>
             </li>
+            <div class="pay_map"></div>
             <li>
               <div>
                 <span>장착점 주소</span>
@@ -396,8 +397,6 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
           <div class="pay_nonbankpay_content">
             <span>예금주 김준범</span>
             <span>농협 356-1434-7356-03</span>
-            <span>입금자 명</span>
-            <input type="text" />
           </div>
         </div>
         <div class="pay_confirm">

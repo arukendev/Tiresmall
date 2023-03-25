@@ -30,7 +30,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <div class="index_hTop">
             <div class="index_hTopLeft">
               <c:if test="${homegradecheck.i_grade eq 3}">
-	              <a href="admin.order.go?m=order">관리자</a>
+                <a href="admin.order.go?m=order">관리자</a>
               </c:if>
               <a
                 onclick="board_openKakao()"
@@ -234,6 +234,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     </div>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="//code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuyB2oFUoxC04Ue82J1pxusEfNPy5FBJE&callback=initMap"></script>
     <script src="resources/js/index.js"></script>
     <script src="resources/js/main/order/cart.js"></script>
     <script src="resources/js/main/order/pay.js"></script>
