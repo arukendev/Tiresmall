@@ -16,8 +16,7 @@ type="image/png"
 />
 <link rel="icon" href="resources/web/favicon.png" type="image/png" />
 <link rel="stylesheet" href="resources/css/main/auth/auth.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="resources/js/main/auth/reg_check.js"></script>
 </head>
 <body>
@@ -37,8 +36,9 @@ type="image/png"
 			<div class="join_box">
 				<div class="join_title">아이디</div>
 				<div id="id_input">
-					<input name="u_id">
+					<input name="u_id" oninput="checkId()">
 				</div>
+				<span id="checkID_result"></span>
 			</div>
 			<div class="join_box">
 				<div class="join_title">비밀번호</div>

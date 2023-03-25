@@ -28,9 +28,7 @@ public interface MemberMapper {
 
 	int updateInfo(MemberDTO mDTO);
 
-	String idFind(String nameInput, String phoneNumInput);
-
-	String idFind(HashMap<Integer, String> hm);
+	String idFind(AuthUserDTO aDTO);
 
 
 

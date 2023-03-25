@@ -10,6 +10,7 @@ pageEncoding="UTF-8"%>
     <link rel="icon" href="resources/web/favicon.png" type="image/png"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="resources/js/main/auth/termOfUse.js"></script>
+    <script type="text/javascript" src="resources/js/main/auth/main_auth.js"></script>
   </head>
   <body>
     <div id="find_container">
@@ -29,29 +30,30 @@ pageEncoding="UTF-8"%>
         <div id="find_email">
           <div id="find_input">
             <span>이름</span>
-            <input name="a_name" />
+            <input name="i_name" />
           </div>
           <div id="find_input">
             <span>전화번호</span>
-            <input name="a_phoneNum" />
+            <input name="i_phoneNum" />
           </div>
           <div id="find_btn">
-            <button>아이디 찾기</button>
+            <button id="idFnd_btn" >아이디 찾기</button>
           </div>
         </div>
+        <h1 id="result_id" ></h1>
         <!-- 비밀번호 화면 -->
         <div id="find_pw">
           <div id="find_input">
             <span>이메일</span>
-            <input name="a_email" type="email" required />
+            <input name="i_email" type="email" required />
           </div>
           <div id="find_input">
             <span>이름</span>
-            <input name="a_name" />
+            <input name="i_namePW" />
           </div>
           <div id="find_input">
             <span>전화번호</span>
-            <input name="a_phoneNum" />
+            <input name="I_phoneNumPW" />
           </div>
 
           <div id="find_btn">
