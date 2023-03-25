@@ -202,8 +202,6 @@ body {
 }
 
 #authnum_check{
-	display: none;
-	background-color: blue;
 }
 
 
@@ -288,7 +286,7 @@ body {
 }
 
 
-#find_input{
+#find_input,#find_pw_checkNum{
 	display: flex;
 	width: 400px;
 }
@@ -353,7 +351,7 @@ body {
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
-#find_btn button{
+#find_btn button,#backHOME,#authnum_check{
 	font-family: 'Black Han Sans', sans-serif;
 	font-size: 26pt;
 	width: 300px;
@@ -365,6 +363,19 @@ body {
 	border: none;
 	cursor:pointer;
 	}
+#i_emailCheck{
+	width: 300px;
+	margin-top: 12px;
+	margin-bottom: 30px;
+	
+}
+#i_emailCheck{
+	width: 300px;
+	margin-top: 12px;
+	margin-bottom: 30px;
+	
+}
+	
 #find_email{
 	display:flex;
 	flex-direction: column;
@@ -384,10 +395,14 @@ body {
 	width: 300px;
 	height: 30px;
 }
-#find_email input:focus {
+#emailNumCheck_box input{
+	width: 300px;
+	height: 30px;
+}
+#find_email input:focus,#emailNumCheck_box input:focus {
 	outline-color:rgb(183,62,65);
 }
-#find_pw{
+#find_pw,#emailNumCheck_box{
 	display:flex;
 	flex-direction: column;
 	justify-content: center;
@@ -395,6 +410,48 @@ body {
 	width: 600px;
 	padding-bottom: 30px;
 }
+#emailNumCheck_box,#setPw_box{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items:center;
+	width: 600px;
+}
+#emailNumCheck_box_title{
+font-family: 'Do Hyeon', sans-serif;
+ font-size: 17pt;
+ margin-right: 235px;
+}
+#pwNewSet_title{
+	font-family: 'Do Hyeon', sans-serif;
+ font-size: 17pt;
+}
+#setPw_box:input{
+	width: 300px;
+}
+#setPw_box button{
+	font-family: 'Black Han Sans', sans-serif;
+	font-size: 26pt;
+	width: 300px;
+	height: 46px;
+	background: var(--color-basicRed);
+	border-radius: 10px;
+	color: white;
+	box-shadow: 2px 2px 2px 2px gray;
+	border: none;
+	cursor:pointer;
+	margin-top: 30px;
+}
+#setPw_box input{
+	width: 300px;
+	height: 30px;
+}
+#pwNewSet_title{
+	margin-top: 20px;
+	width: 300px;
+	text-align: left;
+}
+
 #find_pw span {
 	width:100px;
 	font-size: 16pt;

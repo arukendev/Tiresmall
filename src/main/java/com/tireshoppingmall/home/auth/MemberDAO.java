@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Member;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -67,10 +68,15 @@ public class MemberDAO {
 					
 					req.getSession().setAttribute("loginMember", member);
 					req.getSession().setMaxInactiveInterval(60 * 10);
+				}else {
+					req.setAttribute("result_login", " 비밀번호를 잘못 입력했습니다.\r\n" + 
+							"입력하신 내용을 다시 확인해주세요.");
+					System.out.println("2--------!!비밀번호 체크 실패");
 				}
 			
 		} else {
-			req.setAttribute("resultMem", "Can not find user");
+			req.setAttribute("result_login", "아이디 또는 비밀번호를 잘못 입력했습니다.\r\n" + 
+					"입력하신 내용을 다시 확인해주세요.");
 			System.out.println("2--------!!아이디 체크 실패");
 		}	
 	}
@@ -136,6 +142,16 @@ public class MemberDAO {
 	public String idFind(AuthUserDTO aDTO) {
 		
 		return ss.getMapper(MemberMapper.class).idFind(aDTO);
+	}
+
+	public int pwFind(AuthUserDTO aDTO) {
+		
+		return ss.getMapper(MemberMapper.class).pwFind(aDTO);
+	}
+
+	public int setPassword(MemberDTO mDTO) {
+		
+		return ss.getMapper(MemberMapper.class).pwSet(mDTO);
 	}
 
 	

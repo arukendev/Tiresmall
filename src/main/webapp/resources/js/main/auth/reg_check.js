@@ -50,7 +50,6 @@ $(function() {
 	});
 	
 
-	$("#i_carbrand").on('change',fun)
 	
 	
 	

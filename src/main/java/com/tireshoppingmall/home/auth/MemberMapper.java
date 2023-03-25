@@ -31,6 +31,10 @@ public interface MemberMapper {
 	String idFind(AuthUserDTO aDTO);
 
 	CartDTO getTireInfo(String tireId);
+	
+	int pwFind(AuthUserDTO aDTO);
+
+	int pwSet(MemberDTO mDTO);
 
 
 
