@@ -901,23 +901,21 @@ a {
 }
 
 .admin_car_option {
-	width: 8%;
+	width: 18%;
 }
 
 .admin_car_tiresize {
-	width: 28%;
+	width: 20%;
 }
 
 .admin_car_print {
 	width: 5%;
 }
 
-.authadmin_manage {
-	width: 18%;
-}
+
 
 .admin_car_management {
-	width: 12%;
+	width: 10%;
 }
 
 
