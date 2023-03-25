@@ -30,6 +30,10 @@ public interface MemberMapper {
 
 	String idFind(AuthUserDTO aDTO);
 
+	int pwFind(AuthUserDTO aDTO);
+
+	int pwSet(MemberDTO mDTO);
+
 
 
 }

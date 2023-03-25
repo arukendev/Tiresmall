@@ -37,29 +37,46 @@ pageEncoding="UTF-8"%>
             <input name="i_phoneNum" />
           </div>
           <div id="find_btn">
-            <button id="idFnd_btn" >아이디 찾기</button>
+            <button id="idFind_btn" >아이디 찾기</button>
           </div>
         </div>
         <h1 id="result_id" ></h1>
+        
         <!-- 비밀번호 화면 -->
         <div id="find_pw">
           <div id="find_input">
+            <span>아이디</span>
+            <input name="u_idPW" required />
+          </div>
+          <div id="find_input">
             <span>이메일</span>
-            <input name="i_email" type="email" required />
-          </div>
-          <div id="find_input">
-            <span>이름</span>
-            <input name="i_namePW" />
-          </div>
-          <div id="find_input">
-            <span>전화번호</span>
-            <input name="I_phoneNumPW" />
+            <input name="i_emailPW" type="email" />
           </div>
 
           <div id="find_btn">
-            <button>비밀번호 찾기</button>
+            <button id="pwFind_btn" >비밀번호 찾기</button>
           </div>
         </div>
+        
+          	<div id="emailNumCheck_box" style="display: none" >
+					<div id="emailNumCheck_box_title">인증번호</div>
+				
+					<input name="i_emailCheck" id="i_emailCheck">
+					<button type="button" id="authnum_check">인증번호 확인</button>
+			</div>
+			
+				<form action="pwNewSet" method="POST">
+			<div id="setPw_box" style="display: none" >
+					<input name="u_id" value="" type="hidden">
+					<div id="pwNewSet_title">새로운 비밀번호</div>
+						<input name="pw_password" type="password" id="pw_password"  >
+					<div id="pwNewSet_title" >새로운 비밀번호확인</div>
+						<input name="pw_pwCheck" type="password">
+					<button >인증번호 확인</button>
+			</div>
+				</form>
+			
+        	<button id="backHOME" style="display: none">홈으로 돌아가기</button>
       </div>
     </div>
   </body>

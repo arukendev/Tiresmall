@@ -26,6 +26,9 @@ $('.findTab a').on('click', function (e) {
 	  
 	  e.preventDefault();
 	  
+	  $('#result_id').remove()
+	  $('#backHOME').css("display","none");
+	  
 	  $(this).parent().addClass('active');
 	  $(this).parent().siblings().removeClass('active');
 	  

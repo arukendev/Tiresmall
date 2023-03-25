@@ -45,6 +45,8 @@ pageEncoding="UTF-8"%>
             name="pw_password"
             placeholder="비밀번호"
           />
+          <span>${result_login } </span>
+          
         </div>
         <div id="login_btn">
           <button>로그인</button>

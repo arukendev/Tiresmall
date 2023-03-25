@@ -88,7 +88,7 @@ public class AuthController {
         return num;
     }
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})
 	public String goLogin(HttpSession session,Model model) {
 		 /* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
         String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
@@ -109,9 +109,16 @@ public class AuthController {
 		return "main/auth/termsOfUse";
 	}
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public String loginDo(MemberDTO mDTO, HttpServletRequest req) {
+	public String loginDo(MemberDTO mDTO, HttpServletRequest req,HttpSession session) {
 		mDAO.login(mDTO,req);
-		mDAO.loginCheck(req);
+		
+		//로그인 실패할 경우
+		if (!mDAO.loginCheck(req)) {
+			String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+	        System.out.println("네이버:" + naverAuthUrl);
+	        req.setAttribute("url", naverAuthUrl);
+			return "forward:/login";
+		}
 		
 		// 로그인페이지를통하여들어온경우:	로그인후에 홈화면으로
 		if (req.getSession().getAttribute("loginRequiredByQna") == null) {
@@ -230,6 +237,19 @@ public class AuthController {
 		return cnt;
 	}
 	@ResponseBody
+	@RequestMapping(value = "/pwFind", method = RequestMethod.POST)
+	public int pwFind(@Param("idInput") String idInput
+			,@Param("emailInput") String emailInput
+			,AuthUserDTO aDTO) {
+		
+		aDTO.setU_id(idInput);
+		aDTO.setI_email(emailInput);
+		
+		int cnt = mDAO.pwFind(aDTO);
+		System.out.println("cnt : " + cnt);
+		return cnt;
+	}
+	@ResponseBody
 	@RequestMapping(value = "/idFind", method = RequestMethod.POST)
 	public String idFind(@Param("nameInput") String nameInput
 			,@Param("phoneNumInput") String phoneNumInput
@@ -244,6 +264,23 @@ public class AuthController {
 		System.out.println("findID : " + findID);
 		return findID;
 	}
+	
+	@RequestMapping(value = "/pwNewSet", method = RequestMethod.POST)
+	public String findEmailGo(MemberDTO mDTO,String pwNewSet) {
+		System.out.println("--------아디"+mDTO.getU_id());
+		System.out.println("--------비번"+mDTO.getPw_password());
+		
+		if (mDAO.setPassword(mDTO) ==1) {
+			System.out.println("성공");
+			return "main/auth/pwFindResult";
+		}
+
+		
+		
+		return "rediect:/findEmail.go";
+	}
+	
+	
 	
 	@RequestMapping(value = "/findEmail.go", method = RequestMethod.GET)
 	public String findEmailGo(Model model) {

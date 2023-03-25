@@ -68,6 +68,16 @@
 	where u_no=i_no and 
 	i_name=#{i_name} and i_phoneNum=#{i_phoneNum}
 </select>
+<select id="pwFind" resultType="int">
+	select count(*) from auth_user,auth_userinfo 
+	where u_no=i_no and u_id=#{u_id} and i_email=#{i_email}
+</select>
+
+<update id="pwSet" parameterType="com.tireshoppingmall.home.auth.MemberDTO">
+	update (select * from auth_password,auth_user where u_no=pw_no) 
+	set pw_password=#{pw_password} , pw_update=sysdate where u_id=#{u_id}
+</update>
+
 
 
 
