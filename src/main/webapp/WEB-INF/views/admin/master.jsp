@@ -61,5 +61,7 @@ pageEncoding="UTF-8"%>
 	</div>
 
     <script src="resources/js/admin/board/event_board.js"></script>
+    <!-- main.board -->
+    <script src="resources/js/main/board/main_board_kakao.js"></script>
   </body>
 </html>

@@ -34,8 +34,8 @@
 			<a class="board_sideMenuList" href="board.qna.check">1:1문의하기</a>
 		</div>
 		<div>
-			<img src="resources/web/main/board/kakaologo.png" onclick="board_openKakao()"/>
-			<a onclick="board_openKakao()" style="cursor: pointer">카카오톡상담하기</a>
+			<img src="resources/web/main/board/kakaologo.png" onclick="board_openKakao_new()"/>
+			<a href="javascript:board_openKakao_new()" style="cursor: pointer">카카오톡상담하기</a>
 		</div>
 	</div>
 </body>
