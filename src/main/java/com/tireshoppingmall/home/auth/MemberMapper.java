@@ -1,9 +1,8 @@
 package com.tireshoppingmall.home.auth;
 
-import java.util.HashMap;
 import java.util.List;
 
-import com.tireshoppingmall.home.admin.order.OrderDTO;
+import com.tireshoppingmall.home.order.MainOrderDTO;
 
 public interface MemberMapper {
 
@@ -19,7 +18,7 @@ public interface MemberMapper {
 
 	int regMemberSocial(MemberDTO mDTO);
 
-	List<OrderDTO> getMyOrder(AuthUserDTO aDTO);
+	List<MainOrderDTO> getMyOrder(AuthUserDTO aDTO);
 
 
 	int checkPw(MemberDTO mDTO);

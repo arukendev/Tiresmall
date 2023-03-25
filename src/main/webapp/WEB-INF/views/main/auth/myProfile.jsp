@@ -1,77 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<div class="board_mainContainer">
-		<div class="board_title">
-			${board_whereAmITwo }
-		</div>
-		
-		<div class="board_link">
-			<div>
-				<a href="/home"><i class="fa-solid fa-house"></i></a> <i class="fa-solid fa-chevron-right"></i> <a href="board.home">나의 회원정보</a> ${board_whereAmIOne }
-			</div>
-		</div>
-	
-		<div class="board_sideMenu">
-			<div>
-				<a class="board_sideMenuList board_home" href="profile.myInfo">나의 회원정보</span></a>
-			</div>
-			
-			<br>
-			<br>
-			
-			<div>
-				<a class="board_sideMenuList board_faq" href="profile">주문조회</a>
-			</div>
-			<div>
-				<a class="board_sideMenuList board_faq" href="board.faq">FAQ</a>
-			</div>
-			<div>
-				<a class="board_sideMenuList board_ask" href="board.ask">1:1문의 <img class="board_askAndKakaoLogo" src="resources/web/main/board/askLogo.svg"/></a>
-			</div>
-			<div>
-				<a class="board_kakao" onclick="board_openKakao()" style="cursor: pointer">카카오톡상담 <img class="board_askAndKakaoLogo" src="resources/web/main/board/kakaoLogo.png"/></a>
-			</div>
-			
-			<br>
-			
-			<div>
-				<a class="board_sideMenuList board_notice" href="board.notice">공지사항</a>
-			</div>
-			<div>
-				<a class="board_sideMenuList board_event" href="board.event">이벤트</a>
-			</div>
-		</div>
-		
-		<div class="board_sideInfo">
-			<i class="fa-solid fa-headphones"></i> 전화문의<br>
-			<span class="board_sideInfo_20px">
-			<a href='tel:010-4073-4447'><span class="board_sideInfo_bold">1234-5678</span></a><br>
-			</span>
-			<br>
-			<i class="fa-solid fa-clock"></i> 운영시간<br>
-			<span class="board_sideInfo_20px">
-			평일<span class="tab">&#9;</span><span class="board_sideInfo_bold">08:30 - 19:00</span><br>
-			토요일<span class="tab">&#9;</span><span class="board_sideInfo_bold">08:30 - 16:00</span><br>
-			</span>
-			(일요일 휴무)
-		</div>
-		
-		<div class="board_contentsArea">
-			<input class="whereAmI" value="${board_whereAmITwo }" type="hidden">
-			<jsp:include page="${profile_contents }"></jsp:include>
-		</div>
-	</div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+  </head>
+  <body>
+    <div class="profile_container">
+      <div class="profile_titles">
+        <div class="profile_title">
+          <h1 class="profile_title_txt"></h1>
+        </div>
+        <div class="profile_subtitle">
+          <i class="fa-solid fa-house"></i>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span></span>
+        </div>
+      </div>
 
+      <div class="profile_contents">
+        <div class="profile_sideMenu">
+          <a class="profile_sideA side_orderA" href="profile">주문조회</a>
+          <a class="profile_sideA side_infoA" href="profile.myInfo">내 정보</a>
+        </div>
 
-
-
-
-</body>
+        <div class="profile_contentsArea">
+          <jsp:include page="${profile_contents}"></jsp:include>
+        </div>
+      </div>
+    </div>
+    <script>
+      if (location.href.includes("myInfo")) {
+        document.querySelector(".side_infoA").style.color = "var(--red)";
+        document.querySelector(".profile_title_txt").innerText = "내 정보";
+        document.querySelector(".profile_subtitle span").innerText = "내 정보";
+      } else {
+        document.querySelector(".side_orderA").style.color = "var(--red)";
+        document.querySelector(".profile_title_txt").innerText = "주문 조회";
+        document.querySelector(".profile_subtitle span").innerText =
+          "주문 조회";
+      }
+      console.log(location.href.includes("myInfo"));
+    </script>
+  </body>
 </html>

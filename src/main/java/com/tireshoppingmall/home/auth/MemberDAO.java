@@ -27,6 +27,7 @@ import com.tireshoppingmall.home.admin.tire.AdminTireMapper;
 import com.tireshoppingmall.home.admin.tire.TireDTO;
 import com.tireshoppingmall.home.auth.MemberDTO;
 import com.tireshoppingmall.home.auth.MemberMapper;
+import com.tireshoppingmall.home.order.MainOrderDTO;
 
 
 	
@@ -87,7 +88,22 @@ public class MemberDAO {
 
 	public void getMyOrder(HttpServletRequest req, AuthUserDTO aDTO) {
 		System.out.println(aDTO.getU_no());
-		req.setAttribute("orders", ss.getMapper(MemberMapper.class).getMyOrder(aDTO)); 
+		String tireId = null;
+		String quantity = null;
+		List<MainOrderDTO> orders = ss.getMapper(MemberMapper.class).getMyOrder(aDTO);
+		req.setAttribute("orders", orders);
+		System.out.println(orders);
+		if (orders.size() != 0) {
+			for (MainOrderDTO oDTO : orders) {
+				String[] products = oDTO.getO_product().split(",");
+				for (String product : products) {
+					tireId = product.split("/")[0];
+					quantity = product.split("/")[1];
+				}
+			}
+			System.out.println(tireId);
+			System.out.println(quantity);
+		}
 		
 	}
 

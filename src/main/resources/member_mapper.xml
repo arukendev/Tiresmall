@@ -55,6 +55,8 @@
 	select * from product_order where O_SORTATION=#{u_no}
 </select>
 
+
+
 <delete id="deleteMember" >
 	delete auth_user where u_no=#{u_no}
 </delete>

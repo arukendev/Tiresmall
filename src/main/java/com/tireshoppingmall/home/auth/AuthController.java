@@ -358,25 +358,28 @@ public class AuthController {
 
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String myProfileGo(HttpServletRequest req,Model model,AuthUserDTO aDTO) {
-    	model.addAttribute("content", "main/auth/myProfile.jsp");
-		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 주문 조회");
-		model.addAttribute("board_whereAmITwo", "주문 조회");
-		model.addAttribute("profile_contents", "myOrderList.jsp");
+	public String myProfileGo(HttpServletRequest req, AuthUserDTO aDTO) {
+    	req.setAttribute("content", "main/auth/myProfile.jsp");
+    	req.setAttribute("profile_contents", "myOrderList.jsp");
 		
 		aDTO = (AuthUserDTO) req.getSession().getAttribute("loginMember");
+		if (aDTO == null) {
+			return "redirect:/";
+		}
 		mDAO.getMyOrder(req,aDTO);
 		
 		return "index";
 	}
+    
     @RequestMapping(value = "/profile.myInfo", method = RequestMethod.GET)
     public String myProfileInfoGo(HttpServletRequest req,Model model,AuthUserDTO aDTO) {
     	
     	model.addAttribute("content", "main/auth/myProfile.jsp");
-    	model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> myProfile");
-    	model.addAttribute("board_whereAmITwo", "나의 회원정보");
     	
     	aDTO = (AuthUserDTO) req.getSession().getAttribute("loginMember");
+    	if (aDTO == null) {
+			return "redirect:/";
+		}
     	System.out.println(aDTO.getMc_brand());
     	System.out.println(aDTO.getMc_carname());
     	System.out.println(aDTO.getMc_number());
