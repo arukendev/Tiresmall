@@ -111,61 +111,49 @@ public class CarDAO {
 	}
 	
 	
-public void updateCar(MultipartFile file, CarDTO c, HttpServletRequest req) {
-		
-		
-		
-		String fileRealName = c.getFile().getOriginalFilename(); 
-		long size = file.getSize(); 
-		
-		System.out.println("파일명 : "  + fileRealName);
-		System.out.println("용량크기(byte) : " + size);
-		
-		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
-		String uploadFolder = servletContext.getRealPath("resources/web");
-		
-		
-		UUID uuid = UUID.randomUUID();
-		System.out.println(uuid.toString());
-		String[] uuids = uuid.toString().split("-");
-		
-		String uniqueName = uuids[0];
-		System.out.println("생성된 고유문자열" + uniqueName);
-		System.out.println("확장자명" + fileExtension);
-		
-		
+	public void updateCar(MultipartFile file, CarDTO c, HttpServletRequest req) {
+	    String uploadFolder = servletContext.getRealPath("resources/web");
 
-		File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);  // 적용 후
-		
-	
-		try {
-			c.getFile().transferTo(saveFile);
-			c.setC_file(uniqueName+fileExtension);
-			AdminCarMapper mm = ss.getMapper(AdminCarMapper.class);
-			System.out.println("upload successed!");
-			req.setAttribute("fileName", uniqueName+fileExtension);
-			
-		
-			if (mm.updatecar(c) == 1) {
-				System.out.println(c);
-	            System.out.println("수정성공");
-	   
-	        } else {
-	        	System.out.println("수정실패");
-	            
+	    // 파일이 업로드 되었을 때만 새로운 파일 생성
+	    if (!file.isEmpty()) {
+	        String fileRealName = file.getOriginalFilename();
+	        long size = file.getSize();
+	        System.out.println("파일명 : "  + fileRealName);
+	        System.out.println("용량크기(byte) : " + size);
+	        
+	        String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
+	        UUID uuid = UUID.randomUUID();
+	        System.out.println(uuid.toString());
+	        String[] uuids = uuid.toString().split("-");
+	        String uniqueName = uuids[0];
+	        System.out.println("생성된 고유문자열" + uniqueName);
+	        System.out.println("확장자명" + fileExtension);
+	        File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
+	        try {
+	            file.transferTo(saveFile);
+	            c.setC_file(uniqueName + fileExtension);
+	        } catch (IllegalStateException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            e.printStackTrace();
 	        }
+	    } else {
+	        // 파일이 업로드 되지 않았을 때 기존 파일명을 유지
+	        c.setC_file(c.getFile().getOriginalFilename());
+	    }
 
-	    } catch (IllegalStateException e) {
-	        e.printStackTrace();
-	    } catch (IOException e) {
+	    AdminCarMapper mm = ss.getMapper(AdminCarMapper.class);
+	    try {
+	        if (mm.updatecar(c) == 1) {
+	            System.out.println(c);
+	            System.out.println("수정성공");
+	        } else {
+	            System.out.println("수정실패");
+	        }
+	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
 	}
-
-
-	
-		
-		
 	
 	
 	
