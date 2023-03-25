@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
@@ -234,12 +235,11 @@ public class AuthController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/idFind", method = RequestMethod.POST)
-	public String idFind(HttpServletRequest req) {
-		String name = req.getParameter("i_name");
-		int phoneNum = Integer.parseInt(req.getParameter("i_phoneNum"));
-		System.out.println("name" + name);
-		System.out.println("num" + name);
-		String findID= mDAO.idFind(name,phoneNum);
+	public String idFind(@Param("nameInput") String nameInput,@Param("phoneNumInput") String phoneNumInput) {
+
+		System.out.println("name" + nameInput);
+		System.out.println("num" + phoneNumInput);
+		String findID= mDAO.idFind(nameInput,phoneNumInput);
 		System.out.println("findID : " + findID);
 		return findID;
 	}

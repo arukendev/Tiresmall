@@ -1,0 +1,9 @@
+diff a/src/main/java/com/tireshoppingmall/home/admin/auth/AuthDAO.java b/src/main/java/com/tireshoppingmall/home/admin/auth/AuthDAO.java	(rejected hunks)
+@@ -29,6 +29,7 @@
+ 
+ 	public void calcAllAuthCount() {
+ 		AuthDTO startEnd = new AuthDTO();
++		startEnd.setU_id("");
+ 		startEnd.setI_name("");
+ 		allAuthCount = ss.getMapper(AdminAuthMapper.class).getAuthCount(startEnd);	
+ 	}
