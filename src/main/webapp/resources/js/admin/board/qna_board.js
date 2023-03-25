@@ -1,13 +1,13 @@
-const qnaId = $('#userId_M')
-const userName = $('#userName_M')
-const dateInput = $('#date_M')
 const qnaNum = $('#noInput_M')
+const userName = $('#userName_M')
+const qnaId = $('#userId_M')
+const qnaDate = $('#date_M')
+const dateInput = $('#date_M')
 const qnaTxt = $('#txtInput_M')
 const replyTxt = $('#txtInput_Reply')
 /*
 const replyTxt = $('#txtInput_Reply')
  * */
-const qnaDate = $('#date_M')
 
 $('.qna_modal_go').click(function() {
 
@@ -18,33 +18,66 @@ $('.qna_modal_go').click(function() {
 	let q_reply_board_no = 0;
 	$(contents).each(function(i, c) {
 		if(i == 0){
+			// td_c1
 			$(qnaNum).val($(c).children().val());
+			// typehidden
 			q_reply_board_no = $(c).children().val();
 			console.log(q_reply_board_no);
 		}
+		
+		// td_c2
 		else if (i == 1) {
 			$(userName).val($(c).text());
+			
+		// td_c3
 		} else if (i == 2) {
 			$(qnaId).val($(c).text());
+			
+		// displaynone
 		} else if (i == 3) {
-			$(qnaTxt).val($(".ad_qna_txt").val());
+			$(qnaTxt).val($(c).text());
+			/*
+			$(qnaTxt).val($(".ad_qna_txt").val().replaceAll("<br>", "\r\n"));
+			 * */
+			
+		// td_c4: PASS
+			/*
 		} else if (i == 4) {
+			 * */
+			
+		// td_c5?????
+		} else if (i == 5) {
 			$(qnaDate).val($(c).text());
-		} else if(i ==5){
+		
+		// displaynone
+		} else if (i == 6) {
+			/*
+			$(replyTxt).val($(c).text());
+			 * */
+		
+		// td_c6
+		} else if (i == 7) {
+			
 			if($(c).children().val() != 0){
+				$(replyTxt).val("");
 				$.ajax({
 					url : "get.reply.do",
 					data : {q_reply_board_no},
 					success : function(data) {
-					$(replyTxt).val(data.q_reply_txt.replaceAll("<br>", "\r\n"));
-					/*
-					$(replyTxt).text(txt.replaceAll("<br>", "\r\n"));
-					$(replyTxt).val(data.q_reply_txt);
-					 * */
+						$(replyTxt).val(data.q_reply_txt.replaceAll("<br>", "\r\n"));
+					// $(replyTxt).val(data.q_reply_txt.replaceAll("<br>", "\r\n"));
+					// $(replyTxt).val(data.);
+					// $(replyTxt).val(data.q_reply_txt);
+					// $(replyTxt).text(txt.replaceAll("<br>", "\r\n"));
 					}
 				});
 				
+			} else {
+				$(replyTxt).val("");
+				
 			}
+			/*
+			 * */
 		}
 	})
 	$("#update_modal").attr("action", "qna.reply.reg.do")

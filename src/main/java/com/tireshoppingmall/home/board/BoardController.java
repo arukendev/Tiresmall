@@ -130,7 +130,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "/board.qna.update.go", method = RequestMethod.GET)
 	public String boardQnaUpdateGo(BoardQnaDTO bq, HttpServletRequest req, Model model) {
-		bqDAO.readdetailQna(bq, req);
+		bqDAO.readdetailQnaForUpdate(bq, req);
 		
 		model.addAttribute("content", "main/board/board.jsp");
 		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 1:1문의");

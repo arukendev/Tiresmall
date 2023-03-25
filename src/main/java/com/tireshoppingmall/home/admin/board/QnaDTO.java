@@ -11,6 +11,7 @@ public class QnaDTO {
 	private String u_id;
 	private String i_name;
 	private int q_reply_has;
+	private QnaReplyDTO q_reply;
 	
 	public String getQ_no() {
 		return q_no;
@@ -53,6 +54,12 @@ public class QnaDTO {
 	}
 	public void setQ_reply_has(int q_reply_has) {
 		this.q_reply_has = q_reply_has;
+	}
+	public QnaReplyDTO getQ_reply() {
+		return q_reply;
+	}
+	public void setQ_reply(QnaReplyDTO q_reply) {
+		this.q_reply = q_reply;
 	}
 	
 	
