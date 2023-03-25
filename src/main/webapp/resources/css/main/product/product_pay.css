@@ -186,6 +186,10 @@
   border: 1px solid #aaa;
 }
 
+.pay_customerInfo select:first-child {
+  width: 100px;
+}
+
 .pay_payInfo {
   display: flex;
   padding: 20px 10px;
