@@ -14,7 +14,7 @@
 			<c:choose>
 				<c:when test="${!empty qna.q_reply}">
 					<div>
-						답변완료 <i class="fa-solid fa-circle-check" style="color: #07b2f6; font-size: 20px;"></i>
+						<span style="font-weight: 500;">답변완료</span> <i class="fa-solid fa-circle-check" style="color: #07b2f6; font-size: 20px;"></i>
 					</div>
 				</c:when>
 				<c:otherwise>

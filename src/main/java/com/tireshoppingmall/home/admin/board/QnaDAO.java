@@ -109,6 +109,8 @@ public class QnaDAO {
 	}
 
 	public QnaReplyDTO getReply(QnaReplyDTO qnaReplyDTO) {
+		
+		
 		return ss.getMapper(AdminBoardMapper.class).getReply(qnaReplyDTO);
 	}
 
