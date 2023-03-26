@@ -121,6 +121,9 @@
 }
 
 .product_item_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 290px;
   height: 290px;
   border: 1px solid white;
@@ -142,7 +145,7 @@
 }
 
 .product_item_img img {
-  max-height: 100%;
+  height: 270px;
 }
 .product_item_title {
   text-align: center;

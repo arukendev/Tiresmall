@@ -26,7 +26,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             <c:otherwise>
               <img
                 src="resources/web/main/tire/${product.tg_img}"
-                style="max-width: 300px"
+                style="width: 300px"
               />
             </c:otherwise>
           </c:choose>

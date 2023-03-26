@@ -42,7 +42,7 @@
 
 .myOrder_product_info {
   display: flex;
-  padding: 0 10px;
+  padding: 0 30px;
   flex-direction: column;
   gap: 15px;
 }

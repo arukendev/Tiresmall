@@ -62,7 +62,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                         </c:when>
                         <c:otherwise>
                           <img
-                            src="resources/web/main/tire/${pl.tg_img}.jpg"
+                            src="resources/web/main/tire/${pl.tg_img}"
                             style="width: 100px"
                           />
                         </c:otherwise>

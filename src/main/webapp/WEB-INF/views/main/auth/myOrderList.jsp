@@ -50,7 +50,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                       </c:when>
                       <c:otherwise>
                         <img
-                          src="resources/web/main/tire/${pl.tg_img}.jpg"
+                          src="resources/web/main/tire/${pl.tg_img}"
                           style="width: 100px"
                         />
                       </c:otherwise>
