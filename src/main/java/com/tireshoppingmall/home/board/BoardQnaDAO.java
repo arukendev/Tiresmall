@@ -55,6 +55,12 @@ public class BoardQnaDAO {
 	
 	public void readdetailQna(BoardQnaDTO bqDTO, HttpServletRequest req) {
 		BoardQnaDTO qna = (BoardQnaDTO) ss.getMapper(BoardMapper.class).readdetailQna(bqDTO);
+		
+		/*
+		String q_txt = qna.getQ_txt();
+		qna.setQ_txt(q_txt.replace("<br>", "\r\n"));
+		*/
+		
 		qna.setQ_reply(ss.getMapper(BoardMapper.class).readQnaReply(bqDTO));
 		
 		req.setAttribute("qna", qna);
@@ -71,6 +77,16 @@ public class BoardQnaDAO {
 		}
 	}
 	
+	public void readdetailQnaForUpdate(BoardQnaDTO bqDTO, HttpServletRequest req) {
+		BoardQnaDTO qna = (BoardQnaDTO) ss.getMapper(BoardMapper.class).readdetailQna(bqDTO);
+		
+		String q_txt = qna.getQ_txt();
+		qna.setQ_txt(q_txt.replace("<br>", "\r\n"));
+		
+		qna.setQ_reply(ss.getMapper(BoardMapper.class).readQnaReply(bqDTO));
+		
+		req.setAttribute("qna", qna);
+	}
 	public void updateQna(BoardQnaDTO bqDTO, HttpServletRequest req) {
 		String q_txt = bqDTO.getQ_txt();
 		bqDTO.setQ_txt(q_txt.replace("\r\n", "<br>"));

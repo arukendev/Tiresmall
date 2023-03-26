@@ -18,7 +18,7 @@ public class HomeDAO {
 		if (req.getSession().getAttribute("loginMember") != null) {
 			AuthUserDTO aDTO = (AuthUserDTO) req.getSession().getAttribute("loginMember");
 			HomeGradeCheck hgc = ss.getMapper(HomeMapper.class).checkAdmin(aDTO);
-			req.setAttribute("homegradecheck", hgc);
+			req.getSession().setAttribute("homegradecheck", hgc);
 		}
 	}
 	

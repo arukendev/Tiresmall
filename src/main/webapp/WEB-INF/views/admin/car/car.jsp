@@ -105,7 +105,7 @@ function addSize2() {
 					<td class="admin_car_content_title admin_car_option" style="border-right: 1px solid white;">옵션</td>
 					<td class="admin_car_content_title admin_car_tiresize" style="border-right: 1px solid white;">타이어사이즈</td>
 					<td class="admin_car_content_title admin_car_print" style="border-right: 1px solid white;">출력</td>
-					<td class="admin_car_content_title authadmin_manage" style="border-right: 1px solid white;">관리</td>
+					<td class="admin_car_content_title admin_car_management" style="border-right: 1px solid white;">관리</td>
 				</tr>
 			
 	<c:if test="${empty cars}">
@@ -173,7 +173,7 @@ function addSize2() {
 		<c:forEach var="page" begin="1" end="${pageCount }">
 			<c:choose>
 					<c:when test="${page eq param.p or (curPage == 1 and curPage == page)}">
-						<a style="color:white; background-color: #333;" href="notice.page.change?p=${page }">${page } </a>
+						<a style="color:white; background-color: #333;" href="car.page.change?p=${page }">${page } </a>
 					</c:when>
 					<c:otherwise>
 						<a style="color: black;" href="car.page.change?p=${page }">${page } </a>

@@ -61,7 +61,7 @@ return input1.value !=input2.value;
 		
 		//mz1004
 		
-		let ok = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_@."
+		let ok = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_@.1234567890"
 	
 	
 			for(let i = 0; i <input.value.length; i++){

@@ -29,9 +29,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="index_header">
           <div class="index_hTop">
             <div class="index_hTopLeft">
+
         
+
+              <c:if test="${sessionScope.homegradecheck.i_grade eq 3}">
+
                 <a href="admin.order.go?m=order">관리자</a>
-           
+           	</c:if>
               <a
                 onclick="board_openKakao()"
                 class="index_kakao"
@@ -103,11 +107,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <ul class="index_dropSearch index_dropWrapper">
             <li class="index_dropMenu_menu">
               <div class="index_dropMenu_txt">
-                <a class="index_dropSearch_a" href="search.car"
-                  >차종으로 검색</a
-                >
                 <a class="index_dropSearch_a" href="search.size"
                   >타이어 사이즈로 검색</a
+                >
+                <a class="index_dropSearch_a" href="search.car"
+                  >차종으로 검색</a
                 >
                 <a class="index_dropSearch_a" href="search.product"
                   >제품명으로 찾기</a

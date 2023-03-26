@@ -35,6 +35,10 @@
 }
 .board_qna_rd_rowAndValue div:nth-child(7) {
 	grid-area: ro_reply;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .board_qna_rd_rowAndValue div:nth-child(8) {
 	grid-area: ro_replyValue;

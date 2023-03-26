@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Member;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -27,6 +28,8 @@ import com.tireshoppingmall.home.admin.tire.AdminTireMapper;
 import com.tireshoppingmall.home.admin.tire.TireDTO;
 import com.tireshoppingmall.home.auth.MemberDTO;
 import com.tireshoppingmall.home.auth.MemberMapper;
+import com.tireshoppingmall.home.order.CartDTO;
+import com.tireshoppingmall.home.order.MainOrderDTO;
 
 
 	
@@ -65,10 +68,15 @@ public class MemberDAO {
 					
 					req.getSession().setAttribute("loginMember", member);
 					req.getSession().setMaxInactiveInterval(60 * 10);
+				}else {
+					req.setAttribute("result_login", " 비밀번호를 잘못 입력했습니다.\r\n" + 
+							"입력하신 내용을 다시 확인해주세요.");
+					System.out.println("2--------!!비밀번호 체크 실패");
 				}
 			
 		} else {
-			req.setAttribute("resultMem", "Can not find user");
+			req.setAttribute("result_login", "아이디 또는 비밀번호를 잘못 입력했습니다.\r\n" + 
+					"입력하신 내용을 다시 확인해주세요.");
 			System.out.println("2--------!!아이디 체크 실패");
 		}	
 	}
@@ -87,8 +95,27 @@ public class MemberDAO {
 
 	public void getMyOrder(HttpServletRequest req, AuthUserDTO aDTO) {
 		System.out.println(aDTO.getU_no());
-		req.setAttribute("orders", ss.getMapper(MemberMapper.class).getMyOrder(aDTO)); 
-		
+		String tireId = null;
+		String quantity = null;
+		ArrayList<CartDTO> productList = new ArrayList<CartDTO>();
+		List<MainOrderDTO> orders = ss.getMapper(MemberMapper.class).getMyOrder(aDTO);
+		req.setAttribute("orders", orders);
+		System.out.println(orders);
+		if (orders.size() != 0) {
+			for (MainOrderDTO oDTO : orders) {
+				String[] products = oDTO.getO_product().split(",");
+				for (String product : products) {
+					tireId = product.split("/")[0];
+					quantity = product.split("/")[1];
+					System.out.println(tireId);
+					CartDTO cDTO = ss.getMapper(MemberMapper.class).getTireInfo(tireId);
+					cDTO.setTi_stock(Integer.parseInt(quantity));
+					productList.add(cDTO);
+				}
+			}
+		}
+		req.setAttribute("productList", productList);
+		System.out.println(productList);
 	}
 
 	public void deleteMember(HttpServletRequest req, int u_no) {
@@ -115,6 +142,16 @@ public class MemberDAO {
 	public String idFind(AuthUserDTO aDTO) {
 		
 		return ss.getMapper(MemberMapper.class).idFind(aDTO);
+	}
+
+	public int pwFind(AuthUserDTO aDTO) {
+		
+		return ss.getMapper(MemberMapper.class).pwFind(aDTO);
+	}
+
+	public int setPassword(MemberDTO mDTO) {
+		
+		return ss.getMapper(MemberMapper.class).pwSet(mDTO);
 	}
 
 	

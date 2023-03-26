@@ -14,7 +14,7 @@
 			<c:choose>
 				<c:when test="${!empty qna.q_reply}">
 					<div>
-						답변완료 <i class="fa-solid fa-circle-check" style="color: #07b2f6; font-size: 20px;"></i>
+						<span style="font-weight: 500;">답변완료</span> <i class="fa-solid fa-circle-check board_qna_bounce" style="color: #07b2f6; font-size: 20px;"></i>
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -28,7 +28,7 @@
 			<div>내용</div>
 			<div>${qna.q_txt}</div>
 			<c:if test="${!empty qna.q_reply}">
-				<div>답변내용</div>
+				<div><span style="font-weight: 500;">답변내용</span></div>
 				<div>${qna.q_reply.q_reply_txt }</div>
 			</c:if>
 		</div>
