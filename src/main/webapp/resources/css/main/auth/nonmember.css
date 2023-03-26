@@ -1,4 +1,4 @@
-.profile_container {
+.nonmember_container {
   width: inherit;
   display: grid;
   grid-template-columns: 1200px;
@@ -6,12 +6,12 @@
   justify-content: center;
 }
 
-.profile_titles {
+.nonmember_titles {
   display: grid;
   grid-template-rows: 100px 70px;
 }
 
-.profile_title {
+.nonmember_title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,22 +20,9 @@
   border-bottom: 3px solid var(--red);
 }
 
-.profile_subtitle {
+.nonmember_subtitle {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 5px;
-}
-
-.profile_contents {
-  display: grid;
-  grid-template-columns: 250px 950px;
-}
-
-.profile_sideMenu {
-  font-size: 24px;
-  font-weight: 700;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }

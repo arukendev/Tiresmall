@@ -9,7 +9,7 @@
 
 .myOrder_order {
   border: 1px solid #ddd;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .myOrder_num {
@@ -89,6 +89,11 @@
   gap: 20px;
   padding: 20px;
   font-size: 22px;
+  font-weight: 400;
+}
+
+.myOrder_step {
+  font-size: 18px;
   font-weight: 400;
 }
 
