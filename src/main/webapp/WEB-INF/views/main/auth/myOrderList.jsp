@@ -35,7 +35,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                   <span>주문상태</span>
                 </div>
               </li>
-              <c:forEach var="pl" items="${productList}">
+              <c:forEach var="pl" items="${o.productList}">
                 <li class="myOrder_items">
                   <div class="myOrder_product_img">
                     <c:choose>

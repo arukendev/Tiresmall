@@ -3,7 +3,6 @@ package com.tireshoppingmall.home.auth;
 import java.util.List;
 
 import com.tireshoppingmall.home.order.CartDTO;
-import com.tireshoppingmall.home.order.MainOrderDTO;
 
 public interface MemberMapper {
 
@@ -19,7 +18,7 @@ public interface MemberMapper {
 
 	int regMemberSocial(MemberDTO mDTO);
 
-	List<MainOrderDTO> getMyOrder(AuthUserDTO aDTO);
+	List<MyOrderDTO> getMyOrder(AuthUserDTO aDTO);
 
 
 	int checkPw(MemberDTO mDTO);

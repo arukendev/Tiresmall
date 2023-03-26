@@ -95,33 +95,31 @@ public class MemberDAO {
 
 	public void getMyOrder(HttpServletRequest req, AuthUserDTO aDTO) {
 		System.out.println(aDTO.getU_no());
-		String tireId = null;
-		String quantity = null;
-		ArrayList<CartDTO> productList = new ArrayList<CartDTO>();
-		List<MainOrderDTO> orders = ss.getMapper(MemberMapper.class).getMyOrder(aDTO);
-		req.setAttribute("orders", orders);
-		System.out.println(orders);
+		List<MyOrderDTO> orders = ss.getMapper(MemberMapper.class).getMyOrder(aDTO);
+		List<CartDTO> tireList = null;
 		if (orders.size() != 0) {
-			for (MainOrderDTO oDTO : orders) {
-				String[] products = oDTO.getO_product().split(",");
+			
+			for (MyOrderDTO mDTO : orders) {
+				String[] products = mDTO.getO_product().split(",");
+				tireList = new ArrayList<CartDTO>();
 				for (String product : products) {
-					tireId = product.split("/")[0];
-					quantity = product.split("/")[1];
+					String tireId = product.split("/")[0];
+					String tireStock = product.split("/")[1];
 					System.out.println(tireId);
 					CartDTO cDTO = ss.getMapper(MemberMapper.class).getTireInfo(tireId);
-					cDTO.setTi_stock(Integer.parseInt(quantity));
-					productList.add(cDTO);
+					cDTO.setTi_stock(Integer.parseInt(tireStock));
+					tireList.add(cDTO);
 				}
+				mDTO.setProductList(tireList);
 			}
+			req.setAttribute("orders", orders);
+			System.out.println(orders);
 		}
-		req.setAttribute("productList", productList);
-		System.out.println(productList);
 	}
 
 	public void deleteMember(HttpServletRequest req, int u_no) {
 		
-		
-		if (ss.getMapper(MemberMapper.class).deleteMember(u_no) ==1 ) {
+		if (ss.getMapper(MemberMapper.class).deleteMember(u_no) == 1) {
 			System.out.println("삭제완료");
 			logout(req);
 		} 

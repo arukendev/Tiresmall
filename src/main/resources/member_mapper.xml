@@ -51,7 +51,7 @@
 	select count(*) from auth_user where u_id=#{ID}
 </select>
 
-<select id="getMyOrder" resultType="com.tireshoppingmall.home.order.MainOrderDTO">
+<select id="getMyOrder" resultType="com.tireshoppingmall.home.auth.MyOrderDTO">
 	select * from product_order where O_SORTATION=#{u_no}
 </select>
 
