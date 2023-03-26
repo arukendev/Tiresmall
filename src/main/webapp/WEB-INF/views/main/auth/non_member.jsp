@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -20,24 +21,27 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
 
-      <form action="nonmember.go" method="post" class="nonmember_form">
+      <form action="nonmember.go" method="post" class="nonMember_form">
         <span>핸드폰 번호를 입력해주세요</span>
         <input type="text" name="o_phone" />
         <button>입력</button>
       </form>
-      <div class="nonmember_contents">
+      <div class="nonMember_contents">
         <c:choose>
           <c:when test="${empty orders}">
-            <div class="myOrder_nonOrder">주문없엉</div>
+            <div class="nonMember_nonOrder">
+              <img src="resources/web/main/caution.png" style="width: 100px">
+              <h1>조회된 주문이 없습니다.</h1>
+            </div>
           </c:when>
           <c:otherwise>
             <c:forEach var="o" items="${orders}">
-              <h1 class="myOrder_num">주문번호: ${o.o_ordernumber}</h1>
-              <ul class="myOrder_order">
-                <li class="myOrder_title">
+              <h1 class="nonMember_num">주문번호: ${o.o_ordernumber}</h1>
+              <ul class="nonMember_order">
+                <li class="nonMember_title">
                   <div>
                     <span>주문일자: </span
-                    ><span class="myOrder_oDate">${o.o_orderdate}</span>
+                    ><span class="nonMember_oDate">${o.o_orderdate}</span>
                   </div>
                   <div>
                     <span>장착일</span>
@@ -47,8 +51,8 @@ pageEncoding="UTF-8"%>
                   </div>
                 </li>
                 <c:forEach var="pl" items="${o.productList}">
-                  <li class="myOrder_items">
-                    <div class="myOrder_product_img">
+                  <li class="nonMember_items">
+                    <div class="nonMember_product_img">
                       <c:choose>
                         <c:when test="${pl.tg_img eq 'noimg'}">
                           <img
@@ -64,47 +68,44 @@ pageEncoding="UTF-8"%>
                         </c:otherwise>
                       </c:choose>
                     </div>
-                    <div class="myOrder_product_info">
-                      <span class="myOrder_product_brand">${pl.tg_brand}</span>
-                      <span class="myOrder_product_name">${pl.tg_name}</span>
-                      <div class="myOrder_quantity_box">
+                    <div class="nonMember_product_info">
+                      <span class="nonMember_product_brand"
+                        >${pl.tg_brand}</span
+                      >
+                      <span class="nonMember_product_name">${pl.tg_name}</span>
+                      <div class="nonMember_quantity_box">
                         <c:choose>
                           <c:when test="${pl.ti_ratio eq 0}">
-                            <h2 class="myOrder_product_size">
+                            <h2 class="nonMember_product_size">
                               ${pl.ti_width}R${pl.ti_inch} (${pl.ti_marking})
                             </h2>
                           </c:when>
                           <c:otherwise>
-                            <h2 class="myOrder_product_size">
+                            <h2 class="nonMember_product_size">
                               ${pl.ti_width}/${pl.ti_ratio}R${pl.ti_inch}
                               (${pl.ti_marking})
                             </h2>
                           </c:otherwise>
                         </c:choose>
-                        <span class="myOrder_quantity">${pl.ti_stock}EA</span>
+                        <span class="nonMember_quantity">${pl.ti_stock}EA</span>
                       </div>
                     </div>
-                    <div class="myOrder_insDate">
-                      <span class="myOrder_insDate_span"
+                    <div class="nonMember_insDate">
+                      <span class="nonMember_insDate_span"
                         >${o.o_tireinstalldate}</span
                       >
+                      <span class="nonMember_insDate_dDay"></span>
                     </div>
-                    <div class="myOrder_step">
+                    <div class="nonMember_step">
                       <span>${o.o_step}</span>
                     </div>
                   </li>
                 </c:forEach>
-                <li class="myOrder_last">
+                <li class="nonMember_last">
                   <div><span>장착점: </span><span>${o.o_storeshop}</span></div>
                   <div>
                     <span>결제금액: </span>
-                    <span>
-                      <fmt:formatNumber
-                        value="${o.o_price}"
-                        type="currency"
-                        currencySymbol=""
-                      />원
-                    </span>
+                    <span class="nonMember_cost">${o.o_price}</span>
                   </div>
                 </li>
               </ul>
@@ -115,22 +116,36 @@ pageEncoding="UTF-8"%>
     </div>
     <script>
       if (location.href.includes("go")) {
-        document.querySelector(".nonmember_contents").style.display = "flex";
-        document.querySelector(".nonmember_form").style.display = "none";
+        document.querySelector(".nonMember_contents").style.display = "flex";
+        document.querySelector(".nonMember_form").style.display = "none";
       } else {
-        document.querySelector(".nonmember_contents").style.display = "none";
-        document.querySelector(".nonmember_form").style.display = "flex";
+        document.querySelector(".nonMember_contents").style.display = "none";
+        document.querySelector(".nonMember_form").style.display = "flex";
       }
-      var oDate = document.querySelectorAll(".myOrder_oDate");
-      var insDate = document.querySelectorAll(".myOrder_insDate_span");
+      var oDate = document.querySelectorAll(".nonMember_oDate");
+      var insDate = document.querySelectorAll(".nonMember_insDate_span");
+      var oCost = document.querySelectorAll(".nonMember_cost");
       insDate.forEach((element) => {
         var insDateValue = element.innerText;
         element.innerText = insDateValue.substr(0, 10);
+        var dateString = insDateValue.substr(0, 10);
+        var diffInDays = new Date(dateString).getDate() - new Date().getDate();
+        if (diffInDays >= 0) {
+          element.nextElementSibling.innerText = "D-" + diffInDays;
+        } else if (diffInDays === 0) {
+          element.nextElementSibling.innerText = "D-Day";
+        } else {
+          element.nextElementSibling.innerText = "장착일이 지났습니다!";
+        }
       });
       oDate.forEach((element) => {
         var oDateValue = element.innerText;
         element.innerText = oDateValue.substr(0, 10);
       });
+      oCost.forEach((element) => {
+        var oCostValue = element.innerText;
+        element.innerText = parseInt(oCostValue).toLocaleString() + "원";
+      })
     </script>
   </body>
 </html>

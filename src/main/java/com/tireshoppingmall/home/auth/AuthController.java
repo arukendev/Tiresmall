@@ -36,6 +36,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.tireshoppingmall.home.order.MainOrderDTO;
 
 
 
@@ -423,6 +424,15 @@ public class AuthController {
     	System.out.println(aDTO.getMc_year());
     	model.addAttribute("personalInfomation",aDTO);
     	model.addAttribute("profile_contents", "profileInfo.jsp");
+    	
+    	return "index";
+    }
+    
+    @RequestMapping(value = "/nonmember.go", method = RequestMethod.POST)
+    public String getNonOrder(HttpServletRequest req, MainOrderDTO oDTO) {
+    	
+    	mDAO.getNonOrder(req, oDTO);
+    	req.setAttribute("content", "main/auth/non_member.jsp");
     	
     	return "index";
     }

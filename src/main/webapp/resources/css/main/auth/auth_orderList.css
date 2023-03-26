@@ -75,12 +75,22 @@
 .myOrder_insDate,
 .myOrder_step {
   display: flex;
+}
+
+.myOrder_step {
   justify-content: center;
 }
 
 .myOrder_insDate {
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
   font-size: 18px;
   font-weight: 400;
+}
+
+.myOrder_insDate span:last-child {
+  color: var(--red);
 }
 
 .myOrder_last {
@@ -99,4 +109,16 @@
 
 .myOrder_last div span:last-child {
   color: var(--red);
+}
+
+.myOrder_nonOrder {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  font-size: 24px;
+  font-weight: 400;
+  color: #aaa;
 }
