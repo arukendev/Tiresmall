@@ -40,9 +40,9 @@ pageEncoding="UTF-8"%>
           <div id="menuTitle4" onclick="location.href='admin.auth.go'">
             회원 관리
           </div>
-          <div id="menuTitle5" onclick="location.href='admin.rental.go'">
+          <!-- <div id="menuTitle5" onclick="location.href='admin.rental.go'">
             렌탈 관리
-          </div>
+          </div> -->
           <div id="menuTitle6" onclick="location.href='admin.store.go'">
             장착점 관리
           </div>

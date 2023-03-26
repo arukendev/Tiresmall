@@ -51,8 +51,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 "
                 src="resources/web/main/board/tsd.png"
               />
-              <!--  -->
+
+        
               <c:if test="${sessionScope.homegradecheck.i_grade eq 3}">
+
                 <a href="admin.order.go?m=order">관리자</a>
               </c:if>
             </div>

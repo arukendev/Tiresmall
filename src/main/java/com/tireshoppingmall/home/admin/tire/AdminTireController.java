@@ -202,6 +202,15 @@ public class AdminTireController {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//admin.tire.brand.go
 	@RequestMapping(value = "/admin.tire.brand.go", method = RequestMethod.GET)
 	public String tireBrandGo(HttpServletRequest req) {
