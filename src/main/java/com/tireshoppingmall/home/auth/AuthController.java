@@ -124,7 +124,7 @@ public class AuthController {
 		// 로그인페이지를통하여들어온경우:	로그인후에 홈화면으로
 		if (req.getSession().getAttribute("loginRequiredByQna") == null) {
 			req.setAttribute("content", "main/home/home.jsp");
-			return "index";
+			return "redirect:/";
 		// 1:1문의페이지를통하여들어온경우:	로그인후에 1:1문의화면으로
 		} else {
 			req.getSession().setAttribute("loginRequiredByQna", null);	

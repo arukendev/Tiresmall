@@ -24,7 +24,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
               <img src="resources/web/main/product/no-tire-image.jpg" />
             </c:when>
             <c:otherwise>
-              <img src="resources/web/main/tire/${product.tg_img}.jpg" />
+              <img
+                src="resources/web/main/tire/${product.tg_img}"
+                style="max-width: 300px"
+              />
             </c:otherwise>
           </c:choose>
         </div>
@@ -156,7 +159,11 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                 <img src="resources/web/main/product/no-tire-image.jpg" />
               </c:when>
               <c:otherwise>
-                <img src="resources/web/main/detail/${product.tg_detail}.jpg" />
+                <c:forEach var="dImg" items="${detailImg}"
+                  ><img
+                    src="resources/web/main/tire/${dImg}"
+                    style="max-width: 1200px"
+                /></c:forEach>
               </c:otherwise>
             </c:choose>
           </li>

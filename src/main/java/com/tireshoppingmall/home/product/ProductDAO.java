@@ -1,6 +1,7 @@
 package com.tireshoppingmall.home.product;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -127,7 +128,9 @@ public class ProductDAO {
 
 	public void getProduct(HttpServletRequest request, ProductDTO pDTO) {
 		ProductDTO product = ss.getMapper(ProductMapper.class).getProduct(pDTO);
+		String[] detailImg = product.getTg_detail().split("!");
 		request.setAttribute("product", product);
+		request.setAttribute("detailImg", detailImg);
 	}
 
 	public Sizes getProductSizes(HttpServletRequest request, ProductDTO pDTO) {
