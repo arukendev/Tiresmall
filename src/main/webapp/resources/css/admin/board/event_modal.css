@@ -128,8 +128,24 @@
 	justify-content: space-between;
 }
 
-.event-col2 img {
+.event-col1 {
+	width: 80px;
+	text-align: left;
+}
+
+.event-col2 {
+	width: 680px;
+	text-align: left;
+}
+.event-col2 > img {
 	width: 100px;
+}
+
+.event-col3 {
+	width: 109px;
+}
+.event-col3 > button {
+	float: left;
 }
 
 #event-reg-btn-box{

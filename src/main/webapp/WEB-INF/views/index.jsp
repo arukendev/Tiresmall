@@ -81,7 +81,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
             <div class="index_topNav">
               <div class="index_tnMenu index_tnSearch">
-                <a href="search.car">타이어 찾기</a>
+                <a href="search.size">타이어 찾기</a>
               </div>
               <div class="index_tnMenu index_tnBrand">
                 <a href="product.brand?b=&p=1">브랜드별 타이어</a>
