@@ -29,22 +29,34 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="index_header">
           <div class="index_hTop">
             <div class="index_hTopLeft">
+              <!-- 
+				<a
+					href="javascript:board_openKakao_new()"
+					class="index_kakao"
+					style="cursor: pointer"
+				>카카오톡상담
+				<img
+					src="resources/web/main/board/kakaologo.png"
+					style="width: 16px"
+				/>
+				</a>
+                 -->
+              <img
+                onclick="board_openKakao_new()"
+                style="
+                  cursor: pointer;
+                  width: 80px;
+                  position: relative;
+                  top: 2px;
+                "
+                src="resources/web/main/board/tsd.png"
+              />
 
         
-
               <c:if test="${sessionScope.homegradecheck.i_grade eq 3}">
 
                 <a href="admin.order.go?m=order">관리자</a>
-           	</c:if>
-              <a
-                onclick="board_openKakao()"
-                class="index_kakao"
-                style="cursor: pointer"
-                >카카오톡상담
-                <img
-                  src="resources/web/main/board/kakaologo.png"
-                  style="width: 16px"
-              /></a>
+              </c:if>
             </div>
             <div class="index_hTopRight">
               <c:choose>
@@ -71,7 +83,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
             <div class="index_topNav">
               <div class="index_tnMenu index_tnSearch">
-                <a href="search.car">타이어 찾기</a>
+                <a href="search.size">타이어 찾기</a>
               </div>
               <div class="index_tnMenu index_tnBrand">
                 <a href="product.brand?b=&p=1">브랜드별 타이어</a>
@@ -243,6 +255,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <script src="resources/js/main/order/cart.js"></script>
     <script src="resources/js/main/order/pay.js"></script>
     <script src="resources/js/main/search/main_search.js"></script>
+    <!-- main.board -->
     <script src="resources/js/main/board/main_board_kakao.js"></script>
     <script src="resources/js/main/board/main_board_whereAmI.js"></script>
     <script src="resources/js/main/board/main_board_qna_complete.js"></script>

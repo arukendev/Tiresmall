@@ -33,7 +33,7 @@
 				<a class="board_sideMenuList board_qna" href="board.qna.check">1:1문의 <img class="board_qnaAndKakaoLogo" src="resources/web/main/board/qnalogo.png"/></a>
 			</div>
 			<div>
-				<a class="board_kakao" onclick="board_openKakao()" style="cursor: pointer">카카오톡상담 <img class="board_qnaAndKakaoLogo" src="resources/web/main/board/kakaologo.png"/></a>
+				<a class="board_kakao" href="javascript:board_openKakao_new()" style="cursor: pointer">카카오톡상담 <img class="board_qnaAndKakaoLogo" src="resources/web/main/board/kakaologo.png"/></a>
 			</div>
 			
 			<br>
