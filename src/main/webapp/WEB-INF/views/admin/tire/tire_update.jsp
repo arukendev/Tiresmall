@@ -180,7 +180,7 @@
 									<div class="admin-tire-img-title"
 										style="border-right: 2px solid white;">현재 이미지</div>
 									<div class="admin-tire-img-content">
-										<img src="resources/web/main/tire/${tireGroup.tg_img}">
+										<img src="resources/web/main/tire/${tireGroup.tg_img}" id="imagePreview">
 									</div>
 								</div>
 								<div class="admin-tire-img-contain">
@@ -205,7 +205,7 @@
 										style="border-right: 2px solid white;">현재 이미지</div>
 									<div class="admin-tire-img-content">
 										<c:forEach items="${filesName}" var="f">
-											<img src="resources/web/main/tire/${f}"><br />
+											<img src="resources/web/main/tire/${f}"class="files"><br />
 										</c:forEach>
 									</div>
 								</div>

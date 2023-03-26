@@ -246,22 +246,64 @@ function tireRegSizeReg() {
 
 //타이어 등록페이지 사진css
 function tireRegImgReg() {
-	$("#file1").on('change',function(){
-		alert($("#file1").val());
+	
+	let tg_id = $('#tireIdHidden').val();
+	
+	$("#file1").on('change',function(e){
 		var arSplitUrl = $("#file1").val().split("\\");
+		alert($("#file1").val());
 		var nArLength = arSplitUrl.length;
 		var fileName = arSplitUrl[nArLength-1];
 		$(".upload-name1").val(fileName);
 		
-		
-		
-		
+		$("#imagePreview").attr('src',$("#file1").val());
+
+		if(tg_id != null){
+			
+			
+			
+			
+		}	
 	});
-	$("#file2").on('change',function(){
-		var arSplitUrl = $("#file2").val().split("\\");
-		var nArLength = arSplitUrl.length;
-		var fileName = arSplitUrl[nArLength-1];
-		$(".upload-name2").val(fileName);
+
+	
+	
+	$("#file2").on('change',function(e){
+		
+		var fileInput = $("#file2");
+		//파일 이름 저장할 공간
+		let filesName = "";
+		
+	/*	
+		console.log(e.target.files.val());
+		console.log(fileInput.val());*/
+		
+		//파일 이름 출력하기
+		for( var i=0; i<fileInput.length; i++ ){
+			if( fileInput[i].files.length > 0 ){
+				for( var j = 0; j < fileInput[i].files.length; j++ ){
+					
+					if(j!=fileInput[i].files.length-1){
+						filesName +=fileInput[i].files[j].name +"/";							
+					}else{
+						filesName +=fileInput[i].files[j].name;	
+					}	
+					//$('.admin_tire_reg_img_preview').append();
+				}
+			}
+		}
+		
+		$(".upload-name2").val(filesName);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
 	});
 	
 	
