@@ -26,3 +26,35 @@
   align-items: center;
   gap: 5px;
 }
+
+.nonmember_form {
+  height: 400px;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nonmember_form span {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.nonmember_form input {
+  font-size: 20px;
+  font-weight: 400;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.nonmember_form button {
+  font-family: "Noto Sans KR", sans-serif;
+  color: white;
+  background-color: var(--red);
+  font-size: 20px;
+  font-weight: 400;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+}
