@@ -46,7 +46,8 @@
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div>
+								<div></div>
+								<div style="bottom: 0;">
 									${e.e_status }
 								</div>
 							</c:otherwise>

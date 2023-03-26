@@ -12,7 +12,13 @@
 		<div class="subMenuContent2" onclick="location.href='admin.qna.go'">1:1문의 관리</div>
 		<div class="subMenuContent3" onclick="location.href='admin.faq.go'">FAQ</div>
 		<div class="subMenuContent4" onclick="location.href='admin.event.go'">이벤트</div>
-
+		<div class="subMenuContent5">
+			<img
+				onclick="board_openKakao_new_admin()"
+				style="cursor: pointer; width: 80px; position: relative; top: 2px;"
+				src="resources/web/main/board/tsd.png"
+			/>
+		</div>
 	</div>
 </body>
 </html>
