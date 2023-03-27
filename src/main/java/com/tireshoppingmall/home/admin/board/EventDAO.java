@@ -90,6 +90,7 @@ public class EventDAO {
 	}
 
 	public int updateEvent(EventDTO eventDTO) {
+		System.err.println(eventDTO.toString());
 		return ss.getMapper(AdminBoardMapper.class).eventUpdate(eventDTO);
 	}
 

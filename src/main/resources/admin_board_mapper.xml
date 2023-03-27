@@ -253,12 +253,6 @@
 					<when test="e_duration != null">
 							e_duration = #{e_duration}
 					</when>
-					<when test="e_mainimg != null">
-							e_mainimg = #{e_mainimg}
-					</when>
-					<when test="e_detailimg != null">
-							e_detailimg = #{e_detailimg}
-					</when>
 					<when test="e_status != null">
 							e_status = #{e_status}
 					</when>
