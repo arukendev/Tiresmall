@@ -380,6 +380,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 id="directpay"
                 name="o_paymethod"
                 value="현장결제"
+                onchange="payChange(this)"
                 checked
               />
               <label for="directpay">현장결제</label>
@@ -390,13 +391,16 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 id="nonbankpay"
                 name="o_paymethod"
                 value="무통장"
+                onchange="payChange(this)"
               />
               <label for="nonbankpay">무통장 입금</label>
             </div>
           </div>
-          <div class="pay_nonbankpay_content">
-            <span>예금주 김준범</span>
-            <span>농협 356-1434-7356-03</span>
+          <div class="pay_method_info">
+            <div class="pay_nonbankpay_content" style="display: none">
+              <span>예금주 김준범</span>
+              <span>농협 356-1434-7356-03</span>
+            </div>
           </div>
         </div>
         <div class="pay_confirm">

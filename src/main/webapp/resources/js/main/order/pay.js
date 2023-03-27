@@ -375,3 +375,11 @@ payCarNameSelect.addEventListener("change", () => {
   document.querySelector(".pay_car_confirm").innerText = "";
 });
 payBtn.addEventListener("click", submitCheck);
+
+function payChange(e) {
+  if (e.value === "현장결제") {
+    document.querySelector(".pay_nonbankpay_content").style.display = "none";
+  } else {
+    document.querySelector(".pay_nonbankpay_content").style.display = "flex";
+  }
+}
