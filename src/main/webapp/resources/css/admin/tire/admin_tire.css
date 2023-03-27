@@ -246,7 +246,8 @@ top:110px;
 	color: #dc3545;
     background-color: #fff;
     border-color: #dc3545;
-      cursor: pointer; 
+    border:2px solid #dc3545;
+    cursor: pointer; 
     user-select: none;	
     font-family: GmarketSansMedium;
 }

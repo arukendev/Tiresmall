@@ -4,7 +4,7 @@ $(function() {
 	});
 	
 	
-	$("#auth_modal_cancel").click(function() {
+	$(".admin_deleteBTN").click(function() {
 		$("#auth_modal").css("display","none");
 	})
 	
@@ -40,7 +40,7 @@ function updateauth(no,id,grade,name,phone,carNum,carName,carBrand,carYear) {
 	$('#auth_carNUm').val(carNum);
 	$('#auth_carName').val(carName);
 	$('#auth_carBrand').val(carBrand);
-	$('#auth_carYear').val(carYear);
+	$('#auth_carYear').val(carYear +"년");
 }
 
 function deleteAuth(id) {
