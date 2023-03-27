@@ -46,8 +46,7 @@
 		u_id,u_logintype,i_no,i_name,i_phonenum,i_newdate,i_grade,i_email,
 		mc_number,mc_id,mc_carname,mc_brand,mc_year
 		from (
-		select * from auth_user
-		u
+		select * from auth_user u
 		inner join auth_userinfo ui on u.u_no = ui.i_no
 		left OUTER JOIN my_car
 		mc on u.u_no = mc.mc_id

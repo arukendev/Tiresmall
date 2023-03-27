@@ -20,7 +20,10 @@ pageEncoding="UTF-8"%>
           <h2 class="pay_title_point">예약완료</h2>
         </div>
       </div>
-      <div class="complete_content">예약완료했엉!</div>
+      <div class="complete_content">
+        <img src="resources/web/main/checked.png" style="width: 100px" />
+        <h1>주문이 접수 되었습니다.</h1>
+      </div>
     </form>
   </body>
 </html>
