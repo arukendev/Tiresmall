@@ -171,7 +171,7 @@
 		select * from qna_reply where q_reply_board_no = #{q_reply_board_no}
 	</select>
 	
-	<!-- QNA 페이징 (faq 갯수 카운트) -->
+	<!-- QNA 페이징 (QnA 갯수 카운트) -->
 	<select id="getQnaCount" resultType="int">
 		select count(*)
 		from qna q, auth_user au, auth_userinfo aui

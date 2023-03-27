@@ -55,11 +55,7 @@ public class QnaDAO {
 			search.setStart(new BigDecimal(start));
 			search.setEnd(new BigDecimal(end));
 			qnaCount = allQnaCount;
-			System.out.println("1-------" + allQnaCount);
 		}else {
-			System.out.println("&&&&&&&&&&&&&&&&");
-			System.out.println(search.toString());
-			System.out.println("&&&&&&&&&&&&&&&&");
 			search.setStart(new BigDecimal(start));
 			search.setEnd(new BigDecimal(end));
 			qnaCount = ss.getMapper(AdminBoardMapper.class).getQnaCount(search);
