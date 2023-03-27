@@ -139,10 +139,14 @@ $(document).on("click", ".save-btn", function (e) {
         col2Span.text($("#event-status").val());
       }
       col2Span.text(col2Input.val());
+      if (type == "content-btn"){
+    	  col2Span.html(col2TextareaVal);
+      }
       col2Span.show();
       col2Input.hide();
       updateBtn.show();
       saveBtn.hide();
+      cancleBtn.val(col2Span.html());
       cancleBtn.hide();
     },
   });
