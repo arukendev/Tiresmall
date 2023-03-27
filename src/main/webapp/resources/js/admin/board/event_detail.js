@@ -5,15 +5,15 @@ $(".detail-updateBtn").click((e) => {
   let col2El = $(event_row).find(".event-col2");
   let col3El = $(event_row).find(".event-col3");
   let col2Span = col2El.find("span");
-  let col2Data = col2Span.text();
+  let col2Data = col2Span.html();
   let inputEl = $("<input>");
+  let textareaEl = $("<textarea rows='5' cols='65' style='resize: none;' ></textarea>");
   let saveBtn = $("<button class='save-btn'>저장</button>");
   let cancleBtn = $(
     "<button class='cancle-btn' value='" + col2Data + "'>취소</button>"
   );
 
   if (btnType == "duration-btn") {
-    // $(inputEl).attr("type", 'datetime-local');
     $(inputEl).attr("id", "datepicker");
   } else if (btnType == "main-btn") {
     $("input[name=e_mainimg]").show();
@@ -34,6 +34,14 @@ $(".detail-updateBtn").click((e) => {
     $(btn).hide();
     $(col3El).append(saveBtn).append(cancleBtn);
     return;
+  } else if (btnType == 'content-btn'){
+    $(col2El).append(textareaEl);
+    $(col2Span).hide();
+    $(btn).hide();
+    $(col3El).append(saveBtn);
+    $(col3El).append(cancleBtn);
+    $(textareaEl).text(col2Span.html().replaceAll("<br>","\r\n"));
+    return;
   }
   $(inputEl).attr("value", col2Data);
   $(col2Span).hide();
@@ -50,8 +58,9 @@ $(document).on("click", ".cancle-btn", function (e) {
   let event_row = $(btn).closest(".event-row");
   let col2El = event_row.find(".event-col2");
   let col3El = event_row.find(".event-col3");
+  let col2Textarea = col2El.find("textarea");
   let col2Span = col2El.find("span");
-  let col2Data = col2Span.text();
+  let col2Data = col2Span.html();
   let updateBtn = col3El.find(".detail-updateBtn");
   let saveBtn = col3El.find(".save-btn");
   let imgBtn = col3El.find(".imgbtn");
@@ -60,7 +69,7 @@ $(document).on("click", ".cancle-btn", function (e) {
   saveBtn.hide();
   cancleBtn.hide();
   updateBtn.show();
-  col2Span.text(cancleBtn.val()).show();
+  col2Span.html(cancleBtn.val()).show();
 
   console.log(updateBtn.val());
   if (updateBtn.val() == "main-btn") {
@@ -74,6 +83,8 @@ $(document).on("click", ".cancle-btn", function (e) {
   } else if (updateBtn.val() == "selectType") {
     $("#event-status").hide();
     return;
+  } else if (updateBtn.val() == 'content-btn'){
+      col2Textarea.remove();
   }
 
   col2El.find("input").remove();
@@ -85,6 +96,8 @@ $(document).on("click", ".save-btn", function (e) {
   let col3El = event_row.find(".event-col3");
   let col2Span = col2El.find("span");
   let col2Input = col2El.find("input");
+  let col2Textarea = col2El.find("textarea");
+  let col2TextareaVal;
   let updateBtn = col3El.find(".detail-updateBtn");
   let saveBtn = col3El.find(".save-btn");
   let cancleBtn = col3El.find(".cancle-btn");
@@ -95,18 +108,17 @@ $(document).on("click", ".save-btn", function (e) {
   if (type == "title-btn") {
     col2Input.attr("name", "e_title");
     url += "e_title=";
+    url += col2Input.val();
   } else if (type == "content-btn") {
-    col2Input.attr("name", "e_content");
+	col2Input = col2Textarea;
+    col2TextareaVal = col2Textarea.val().replaceAll('\n', '<br>');
+	col2Input.attr("name", "e_content");
     url += "e_content=";
+    url += col2TextareaVal;
   } else if (type == "duration-btn") {
     col2Input.attr("name", "e_duration");
     url += "e_duration=";
-  } else if (type == "main-btn") {
-    url += "e_mainimg=";
-  } else if (type == "detail-btn") {
-    col2Input.attr("name", "e_detailimg");
-    url += "e_detailimg=";
-  }
+  } 
   url += col2Input.val();
   if (type == "status-btn") {
     url = "event.detail.update?e_no=";
