@@ -22,8 +22,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       </div>
 
       <form action="nonmember.go" method="post" class="nonMember_form">
-        <span>핸드폰 번호를 입력해주세요</span>
-        <input type="text" name="o_phone" />
+        <span>연락처를 입력해주세요</span>
+        <input type="text" name="o_phone" placeholder="-을 제외하고 입력해주세요"/>
         <button>입력</button>
       </form>
       <div class="nonMember_contents">
