@@ -28,7 +28,7 @@
 	</insert>
 	
 	<select id="getCarName" resultType="com.tireshoppingmall.home.order.CarName">
-		select c_name from car
+		select DISTINCT c_name from car
 	</select>
 	
 	<select id="getCarBrand" resultType="com.tireshoppingmall.home.order.CarBrand">

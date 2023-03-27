@@ -249,12 +249,14 @@ function submitCheck(e) {
   }
   if (!dateReg.test(payDate.value)) {
     payDate.style.borderColor = "var(--red)";
+    payDate.focus();
     document.querySelector(".pay_date_confirm").innerText =
       "올바르지 않은 날짜입니다.";
     e.preventDefault();
   }
   if (!payDate.value) {
     payDate.style.borderColor = "var(--red)";
+    payDate.focus();
     document.querySelector(".pay_date_confirm").innerText =
       "장착일을 입력해주세요.";
     e.preventDefault();
@@ -265,6 +267,7 @@ function submitCheck(e) {
   }
   if (!payNameInput.value) {
     payNameInput.style.borderColor = "var(--red)";
+    payNameInput.focus();
     document.querySelector(".pay_customer_confirm").innerText =
       "주문자를 입력해주세요.";
     e.preventDefault();
@@ -275,12 +278,14 @@ function submitCheck(e) {
   }
   if (!phoneReg.test(payPhoneInput.value)) {
     payPhoneInput.style.borderColor = "var(--red)";
+    payPhoneInput.focus();
     document.querySelector(".pay_phone_confirm").innerText =
       "올바르지 않은 연락처입니다.";
     e.preventDefault();
   }
   if (!payPhoneInput.value) {
     payPhoneInput.style.borderColor = "var(--red)";
+    payPhoneInput.focus();
     document.querySelector(".pay_phone_confirm").innerText =
       "연락처를 입력해주세요.";
     e.preventDefault();
@@ -291,12 +296,14 @@ function submitCheck(e) {
   }
   if (!emailReg.test(payEmailInput.value)) {
     payEmailInput.style.borderColor = "var(--red)";
+    payEmailInput.focus();
     document.querySelector(".pay_email_confirm").innerText =
       "올바르지 않은 이메일입니다.";
     e.preventDefault();
   }
   if (!payEmailInput.value) {
     payEmailInput.style.borderColor = "var(--red)";
+    payEmailInput.focus();
     document.querySelector(".pay_email_confirm").innerText =
       "이메일을 입력해주세요.";
     e.preventDefault();
@@ -307,12 +314,14 @@ function submitCheck(e) {
   }
   if (!carNumReg.test(payCarNumInput.value)) {
     payCarNumInput.style.borderColor = "var(--red)";
+    payCarNumInput.focus();
     document.querySelector(".pay_carNum_confirm").innerText =
       "올바르지 않은 차량번호입니다.";
     e.preventDefault();
   }
   if (!payCarNumInput.value) {
     payCarNumInput.style.borderColor = "var(--red)";
+    payCarNumInput.focus();
     document.querySelector(".pay_carNum_confirm").innerText =
       "차량번호를 입력해주세요.";
     e.preventDefault();
