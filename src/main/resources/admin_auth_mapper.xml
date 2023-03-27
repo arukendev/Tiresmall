@@ -10,19 +10,8 @@
 
 	<update id="authUpdate">
 		update auth_userinfo
-		set
-		<choose>
-			<when test="i_grade==1">
-				i_grade = 1
-			</when>
-			<when test="i_grade==2">
-				i_grade = 2
-			</when>
-			<when test="i_grade==3">
-				i_grade = 3
-			</when>
-		</choose>
-		where i_no = #{i_id}
+		set i_grade=#{i_grade}
+		where i_no = #{i_no}
 	</update>
 
 	<select id="getAuthCount" resultType="int">

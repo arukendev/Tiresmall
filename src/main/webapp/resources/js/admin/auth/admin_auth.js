@@ -18,7 +18,7 @@ $(function() {
 });
 
 
-function updateauth(id,grade,name,phone,carNum,carName,carBrand,carYear) {
+function updateauth(no,id,grade,name,phone,carNum,carName,carBrand,carYear) {
 	if(grade == 1){
 		$('.auth_sortation_option1').prop('selected',"selected");
 	}else if(grade == 3){
@@ -26,12 +26,14 @@ function updateauth(id,grade,name,phone,carNum,carName,carBrand,carYear) {
 	}else{
 		$('.auth_sortation_option2').prop('selected',"selected");		
 	}
+	console.log(no);
 	console.log(id);
 	console.log(carNum);
 	console.log(carName);
 	console.log(carBrand);
 	console.log(carYear);
 	
+	$('#auth_i_no').val(no);
 	$('#auth_id').val(id);
 	$('#auth_name').val(name);
 	$('#auth_phone').val(phone);
