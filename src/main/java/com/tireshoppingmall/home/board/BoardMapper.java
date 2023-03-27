@@ -24,15 +24,11 @@ public interface BoardMapper {
 	
 	int deleteQna(BoardQnaDTO bq);
 	
-	
-	
 	int getNoticeCount(BoardNoticeDTO bn);
 	
 	List<BoardNoticeDTO> readNotice(BoardNoticeDTO bn);
 	
 	BoardNoticeDTO readdetailNotice(BoardNoticeDTO bn);
-	
-	
 	
 	List<BoardEventDTO> readEventModal(BoardEventDTO be);
 

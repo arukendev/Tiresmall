@@ -105,10 +105,12 @@ $(document).on("click", ".save-btn", function (e) {
   let e_no = $("#e_no").text();
   let url = "event.detail.update?e_no=";
   url += e_no + "&";
+  console.log(col2Input.val());
   if (type == "title-btn") {
     col2Input.attr("name", "e_title");
     url += "e_title=";
     url += col2Input.val();
+    console.log(url);
   } else if (type == "content-btn") {
 	col2Input = col2Textarea;
     col2TextareaVal = col2Textarea.val().replaceAll('\n', '<br>');
@@ -119,7 +121,6 @@ $(document).on("click", ".save-btn", function (e) {
     col2Input.attr("name", "e_duration");
     url += "e_duration=";
   } 
-  url += col2Input.val();
   if (type == "status-btn") {
     url = "event.detail.update?e_no=";
     url += e_no + "&";
