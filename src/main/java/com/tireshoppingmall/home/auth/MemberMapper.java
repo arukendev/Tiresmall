@@ -3,6 +3,7 @@ package com.tireshoppingmall.home.auth;
 import java.util.List;
 
 import com.tireshoppingmall.home.order.CartDTO;
+import com.tireshoppingmall.home.order.MainOrderDTO;
 
 public interface MemberMapper {
 
@@ -34,6 +35,8 @@ public interface MemberMapper {
 	int pwFind(AuthUserDTO aDTO);
 
 	int pwSet(MemberDTO mDTO);
+
+	List<MyOrderDTO> getNonOrder(MainOrderDTO oDTO);
 
 
 

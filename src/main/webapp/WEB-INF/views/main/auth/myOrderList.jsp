@@ -17,7 +17,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     <div class="myOrder_list">
       <c:choose>
         <c:when test="${empty orders}">
-          <div class="myOrder_nonOrder">주문없엉</div>
+          <div class="myOrder_nonOrder">
+            <img src="resources/web/main/caution.png" style="width: 100px">
+            <h1>조회된 주문이 없습니다.</h1>
+          </div>
         </c:when>
         <c:otherwise>
           <c:forEach var="o" items="${orders}">
@@ -47,7 +50,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                       </c:when>
                       <c:otherwise>
                         <img
-                          src="resources/web/main/tire/${pl.tg_img}.jpg"
+                          src="resources/web/main/tire/${pl.tg_img}"
                           style="width: 100px"
                         />
                       </c:otherwise>
@@ -77,6 +80,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                     <span class="myOrder_insDate_span"
                       >${o.o_tireinstalldate}</span
                     >
+                    <span class="myOrder_insDate_dDay"></span>
                   </div>
                   <div class="myOrder_step">
                     <span>${o.o_step}</span>
@@ -107,6 +111,15 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       insDate.forEach((element) => {
         var insDateValue = element.innerText;
         element.innerText = insDateValue.substr(0, 10);
+        var dateString = insDateValue.substr(0, 10);
+        var diffInDays = new Date(dateString).getDate() - new Date().getDate();
+        if (diffInDays >= 0) {
+          element.nextElementSibling.innerText = "D-" + diffInDays;
+        } else if (diffInDays === 0) {
+          element.nextElementSibling.innerText = "D-Day";
+        } else {
+          element.nextElementSibling.innerText = "장착일이 지났습니다!";
+        }
       });
       oDate.forEach((element) => {
         var oDateValue = element.innerText;

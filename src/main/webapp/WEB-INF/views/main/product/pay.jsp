@@ -45,8 +45,8 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                     </c:when>
                     <c:otherwise>
                       <img
-                        src="resources/web/main/tire/${tire.tg_img}.jpg"
-                        style="width: 150px"
+                        src="resources/web/main/tire/${tire.tg_img}"
+                        style="max-height: 150px"
                       />
                     </c:otherwise>
                   </c:choose>

@@ -26,7 +26,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           <c:when test="${empty sessionScope.cartSession}">
             <div class="cart_empty">
               <img src="resources/web/main/caution.png" style="width: 100px">
-              <h1>장바구니가 비었습니다</h1>
+              <h1>장바구니가 비었습니다.</h1>
             </div>
           </c:when>
           <c:otherwise>
@@ -47,8 +47,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                         </c:when>
                         <c:otherwise>
                         <img
-                          src="resources/web/main/tire/${tire.tg_img}.jpg"
-                          style="width: 150px"
+                          src="resources/web/main/tire/${tire.tg_img}"
+                          style="max-height: 150px"
                         />
                         </c:otherwise>
                       </c:choose>

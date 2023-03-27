@@ -181,6 +181,9 @@ pageEncoding="UTF-8"%>
             />
             <span class="home_store_txt">타이어테크 반월점</span>
           </a>
+          <div class="home_store_menu">
+            <img src="resources/web/main/index/brand/1.jpg">
+          </div>
         </div>
       </section>
     </div>

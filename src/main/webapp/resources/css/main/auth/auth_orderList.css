@@ -9,7 +9,7 @@
 
 .myOrder_order {
   border: 1px solid #ddd;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .myOrder_num {
@@ -42,7 +42,7 @@
 
 .myOrder_product_info {
   display: flex;
-  padding: 0 10px;
+  padding: 0 30px;
   flex-direction: column;
   gap: 15px;
 }
@@ -75,12 +75,22 @@
 .myOrder_insDate,
 .myOrder_step {
   display: flex;
+}
+
+.myOrder_step {
   justify-content: center;
 }
 
 .myOrder_insDate {
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
   font-size: 18px;
   font-weight: 400;
+}
+
+.myOrder_insDate span:last-child {
+  color: var(--red);
 }
 
 .myOrder_last {
@@ -92,6 +102,23 @@
   font-weight: 400;
 }
 
+.myOrder_step {
+  font-size: 18px;
+  font-weight: 400;
+}
+
 .myOrder_last div span:last-child {
   color: var(--red);
+}
+
+.myOrder_nonOrder {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  font-size: 24px;
+  font-weight: 400;
+  color: #aaa;
 }

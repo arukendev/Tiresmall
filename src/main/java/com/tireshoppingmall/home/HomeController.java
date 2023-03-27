@@ -81,4 +81,10 @@ public class HomeController {
 		req.setAttribute("content", "main/store/store.jsp");
 		return "index";
 	}
+	
+	@RequestMapping(value = "/non-member", method = RequestMethod.GET)
+	public String goNonMember(HttpServletRequest req) {
+		req.setAttribute("content", "main/auth/non_member.jsp");
+		return "index";
+	}
 }

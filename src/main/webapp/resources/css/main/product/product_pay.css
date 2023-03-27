@@ -85,7 +85,7 @@
 }
 
 .pay_product_left {
-  gap: 10px;
+  gap: 30px;
 }
 
 .pay_product_right {
@@ -267,4 +267,16 @@
 
 .pay_nav_discount {
   padding-bottom: 30px;
+}
+
+.complete_content {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  font-size: 24px;
+  font-weight: 400;
+  color: #aaa;
 }

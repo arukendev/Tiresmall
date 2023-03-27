@@ -55,6 +55,10 @@
 	select * from product_order where O_SORTATION=#{u_no}
 </select>
 
+<select id="getNonOrder" resultType="com.tireshoppingmall.home.auth.MyOrderDTO">
+	select * from product_order where o_phone = #{o_phone}
+</select>
+
 <select id="getTireInfo" resultType="com.tireshoppingmall.home.order.CartDTO">
 	select * from tire_group, tire_item where tg_id = ti_tg_id and ti_id = #{tireId}
 </select>
