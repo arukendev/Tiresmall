@@ -14,7 +14,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
         location.href = "/home";
       </script>
     </c:if>
-    <form action="pay.complete" method="post" class="pay_container">
+    <form action="" method="post" class="pay_container">
       <div class="pay_titles">
         <div class="pay_title_left">
           <h1>구매예약</h1>
@@ -58,10 +58,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                   >
                     ${tire.tg_brand}
                   </h2>
-                  <h1
-                    href="product.detail?tg_id=${tire.tg_id}"
-                    class="pay_product_name"
-                  >
+                  <h1 value="${tire.tg_id}" class="pay_product_name">
                     ${tire.tg_name}
                   </h1>
                   <div class="pay_quantity_box">
@@ -395,11 +392,26 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
               />
               <label for="nonbankpay">무통장 입금</label>
             </div>
+            <div class="pay_kakaopay">
+              <input
+                type="radio"
+                id="kakaopay"
+                name="o_paymethod"
+                value="카카오"
+                onchange="payChange(this)"
+              />
+              <label for="kakaopay">카카오페이</label>
+            </div>
           </div>
           <div class="pay_method_info">
             <div class="pay_nonbankpay_content" style="display: none">
               <span>예금주 김준범</span>
               <span>농협 356-1434-7356-03</span>
+            </div>
+          </div>
+          <div class="pay_method_info">
+            <div class="pay_kakaopay_content" style="display: none; position: relative; top: -120px; font-weight: 500;">
+              	'결제하기'를 클릭해 카카오 결제를 진행 해주세요.
             </div>
           </div>
         </div>
@@ -427,5 +439,6 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
         </div>
       </div>
     </form>
+<script type="text/javascript" src="resources/js/main/order/kakaopay.js"></script>
   </body>
 </html>

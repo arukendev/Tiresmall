@@ -77,4 +77,22 @@ public class ProductController {
 	public Sizes getProductSizes(HttpServletRequest request, ProductDTO pDTO) {
 		return pDAO.getProductSizes(request, pDTO);
 	}
+
+	@ResponseBody
+	@RequestMapping(
+			value = "/kakao.ready.popup",
+			method = RequestMethod.POST,
+			produces = "application/json;charset=utf-8"
+			)
+	public String kakaoPayReady(HttpServletRequest req, ProductDTO pDTO) {
+		return pDAO.kakaoPayReady(pDTO, req);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

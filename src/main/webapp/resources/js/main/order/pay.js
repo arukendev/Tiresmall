@@ -198,8 +198,8 @@ const dateReg = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
 const phoneReg = /^\d{9,11}$/;
 const emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const carNumReg = /\d{2,3}[가-힣]{1}\d{4}/;
-
 function payDateCheck(e) {
+
   if (!dateReg.test(e.target.value)) {
     payDate.style.borderColor = "var(--red)";
     document.querySelector(".pay_date_confirm").innerText =
@@ -241,8 +241,9 @@ function payCarNumCheck(e) {
     document.querySelector(".pay_carNum_confirm").innerText = "";
   }
 }
-
+let content = $(document.querySelector(".pay_kakaopay_content"));
 function submitCheck(e) {
+content = $(document.querySelector(".pay_kakaopay_content"));
   if (payDate.value) {
     payDate.style.borderColor = "#aaa";
     document.querySelector(".pay_date_confirm").innerText = "";
@@ -374,12 +375,33 @@ payCarNameSelect.addEventListener("change", () => {
   payCarNameSelect.style.borderColor = "#aaa";
   document.querySelector(".pay_car_confirm").innerText = "";
 });
+console.log(content.val());
+if(content.val()== "카카오"){
+	console.log(123123);
+	//kakaopay();
+}
+
 payBtn.addEventListener("click", submitCheck);
 
 function payChange(e) {
   if (e.value === "현장결제") {
     document.querySelector(".pay_nonbankpay_content").style.display = "none";
-  } else {
-    document.querySelector(".pay_nonbankpay_content").style.display = "flex";
+    content.hide();
+  } else if(e.value == "무통장"){
+	document.querySelector(".pay_nonbankpay_content").style.display = "flex";
+	content.hide();
+  } else if(e.value == "카카오"){
+	document.querySelector(".pay_nonbankpay_content").style.display = "none";
+	content.show();
   }
 }
+
+
+
+
+
+
+
+
+
+
