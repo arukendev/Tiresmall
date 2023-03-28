@@ -2,6 +2,7 @@ package com.tireshoppingmall.home.product;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.chainsaw.Main;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,12 +10,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tireshoppingmall.home.admin.order.OrderDTO;
+import com.tireshoppingmall.home.auth.MemberDAO;
+import com.tireshoppingmall.home.order.MainOrderController;
+import com.tireshoppingmall.home.order.MainOrderDAO;
+import com.tireshoppingmall.home.order.MainOrderDTO;
+
 @Controller
 public class ProductController {
 
 	@Autowired
 	private ProductDAO pDAO;
 
+	@Autowired
+	private MainOrderDAO mODAO;
+	
 	private boolean firstReq;
 
 	public ProductController() {
@@ -78,18 +88,38 @@ public class ProductController {
 		return pDAO.getProductSizes(request, pDTO);
 	}
 
+	
 	@ResponseBody
 	@RequestMapping(
-			value = "/kakao.ready.popup",
+			value = "/kakao.popup",
 			method = RequestMethod.POST,
 			produces = "application/json;charset=utf-8"
 			)
-	public String kakaoPayReady(HttpServletRequest req, ProductDTO pDTO) {
-		return pDAO.kakaoPayReady(pDTO, req);
+	public String kakaoPayReady(HttpServletRequest req, PaymentDTO pDTO) {
+		return pDAO.kakaoPopup(pDTO, req);
 	}
 	
-	
-	
+	@RequestMapping(value = "/kakao.popup.approve.go", method = RequestMethod.GET)
+	public String kakaoApproveGo(HttpServletRequest req) {
+		return "main/product/kakao-approval";
+	}
+
+	@RequestMapping(value = "/kakao.popup.approve.do", method = RequestMethod.POST)
+	public String kakaoApproveDo(HttpServletRequest req,MainOrderDTO mODTO) {
+		pDAO.kakaoApprove(req);
+		mODAO.setValues(req, mODTO);
+		req.setAttribute("content", "main/product/complete.jsp");
+		return "index";
+	}
+
+	@RequestMapping(value = "/kakao.popup.fail", method = RequestMethod.GET)
+	public String kakaoFail(HttpServletRequest req,MainOrderDTO mODTO) {
+		return "main/product/kakao-fail";
+	}
+	@RequestMapping(value = "/kakao.popup.cancle", method = RequestMethod.GET)
+	public String kakaoCancle(HttpServletRequest req,MainOrderDTO mODTO) {
+		return "main/product/kakao-cancle";
+	}
 	
 	
 	

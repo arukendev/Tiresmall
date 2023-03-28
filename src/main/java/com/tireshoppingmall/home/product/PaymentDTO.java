@@ -7,6 +7,7 @@ public class PaymentDTO {
 	 private String item_name;
 	 private String quantity;
 	 private String total_amount;
+	 private String vat_amount;
 	 private String tax_free_amount;
 	 private String approval_url;
 	 private String cancel_url;
@@ -17,7 +18,7 @@ public class PaymentDTO {
 	}
 
 	public PaymentDTO(String cid, String partner_order_id, String partner_user_id, String item_name, String quantity,
-			String total_amount, String tax_free_amount, String approval_url, String cancel_url, String fail_url) {
+			String total_amount,String vat_amount, String tax_free_amount, String approval_url, String cancel_url, String fail_url) {
 		super();
 		this.cid = cid;
 		this.partner_order_id = partner_order_id;
@@ -25,10 +26,19 @@ public class PaymentDTO {
 		this.item_name = item_name;
 		this.quantity = quantity;
 		this.total_amount = total_amount;
+		this.vat_amount = vat_amount;
 		this.tax_free_amount = tax_free_amount;
 		this.approval_url = approval_url;
 		this.cancel_url = cancel_url;
 		this.fail_url = fail_url;
+	}
+
+	public String getVat_amount() {
+		return vat_amount;
+	}
+
+	public void setVat_amount(String vat_amount) {
+		this.vat_amount = vat_amount;
 	}
 
 	public String getCid() {
@@ -113,10 +123,12 @@ public class PaymentDTO {
 
 	@Override
 	public String toString() {
-		return "PaymentDTO [cid=" + cid + ", partner_order_id=" + partner_order_id + ", partner_user_id="
-				+ partner_user_id + ", item_name=" + item_name + ", quantity=" + quantity + ", total_amount="
-				+ total_amount + ", tax_free_amount=" + tax_free_amount + ", approval_url=" + approval_url
-				+ ", cancel_url=" + cancel_url + ", fail_url=" + fail_url + "]";
+		return "cid=" + cid + "&partner_order_id=" + partner_order_id + "&partner_user_id="
+				+ partner_user_id + "&item_name=" + item_name + "&quantity=" + quantity + "&total_amount="
+				+ total_amount + "&vat_amount=" + vat_amount + "&tax_free_amount=" + tax_free_amount + "&approval_url=" + approval_url
+				+ "&cancel_url=" + cancel_url + "&fail_url=" + fail_url;
 	}
+
+
 	 
 }

@@ -14,7 +14,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
         location.href = "/home";
       </script>
     </c:if>
-    <form action="" method="post" class="pay_container">
+    <form action="pay.complete" method="post" id="pay_container" class="pay_container">
       <div class="pay_titles">
         <div class="pay_title_left">
           <h1>구매예약</h1>
@@ -434,10 +434,12 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
             </div>
             <input type="hidden" name="o_deliverymethod" value="직영점" />
             <input type="hidden" name="o_step" value="결제대기" />
-            <button class="pay_nav_pay">결제하기</button>
+            <!-- <button class="pay_nav_pay" type="button" onclick="kakao_pay()">결제하기</button>
+             --><button class="pay_nav_pay">결제하기</button>
           </div>
         </div>
       </div>
+      <input id="pInput" name="pg_token" type="hidden" value="">
     </form>
 <script type="text/javascript" src="resources/js/main/order/kakaopay.js"></script>
   </body>

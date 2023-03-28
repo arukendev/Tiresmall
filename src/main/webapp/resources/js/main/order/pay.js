@@ -243,6 +243,7 @@ function payCarNumCheck(e) {
 }
 let content = $(document.querySelector(".pay_kakaopay_content"));
 function submitCheck(e) {
+let payEl =	$("input[name=o_paymethod]:checked");
 content = $(document.querySelector(".pay_kakaopay_content"));
   if (payDate.value) {
     payDate.style.borderColor = "#aaa";
@@ -325,7 +326,6 @@ content = $(document.querySelector(".pay_kakaopay_content"));
     payCarNumInput.focus();
     document.querySelector(".pay_carNum_confirm").innerText =
       "차량번호를 입력해주세요.";
-    e.preventDefault();
   }
   if (
     payCarYearSelect.value === "" ||
@@ -349,6 +349,15 @@ content = $(document.querySelector(".pay_kakaopay_content"));
     payCarNameSelect.style.borderColor = "#aaa";
     document.querySelector(".pay_car_confirm").innerText = "";
   }
+  
+  if(payEl.val() == "카카오"){
+	  $(payBtn).attr("onclick", "kakao_pay()");
+	  $(payBtn).attr("type", "button");
+  }else{
+	  $(payBtn).removeAttr("onclick");
+	  $(payBtn).removeAttr("type");
+  }
+  $(payBtn).trigger("click");
 }
 
 payDate.addEventListener("input", payDateCheck);
@@ -375,13 +384,11 @@ payCarNameSelect.addEventListener("change", () => {
   payCarNameSelect.style.borderColor = "#aaa";
   document.querySelector(".pay_car_confirm").innerText = "";
 });
-console.log(content.val());
-if(content.val()== "카카오"){
-	console.log(123123);
-	//kakaopay();
-}
+
 
 payBtn.addEventListener("click", submitCheck);
+
+
 
 function payChange(e) {
   if (e.value === "현장결제") {

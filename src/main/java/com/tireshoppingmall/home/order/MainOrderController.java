@@ -22,7 +22,7 @@ public class MainOrderController {
 	
 	@RequestMapping(value = "/pay.complete", method = RequestMethod.POST)
 	public String completePay(HttpServletRequest req, MainOrderDTO mODTO) {
-		System.out.println(mODTO);
+		System.err.println(mODTO);
 		mODAO.setValues(req, mODTO);
 		req.setAttribute("content", "main/product/complete.jsp");
 		return "index";
