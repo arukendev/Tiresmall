@@ -198,8 +198,19 @@ public class AdminTireController {
 		return "admin/master";
 	}
 	
-	
-	
+	//admin.tire.img.change
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.img.change", method = RequestMethod.POST)
+	public int adminTireImgChange(TireDTO tDTO,@RequestParam("file") MultipartFile file) {	
+		System.out.println("여긴옴?");
+		return tDAO.tireImgChange(tDTO,file);
+	}
+	//admin.tire.imgs.change
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.imgs.change", method = RequestMethod.POST)
+	public int adminTireImgsChange(TireDTO tDTO, MultipartHttpServletRequest files) {	
+		return tDAO.tireImgsChange(tDTO,files);
+	}
 	
 	
 	
