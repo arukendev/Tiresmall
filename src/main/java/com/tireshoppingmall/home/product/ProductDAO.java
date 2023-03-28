@@ -1,14 +1,25 @@
 package com.tireshoppingmall.home.product;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.tireshoppingmall.home.admin.auth.AuthDTO;
 
 @Service
 public class ProductDAO {
@@ -138,5 +149,95 @@ public class ProductDAO {
 	}
 		
 
+	public String kakaoPopup(PaymentDTO paymentDTO, HttpServletRequest req) {
+		try {
+			System.out.println(paymentDTO.toString());
+			AuthDTO authDTO = (AuthDTO)req.getSession().getAttribute("authDTO");
+			String authId = "0";
+			if(authDTO != null) {
+			authId = authDTO.getU_id();
+			}
+			URL address;
+			address = new URL("https://kapi.kakao.com/v1/payment/ready");
+			HttpURLConnection conn = (HttpURLConnection) address.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Authorization", "KakaoAK aac0993bc3eb0ca5c638aa1ceb85fcdf");
+			conn.setDoOutput(true);
+			String itemName = paymentDTO.getItem_name(); // 결제창에 보일 이름
+			paymentDTO.setItem_name(itemName = URLEncoder.encode(itemName, "utf-8"));
+			paymentDTO.setCid("TC0ONETIME");
+			paymentDTO.setPartner_order_id("tiresmall");
+			paymentDTO.setApproval_url("http://localhost/home/kakao.popup.approve.go");
+			paymentDTO.setFail_url("http://localhost/home/kakao.popup.fail");
+			paymentDTO.setCancel_url("http://localhost/home/kakao.popup.cancle");
+
+			OutputStream send = conn.getOutputStream();
+			DataOutputStream dataSend = new DataOutputStream(send);
+			dataSend.writeBytes(paymentDTO.toString());
+			dataSend.close();
+			int result = conn.getResponseCode();
+			InputStream receive;
+			if (result == 200) {
+				receive = conn.getInputStream();
+				req.getSession().setAttribute("paymentDTO", paymentDTO);
+			} else {
+				receive = conn.getErrorStream();
+			}
+			InputStreamReader read = new InputStreamReader(receive);
+			BufferedReader change = new BufferedReader(read);
+
+			String jsonData = change.readLine();
+			System.out.println(jsonData);
+			JSONParser jp = new JSONParser();
+			JSONObject jo = (JSONObject) jp.parse(jsonData);
+			req.getSession().setAttribute("jsonData", jsonData);
+			req.getSession().setAttribute("partner_user_id", authId);
+			req.getSession().setAttribute("tid", jo.get("tid"));
+			String redirectUrl = (String) jo.get("next_redirect_pc_url");
+			System.out.println(redirectUrl);
+			dataSend.writeBytes(paymentDTO.toString());
+			return jsonData;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+
+	
+	public void kakaoApprove(HttpServletRequest req) {
+		try {
+			String tid = (String) req.getSession().getAttribute("tid");
+			String pg_token = req.getParameter("pg_token");
+			System.out.println(tid);
+			System.out.println(pg_token);
+			URL address;
+			address = new URL("https://kapi.kakao.com/v1/payment/approve");
+			HttpURLConnection conn = (HttpURLConnection) address.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Authorization", "KakaoAK aac0993bc3eb0ca5c638aa1ceb85fcdf");
+			conn.setDoOutput(true);
+
+			String jsonData = (String) req.getSession().getAttribute("jsonData");
+			System.out.println("넘겨받은 jsonData : " + jsonData);
+			JSONParser jp = new JSONParser();
+			JSONObject jo = (JSONObject) jp.parse(jsonData);
+			String params = "cid=TC0ONETIME&tid=" + tid + "&partner_order_id=tiresmall" + "&partner_user_id="
+					+ req.getSession().getAttribute("partner_user_id") + "&pg_token=" + pg_token;
+			System.out.println("==============");
+			System.out.println(params);
+			OutputStream send = conn.getOutputStream();
+			DataOutputStream dataSend = new DataOutputStream(send);
+			dataSend.writeBytes(params);
+			dataSend.flush();
+			dataSend.close();
+
+			System.out.println(conn.getResponseCode());
+			System.out.println("카카오페이 로직 종료");
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }
