@@ -118,7 +118,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                   <h2 class="cart_nav_name">총 결제 금액</h2>
                   <span class="cart_nav_value"></span>
                 </div>
-                <button class="cart_nav_pay" onclick="location.href = 'pay.go'">결제하기</button>
+                <button class="cart_nav_pay" onclick="location.href = 'pay.go'">구매예약</button>
               </div>
             </div>
           </c:otherwise>

@@ -113,7 +113,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         element.innerText = insDateValue.substr(0, 10);
         var dateString = insDateValue.substr(0, 10);
         var diffInDays = new Date(dateString).getDate() - new Date().getDate();
-        if (diffInDays >= 0) {
+        if (diffInDays > 0) {
           element.nextElementSibling.innerText = "D-" + diffInDays;
         } else if (diffInDays === 0) {
           element.nextElementSibling.innerText = "D-Day";

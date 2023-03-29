@@ -203,7 +203,7 @@
 								<div class="admin-tire-img-contain">
 									<div class="admin-tire-img-title"
 										style="border-right: 2px solid white;">현재 이미지</div>
-									<div class="admin-tire-img-content">
+									<div class="admin-tire-img-content admin_tire_reg_img_preview">
 										<c:forEach items="${filesName}" var="f">
 											<img src="resources/web/main/tire/${f}"class="files"><br />
 										</c:forEach>

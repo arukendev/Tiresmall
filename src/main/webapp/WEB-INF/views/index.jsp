@@ -29,19 +29,18 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="index_header">
           <div class="index_hTop">
             <div class="index_hTopLeft">
-              <!-- 
-				<a
-					href="javascript:board_openKakao_new()"
-					class="index_kakao"
-					style="cursor: pointer"
-				>카카오톡상담
-				<img
-					src="resources/web/main/board/kakaologo.png"
-					style="width: 16px"
-				/>
-				</a>
-                 -->
-              <img
+              <a
+                href="javascript:board_openKakao_new()"
+                class="index_kakao"
+                style="cursor: pointer"
+                >카카오톡상담
+                <img
+                  src="resources/web/main/board/kakaologo.png"
+                  style="width: 16px"
+                />
+              </a>
+
+              <!-- <img
                 onclick="board_openKakao_new()"
                 style="
                   cursor: pointer;
@@ -50,11 +49,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   top: 2px;
                 "
                 src="resources/web/main/board/tsd.png"
-              />
+              /> -->
 
-        
               <c:if test="${sessionScope.homegradecheck.i_grade eq 3}">
-
                 <a href="admin.order.go?m=order">관리자</a>
               </c:if>
             </div>

@@ -21,6 +21,7 @@
 			<!-- 모달 창  -->
 			<div id="auth_modal">
 				<form action="admin.update.go" method="post">
+				<input type="hidden" name="i_no" id="auth_i_no" value="">
 					<div id="auth_modal_container">
 						<div id="auth_modalInfo">회원정보</div>
 						<div id="auth_modal_page">
@@ -30,31 +31,31 @@
 								<div id="auth_basic_content">
 									<div class="auth_modal_content">
 										<div id="auth__modal_searchTitle">
-											구분 <select id="auth_modal_sortation" name="a_Sortation">
+											구분 <select id="auth_modal_sortation" name="i_grade">
 												<option value="1" class="auth_sortation_option1">일반</option>
 												<option value="2" class="auth_sortation_option2">업체</option>
 												<option value="3" class="auth_sortation_option3">관리자</option>
 											</select>
 										</div>
-										<div class="auth_modal_input auth_modal_id">
-											아이디 <input type="text" id="auth_id" name="a_id" value="" />
+										<div class="auth_modal_input">
+											아이디 <input type="text" id="auth_id" name="u_id" value="" />
 										</div>
 										<div class="auth_modal_input">
-											회원명 <input type="text" id="auth_name" name="a_name" />
+											회원명 <input type="text" id="auth_name" name="i_name" />
 										</div>
 										<div class="auth_modal_input">
-											전화번호 <input type="text" id="auth_phone" name="a_phone" />
+											전화번호 <input type="text" id="auth_phone" name="i_phone" />
 										</div>
 									</div>
 									<div class="auth_modal_content">
-										<div class="auth_modal_input  auth_modal_car">
-											차량번호 <input type="text" id="auth_carNUm" name="mc_number" />
+										<div class="auth_modal_input">
+											차량명 <input type="text" id="auth_carName" name="mc_model" />
 										</div>
 										<div class="auth_modal_input">
 											제조사 <input type="text" id="auth_carBrand" name="mc_brand" />
 										</div>
 										<div class="auth_modal_input">
-											차량명 <input type="text" id="auth_carName" name="mc_model" />
+											차량번호 <input type="text" id="auth_carNUm" name="mc_number" />
 										</div>
 										<div class="auth_modal_input">
 											차량년식 <input type="text" id="auth_carYear" name="mc_year" />
@@ -88,8 +89,8 @@
 							</div>
 						</div>
 						<div id="auth_modal_btn">
-							<button id="auth_modal_update">수정</button>
-							<div id="auth_modal_cancel">취소</div>
+							<button class="admin_notPrintBTN">수정</button>
+							<div class="admin_deleteBTN ">취소</div>
 						</div>
 					</div>
 				</form>
@@ -134,7 +135,7 @@
 				</div>
 			</form>
 
-
+ 
 
 
 			<table id="auth_content">
@@ -183,8 +184,8 @@
 						<td class="auth_table_td"><fmt:formatDate
 								value="${a.i_newDate }" pattern="yyyy-MM-dd" /></td>
 						<td id="auth_Btn" class="auth_table_td">
-							<button class="admin_notPrintBTN auth_update"
-								onclick="updateauth('${a.u_id }','${a.i_grade }','${a.i_name }','${a.i_phoneNum }'
+							<button class="admin_notPrintBTN auth_update" 
+								onclick="updateauth('${a.u_no }','${a.u_id }','${a.i_grade }','${a.i_name }','${a.i_phoneNum }'
 												,'${a.mc_number }','${a.mc_carName }','${a.mc_brand }','${a.mc_year }')">
 								수정</button> 
 							<button type="button" onclick="deleteAuth('${a.u_id }')" class="admin_deleteBTN">삭제</button>

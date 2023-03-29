@@ -130,7 +130,7 @@
 	width: 17%;
 }
 .auth_name{
-	width: 10%;
+	width: 12%;
 }
 .auth_phoneNum{
 	width:15%;
@@ -139,10 +139,10 @@
 	width:20%;
 }
 .auth_date{
-	width:10%;
+	width:11%;
 }
 .auth_management{
-	width: 15%;
+	width: 12%;
 }
 
 
@@ -273,8 +273,10 @@
   height: 37px;
 }
 .auth_modal_input input {
+  padding:2px;
+  padding-left:5px;
   margin-left: 5px;
-  width: 120px;
+  width: 110px;
   border-radius: 5px;
   height: 20px;
   font-family: GmarketSansMedium; 
@@ -282,13 +284,21 @@
   font-size: 12pt;
   border: none;
 }
-.auth_modal_id input,.auth_modal_car input{
+
+#auth_id{
 	width: 190px;
+}
+#auth_phone{
+	width: 130px;
+}
+#auth_carNUm{
+	width: 130px;
 }
 
 
 .auth_modal_addr input {
   width: 600px;
+  margin-left:10px;
   font-family: GmarketSansMedium; 
 }
 #auth_modal_btn {
@@ -300,34 +310,5 @@
   user-select: none;	
 }
 
-#auth_modal_btn button {
-  display: flex;
-  height: 37px;
-  margin-right: 30px;
-  margin-left: 30px;
-  border-radius: 5px;
-  border: 1px solid #000;
-  padding: 8px 10px;
-  font-size: 1em;
-  cursor: pointer;
-  color: white;
-  font-family: GmarketSansMedium; 
-  background: #212529;
-}
-
-#auth_modal_cancel{
-  display: flex;
-  height: 20px;
-  background: #212529;
-  margin-right: 30px;
-  margin-left: 30px;
-  border-radius: 5px;
-  border: 1px solid #000;
-  padding: 8px 10px;
-  font-size: 1em;
-  cursor: pointer;
-  color: white;
-  font-family: GmarketSansMedium; 
-}
 
 

@@ -251,19 +251,29 @@ function tireRegImgReg() {
 	
 	$("#file1").on('change',function(e){
 		var arSplitUrl = $("#file1").val().split("\\");
-		alert($("#file1").val());
 		var nArLength = arSplitUrl.length;
 		var fileName = arSplitUrl[nArLength-1];
 		$(".upload-name1").val(fileName);
 		
-		$("#imagePreview").attr('src',$("#file1").val());
+		
+		//사진 미리보기
+		var files =e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
 
-		if(tg_id != null){
-			
-			
-			
-			
-		}	
+		filesArr.forEach(function(f) {
+			if(!f.type.match("image.*")){
+				alert("이미지 파일만 업로드 가능합니다.");
+				return;
+			}
+			var sel_file =f;
+	
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$("#imagePreview").attr('src',e.target.result);
+			}
+			reader.readAsDataURL(f);
+		})
+
 	});
 
 	
@@ -273,11 +283,7 @@ function tireRegImgReg() {
 		var fileInput = $("#file2");
 		//파일 이름 저장할 공간
 		let filesName = "";
-		
-	/*	
-		console.log(e.target.files.val());
-		console.log(fileInput.val());*/
-		
+
 		//파일 이름 출력하기
 		for( var i=0; i<fileInput.length; i++ ){
 			if( fileInput[i].files.length > 0 ){
@@ -288,15 +294,37 @@ function tireRegImgReg() {
 					}else{
 						filesName +=fileInput[i].files[j].name;	
 					}	
-					//$('.admin_tire_reg_img_preview').append();
 				}
 			}
 		}
-		
 		$(".upload-name2").val(filesName);
 		
+	
+		//파일 미리보기!!
+		var sel_files = []; 
+
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
 		
-		
+		filesArr.forEach(function(f) {
+			if(!f.type.match("image.*")){
+				alert("이미지 파일만 업로드 가능합니다.");
+				return;
+			}
+			
+			if($('.admin_tire_reg_img_preview').length>0){	
+				$(".admin_tire_reg_img_preview").find('img').remove();
+			}
+			sel_files.push(f);
+			
+			console.log(sel_files.push(f))
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				var img_html = "<img src='" +e.target.result +"\'/>";
+				$(".admin_tire_reg_img_preview").append(img_html);
+			}
+			reader.readAsDataURL(f);
+		})
 		
 		
 		
