@@ -36,7 +36,7 @@
    <img src="https://img.shields.io/badge/Eclipse%20IDE-2C2255.svg?&style=for-the-badge&logo=Eclipse%20IDE&logoColor=white"/></a>&nbsp
    <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC.svg?&style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white"/></a>&nbsp <br>
    <img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=white"/></a>&nbsp
-   <img src="https://img.shields.io/badge/Kakao-FFCD00?style=for-the-badge&logo=Kakao&logoColor=black"/></a>&nbsp
+   <img src="https://img.shields.io/badge/Kakao-FFCD00?style=for-the-badge&logo=kakao%20talk&logoColor=black"/></a>&nbsp
    <img src="https://img.shields.io/badge/Canva-00C4CC?style=for-the-badge&logo=canva&logoColor=white"/></a>&nbsp
 <p>
 
