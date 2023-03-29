@@ -248,7 +248,7 @@ function tireRegSizeReg() {
 function tireRegImgReg() {
 	
 	let tg_id = $('#tireIdHidden').val();
-	
+	let formData = new FormData();
 	$("#file1").on('change',function(e){
 		var arSplitUrl = $("#file1").val().split("\\");
 		var nArLength = arSplitUrl.length;
@@ -257,7 +257,7 @@ function tireRegImgReg() {
 		
 		
 		//사진 미리보기
-		var files =e.target.files;
+		var files = e.target.files;
 		var filesArr = Array.prototype.slice.call(files);
 
 		filesArr.forEach(function(f) {
@@ -270,6 +270,33 @@ function tireRegImgReg() {
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				$("#imagePreview").attr('src',e.target.result);
+				if($('#tireIdHidden').val() != null){
+					let file1 = $("input[name=file]")[0].files;
+					console.log(file1);
+					for(let i=0; i<file1.length; i++) {
+						formData.append("file", file1[i]);
+					}
+						
+					let tg_id=$('#tireIdHidden').val();
+					console.log(tg_id);
+					let tg_img=$('#tireDetailHidden').val();
+					console.log(tg_img);
+					$.ajax({
+						type: "POST",
+					   	url: "admin.tire.img.change",
+					    data : {formData,tg_id,tg_img},
+					    processData: false,
+					   	contentType: false,
+					   	success: function (data) {
+					   		if(data==1){
+					   			alert('성공!!');
+					   	   	}else{
+					   	    	alert('실패!!');
+					   	    }
+					   	}
+					});
+	
+				}
 			}
 			reader.readAsDataURL(f);
 		})
@@ -320,18 +347,38 @@ function tireRegImgReg() {
 			console.log(sel_files.push(f))
 			var reader = new FileReader();
 			reader.onload = function(e) {
-				var img_html = "<img src='" +e.target.result +"\'/>";
+				let files = e.target.result
+				var img_html = "<img src='" +files +"\'/>";
 				$(".admin_tire_reg_img_preview").append(img_html);
+				
+				if($('#tireIdHidden').val() != null){
+					let file2 = $("input[name=fileS]")[0].files;
+					console.log(file2);
+					for(let i=0; i<file2.length; i++) {
+						formData.append("files", file2[i]);
+					}
+					let tg_id=$('#tireIdHidden').val();
+					let tg_detail =$("#tireDetailHidden").val();
+					
+					$.ajax({
+				   	      type: "POST",
+				   	   	  enctype: "multipart/form-data",
+				   	      url: "admin.tire.imgs.change",
+				       	  data : {formData,tg_id,tg_detail},
+				       	  processData: false,
+				   	      contentType: false,
+				   	      success: function (data) {
+				   	    	if(data==1){
+				   	    		alert('성공!!');
+				   	    	}else{
+				   	    		alert('실패!!');
+				   	    	}
+				   	      }
+					});
+				}
 			}
 			reader.readAsDataURL(f);
 		})
-		
-		
-		
-		
-		
-		
-	
 	});
 	
 	

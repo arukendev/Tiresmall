@@ -202,6 +202,22 @@
 	where ti_id=#{ti_id}
 </update>
 
+
+<update id="tireImgUpdate">
+	update tire_group
+	set tg_img = #{tg_img}
+	where tg_id=#{tg_id}
+</update>
+<update id="tireImgsUpdate">
+	update tire_group
+	set tg_detail = #{tg_detail}
+	where tg_id=#{tg_id}
+</update>
+
+
+
+
+
 <!--타이어 브랜드  -->
 <select id="getTireBrand" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
 	select * from tire_brand order by tb_order
