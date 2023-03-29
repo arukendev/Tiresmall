@@ -1,4 +1,6 @@
-# SEMIPROJECT TEAM 3 (TEAM PolyPotion)
+# Tiresmall
+![tiresmall main](https://user-images.githubusercontent.com/101840342/228464675-1fa98b12-3700-45f3-b94e-af33d478e95e.png)
+
 
 ## 👬 멤버 구성(Project Members)
     
