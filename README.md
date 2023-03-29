@@ -17,8 +17,6 @@
 
 ## 👬 멤버 구성(Project Members)
 
-## ⏱ 개발 기간(Development Period)
-
 ## 🧰 개발 환경(Develope Tools)
 
 <p align="center">
