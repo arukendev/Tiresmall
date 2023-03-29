@@ -1,16 +1,16 @@
 # Tiresmall
 ![tiresmall main](https://user-images.githubusercontent.com/101840342/228464675-1fa98b12-3700-45f3-b94e-af33d478e95e.png)
 
-
-## 👬 멤버 구성(Project Members)
-    
 ## 📺 프로젝트 소개 (Introduce Project)
 
 ## 💻 사이트 및 DB 소개(Introduce Site & DataBase)
 
 ### 🖼 페이지 프리뷰 (Page preview)
+![localhost_home_](https://user-images.githubusercontent.com/101840342/228466633-589ef22a-936b-439e-870f-2d3528a9c375.png)
 
 ### 📊 DB 구성
+
+## 👬 멤버 구성(Project Members)
 
 ## ⏱ 개발 기간(Development Period)
 
