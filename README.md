@@ -8,7 +8,11 @@
 ### 🖼 페이지 프리뷰 (Page preview)
 ![localhost_home_](https://user-images.githubusercontent.com/101840342/228466633-589ef22a-936b-439e-870f-2d3528a9c375.png)
 
+![localhost_home_product detail_tg_id=9](https://user-images.githubusercontent.com/101840342/228482408-40fdb4ff-bd85-4a0c-a89a-b5438560123b.png)
+
+
 ### 📊 DB 구성
+![제목 없는 다이어그램 drawio (1)](https://user-images.githubusercontent.com/101840342/228484392-d64239d1-5108-46cb-8673-f08978b8030e.png)
 
 
 ## 👬 멤버 구성(Project Members)
