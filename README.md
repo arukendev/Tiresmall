@@ -2,14 +2,18 @@
 ![tiresmall main](https://user-images.githubusercontent.com/101840342/228464675-1fa98b12-3700-45f3-b94e-af33d478e95e.png)
 
 ## 📺 프로젝트 소개 (Introduce Project)
+###  타이어스몰?  
+
+<p>
+타이어스몰은 실사용을 목표로 하고 있는 타이어 쇼핑몰 프로젝트입니다.
+</p>
 
 ## 💻 사이트 및 DB 소개(Introduce Site & DataBase)
 
 ### 🖼 페이지 프리뷰 (Page preview)
-![localhost_home_](https://user-images.githubusercontent.com/101840342/228466633-589ef22a-936b-439e-870f-2d3528a9c375.png)
-
-![localhost_home_product detail_tg_id=9](https://user-images.githubusercontent.com/101840342/228482408-40fdb4ff-bd85-4a0c-a89a-b5438560123b.png)
-
+#### 메인페이지
+![123](https://user-images.githubusercontent.com/101840342/228754273-c9208ef3-82f7-4ccc-89d8-33ea21bd55db.png)
+#### 
 
 ### 📊 DB 구성
 ![제목 없는 다이어그램 drawio (1)](https://user-images.githubusercontent.com/101840342/228484392-d64239d1-5108-46cb-8673-f08978b8030e.png)
