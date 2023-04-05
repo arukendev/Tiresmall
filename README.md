@@ -3,33 +3,50 @@
 
 ## 📺 프로젝트 소개 (Introduce Project)
 
-### 타이어스몰?  
-<p>
-타이어스몰은 실사용을 목표로 하고 있는 타이어 쇼핑몰 프로젝트입니다.
-</p>
+### 타이어스몰?
+타이어스몰은 기존 타이어쇼핑몰 사이트를 개선하고 실사용을 목표로 하고 있는 타이어 쇼핑몰 프로젝트입니다.   
+기존 사이트의 관리비용이 많이 들고 개선의 필요성이 있어서 직접 만들게 되었습니다.
+
+<br />
 
 ### 개발기간
-<p>
-2023.02.21 ~ 2023.03.28 (기업 발표용 개발)
-</p>
-<p>
-2023.03.28 ~ 현재 (실사용용 개발)
-</p>
+<ul>
+   <li>
+   2023.02.21 ~ 2023.03.28 (기업 발표용 개발)
+   </li>
+   <li>
+   2023.03.28 ~ 진행중 (실사용 개발)
+   </li>
+</ul>
 
-### 프로젝트를 시작하게된 계기
-<p>
-</p>
+<br />
+
+### 프로젝트의 주 기능
+
+<ul>
+   <li>
+   타이어 검색
+   </li>
+   <li>
+   타이어 장착점 검색
+   </li>
+   <li>
+   타이어를 고르고 결제
+   </li>
+   <li>
+   소셜 로그인을 통해 간편한 로그인
+   </li>
+</ul>
+
+<br />
 
 ## 💻 사이트 및 DB 소개(Introduce Site & DataBase)
 
 ### 🖼 페이지 프리뷰 (Page preview)
-#### 메인페이지
 ![123](https://user-images.githubusercontent.com/101840342/228754273-c9208ef3-82f7-4ccc-89d8-33ea21bd55db.png)
-#### 
 
 ### 📊 DB 구성
 ![제목 없는 다이어그램 drawio (1)](https://user-images.githubusercontent.com/101840342/228484392-d64239d1-5108-46cb-8673-f08978b8030e.png)
-
 
 ## 👬 멤버 구성(Project Members)
 
@@ -63,5 +80,5 @@
 ## 👨‍💻 프레젠테이션 링크 (Presentation Link)
 
 <a href="https://docs.google.com/presentation/d/17vzmkjoWmTKWjsYEUtTvCNg9jhZRCq6P/edit?usp=share_link&ouid=106778278828366229267&rtpof=true&sd=true">
-   일본어 프레젠테이션
+日本語 ver
 </a>
