@@ -62,9 +62,6 @@
 
 ## 👨‍💻 프레젠테이션 링크 (Presentation Link)
 
-   
-[Google][]
-그러고 나서 link를 정의해준다.
-
-# link define
-[Google]: http://google.com/ 
+<a href="https://docs.google.com/presentation/d/17vzmkjoWmTKWjsYEUtTvCNg9jhZRCq6P/edit?usp=share_link&ouid=106778278828366229267&rtpof=true&sd=true">
+   일본어 프레젠테이션
+</a>
