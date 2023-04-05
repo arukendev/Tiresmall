@@ -62,6 +62,6 @@
 
 ## 👨‍💻 노션 링크 (Notion App Link)
 
-<a href="https://docs.google.com/presentation/d/17vzmkjoWmTKWjsYEUtTvCNg9jhZRCq6P/edit?usp=sharing&ouid=106778278828366229267&rtpof=true&sd=true">
+<a href="https://docs.google.com/presentation/d/17vzmkjoWmTKWjsYEUtTvCNg9jhZRCq6P/edit?usp=sharing&ouid=106778278828366229267&rtpof=true&sd=true" target="_blank">
 プレゼンテーションファイル
-</>
+</a>
