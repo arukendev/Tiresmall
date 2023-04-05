@@ -1,4 +1,5 @@
 $(function() {
+	
 	//세단,suv 추천 일반 값 넘기기
 	tireGroupPrintCheck();
 	//타이어 할인률 설정
@@ -58,7 +59,8 @@ $(function() {
 	 //input숫자만 입력 및 자리수
 	 numberInput();
 	 
-	 
+	 //form에서 input이 비여있는지
+	 inputEmpty();
 	 
 })
 
@@ -685,6 +687,35 @@ function numberInput() {
 	      $(this).val($(this).val().replace(/[^0-9]/g,""));
 	 });
 
+}
+
+function inputEmpty() {
+	$(".admin-tire-reg-button").click(function() {
+		if(!$('input[name="tg_brand"').is(':checked')){
+			alert("브랜드를 선택해주세요!!");
+			$("#tireBrandFocus").focus();
+			return false;
+		}
+		
+		if($("#admin-tire-reg-name-input").val() == ''){
+			alert("모델명을 입력해주세요!!");
+			$("#admin-tire-reg-name-input").focus();
+			return false;
+		}
+		
+		if($('#file1').val() == "") {
+			alert("메인 이미지를 넣어주세요!");
+		    $("#file1").focus();
+		    return false;
+		}
+		if($('#file2').val() == "") {
+			alert("상세 이미지를 넣어주세요!");
+		    $("#file2").focus();
+		    return false;
+		}
+		
+		
+	})
 }
 
 

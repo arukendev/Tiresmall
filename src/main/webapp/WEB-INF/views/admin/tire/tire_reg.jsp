@@ -27,7 +27,7 @@
 						<td>
 							<div class="admin-tire-reg-radio-di">
 								<label class="admin-tire-teg-label"> 
-									<input type="radio"name="tg_brand" value="넥센타이어" class="admin-tire-teg-input">
+									<input type="radio"name="tg_brand" value="넥센타이어" class="admin-tire-teg-input" id="tireBrandFocus">
 									<div class="rad-design"></div>
 									<div class="rad-text">넥센타이어</div>
 								</label> 
@@ -98,7 +98,7 @@
 								<div>
 									<input type="text" name="tg_text" id="admin-tire-reg-txt-input" />
 								</div>
-								<div>타이어 특성 고르기</div>
+								<!-- <div>타이어 특성 고르기</div> -->
 							</div>
 						</td>
 					</tr>
@@ -256,7 +256,7 @@
 					<tr>
 						<td colspan="2">
 							<div id="admin_tire_reg_button">
-								<button class="admin-tire-reg-size-modal-button1">등록</button> 
+								<button class="admin-tire-reg-button">등록</button> 
 								<div class="admin_tire_reg_deleteBTN" onclick="history.back()">취소</div> 
 							</div>
 						</td>
