@@ -60,8 +60,11 @@
    <img src="https://img.shields.io/badge/Canva-00C4CC?style=for-the-badge&logo=canva&logoColor=white"/></a>&nbsp
 <p>
 
-## 👨‍💻 노션 링크 (Notion App Link)
+## 👨‍💻 프레젠테이션 링크 (Presentation Link)
 
-<a href="https://docs.google.com/presentation/d/17vzmkjoWmTKWjsYEUtTvCNg9jhZRCq6P/edit?usp=sharing&ouid=106778278828366229267&rtpof=true&sd=true" target="_blank">
-プレゼンテーションファイル
-</a>
+   
+[Google][]
+그러고 나서 link를 정의해준다.
+
+# link define
+[Google]: http://google.com/ 
