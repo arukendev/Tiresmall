@@ -27,7 +27,7 @@
 						<td>
 							<div class="admin-tire-reg-radio-di">
 								<label class="admin-tire-teg-label"> 
-									<input type="radio"name="tg_brand" value="넥센타이어" class="admin-tire-teg-input">
+									<input type="radio"name="tg_brand" value="넥센타이어" class="admin-tire-teg-input" id="tireBrandFocus">
 									<div class="rad-design"></div>
 									<div class="rad-text">넥센타이어</div>
 								</label> 
@@ -98,7 +98,7 @@
 								<div>
 									<input type="text" name="tg_text" id="admin-tire-reg-txt-input" />
 								</div>
-								<div>타이어 특성 고르기</div>
+								<!-- <div>타이어 특성 고르기</div> -->
 							</div>
 						</td>
 					</tr>
@@ -169,11 +169,11 @@
 													<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>
 													<div class='admin-tire-reg-size-modal-input'>
 														<div class='admin-tire-reg-size-modal-input'>
-															<input class='tire_input_width'name='ti_width'>
+															<input class='tire_input_width'name='ti_width'  maxlength='3'>
 															<span class='size-span'>/</span>
-															<input class='tire_input_ratio' name='ti_ratio'>
+															<input class='tire_input_ratio' name='ti_ratio' maxlength='2'>
 															<span class='size-span'>R</span>
-															<input class='tire_input_inch' name='ti_inch' >
+															<input class='tire_input_inch' name='ti_inch' maxlength='2'>
 														</div>
 														<div class='admin-tire-reg-size-modal-button'>
 															<div class='admin_tire_reg_in admin-tire-reg-size-modal-button1'>입력</div>
@@ -256,7 +256,7 @@
 					<tr>
 						<td colspan="2">
 							<div id="admin_tire_reg_button">
-								<button class="admin-tire-reg-size-modal-button1">등록</button> 
+								<button class="admin-tire-reg-button">등록</button> 
 								<div class="admin_tire_reg_deleteBTN" onclick="history.back()">취소</div> 
 							</div>
 						</td>

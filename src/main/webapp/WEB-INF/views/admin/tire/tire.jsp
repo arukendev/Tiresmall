@@ -14,6 +14,7 @@
 <body>
 	<input id="whatMenu" value="tire" type="hidden">
 	<input id="sm" value="1" type="hidden"> 
+	<input type="hidden" value="${r }" id="regSucceFals">
 	<div class="container sub">
 		<div id="tire_container">
 			<form action="admin.tire.search.do" class="tire_form">

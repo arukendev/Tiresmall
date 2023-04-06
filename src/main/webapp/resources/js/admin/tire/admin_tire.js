@@ -1,4 +1,5 @@
 $(function() {
+	
 	//세단,suv 추천 일반 값 넘기기
 	tireGroupPrintCheck();
 	//타이어 할인률 설정
@@ -55,6 +56,12 @@ $(function() {
 	 tireBrandForcusout();
 	 //브랜드 신규등록
 	 tireBrandModal();
+	 //input숫자만 입력 및 자리수
+	 numberInput();
+	 
+	 //form에서 input이 비여있는지
+	 inputEmpty();
+	 
 })
 
 //세단,suv 추천 일반 값 넘기기
@@ -115,11 +122,11 @@ function tireRegSizeAdd() {
 				"<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>" +
 				"<div class='admin-tire-reg-size-modal-input'>" +
 				"<div class='admin-tire-reg-size-modal-input'>" +
-				"<input class='tire_input_width'name='ti_width'>" + /*oninput='this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');'*/ 
+				"<input class='tire_input_width'name='ti_width' maxlength='3'>" + /*oninput='this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');'*/ 
 				"<span class='size-span'>/</span>" +
-				"<input class='tire_input_ratio' name='ti_ratio'>" +
+				"<input class='tire_input_ratio' name='ti_ratio'  maxlength='2'>" +
 				"<span class='size-span'>R</span>" +
-				"	<input class='tire_input_inch' name='ti_inch'>" +
+				"	<input class='tire_input_inch' name='ti_inch' maxlength='2'>" +
 				"</div>" +
 				"	<div class='admin-tire-reg-size-modal-button'>" +
 				"	<div class='admin_tire_reg_in admin-tire-reg-size-modal-button1'>입력</div>" +
@@ -158,11 +165,11 @@ function tireUpdateRegSizeAdd() {
 				"<div class='admin-tire-reg-size-modal-input'>" +
 				"<input class='tire_input_width' name='ti_width'>" + /*그냥 여기다 name을 넣고 밑에 hidden은 지워됨*/ 
 				"<span class='size-span'>/</span>" +
-				"<input class='tire_input_ratio' name='ti_ratio'>" +
+				"<input class='tire_input_ratio' name='ti_ratio' maxlength='3'>" +
 				"<span class='size-span'>R</span>" +
-				"	<input class='tire_input_inch' name='ti_inch'>" +
+				"	<input class='tire_input_inch' name='ti_inch' maxlength='2'>" +
 				"</div>" +
-				"	<div class='admin-tire-reg-size-modal-button'>" +
+				"	<div class='admin-tire-reg-size-modal-button' maxlength='2'>" +
 				"	<div class='admin_tire_reg_in admin-tire-reg-size-modal-button1'>입력</div>" +
 				"<div class='admin_tire_reg_cen admin-tire-reg-size-modal-button2'>취소</div>" +
 				"</div>" +
@@ -659,6 +666,54 @@ function tireBrandModal() {
 	$("#admin_tireBrand_reg").click(function() {
 		$('.admin-tire-reg-size-modal').css("display","flex");	
 
+		
+	})
+}
+
+function numberInput() {
+	$(document).on("keyup",".tire_input_width",function() {
+	      $(this).val($(this).val().replace(/[^0-9]/g,""));
+	 });
+	$(document).on("keyup",".tire_input_ratio",function() {
+	      $(this).val($(this).val().replace(/[^0-9]/g,""));
+	 });
+	$(document).on("keyup",".tire_input_inch",function() {
+	      $(this).val($(this).val().replace(/[^0-9]/g,""));
+	 });
+	$(document).on("keyup",".admin-tire-reg-pricefac-input",function() {
+	      $(this).val($(this).val().replace(/[^0-9]/g,""));
+	 });
+	$(document).on("keyup",".admin-tire-reg-stock-input",function() {
+	      $(this).val($(this).val().replace(/[^0-9]/g,""));
+	 });
+
+}
+
+function inputEmpty() {
+	$(".admin-tire-reg-button").click(function() {
+		if(!$('input[name="tg_brand"').is(':checked')){
+			alert("브랜드를 선택해주세요!!");
+			$("#tireBrandFocus").focus();
+			return false;
+		}
+		
+		if($("#admin-tire-reg-name-input").val() == ''){
+			alert("모델명을 입력해주세요!!");
+			$("#admin-tire-reg-name-input").focus();
+			return false;
+		}
+		
+		if($('#file1').val() == "") {
+			alert("메인 이미지를 넣어주세요!");
+		    $("#file1").focus();
+		    return false;
+		}
+		if($('#file2').val() == "") {
+			alert("상세 이미지를 넣어주세요!");
+		    $("#file2").focus();
+		    return false;
+		}
+		
 		
 	})
 }

@@ -214,6 +214,7 @@ public class TireDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("등록 실패");
+			req.setAttribute("r", "등록실패");
 			//파일삭제
 	        new File(savePath + "/" + tDTO.getTg_img()).delete();
 	        System.out.println("삭제성공");
