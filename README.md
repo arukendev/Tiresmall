@@ -60,6 +60,12 @@
 
 ## 👨‍💻 프레젠테이션 링크 (Presentation Link)
 
+<a href="https://docs.google.com/presentation/d/154sz8uf-_l7czcVGdLE1i4_AuoOfkU0G/edit?usp=sharing&ouid=106778278828366229267&rtpof=true&sd=true">
+한국어 ver
+</a>
+
+<br />
+
 <a href="https://docs.google.com/presentation/d/17vzmkjoWmTKWjsYEUtTvCNg9jhZRCq6P/edit?usp=share_link&ouid=106778278828366229267&rtpof=true&sd=true">
 日本語 ver
 </a>
