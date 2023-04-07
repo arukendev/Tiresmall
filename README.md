@@ -4,6 +4,8 @@
 ## 📺 프로젝트 소개 (Introduce Project)
 
 ### 🛞 타이어스몰? (What is a Tiresmall?)
+![change](https://user-images.githubusercontent.com/101840342/230611920-179a25fa-27de-4144-8c7a-0ffe12e050bf.png)
+
 타이어스몰은 기존 타이어쇼핑몰 사이트를 개선하고 실사용을 목표로 하고 있는 타이어 쇼핑몰 프로젝트입니다.   
 기존 사이트의 관리비용이 많이 들고 개선의 필요성이 있어서 직접 만들게 되었습니다.
 
