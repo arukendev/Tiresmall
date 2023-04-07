@@ -4,8 +4,6 @@
 ## 📺 프로젝트 소개 (Introduce Project)
 
 ### 🛞 타이어스몰? (What is a Tiresmall?)
-![change](https://user-images.githubusercontent.com/101840342/230611920-179a25fa-27de-4144-8c7a-0ffe12e050bf.png)
-
 타이어스몰은 기존 타이어쇼핑몰 사이트를 개선하고 실사용을 목표로 하고 있는 타이어 쇼핑몰 프로젝트입니다.   
 기존 사이트의 관리비용이 많이 들고 개선의 필요성이 있어서 직접 만들게 되었습니다.
 
@@ -26,7 +24,10 @@
 ## 💻 사이트 및 DB 소개(Introduce Site & DataBase)
 
 ### 🖼 페이지 프리뷰 (Page preview)
-![123](https://user-images.githubusercontent.com/101840342/228754273-c9208ef3-82f7-4ccc-89d8-33ea21bd55db.png)
+![change](https://user-images.githubusercontent.com/101840342/230611920-179a25fa-27de-4144-8c7a-0ffe12e050bf.png)
+<a href="https://www.youtube.com/watch?v=RULXPa-UgWE">
+시연영상 보러가기(Youtube)
+</a>
 
 ### 📊 DB 구성
 ![제목 없는 다이어그램 drawio (1)](https://user-images.githubusercontent.com/101840342/228484392-d64239d1-5108-46cb-8673-f08978b8030e.png)
