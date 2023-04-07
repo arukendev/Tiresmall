@@ -25,9 +25,14 @@
 
 ### 🖼 페이지 프리뷰 (Page preview)
 ![change](https://user-images.githubusercontent.com/101840342/230611920-179a25fa-27de-4144-8c7a-0ffe12e050bf.png)
+
+<br />
+
 <a href="https://www.youtube.com/watch?v=RULXPa-UgWE">
 시연영상 보러가기(Youtube)
 </a>
+
+<br />
 
 ### 📊 DB 구성
 ![제목 없는 다이어그램 drawio (1)](https://user-images.githubusercontent.com/101840342/228484392-d64239d1-5108-46cb-8673-f08978b8030e.png)
