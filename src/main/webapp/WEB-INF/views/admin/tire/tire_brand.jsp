@@ -79,7 +79,7 @@
 				<tr id="admin_tire_brands_content">
 					<td class="admin_tire_table_td">${status.count}</td>
 					<td class="admin_tire_table_td"><!-- <input class="admin-tire-brand-name" value="" name="tb_name"> -->${t.tb_name }</td>
-					<td class="admin_tire_table_td"><input class="admin-tire-brand-order" value="${t.tb_order }" name="tb_order ">번</td>
+					<td class="admin_tire_table_td"><input class="admin-tire-brand-order" value="${t.tb_order }" name="tb_order" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">번</td>
 					<td class="admin_tire_table_td">
 						<c:choose>
 							<c:when test="${t.tb_ea ==1 }">

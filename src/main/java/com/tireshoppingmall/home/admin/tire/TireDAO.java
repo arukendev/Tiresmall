@@ -1,6 +1,7 @@
 package com.tireshoppingmall.home.admin.tire;
 
 import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -213,6 +214,7 @@ public class TireDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("등록 실패");
+			req.setAttribute("r", "등록실패");
 			//파일삭제
 	        new File(savePath + "/" + tDTO.getTg_img()).delete();
 	        System.out.println("삭제성공");
@@ -356,6 +358,82 @@ public class TireDAO {
 		}else {
 			return 0;
 		}
+	}
+	//ajax이미지 저장
+	public int tireImgChange(TireDTO tDTO, MultipartFile file) {
+		//파일 삭제
+		String savePath = servletContext.getRealPath("resources/web/main/tire");
+		try {
+			if(!tDTO.getTg_img().equals("noimg")) {
+
+				new File(savePath + "/" + tDTO.getTg_img()).delete();
+			    System.out.println("삭제성공");
+			}
+			String fileName = file.getOriginalFilename();
+			System.out.println("원래 파일이름 : "+fileName);
+			System.out.println("파일 경로 : "+savePath);
+				
+			String saveFileName= UUID.randomUUID().toString()+
+					fileName.substring(fileName.lastIndexOf("."));
+				
+			System.out.println("저장된 파일이름 : "+saveFileName);
+			tDTO.setTg_img(saveFileName);	//이름 저장
+				
+			//파일 업로드
+			
+			file.transferTo(new File(savePath,saveFileName));
+			System.out.println("파일 업로드 성공");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	      
+		return ss.getMapper(AdminTireMapper.class).tireImgUpdate(tDTO);
+	}
+	public int tireImgsChange(TireDTO tDTO, MultipartHttpServletRequest files) {
+		//파일들 삭제
+		String savePath = servletContext.getRealPath("resources/web/main/tire");
+		
+		if(!tDTO.getTg_detail().equals("noimg")) {
+			List<MultipartFile> list = files.getFiles("files");
+		    String[] filesName = tDTO.getTg_detail().split("!");
+		    for(int i = 0; i<list.size(); i++) {
+		    	new File(savePath + "!" + filesName[i]).delete();
+		    		System.out.println("파일들 삭제 성공" +i);
+		    }
+		}
+	    
+	    
+	    try {
+	    	if(files.getFiles("files")!=null) {
+				List<MultipartFile> list1 = files.getFiles("files");
+				
+				for(int i = 0; i<list1.size(); i++) {
+					String fileRealName = list1.get(i).getOriginalFilename();
+					
+					String saveFilesName =	UUID.randomUUID().toString()+
+								fileRealName.substring(fileRealName.lastIndexOf("."));
+					
+					System.out.println("여러파일들 이름 : " +i+"번째파일  - " +saveFilesName );
+					
+					File saveFile = new File(savePath + "\\"+ saveFilesName);	
+					if(i == 0) {
+						tDTO.setTg_detail(saveFilesName);				
+					}else {
+						tDTO.setTg_detail(tDTO.getTg_detail()+ "!" + saveFilesName);//말해야할것										
+					}
+					list1.get(i).transferTo(saveFile);	//파일들 업로드
+				
+				}
+				System.out.println("파일들 업로드 성공~~~~~~~~!!!!!!!!!!!");
+				System.out.println(savePath);
+			}    	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	    
+	    
+		return ss.getMapper(AdminTireMapper.class).tireImgsUpdate(tDTO);
 	}
 
 	
