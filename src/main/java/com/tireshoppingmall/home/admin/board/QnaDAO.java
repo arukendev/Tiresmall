@@ -82,15 +82,35 @@ public class QnaDAO {
 	}
 
 	public void insertQnAReply(QnaReplyDTO qnaReplyDTO, HttpServletRequest req) {
+		String q_reply_txt = qnaReplyDTO.getQ_reply_txt();
+		qnaReplyDTO.setQ_reply_txt(q_reply_txt.replace("\r\n", "<br>"));
+		/*
+		 */
+		
 		qnaReplyDTO.setQ_reply_board_no(req.getParameter("q_no"));
+		// 솔루션: 댓글없으면추가, 댓글있으면수정
+		/*
 		if(ss.getMapper(AdminBoardMapper.class).insertQnAReply(qnaReplyDTO)==1) {
 			ss.getMapper(AdminBoardMapper.class).updateQna(qnaReplyDTO);
 		};
-		
+		 * */
+		// 댓글없으면
+		if (ss.getMapper(AdminBoardMapper.class).countQnAReply(qnaReplyDTO) == 0) {
+			// 댓글추가
+			ss.getMapper(AdminBoardMapper.class).insertQnAReply(qnaReplyDTO);
+			// q_reply_has를 1로 수정
+			ss.getMapper(AdminBoardMapper.class).updateQna(qnaReplyDTO);
+		// 댓글있으면
+		} else {
+			// 댓글수정
+			ss.getMapper(AdminBoardMapper.class).updateQnAReply(qnaReplyDTO);
+		}
 		
 	}
 
 	public QnaReplyDTO getReply(QnaReplyDTO qnaReplyDTO) {
+		
+		
 		return ss.getMapper(AdminBoardMapper.class).getReply(qnaReplyDTO);
 	}
 

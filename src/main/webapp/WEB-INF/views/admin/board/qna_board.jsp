@@ -20,7 +20,10 @@
 	<div id="qna_modal" class="qna_modal hidden"
 		style="display: none;">
 
+		<form id="update_modal" action="qna.reply.reg.do">
+		<!-- 
 		<form id="update_modal" action="update.qna.do">
+		 -->
 			<div class="modal-wrapper">
 				<div class="notice_modalcontent">
 					<div class="notice_header">QnA</div>
@@ -73,7 +76,7 @@
 						<input name="nameInput" id="a_name" value="${search.nameInput }">
 					</div>
 					<div class="input_box1">
-						<div class="no-drag">회원아이디</div>
+						<div class="no-drag" style="font-size: 17px;">회원아이디</div>
 						<input name="idInput" id="q_id" value="${search.idInput }">
 					</div>
 					<div class="input_box">
@@ -81,7 +84,7 @@
 						<input name="titleInput" id="q_title" value="${search.titleInput }">
 					</div>
 					<div class="button_box">
-						<button id="searchBtn" class="noticeBtn">검색</button>
+						<button id="searchBtn" class="noticesearchbtn">검색</button>
 					</div>
 				</div>
 
@@ -103,21 +106,51 @@
 						</c:if>
 						<c:forEach var="q" items="${qnas }" varStatus="status">
 								<tr class="qna_modal_go">
+									<!-- i==0 -->
 									<td class="td_c1">${status.count }
 										<input type="hidden" value="${q.q_no }">
 									</td>
+									
+									<!-- i==1 -->
 									<td class="td_c2">${q.i_name }</td>
+									
+									<!-- i==2 -->
 									<td class="td_c3">${q.u_id }</td>
-									<td class="td_c4">${q.q_title }</td>
+									
+									<!-- i==3 -->
+									<td style="display: none;">${q.q_txt}</td>
+									
+									<!-- i==4: PASS -->
+									<td class="td_c4">${q.q_title }
+										<!-- 
+										<input type="hidden" class="ad_qna_txt" value="${q.q_txt}">
+										 -->
+									</td>
+									
+									<!-- i==5????? -->
 									<td class="td_c5"><fmt:formatDate
 											pattern="yyyy-MM-dd HH:mm:ss" value="${q.q_date }" /></td>
+											
+									<!-- i==6????? -->
+									<td style="display: none;">${q.q_txt}</td>
+									<!-- 
+									<td style="display: none;">${q.q_reply.q_reply_txt}</td>
+									 -->
+											
+									<!-- i==7????? -->		
 									<td class="td_c6">
+											
+											<!-- 
+											 -->
 											<input type="hidden" value="${q.q_reply_has }">	
-									<c:choose>
-										<c:when test="${q.q_reply_has ne 0}">완료
-										</c:when>
-										<c:otherwise>미답변</c:otherwise>
-									</c:choose>
+											
+											<c:choose>
+												<c:when test="${q.q_reply_has ne 0}">완료
+												</c:when>
+												<c:otherwise>미답변</c:otherwise>
+											</c:choose>
+											<%--
+											 --%>
 									</td>
 								</tr>
 						</c:forEach>

@@ -7,7 +7,7 @@
 		    o_no_seq.nextval,
 		    #{o_sortation},
 		    #{o_ordernumber},
-		    sysdate,
+		    CURRENT_DATE,
 		    #{o_ordername},
 		    #{o_product},
 		    #{o_price},
@@ -28,7 +28,7 @@
 	</insert>
 	
 	<select id="getCarName" resultType="com.tireshoppingmall.home.order.CarName">
-		select c_name from car
+		select DISTINCT c_name from car
 	</select>
 	
 	<select id="getCarBrand" resultType="com.tireshoppingmall.home.order.CarBrand">

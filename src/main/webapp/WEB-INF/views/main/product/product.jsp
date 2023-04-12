@@ -36,7 +36,6 @@
 				<a href="product.detail?tg_id=${pGroup.tg_id }">
 					<div class="product_item">
 						<div class="product_item_hidden">
-							<div class="product_item_hidden product_img_border"></div>
 						</div>
 						<div class="product_item_img">
 						<c:choose>

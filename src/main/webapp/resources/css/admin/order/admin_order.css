@@ -183,6 +183,8 @@ a:visited {
 	margin-top: 10px;
 }
 
+/*
+
 .orderBtn{
 	border-radius: 4px;
 	width: 70px;
@@ -199,6 +201,7 @@ a:visited {
 	background-color: white;
 	border: 1px solid black;
 }
+*/
 
 .tdBtn>button {
 	width: 80px;
@@ -238,4 +241,122 @@ a:visited {
     margin: 5px;
     background-color: #E4EAEC;
     border-radius: 3px;
+}
+
+.input_box1 {
+
+  justify-content: center;
+  align-items: center;
+  font-size: 15pt;
+  padding: 6px;
+  border-radius: 10px;
+  background-color: #181C32;
+  color: white;
+  height: 30px;
+ 
+
+
+}
+
+.input_box1 input {
+  height: 27px;
+  font-size: 11pt;
+  border-radius: 10px;
+  font-family: GmarketSansMedium;
+}
+
+.input_box2 {
+
+  justify-content: center;
+  align-items: center;
+  font-size: 15pt;
+  padding: 6px;
+  border-radius: 10px;
+  background-color: #181C32;
+  color: white;
+  height: 30px;
+ 
+
+
+}
+
+.input_box2 input {
+  height: 27px;
+  font-size: 11pt;
+  border-radius: 10px;
+  font-family: GmarketSansMedium;
+}
+
+
+.input_box3 {
+
+  justify-content: center;
+  align-items: center;
+  font-size: 15pt;
+  padding: 6px;
+  border-radius: 10px;
+  background-color: #181C32;
+  color: white;
+  height: 30px;
+ 
+
+
+}
+
+.input_box3 input {
+  height: 27px;
+  font-size: 11pt;
+  border-radius: 10px;
+  font-family: GmarketSansMedium;
+}
+
+.input_box4 {
+
+  justify-content: center;
+  align-items: center;
+  font-size: 15pt;
+  padding: 6px;
+  border-radius: 10px;
+  background-color: #181C32;
+  color: white;
+  height: 30px;
+ 
+
+
+}
+
+.input_box4 input {
+  height: 27px;
+  font-size: 11pt;
+  border-radius: 10px;
+  font-family: GmarketSansMedium;
+}
+
+
+.orderBtn {
+ 
+	display: flex;
+	background-color: #5F5F5F;
+	color: #FFFFFF;
+	border: none;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin-left: 20px;
+	margin-right: 20px;
+	font-size: 16px;
+	font-weight: bold;
+	border-radius: 50px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	position: absolute;
+	top: 10px;
+}
+
+.orderBtn:hover {
+	background-color: #FFFFFF;
+	color: #5F5F5F;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
 }

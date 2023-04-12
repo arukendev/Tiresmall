@@ -1,15 +1,6 @@
 package com.tireshoppingmall.home.auth;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.lang.reflect.Member;
-import java.math.BigDecimal;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,16 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.tireshoppingmall.home.admin.order.AdminOrderMapper;
-import com.tireshoppingmall.home.admin.order.OrderDTO;
-import com.tireshoppingmall.home.admin.order.OrderSearchDTO;
-import com.tireshoppingmall.home.admin.tire.AdminTireMapper;
-import com.tireshoppingmall.home.admin.tire.TireDTO;
-import com.tireshoppingmall.home.auth.MemberDTO;
-import com.tireshoppingmall.home.auth.MemberMapper;
+import com.tireshoppingmall.home.order.CartDTO;
+import com.tireshoppingmall.home.order.MainOrderDTO;
 
 
 	
@@ -88,18 +71,59 @@ public class MemberDAO {
 
 	public void logout(HttpServletRequest req) {
 		req.getSession().setAttribute("loginMember", null);		
+		req.getSession().setAttribute("homegradecheck", null);		
 	}
 
 	public void getMyOrder(HttpServletRequest req, AuthUserDTO aDTO) {
 		System.out.println(aDTO.getU_no());
-		req.setAttribute("orders", ss.getMapper(MemberMapper.class).getMyOrder(aDTO)); 
+		List<MyOrderDTO> orders = ss.getMapper(MemberMapper.class).getMyOrder(aDTO);
+		List<CartDTO> tireList = null;
+		if (orders.size() != 0) {
+			
+			for (MyOrderDTO mDTO : orders) {
+				String[] products = mDTO.getO_product().split(",");
+				tireList = new ArrayList<CartDTO>();
+				for (String product : products) {
+					String tireId = product.split("/")[0];
+					String tireStock = product.split("/")[1];
+					System.out.println(tireId);
+					CartDTO cDTO = ss.getMapper(MemberMapper.class).getTireInfo(tireId);
+					cDTO.setTi_stock(Integer.parseInt(tireStock));
+					tireList.add(cDTO);
+				}
+				mDTO.setProductList(tireList);
+			}
+			req.setAttribute("orders", orders);
+			System.out.println(orders);
+		}
+	}
+	
+	public void getNonOrder(HttpServletRequest req, MainOrderDTO oDTO) {
+		System.out.println(oDTO.getO_phone());
+		List<MyOrderDTO> orders = ss.getMapper(MemberMapper.class).getNonOrder(oDTO);
+		List<CartDTO> tireList = null;
+		if (orders.size() != 0) {
+			for (MyOrderDTO mDTO : orders) {
+				String[] products = mDTO.getO_product().split(",");
+				tireList = new ArrayList<CartDTO>();
+				for (String product : products) {
+					String tireId = product.split("/")[0];
+					String tireStock = product.split("/")[1];
+					System.out.println(tireId);
+					CartDTO cDTO = ss.getMapper(MemberMapper.class).getTireInfo(tireId);
+					cDTO.setTi_stock(Integer.parseInt(tireStock));
+					tireList.add(cDTO);
+				}
+				mDTO.setProductList(tireList);
+			}
+			req.setAttribute("orders", orders);
+		}
 		
 	}
 
 	public void deleteMember(HttpServletRequest req, int u_no) {
 		
-		
-		if (ss.getMapper(MemberMapper.class).deleteMember(u_no) ==1 ) {
+		if (ss.getMapper(MemberMapper.class).deleteMember(u_no) == 1) {
 			System.out.println("삭제완료");
 			logout(req);
 		} 
@@ -131,6 +155,8 @@ public class MemberDAO {
 		
 		return ss.getMapper(MemberMapper.class).pwSet(mDTO);
 	}
+
+	
 
 	
 	

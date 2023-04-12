@@ -9,7 +9,9 @@
 .board_qna_complete_top > div:nth-child(1) > img {
 	width: 80px;
 }
-.tire-rotate {animation: tire-rotate 3s linear infinite;}
+.tire-rotate {
+	animation: tire-rotate 3s linear infinite;
+}
 @keyframes tire-rotate {
 	0%		{transform: rotate(0);}
 	100%	{transform: rotate(360deg);}

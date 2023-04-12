@@ -65,11 +65,18 @@
 
 
 .board_faq_search {
+	position: relative;
+	
 	display: flex;
     width: 950px;
     margin-top: 50px;
     margin-bottom: 10px;
     justify-content: space-between;
+}
+.board_faq_search > div > div {
+	position: absolute;
+	top: 13px;
+    left: 13px;
 }
 .board_faq_search_iroiro {
 	display: flex;
@@ -87,6 +94,10 @@
 	height: 34px;
 	
 	border: 1px solid #ddd;
+	
+	outline: none;
+	
+	padding: 6px;
 }
 .board_faq_search_iroiro button {
 	width: 42px;
@@ -166,7 +177,9 @@ input[id*="thisIsFaq"]:checked + label > span {
 	visibility: hidden;
 }
 input[id*="thisIsFaq"]:checked + label + div {
-	max-height: 100px;
+	/*
+	*/
+	max-height: 1000px;
 }
 .board_faq_list > label:nth-child(3) {
 	grid-area: fl_title;
@@ -192,7 +205,9 @@ input[id*="thisIsFaq"]:checked + label + div {
 	grid-template-columns: 110px 1fr;
 	grid-template-areas: "fl_a fl_txt";
 	
+	/*
 	min-height: 50px;
+	*/
 	
 	background-color: #f5f5f5;
 }

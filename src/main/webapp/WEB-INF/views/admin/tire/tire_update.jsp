@@ -19,6 +19,7 @@
 	<input type="hidden" value="${tireGroup.tg_print }" id="tirePrintHidden">
 	<input type="hidden" value="${tireGroup.tg_sedan }" id="tireSedanHidden">
 	<input type="hidden" value="${tireGroup.tg_suv }" id="tireSUVHidden">
+	<input type="hidden" value="${tireGroup.tg_detail}" id="tireDetailHidden">
 	<div class="container sub">
 		<div id="tire_container">
 			<div id="admin-tire-reg">
@@ -180,7 +181,7 @@
 									<div class="admin-tire-img-title"
 										style="border-right: 2px solid white;">현재 이미지</div>
 									<div class="admin-tire-img-content">
-										<img src="resources/web/main/tire/${tireGroup.tg_img}">
+										<img src="resources/web/main/tire/${tireGroup.tg_img}" id="imagePreview">
 									</div>
 								</div>
 								<div class="admin-tire-img-contain">
@@ -203,9 +204,9 @@
 								<div class="admin-tire-img-contain">
 									<div class="admin-tire-img-title"
 										style="border-right: 2px solid white;">현재 이미지</div>
-									<div class="admin-tire-img-content">
+									<div class="admin-tire-img-content admin_tire_reg_img_preview" >
 										<c:forEach items="${filesName}" var="f">
-											<img src="resources/web/main/tire/${f}"><br />
+											<img src="resources/web/main/tire/${f}"class="files"><br />
 										</c:forEach>
 									</div>
 								</div>

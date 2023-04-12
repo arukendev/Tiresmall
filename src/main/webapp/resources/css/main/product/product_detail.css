@@ -24,6 +24,7 @@
 }
 
 .detail_img {
+  padding-top: 20px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -405,4 +406,9 @@
   background-color: white;
   color: var(--red);
   font-size: 30px;
+}
+
+.detail_include_detail li {
+  display: flex;
+  flex-direction: column;
 }

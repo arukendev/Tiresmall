@@ -29,20 +29,19 @@
 	
 	
 	<context:component-scan base-package="com.tireshoppingmall.home" />
-	
+
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<beans:property name="url" value="jdbc:oracle:thin:@LKTIP49ELNUTZSTH_high?TNS_ADMIN=C:/Wallet_LKTIP49ELNUTZSTH" />
 		<beans:property name="username" value="admin" />
 		<beans:property name="password" value="Soldesk802!@#" />
 	</beans:bean> 
-	
-<!--	 <beans:bean id="naverLoginBO" class="com.tireshoppingmall.home.auth.NaverLoginBO"/>
+	 <!-- <beans:bean id="naverLoginBO" class="com.tireshoppingmall.home.auth.NaverLoginBO"/>
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<beans:property name="username" value="c##lhb0103" />
-		<beans:property name="password" value="lhb0103" />
+		<beans:property name="username" value="c##mzz1004" />
+		<beans:property name="password" value="mzz1004" />
 	</beans:bean>   -->
 
 	<beans:bean id="transactionManager"
@@ -59,7 +58,7 @@
 			<beans:list>
 				<beans:value>classpath:home_mapper.xml</beans:value>
 				<beans:value>classpath:admin_auth_mapper.xml</beans:value>
-				<beans:value>classpath:admin_board_mapper.xml</beans:value>
+				<beans:value>classpath:admin_board_mapper.xml</beans:value> 
 				<beans:value>classpath:admin_car_mapper.xml</beans:value>
 				<beans:value>classpath:admin_order_mapper.xml</beans:value>
 				<beans:value>classpath:admin_store_mapper.xml</beans:value>
@@ -89,7 +88,7 @@
 
 	<!-- board.BoardFaq페이징 -->
 	<beans:bean id="bfco" class="com.tireshoppingmall.home.board.BoardFaqCountOption">
-		<beans:constructor-arg value="7"></beans:constructor-arg>
+		<beans:constructor-arg value="5"></beans:constructor-arg>
 	</beans:bean>
 	<!-- board.BoardQna페이징 -->
 	<beans:bean id="bqco" class="com.tireshoppingmall.home.board.BoardQnaCountOption">
@@ -97,6 +96,10 @@
 	</beans:bean>
 	<!-- board.BoardNotice페이징 -->
 	<beans:bean id="bnco" class="com.tireshoppingmall.home.board.BoardNoticeCountOption">
+		<beans:constructor-arg value="5"></beans:constructor-arg>
+	</beans:bean>
+	<!-- board.BoardEvent페이징 -->
+	<beans:bean id="beco" class="com.tireshoppingmall.home.board.BoardEventCountOption">
 		<beans:constructor-arg value="5"></beans:constructor-arg>
 	</beans:bean>
 
@@ -146,7 +149,7 @@
 
 	<beans:bean id="bo"
 		class="com.tireshoppingmall.home.admin.store.BranchOption">
-		<beans:constructor-arg value="10"></beans:constructor-arg>
+		<beans:constructor-arg value="12"></beans:constructor-arg>
 	</beans:bean>
 
 

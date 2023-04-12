@@ -1,5 +1,6 @@
 package com.tireshoppingmall.home.board;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class BoardEventDTO {
@@ -12,12 +13,14 @@ public class BoardEventDTO {
 	private String e_mainimg;
 	private String e_detailimg;
 	private String e_status;
+	private BigDecimal begin;
+	private BigDecimal last;
 	public BoardEventDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public BoardEventDTO(int e_no, String e_title, Date e_date, String e_content, Date e_duration, int e_popup,
-			String e_mainimg, String e_detailimg, String e_status) {
+			String e_mainimg, String e_detailimg, String e_status, BigDecimal begin, BigDecimal last) {
 		super();
 		this.e_no = e_no;
 		this.e_title = e_title;
@@ -28,6 +31,8 @@ public class BoardEventDTO {
 		this.e_mainimg = e_mainimg;
 		this.e_detailimg = e_detailimg;
 		this.e_status = e_status;
+		this.begin = begin;
+		this.last = last;
 	}
 	public int getE_no() {
 		return e_no;
@@ -82,5 +87,17 @@ public class BoardEventDTO {
 	}
 	public void setE_status(String e_status) {
 		this.e_status = e_status;
+	}
+	public BigDecimal getBegin() {
+		return begin;
+	}
+	public void setBegin(BigDecimal begin) {
+		this.begin = begin;
+	}
+	public BigDecimal getLast() {
+		return last;
+	}
+	public void setLast(BigDecimal last) {
+		this.last = last;
 	}
 }

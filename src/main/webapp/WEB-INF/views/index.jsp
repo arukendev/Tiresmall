@@ -29,16 +29,31 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="index_header">
           <div class="index_hTop">
             <div class="index_hTopLeft">
-              <a href="admin.order.go?m=order">관리자</a>
               <a
-                onclick="board_openKakao()"
+                href="javascript:board_openKakao_new()"
                 class="index_kakao"
                 style="cursor: pointer"
                 >카카오톡상담
                 <img
                   src="resources/web/main/board/kakaologo.png"
                   style="width: 16px"
-              /></a>
+                />
+              </a>
+
+              <!-- <img
+                onclick="board_openKakao_new()"
+                style="
+                  cursor: pointer;
+                  width: 80px;
+                  position: relative;
+                  top: 2px;
+                "
+                src="resources/web/main/board/tsd.png"
+              /> -->
+
+              <c:if test="${sessionScope.homegradecheck.i_grade eq 3}">
+                <a href="admin.order.go?m=order">관리자</a>
+              </c:if>
             </div>
             <div class="index_hTopRight">
               <c:choose>
@@ -65,7 +80,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
             <div class="index_topNav">
               <div class="index_tnMenu index_tnSearch">
-                <a href="search.car">타이어 찾기</a>
+                <a href="search.size">타이어 찾기</a>
               </div>
               <div class="index_tnMenu index_tnBrand">
                 <a href="product.brand?b=&p=1">브랜드별 타이어</a>
@@ -101,11 +116,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <ul class="index_dropSearch index_dropWrapper">
             <li class="index_dropMenu_menu">
               <div class="index_dropMenu_txt">
-                <a class="index_dropSearch_a" href="search.car"
-                  >차종으로 검색</a
-                >
                 <a class="index_dropSearch_a" href="search.size"
                   >타이어 사이즈로 검색</a
+                >
+                <a class="index_dropSearch_a" href="search.car"
+                  >차종으로 검색</a
                 >
                 <a class="index_dropSearch_a" href="search.product"
                   >제품명으로 찾기</a
@@ -186,7 +201,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <a class="index_dropBoard_a" href="board.notice.read"
                   >공지사항</a
                 >
-                <a class="index_dropBoard_a" href="board.event">이벤트</a>
+                <a class="index_dropBoard_a" href="board.event.read">이벤트</a>
               </div>
               <div class="index_dropMenu_img">
                 <img
@@ -232,10 +247,12 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     </div>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="//code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuyB2oFUoxC04Ue82J1pxusEfNPy5FBJE&callback=initMap"></script>
     <script src="resources/js/index.js"></script>
     <script src="resources/js/main/order/cart.js"></script>
     <script src="resources/js/main/order/pay.js"></script>
     <script src="resources/js/main/search/main_search.js"></script>
+    <!-- main.board -->
     <script src="resources/js/main/board/main_board_kakao.js"></script>
     <script src="resources/js/main/board/main_board_whereAmI.js"></script>
     <script src="resources/js/main/board/main_board_qna_complete.js"></script>

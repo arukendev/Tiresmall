@@ -28,10 +28,11 @@ public class AuthDAO {
 	}
 
 	public void calcAllAuthCount() {
-		AuthDTO startEnd = new AuthDTO();
-		startEnd.setI_name("");
-		allAuthCount = ss.getMapper(AdminAuthMapper.class).getAuthCount(startEnd);	
-	}
+        AuthDTO startEnd = new AuthDTO();
+        startEnd.setU_id("");
+        startEnd.setI_name("");
+        allAuthCount = ss.getMapper(AdminAuthMapper.class).getAuthCount(startEnd);
+    }
 	
 	public void getAllAuth(int pageNo,HttpServletRequest req) {
 		int count = no.getAuthCountPerPage();
@@ -73,6 +74,7 @@ public class AuthDAO {
 	public void authDelete(HttpServletRequest req, AuthDTO aDTO) {
 		if(ss.getMapper(AdminAuthMapper.class).authDelete(aDTO)==1) {
 			req.setAttribute("r", "삭제 성공");
+			allAuthCount--;
 		}
 		
 	}

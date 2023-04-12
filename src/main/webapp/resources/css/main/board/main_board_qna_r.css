@@ -97,6 +97,16 @@
 	grid-area: ral_status;
 	border-right:1px solid #ddd;
 }
+.board_qna_bounce {
+	position: relative;
+	top: 5px;
+	animation: bounce .3s ease infinite alternate;
+}
+@keyframes bounce {
+ 	100% {
+ 		top: 0px;
+ 	}
+}
 
 
 

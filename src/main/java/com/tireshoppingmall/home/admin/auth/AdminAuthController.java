@@ -59,12 +59,8 @@ public class AdminAuthController {
 	//auth.delete.go
 	@RequestMapping(value = "/auth.delete.go", method = RequestMethod.GET)
 	public String authDeleteGo(HttpServletRequest req,AuthDTO aDTO) {	
-		
 		aDAO.authDelete(req,aDTO);	
-		aDAO.getAllAuth(1,req);	
-		
-		req.setAttribute("contentPage", "auth/auth.jsp");
-		return "admin/master";
+		return "redirect:admin.auth.go";
 	}
 	
 	//admin.update.go

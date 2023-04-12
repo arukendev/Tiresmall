@@ -36,6 +36,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.tireshoppingmall.home.order.MainOrderDTO;
 
 
 
@@ -121,7 +122,7 @@ public class AuthController {
 		// 로그인페이지를통하여들어온경우:	로그인후에 홈화면으로
 		if (req.getSession().getAttribute("loginRequiredByQna") == null) {
 			req.setAttribute("content", "main/home/home.jsp");
-			return "index";
+			return "redirect:/";
 		// 1:1문의페이지를통하여들어온경우:	로그인후에 1:1문의화면으로
 		} else {
 			req.getSession().setAttribute("loginRequiredByQna", null);	
@@ -387,31 +388,43 @@ public class AuthController {
 
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String myProfileGo(HttpServletRequest req,Model model,AuthUserDTO aDTO) {
-    	model.addAttribute("content", "main/auth/myProfile.jsp");
-		model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> 주문 조회");
-		model.addAttribute("board_whereAmITwo", "주문 조회");
-		model.addAttribute("profile_contents", "myOrderList.jsp");
+	public String myProfileGo(HttpServletRequest req, AuthUserDTO aDTO) {
+    	req.setAttribute("content", "main/auth/myProfile.jsp");
+    	req.setAttribute("profile_contents", "myOrderList.jsp");
 		
 		aDTO = (AuthUserDTO) req.getSession().getAttribute("loginMember");
+		if (aDTO == null) {
+			return "redirect:/";
+		}
 		mDAO.getMyOrder(req,aDTO);
 		
 		return "index";
 	}
+    
     @RequestMapping(value = "/profile.myInfo", method = RequestMethod.GET)
     public String myProfileInfoGo(HttpServletRequest req,Model model,AuthUserDTO aDTO) {
     	
     	model.addAttribute("content", "main/auth/myProfile.jsp");
-    	model.addAttribute("board_whereAmIOne", "<i class=\"fa-solid fa-chevron-right\"></i> myProfile");
-    	model.addAttribute("board_whereAmITwo", "나의 회원정보");
     	
     	aDTO = (AuthUserDTO) req.getSession().getAttribute("loginMember");
+    	if (aDTO == null) {
+			return "redirect:/";
+		}
     	System.out.println(aDTO.getMc_brand());
     	System.out.println(aDTO.getMc_carname());
     	System.out.println(aDTO.getMc_number());
     	System.out.println(aDTO.getMc_year());
     	model.addAttribute("personalInfomation",aDTO);
     	model.addAttribute("profile_contents", "profileInfo.jsp");
+    	
+    	return "index";
+    }
+    
+    @RequestMapping(value = "/nonmember.go", method = RequestMethod.POST)
+    public String getNonOrder(HttpServletRequest req, MainOrderDTO oDTO) {
+    	
+    	mDAO.getNonOrder(req, oDTO);
+    	req.setAttribute("content", "main/auth/non_member.jsp");
     	
     	return "index";
     }

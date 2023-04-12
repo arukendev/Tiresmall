@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="resources/css/admin/board/event_modal.css">
 </head>
 <body>
-	<input id="whatMenu" value="event" type="hidden">
+	<input id="whatMenu" value="notice" type="hidden">
 	<input id="sm" value="4" type="hidden">
 	<div id="event-modal" class="event_modal hidden" style="display: none;">
 
@@ -83,7 +83,7 @@
 		<div class="DashBoard">
 				<div class="DashBoard nb_content">
 					<div id="event-reg-btn-box">수정하시려면 사진이나 제목을 눌러주세요.
-					<button id="event-reg-btn">등 록</button>
+					<button id="event-reg-btn" class= "noticeregBtn">신규 등록</button>
 					</div>
 					<table class="notice_content">
 						<tr>

@@ -64,30 +64,8 @@
 	font-family: GmarketSansMedium;
 }
 
-#searchBtn{
-	display: flex;
-	flex:1;
-	justify-content: space-between;
-	min-width: 300px;
-}
-
-#searchBtn button{
-	display: flex;
-    background: #181C32;
-    margin-left: 20px;
-    border-radius: 5px;
-    border: 1px solid #000;
-    padding: 8px 10px;
-    font-size: 1em;
-    cursor: pointer;
-    color: white;
-    font-family: GmarketSansMedium;
-    cursor: pointer; 
-  	user-select: none;	
-}
-
-#admin_tire_reg{
-  margin-right:30px;
+.searchtirebtn{
+	
   background-color: #5F5F5F;
   color: #FFFFFF;
   border: none;
@@ -95,6 +73,8 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
+ position:absolute;
+ top:110px;
   margin-left:20px;
   font-size: 16px;
   font-weight: bold;
@@ -102,14 +82,17 @@
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  user-select: none;	
+  margin: 20px;
+  
 }
 
-#admin_tire_reg:hover {
+.searchtirebtn:hover {
   background-color: #FFFFFF;
   color: #5F5F5F;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
 }
+
+
 
 #admin_tire_content{
 	margin-left:10px;
@@ -124,6 +107,32 @@
 }
 
 
+#admin_tire_reg{
+  background-color: #5F5F5F;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+ position:absolute;
+ right:5px;
+top:110px;
+  margin-left:20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin: 20px;
+}
+
+#admin_tire_reg:hover {
+	 background-color: #FFFFFF;
+  color: #5F5F5F;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
 
 .admin_tire_content_title{
     font-size: 15pt;
@@ -187,7 +196,7 @@
 }
 
 
-.admin_printBTN{
+.admin_printBTN, .save-btn, .imgbtn {
 	border-radius:7px;
 	padding:6px;
 	color: #0d6efd;
@@ -199,7 +208,7 @@
     user-select: none;
     font-family: GmarketSansMedium;	
 }
-.admin_printBTN:hover{
+.admin_printBTN:hover, .save-btn:hover, .imgbtn:hover {
 	color: #fff;
     background-color: #0d6efd;
     border-color: #0d6efd;
@@ -207,7 +216,7 @@
 
     
 
-.admin_notPrintBTN{
+.admin_notPrintBTN, .detail-updateBtn, .cancle-btn {
 	margin-left:5px;
 	margin-right:5px;
 	border-radius:7px;
@@ -221,13 +230,13 @@
     user-select: none;
     font-family: GmarketSansMedium;	
 }
-.admin_notPrintBTN:hover{
+.admin_notPrintBTN:hover, .detail-updateBtn:hover, .cancle-btn:hover {
 	color: #fff;
     background-color: #212529;
     border-color: #212529;
 }
 
-.admin_deleteBTN{
+.admin_deleteBTN, .event-del-btn {
 	margin-left:5px;
 	margin-right:5px;
 	border-radius:7px;
@@ -237,12 +246,13 @@
 	color: #dc3545;
     background-color: #fff;
     border-color: #dc3545;
-      cursor: pointer; 
+    border:2px solid #dc3545;
+    cursor: pointer; 
     user-select: none;	
     font-family: GmarketSansMedium;
 }
 
-.admin_deleteBTN:hover{
+.admin_deleteBTN:hover, .event-del-btn:hover {
 	color: #fff;
     background-color: #dc3545;
     border-color: #dc3545;

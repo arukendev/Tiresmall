@@ -5,15 +5,20 @@
 @import "main_board_qna_rd.css";
 @import "main_board_qna_cu.css";
 @import "main_board_qna_complete.css";
+@import "main_board_notice_r.css";
+@import "main_board_notice_rd.css";
 @import "main_board_event_dialog.css";
+@import "main_board_event_r.css";
+@import "main_board_event_rd.css";
 
-.board_mainContainer {
+.board_mainContainerSinnzidai {
 	display: grid;
 	grid-template-columns: 250px 1fr;
-	grid-template-rows: 100px 70px 1fr 1fr;
+	grid-template-rows: 100px 70px 229px 1fr 303px;
 	grid-template-areas:	"b_title b_title"
 							"b_link b_link"
 							"b_menu b_contents"
+							"b_void b_contents"
 							"b_info b_contents";
 							
 	width: 1200px;
@@ -75,21 +80,26 @@
     color: #ab1e21;
 }
 
-.board_sideInfo {
+.board_sideVoid {
+	grid-area: b_void;
+}
+
+.board_sideInfoSinnzidai {
 	grid-area: b_info;
 	
 	/*
 	margin-top: 50px 0 50px;
-	*/
 	margin-top: auto;
+	*/	
+	margin-top: 100px;
 	margin-bottom: 50px;
-	line-height: 20px;
+	line-height: 21px;
 }
 
-.board_sideInfo_20px {
+.board_sideInfoSinnzidai_20px {
 	font-size: 20px;
 }
-.board_sideInfo_bold {
+.board_sideInfoSinnzidai_bold {
 	font-weight: 500;
 }
 

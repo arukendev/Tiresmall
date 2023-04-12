@@ -54,7 +54,6 @@
 }
 
 .pay_list {
-  padding-bottom: 30px;
   display: flex;
   flex-direction: column;
 }
@@ -64,6 +63,7 @@
   display: flex;
   justify-content: space-between;
   padding: 20px 20px 20px 10px;
+  margin-bottom: 20px;
   border-bottom: 3px solid #ddd;
 }
 
@@ -84,7 +84,7 @@
 }
 
 .pay_product_left {
-  gap: 10px;
+  gap: 30px;
 }
 
 .pay_product_right {
@@ -125,6 +125,11 @@
 .pay_product_price {
   font-size: 24px;
   font-weight: 500;
+}
+
+.pay_map {
+  height: 400px;
+  margin: 20px 0;
 }
 
 .pay_shipMethod select,
@@ -175,9 +180,23 @@
 .pay_customerInfo select {
   font-weight: 400;
   font-size: 20px;
-  width: 100px;
+  width: 150px;
   padding: 5px;
   border: 1px solid #aaa;
+}
+
+.pay_customerInfo select:first-child {
+  width: 100px;
+}
+
+.pay_payInfo {
+  display: flex;
+  padding: 10px;
+  padding-bottom: 20px;
+  gap: 20px;
+  font-size: 20px;
+  font-weight: 400;
+  border-bottom: 1px solid #ddd;
 }
 
 .pay_error {
@@ -247,4 +266,28 @@
 
 .pay_nav_discount {
   padding-bottom: 30px;
+}
+
+.complete_content {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  font-size: 24px;
+  font-weight: 400;
+  color: #aaa;
+}
+
+.pay_method_info {
+  height: 120px;
+  padding: 30px;
+}
+
+.pay_nonbankpay_content {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  gap: 10px;
 }

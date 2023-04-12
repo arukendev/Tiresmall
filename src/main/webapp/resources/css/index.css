@@ -6,6 +6,7 @@
 @import "main/auth/auth_profile.css";
 @import "main/auth/auth_profileInfo.css";
 @import "main/auth/auth_orderList.css";
+@import "main/auth/nonmember.css";
 @import "main/product/product_detail.css";
 @import "main/product/product_cart.css";
 @import "main/product/product_pay.css";

@@ -140,16 +140,30 @@
             order by q_no
 	</select> -->
 	
-	<!-- QNA 답변-->
+	<!-- QNA답변 카운트 -->
+	<select id="countQnAReply" resultType="int">
+		select count(*)
+		from qna_reply
+		where q_reply_board_no = #{q_reply_board_no}
+	</select>
+	<!-- QNA답변-->
 	<insert id="insertQnAReply" parameterType="com.tireshoppingmall.home.admin.board.QnaReplyDTO">
-		insert into qna_reply values(qna_reply_seq.nextval, #{q_reply_txt},sysdate,#{q_reply_board_no})
+		insert
+		into qna_reply
+		values(qna_reply_seq.nextval, #{q_reply_txt}, sysdate, #{q_reply_board_no})
 	</insert>
-	
-	<!-- QNA 답변 완료 처리-->
+	<!-- QNA답변 완료처리-->
 	<update id="updateQna">
 		update qna
 		set q_reply_has = 1
 		where q_no = #{q_reply_board_no}
+	</update>
+	
+	<!-- QNA답변 수정 -->
+	<update id="updateQnAReply">
+		update qna_reply
+		set q_reply_txt = #{q_reply_txt}
+		where q_reply_board_no = #{q_reply_board_no}
 	</update>
 	
 	<!-- QNA 모달에 값 가져오기-->
@@ -238,12 +252,6 @@
 					</when>
 					<when test="e_duration != null">
 							e_duration = #{e_duration}
-					</when>
-					<when test="e_mainimg != null">
-							e_mainimg = #{e_mainimg}
-					</when>
-					<when test="e_detailimg != null">
-							e_detailimg = #{e_detailimg}
 					</when>
 					<when test="e_status != null">
 							e_status = #{e_status}

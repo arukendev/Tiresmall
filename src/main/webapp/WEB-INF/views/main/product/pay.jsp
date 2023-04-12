@@ -14,7 +14,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
         location.href = "/home";
       </script>
     </c:if>
-    <form action="pay.complete" method="post" class="pay_container">
+    <form action="pay.complete" method="post" id="pay_container" class="pay_container">
       <div class="pay_titles">
         <div class="pay_title_left">
           <h1>구매예약</h1>
@@ -45,8 +45,8 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                     </c:when>
                     <c:otherwise>
                       <img
-                        src="resources/web/main/tire/${tire.tg_img}.jpg"
-                        style="width: 150px"
+                        src="resources/web/main/tire/${tire.tg_img}"
+                        style="max-height: 150px"
                       />
                     </c:otherwise>
                   </c:choose>
@@ -58,10 +58,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                   >
                     ${tire.tg_brand}
                   </h2>
-                  <h1
-                    href="product.detail?tg_id=${tire.tg_id}"
-                    class="pay_product_name"
-                  >
+                  <h1 value="${tire.tg_id}" class="pay_product_name">
                     ${tire.tg_name}
                   </h1>
                   <div class="pay_quantity_box">
@@ -121,6 +118,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 </select>
               </div>
             </li>
+            <div class="pay_map"></div>
             <li>
               <div>
                 <span>장착점 주소</span>
@@ -252,7 +250,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                     <input
                       type="text"
                       name="o_carnumber"
-                      value="${sessionScope.loginMember.i_carnum}"
+                      value="${sessionScope.loginMember.mc_number}"
                       class="pay_carNum_input"
                     />
                     <span class="pay_error pay_carNum_confirm"></span>
@@ -373,21 +371,48 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
             <span>결제 정보</span>
           </div>
           <div class="pay_payInfo">
-            <input
-              type="radio"
-              id="directpay"
-              name="o_paymethod"
-              value="현장결제"
-              checked
-            />
-            <label for="directpay">현장결제</label>
-            <input
-              type="radio"
-              id="nonbankpay"
-              name="o_paymethod"
-              value="무통장"
-            />
-            <label for="nonbankpay">무통장</label>
+            <div class="pay_directpay">
+              <input
+                type="radio"
+                id="directpay"
+                name="o_paymethod"
+                value="현장결제"
+                onchange="payChange(this)"
+                checked
+              />
+              <label for="directpay">현장결제</label>
+            </div>
+            <div class="pay_nonbankpay">
+              <input
+                type="radio"
+                id="nonbankpay"
+                name="o_paymethod"
+                value="무통장"
+                onchange="payChange(this)"
+              />
+              <label for="nonbankpay">무통장 입금</label>
+            </div>
+            <div class="pay_kakaopay">
+              <input
+                type="radio"
+                id="kakaopay"
+                name="o_paymethod"
+                value="카카오"
+                onchange="payChange(this)"
+              />
+              <label for="kakaopay">카카오페이</label>
+            </div>
+          </div>
+          <div class="pay_method_info">
+            <div class="pay_nonbankpay_content" style="display: none">
+              <span>예금주 김준범</span>
+              <span>농협 356-1434-7356-03</span>
+            </div>
+          </div>
+          <div class="pay_method_info">
+            <div class="pay_kakaopay_content" style="display: none; position: relative; top: -120px; font-weight: 500;">
+              	'결제하기'를 클릭해 카카오 결제를 진행 해주세요.
+            </div>
           </div>
         </div>
         <div class="pay_confirm">
@@ -409,10 +434,13 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
             </div>
             <input type="hidden" name="o_deliverymethod" value="직영점" />
             <input type="hidden" name="o_step" value="결제대기" />
-            <button class="pay_nav_pay">결제하기</button>
+            <!-- <button class="pay_nav_pay" type="button" onclick="kakao_pay()">결제하기</button>
+             --><button class="pay_nav_pay">결제하기</button>
           </div>
         </div>
       </div>
+      <input id="pInput" name="pg_token" type="hidden" value="">
     </form>
+<script type="text/javascript" src="resources/js/main/order/kakaopay.js"></script>
   </body>
 </html>

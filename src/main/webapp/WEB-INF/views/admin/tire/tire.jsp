@@ -14,6 +14,7 @@
 <body>
 	<input id="whatMenu" value="tire" type="hidden">
 	<input id="sm" value="1" type="hidden"> 
+	<input type="hidden" value="${r }" id="regSucceFals">
 	<div class="container sub">
 		<div id="tire_container">
 			<form action="admin.tire.search.do" class="tire_form">
@@ -43,8 +44,8 @@
 						</div>
 					</div>
 					<div id="searchBtn">
-						<button>검색</button>
-						<div id="admin_tire_reg"
+						<button class="searchtirebtn">검색</button>
+						<div id="admin_tire_reg" 
 							onclick="location.href='admin.tire.reg.go'">신규등록</div>
 					</div>
 				</div>

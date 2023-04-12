@@ -65,4 +65,8 @@ public interface AdminTireMapper {
 
 	int adminTireSizeNewInsertReg(TireDTO tDTO);
 
+	int tireImgUpdate(TireDTO tDTO);
+
+	int tireImgsUpdate(TireDTO tDTO);
+
 }

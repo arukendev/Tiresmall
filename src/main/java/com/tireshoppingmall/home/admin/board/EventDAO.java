@@ -90,8 +90,7 @@ public class EventDAO {
 	}
 
 	public int updateEvent(EventDTO eventDTO) {
-		System.out.println(eventDTO.toString());
-
+		System.err.println(eventDTO.toString());
 		return ss.getMapper(AdminBoardMapper.class).eventUpdate(eventDTO);
 	}
 
@@ -99,7 +98,6 @@ public class EventDAO {
 		Iterator<String> files = mf.getFileNames();
 		String path = servletContext.getRealPath("resources/upload-event/");
 
-		System.out.println(eventDto.toString());
 		String mainimg_old = eventDto.getE_mainimg();
 		String detailimg_old = eventDto.getE_detailimg();
 		StringBuilder sb = new StringBuilder();
@@ -110,7 +108,6 @@ public class EventDAO {
 			UUID uuid = UUID.randomUUID();
 			String[] uuids = uuid.toString().split("-");
 			String uniqueName = uuids[0] + uuids[1] + uuids[2];
-			System.out.println(uniqueName);
 			try {
 				mFile.transferTo(new File(path + uniqueName + extension));
 				sb.append(uniqueName + extension + "!");
@@ -129,18 +126,12 @@ public class EventDAO {
 		System.out.println(sb.toString());
 		System.out.println(eventDto.toString());
 		if (ss.getMapper(AdminBoardMapper.class).eventUpdate(eventDto) == 1) {
-			
-			System.err.println(mainimg_old);
-			System.err.println(eventDto.getE_mainimg());
-			
 			if (type.equals("main-btn")) {
 				new File(path + mainimg_old).delete();
 				return eventDto.getE_mainimg();
 			} else {
-				System.out.println("삭제 되니?");
 				String[] dio = detailimg_old.split("!");
 				for (String d : dio) {
-					System.out.println(d);
 					new File(path + d).delete();
 				}
 				return eventDto.getE_detailimg();
@@ -166,8 +157,13 @@ public class EventDAO {
 		return ss.getMapper(AdminBoardMapper.class).eventDelete(eventDto);
 	}
 
-
+	/*
 	public void regEvent(MultipartFile mainimg, List<MultipartFile> detailimg, EventDTO eventDto) {
+	 */
+	public void regEvent(MultipartFile mainimg, List<MultipartFile> detailimg, EventDTO eventDto) {
+		String e_content = eventDto.getE_content();
+		eventDto.setE_content(e_content.replace("\r\n", "<br>"));
+		
 		String path = servletContext.getRealPath("resources/upload-event/");
 		UUID uuid = UUID.randomUUID();
 		String[] uuids = uuid.toString().split("-");
