@@ -39,7 +39,6 @@ public class MemberDAO {
 	private SqlSession ss;
 	
 	public void regMember(HttpServletRequest req, MemberDTO mDTO) {
-		System.out.println("값-------"+mDTO.getMc_number());
 		if(ss.getMapper(MemberMapper.class).regMember(mDTO)>=3) {
 			System.out.println("가입성공");
 			System.out.println(mDTO.getMc_year());

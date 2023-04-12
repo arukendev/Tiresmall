@@ -93,8 +93,6 @@ public class AuthController {
 		 /* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
         String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
         
-        //https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
-        //redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
         System.out.println("네이버:" + naverAuthUrl);
         
         //네이버 
@@ -131,10 +129,6 @@ public class AuthController {
 		}
 		
 		
-		
-		
-		
-		
 	}
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logoutDo(MemberDTO mDTO, HttpServletRequest req) {
@@ -148,14 +142,12 @@ public class AuthController {
 	@RequestMapping(value = "/updateInfo", method = RequestMethod.GET)
 	public String updateInfo(MemberDTO mDTO, HttpServletRequest req,Model model,AuthUserDTO aDTO) {
 		
-		if (mDAO.loginCheck( req)) {
+		if (mDAO.loginCheck(req)) {
 			AuthUserDTO m = (AuthUserDTO) req.getSession().getAttribute("loginMember");
 			mDTO.setU_id(m.getU_id());
 			
 			 System.out.println(mDAO.updateInfo(mDTO)); 
 			if (mDAO.updateInfo(mDTO)>=1) {
-
-				
 					lsDAO.login(m.getU_id(), req);
 					aDTO = (AuthUserDTO) req.getSession().getAttribute("loginMember");
 					model.addAttribute("content", "main/auth/myProfile.jsp");
@@ -168,7 +160,6 @@ public class AuthController {
 					model.addAttribute("personalInfomation",aDTO);
 					model.addAttribute("profile_contents", "profileInfo.jsp");
 					return "index";
-				
 			}
 		}
 		
@@ -231,11 +222,12 @@ public class AuthController {
 	@ResponseBody
 	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
 	public int idCheck(@RequestParam("id") String id,Model model) {
-		
+		//아이디 중복검사 
 		int cnt = lsDAO.checkIdkko(id);
 		System.out.println("cnt : " + cnt);
 		return cnt;
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/pwFind", method = RequestMethod.POST)
 	public int pwFind(@Param("idInput") String idInput
@@ -255,8 +247,8 @@ public class AuthController {
 			,@Param("phoneNumInput") String phoneNumInput
 			,AuthUserDTO aDTO) {
 
-		System.out.println("name" + nameInput);
-		System.out.println("num" + phoneNumInput);
+//		System.out.println("name" + nameInput);
+//		System.out.println("num" + phoneNumInput);
 		aDTO.setI_name(nameInput);
 		aDTO.setI_phoneNum(phoneNumInput);
 		
@@ -267,8 +259,8 @@ public class AuthController {
 	
 	@RequestMapping(value = "/pwNewSet", method = RequestMethod.POST)
 	public String findEmailGo(MemberDTO mDTO,String pwNewSet) {
-		System.out.println("--------아디"+mDTO.getU_id());
-		System.out.println("--------비번"+mDTO.getPw_password());
+//		System.out.println("--------아디"+mDTO.getU_id());
+//		System.out.println("--------비번"+mDTO.getPw_password());
 		
 		if (mDAO.setPassword(mDTO) ==1) {
 			System.out.println("성공");
@@ -305,16 +297,16 @@ public class AuthController {
 			@RequestParam(value = "code", required = false) String code
 			, Model model,HttpServletRequest req,RedirectAttributes rttr,MemberDTO mDTO) throws Exception {
 
-		System.out.println("#########" + code);
+//		System.out.println("#########" + code);
         String access_Token = lsDAO.getAccessToken(code);
-        System.out.println("###access_Token#### : " + access_Token);
+//        System.out.println("###access_Token#### : " + access_Token);
         
         
         HashMap<String, Object> userInfo = lsDAO.getUserInfo(access_Token);
        //System.out.println("###access_Token#### : " + access_Token);
-        System.out.println("###userInfo#### : " + userInfo.get("email"));
-        System.out.println("###nickname#### : " + userInfo.get("nickname"));
-       System.out.println("###KAKAOID#### : " + userInfo.get("kakaoID"));
+//        System.out.println("###userInfo#### : " + userInfo.get("email"));
+//        System.out.println("###nickname#### : " + userInfo.get("nickname"));
+//       System.out.println("###KAKAOID#### : " + userInfo.get("kakaoID"));
        
         JsonObject kakaoInfo =  new JsonObject();
         model.addAttribute("kakaoInfo", kakaoInfo);

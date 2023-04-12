@@ -86,15 +86,6 @@ $(function() {
 			$('input[name=u_id]').val(idInput);
 			$("#emailNumCheck_box").css("display","none");
     		$("#setPw_box").css("display","flex");
-			
-			
-			
-			
-			
-			
-			
-			
-			
 		}else {
 			alert('인증번호가 일치하지 않습니다.')
 			$('#i_emailCheck').text('');
