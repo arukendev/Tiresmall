@@ -69,8 +69,8 @@ type="image/png"
 				</div>
 				<div id="email_input">
 					<input name="i_emailCheck" id="i_emailCheck">
-					<button type="button" id="mail_Check">인증번호 받기</button>
 					<button type="button" id="authnum_check">인증번호 확인</button>
+					<button type="button" id="mail_Check">인증번호 받기</button>
 				</div>
 			</div>
 

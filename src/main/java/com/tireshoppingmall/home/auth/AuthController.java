@@ -65,7 +65,7 @@ public class AuthController {
     public String mailCheck(@RequestParam("sm_email") String sm_email) throws Exception{
         int serti = (int)((Math.random()* (99999 - 10000 + 1)) + 10000);
         
-        String from = "cwy1231@naver.com";//보내는 이 메일주소
+        String from = "chldndud95@naver.com";//보내는 이 메일주소
         String to = sm_email;
         String title = "회원가입시 필요한 인증번호 입니다.";
         String content = "[인증번호] "+ serti +" 입니다. <br/> 인증번호 확인란에 기입해주십시오.";

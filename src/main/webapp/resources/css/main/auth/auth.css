@@ -203,8 +203,17 @@ body {
 
 #authnum_check{
 	display: none;
+	margin-top: 12px;
+	margin-bottom: 30px;
+	width: 40px;
+	height: 30px;
 }
-
+#mail_Check{
+	margin-top: 12px;
+	margin-bottom: 30px;
+	width: 40px;
+	height: 30px;
+}
 
 
 /*----------END----------------  */
@@ -352,7 +361,7 @@ body {
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
-#find_btn button,#backHOME,#authnum_check{
+#find_btn button,#backHOME{
 	font-family: 'Black Han Sans', sans-serif;
 	font-size: 26pt;
 	width: 300px;
