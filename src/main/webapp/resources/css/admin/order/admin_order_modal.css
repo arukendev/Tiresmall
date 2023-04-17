@@ -43,6 +43,9 @@
 	width: 35%;
 	border: 1px solid black;
 }
+.modal_content_td label{
+	margin-left: 25px;
+}
 
 .left_td{
 	background-color: #333333;

@@ -100,7 +100,9 @@ public class OrderDAO {
 
 	public void updateOrder(HttpServletRequest req, String o_no,String o_step) {
 		OrderUpdateDTO ouDTO = new OrderUpdateDTO(o_no, o_step);
-		
+			System.out.println("왜실패????????");
+			System.out.println(ouDTO.getO_no());
+			System.out.println(ouDTO.getO_step());
 		if (ss.getMapper(AdminOrderMapper.class).updateOrder(ouDTO) == 1) {
 			System.out.println(ouDTO.getO_no());
 			System.out.println(ouDTO.getO_step());

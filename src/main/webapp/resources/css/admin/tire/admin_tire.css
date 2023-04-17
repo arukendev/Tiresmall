@@ -62,10 +62,10 @@
 	font-size: 11pt;
 	border-radius:10px; 
 	font-family: GmarketSansMedium;
+	padding-left: 10px;
 }
 
 .searchtirebtn{
-	
   background-color: #5F5F5F;
   color: #FFFFFF;
   border: none;

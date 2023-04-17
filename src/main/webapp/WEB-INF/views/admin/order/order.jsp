@@ -27,8 +27,8 @@
 		
 			<div class="modal-wrapper">	
 				<div class="order_modalcontent">
-						<div class="order_header">주문 관리</div>
-						<div>
+					<div class="order_header">주문 관리</div>
+					<div>
 						<table class="modal_table">
 							<tr>
 								<td class="left_td">주문번호</td>

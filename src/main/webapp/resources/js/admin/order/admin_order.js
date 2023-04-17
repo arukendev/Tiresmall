@@ -16,18 +16,6 @@ $('.order_modal_go').click(function() {
 	$('#order_modal').css('z-index', '3');
 	// 모달 on
 	
-	$('#updateModal').click(function() {
-		
-		$("#o_no").val($('#orderNo_M').val());
-		$("#o_step").val($(".modal-label:checked").val());
-
-		if (!confirm('수정 하시겠습니까?')) {
-			// 취소
-		} else {
-			$("#update_modal").submit();
-		}
-		
-	})
 	
 	/* $("body").css("overflow", 'hidden'); */ // 모달 스크롤 기능 view 합친후에 주석제거 요망
 
@@ -58,7 +46,8 @@ $('.order_modal_go').click(function() {
 		arr.push($(input).val());
 		// modal_content_td[i].innerText = val;
 	});
-
+	console.log(arr[19]);
+	
 	// console.log(arr);
 	modal_content_td[0].innerText = arr[0];									// 주문번호
 	modal_content_td[1].innerText = $(this).find(".td_c4").text(); 			// 주문일시
@@ -80,6 +69,23 @@ $('.order_modal_go').click(function() {
 	}else {
 		modal_content_td[16].innerText =  '';
 	}*/
+	
+	//수정
+	$('#updateModal').click(function() {
+		
+		console.log($('#orderNo_M').val());
+		console.log($(".modal-label:checked").val());
+		console.log(arr[19]);
+		$("#o_no").val(arr[19]);
+		console.log($("#o_no").val());
+		$("#o_step").val($(".modal-label:checked").val());
+		
+		if (!confirm('수정 하시겠습니까?')) {
+			// 취소
+		} else {
+			$("#update_modal").submit();
+		}
+	})
 	
 	let tire_tr = $(this).find('.tire_content_tr');
 	let tire_tr2 = $(tire_tr).clone();
@@ -119,5 +125,5 @@ $("#cancleModal").click(function() {
 	$('#order_modal').hide();
 	// 모달 off
 	$("body").css("overflow", 'auto');
-
 });
+

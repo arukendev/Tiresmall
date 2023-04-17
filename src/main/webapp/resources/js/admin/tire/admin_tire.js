@@ -122,11 +122,11 @@ function tireRegSizeAdd() {
 				"<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>" +
 				"<div class='admin-tire-reg-size-modal-input'>" +
 				"<div class='admin-tire-reg-size-modal-input'>" +
-				"<input class='tire_input_width'name='ti_width' maxlength='3'>" + /*oninput='this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');'*/ 
+				"<input class='tire_input_width'name='ti_width' maxlength='3' value='0'>" + 
 				"<span class='size-span'>/</span>" +
-				"<input class='tire_input_ratio' name='ti_ratio'  maxlength='2'>" +
+				"<input class='tire_input_ratio' name='ti_ratio'  maxlength='2' value='0'>" +
 				"<span class='size-span'>R</span>" +
-				"	<input class='tire_input_inch' name='ti_inch' maxlength='2'>" +
+				"	<input class='tire_input_inch' name='ti_inch' maxlength='2' value='0'>" +
 				"</div>" +
 				"	<div class='admin-tire-reg-size-modal-button'>" +
 				"	<div class='admin_tire_reg_in admin-tire-reg-size-modal-button1'>입력</div>" +
@@ -144,8 +144,8 @@ function tireRegSizeAdd() {
 				"</div>" +
 				"</td>" +
 				"<td class='admin-tire-size-reg-content'><span class='admin-tire-reg-name'></span></td>" +
-				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-marking-input' name='ti_marking'></td>" +
-				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-pricefac-input' name='ti_pricefac'>&nbsp;원</td>" +
+				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-marking-input' name='ti_marking' value=' '></td>" +
+				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-pricefac-input' name='ti_pricefac' value='0'>&nbsp;원</td>" +
 				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-stock-input' name='ti_stock' value='0'>&nbsp;개</td>" +
 				"<td class='admin-tire-size-reg-content'>" +
 				"<div class='admin-tire-size-reg-delete'>삭제</div></td>" +
@@ -165,11 +165,11 @@ function tireUpdateRegSizeAdd() {
 				"<div class='admin-tire-reg-size-modal-input'>" +
 				"<input class='tire_input_width' name='ti_width'>" + /*그냥 여기다 name을 넣고 밑에 hidden은 지워됨*/ 
 				"<span class='size-span'>/</span>" +
-				"<input class='tire_input_ratio' name='ti_ratio' maxlength='3'>" +
+				"<input class='tire_input_ratio' name='ti_ratio' maxlength='3'  value='0'>" +
 				"<span class='size-span'>R</span>" +
-				"	<input class='tire_input_inch' name='ti_inch' maxlength='2'>" +
+				"	<input class='tire_input_inch' name='ti_inch' maxlength='2'  value='0'>" +
 				"</div>" +
-				"	<div class='admin-tire-reg-size-modal-button' maxlength='2'>" +
+				"	<div class='admin-tire-reg-size-modal-button' maxlength='2'  value='0'>" +
 				"	<div class='admin_tire_reg_in admin-tire-reg-size-modal-button1'>입력</div>" +
 				"<div class='admin_tire_reg_cen admin-tire-reg-size-modal-button2'>취소</div>" +
 				"</div>" +
@@ -185,8 +185,8 @@ function tireUpdateRegSizeAdd() {
 				"</div>" +
 				"</td>" +
 				"<td class='admin-tire-size-reg-content'><span class='admin-tire-reg-name'></span></td>" +
-				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-marking-input' name='ti_marking'></td>" +
-				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-pricefac-input' name='ti_pricefac'>&nbsp;원</td>" +
+				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-marking-input' name='ti_marking' value=' '></td>" +
+				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-pricefac-input' name='ti_pricefac' value='0'>&nbsp;원</td>" +
 				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-stock-input' name='ti_stock' value='0'>&nbsp;개</td>" +
 				"<td class='admin-tire-size-reg-content'>" +
 				"<div class='admin-tire-size-reg-button-div'>"+
@@ -248,6 +248,9 @@ function tireRegSizeReg() {
 	
 	$(document).on("click",".admin_tire_reg_cen",function() {
 		$(".admin-tire-reg-size-modal").css("display","none");
+		$(this).closest("tr").find($(".tire_input_width")).val()=="";
+		$(this).closest("tr").find($(".tire_input_ratio")).val()=="";
+		$(this).closest("tr").find($(".tire_input_inch")).val()=="";	
 	});
 }
 
@@ -691,17 +694,17 @@ function numberInput() {
 
 function inputEmpty() {
 	$(".admin-tire-reg-button").click(function() {
-		if(!$('input[name="tg_brand"').is(':checked')){
+
+		if(!$('input[name="tg_brand"]').is(':checked')){
 			alert("브랜드를 선택해주세요!!");
-			$("#tireBrandFocus").focus();
 			return false;
 		}
-		
 		if($("#admin-tire-reg-name-input").val() == ''){
 			alert("모델명을 입력해주세요!!");
 			$("#admin-tire-reg-name-input").focus();
 			return false;
 		}
+		
 		
 		if($('#file1').val() == "") {
 			alert("메인 이미지를 넣어주세요!");

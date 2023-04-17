@@ -96,7 +96,7 @@
 						<td>
 							<div>
 								<div>
-									<input type="text" name="tg_text" id="admin-tire-reg-txt-input" />
+									<input type="text" name="tg_text" id="admin-tire-reg-txt-input" value=" "/>
 								</div>
 								<!-- <div>타이어 특성 고르기</div> -->
 							</div>
@@ -169,11 +169,11 @@
 													<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>
 													<div class='admin-tire-reg-size-modal-input'>
 														<div class='admin-tire-reg-size-modal-input'>
-															<input class='tire_input_width'name='ti_width'  maxlength='3'>
+															<input class='tire_input_width'name='ti_width'  maxlength='3' value='0'>
 															<span class='size-span'>/</span>
-															<input class='tire_input_ratio' name='ti_ratio' maxlength='2'>
+															<input class='tire_input_ratio' name='ti_ratio' maxlength='2' value='0'>
 															<span class='size-span'>R</span>
-															<input class='tire_input_inch' name='ti_inch' maxlength='2'>
+															<input class='tire_input_inch' name='ti_inch' maxlength='2' value='0'>
 														</div>
 														<div class='admin-tire-reg-size-modal-button'>
 															<div class='admin_tire_reg_in admin-tire-reg-size-modal-button1'>입력</div>
@@ -192,8 +192,8 @@
 											</div>
 										</td>
 										<td class='admin-tire-size-reg-content'><span class='admin-tire-reg-name'></span></td>
-										<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-marking-input' name='ti_marking'></td>
-										<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-pricefac-input' name='ti_pricefac'>&nbsp;원</td>
+										<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-marking-input' name='ti_marking' value="  "></td>
+										<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-pricefac-input' name='ti_pricefac' value='0'>&nbsp;원</td>
 										<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-stock-input' name='ti_stock' value="0">&nbsp;개</td>
 										<td class='admin-tire-size-reg-content'><div
 												class='admin-tire-size-reg-delete'>삭제</div></td>
