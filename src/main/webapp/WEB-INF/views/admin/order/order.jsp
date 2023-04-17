@@ -130,51 +130,50 @@
 				</div>
 			</div>
 	</div>
-
 	<div class="container">
-		<div class="DashBoard">
-			<form class="order_form" action="search.order.do">
-				<div>
-					<div class="input_box1">
-						<div class="no-drag">기간검색</div>
-						<input type="text" id="datepicker" maxlength="10" placeholder="시작"
-							autocomplete="off" name="dateSearch1"> <input type="text"
-							id="datepicker1" placeholder="종료" maxlength="10" autocomplete="off"
-							name="dateSearch2">
+			<div>
+				<form class="order_form" action="search.order.do">
+					<div>
+						<div class="input_box1">
+							<div class="no-drag">기간검색</div>
+							<input type="text" id="datepicker" maxlength="10" placeholder="시작"
+								autocomplete="off" name="dateSearch1">&nbsp;~<input type="text"
+								id="datepicker1" placeholder="종료" maxlength="10" autocomplete="off"
+								name="dateSearch2">
+						</div>
+						<div class="input_box2">
+							<div class="no-drag">주문자명</div>
+							<input name="nameInput" id="o_name">
+						</div>
+						<div class="input_box3">
+							<div class="no-drag" style="font-size: 17px;">주문자전화</div>
+							<input name="phoneInput" placeholder="010 제외" id="o_phone">
+						</div>
+						<div class="input_box4">
+							<div class="no-drag">주문번호</div>
+							<input name="orderNumberInput" id="o_ordernumber">
+						</div>
+						<div class="button_box">
+							<button id="searchBtn" class="orderBtn">검색</button>
+						</div>
 					</div>
-					<div class="input_box2">
-						<div class="no-drag">주문자명</div>
-						<input name="nameInput" id="o_name">
-					</div>
-					<div class="input_box3">
-						<div class="no-drag" style="font-size: 17px;">주문자전화</div>
-						<input name="phoneInput" placeholder="010 제외" id="o_phone">
-					</div>
-					<div class="input_box4">
-						<div class="no-drag">주문번호</div>
-						<input name="orderNumberInput" id="o_ordernumber">
-					</div>
-					<div class="button_box">
-						<button id="searchBtn" class="orderBtn">검색</button>
-					</div>
-				</div>
-
-
-				<div class="DashBoard order_content">
-					<table class="order_content">
-						<tr>
-							<th class="th_head">No</th>
-							<th class="th_head">회원구분</th>
-							<th class="th_head">주문번호</th>
-							<th class="th_head">주문일시</th>
-							<th class="th_head">주문자명</th>
-							<th class="th_head">주문자전화</th>
-							<th class="th_head">주문명</th>
-							<th class="th_head">총금액</th>
-							<th class="th_head">결제방법</th>
-							<th class="th_head">배송방법</th>
-							<th class="th_head">STEP</th>
-						</tr>
+				</form>
+			</div>
+			<div class="order_content">
+				<table class="order_table">
+					<tr>
+						<th class="th_head">No</th>
+						<th class="th_head">회원구분</th>
+						<th class="th_head">주문번호</th>
+						<th class="th_head">주문일시</th>
+						<th class="th_head">주문자명</th>
+						<th class="th_head">주문자전화</th>
+						<th class="th_head">주문명</th>
+						<th class="th_head">총금액</th>
+						<th class="th_head">결제방법</th>
+						<th class="th_head">배송방법</th>
+						<th class="th_head">STEP</th>
+					</tr>
 						<c:if test="${empty orders}">
 							<tr>
 								<td colspan="11">해당 목록이없습니다</td>
@@ -256,9 +255,7 @@
 						</c:forEach>
 					</table>
 				</div>
-			</form>
 		</div>
-	</div>
 	<div id="paging-box">
 		<c:if test="${curPage != 1 }">
 			<a style="color: black;" href="order.page.change?p=${curPage - 1 }">이전</a>

@@ -123,7 +123,7 @@
 
 	<beans:bean id="oo"
 		class="com.tireshoppingmall.home.admin.order.OrderOption">
-		<beans:constructor-arg value="7"></beans:constructor-arg>
+		<beans:constructor-arg value="10"></beans:constructor-arg>
 	</beans:bean>
 
 	<!-- admin.auth 몇개씩 보여줄지 -->
