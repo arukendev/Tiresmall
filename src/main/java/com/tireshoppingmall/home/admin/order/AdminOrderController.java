@@ -45,8 +45,8 @@ public class AdminOrderController {
 
 	@RequestMapping(value = "/update.order.do", method = RequestMethod.GET)
 	public String updateOrder(HttpServletRequest req, @RequestParam String o_no, @RequestParam String o_step) {
-		System.err.println(o_no);
-		System.err.println(o_step);
+		System.out.println(o_no);
+		System.out.println(o_step);
 		oDAO.updateOrder(req, o_no, o_step);
 		return "redirect:admin.order.go";
 	}

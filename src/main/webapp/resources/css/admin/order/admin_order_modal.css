@@ -2,7 +2,9 @@
 
 .order_modalcontent {
 	width: 70%;
-	padding-top: 30px;
+	padding: 4px;
+	background-color: white;
+	border-radius: 7px;
 }
 
 .modal_table {

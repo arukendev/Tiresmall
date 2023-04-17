@@ -25,12 +25,10 @@
 	<div id="order_modal" class="order_modal hidden" style="display: none;">
 
 		
-			<div class="modal-wrapper">
+			<div class="modal-wrapper">	
 				<div class="order_modalcontent">
-					<div class="order_header">주문 관리</div>
-					<div>
-
-
+						<div class="order_header">주문 관리</div>
+						<div>
 						<table class="modal_table">
 							<tr>
 								<td class="left_td">주문번호</td>
@@ -127,9 +125,9 @@
 								<button class="modalBtn2" id="cancleModal" type="button">닫기</button>
 							</div>
 						</form>
+					</div>
 				</div>
 			</div>
-	</div>
 	<div class="container">
 			<div>
 				<form class="order_form" action="search.order.do">
@@ -162,7 +160,7 @@
 			<div class="order_content">
 				<table class="order_table">
 					<tr>
-						<th class="th_head">No</th>
+						<th class="th_head" style="border-left-color:#343a40;">No</th>
 						<th class="th_head">회원구분</th>
 						<th class="th_head">주문번호</th>
 						<th class="th_head">주문일시</th>
@@ -172,7 +170,7 @@
 						<th class="th_head">총금액</th>
 						<th class="th_head">결제방법</th>
 						<th class="th_head">배송방법</th>
-						<th class="th_head">STEP</th>
+						<th class="th_head" style="border-right-color:#343a40;">STEP</th>
 					</tr>
 						<c:if test="${empty orders}">
 							<tr>
