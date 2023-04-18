@@ -162,18 +162,18 @@
 								<tbody id="admin_tire_size_add">
 								
 								<!--사이에 추가할때마다 생기고 지워지는 공간  밑은 추가되는것들 -->
-									<tr style='height: 50px;'>
+									<tr style='height: 50px;' class="admin_tire_validation_test">
 										<td class='admin-tire-size-reg-content'>
 											<div class='admin-tire-reg-size-modal'>
 												<div class='admin-tire-reg-size-modal-container'>
 													<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>
 													<div class='admin-tire-reg-size-modal-input'>
 														<div class='admin-tire-reg-size-modal-input'>
-															<input class='tire_input_width'name='ti_width'  maxlength='3' value='0'>
+															<input type="text"    class='tire_input_width'name='ti_width'  maxlength='3'>
 															<span class='size-span'>/</span>
-															<input class='tire_input_ratio' name='ti_ratio' maxlength='2' value='0'>
+															<input type="text"  class='tire_input_ratio' name='ti_ratio' maxlength='2'>
 															<span class='size-span'>R</span>
-															<input class='tire_input_inch' name='ti_inch' maxlength='2' value='0'>
+															<input class='tire_input_inch' name='ti_inch' maxlength='2'>
 														</div>
 														<div class='admin-tire-reg-size-modal-button'>
 															<div class='admin_tire_reg_in admin-tire-reg-size-modal-button1'>입력</div>
@@ -192,8 +192,8 @@
 											</div>
 										</td>
 										<td class='admin-tire-size-reg-content'><span class='admin-tire-reg-name'></span></td>
-										<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-marking-input' name='ti_marking' value="  "></td>
-										<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-pricefac-input' name='ti_pricefac' value='0'>&nbsp;원</td>
+										<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-marking-input' name='ti_marking'></td>
+										<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-pricefac-input' name='ti_pricefac'>&nbsp;원</td>
 										<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-stock-input' name='ti_stock' value="0">&nbsp;개</td>
 										<td class='admin-tire-size-reg-content'><div
 												class='admin-tire-size-reg-delete'>삭제</div></td>

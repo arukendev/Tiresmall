@@ -262,7 +262,7 @@
 		<c:forEach var="page" begin="1" end="${pageCount }">
 			<c:choose>
 				<c:when
-					test="${page eq param.p or (curPage == 1 and curPage == page)}}">
+					test="${page eq param.p or (curPage == 1 and curPage == page)}">
 					<a style="color: white; background-color: #333;"
 						href="order.page.change?p=${page }">${page } </a>
 				</c:when>
