@@ -47,7 +47,8 @@ $(function() {
 	tireMarkingChange();
 	tirePriceChange();
 	tireStockChange();
-	
+	//수정페이지 사진 수정하기
+	adminTireUpdateImg();
 	
 	//타이어 브랜드 작업
 	//출력 여부
@@ -163,9 +164,9 @@ function tireUpdateRegSizeAdd() {
 				"<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>" +
 				"<div class='admin-tire-reg-size-modal-input'>" +
 				"<div class='admin-tire-reg-size-modal-input'>" +
-				"<input class='tire_input_width' name='ti_width'>" + /*그냥 여기다 name을 넣고 밑에 hidden은 지워됨*/ 
+				"<input class='tire_input_width' name='ti_width' maxlength='3'>" + /*그냥 여기다 name을 넣고 밑에 hidden은 지워됨*/ 
 				"<span class='size-span'>/</span>" +
-				"<input class='tire_input_ratio' name='ti_ratio' maxlength='3'>" +
+				"<input class='tire_input_ratio' name='ti_ratio' maxlength='2'>" +
 				"<span class='size-span'>R</span>" +
 				"	<input class='tire_input_inch' name='ti_inch' maxlength='2'>" +
 				"</div>" +
@@ -202,17 +203,23 @@ function tireUpdateRegSizeAdd() {
 //타이어 등록페이지 사이즈 삭제
 function tireRegSizeDelete() {
 	$(document).on("click",".admin-tire-size-reg-delete",function() {
-
-		let ti_id =$(this).closest("tr").find($(".tiIdHidden")).val();; 
+		let address =$(this).closest("tr"); 
+		let ti_id =address.find($(".tiIdHidden")).val(); 
 		if(ti_id!=null){
-			$.ajax({
-				url : "admin.tire.size.delete",
-				data : {ti_id},
-				success : function(data) {
-				}
-			});
+			var ok = confirm("정말 삭제하시겠습니까?");
+			if (ok) {
+				$.ajax({
+					url : "admin.tire.size.delete",
+					data : {ti_id},
+					success : function(data) {
+						address.remove();	
+						alert("삭제성공");
+					}
+				});
+			}
+		}else{
+			$(this).closest("tr").remove();			
 		}
-		$(this).closest("tr").remove();
 	});
 }
 
@@ -221,6 +228,8 @@ function tireRegSizeReg() {
 	$(document).on("click",".admin_tire_size_reg_modal_open",function() {	
 		$(this).siblings().css("display","flex");			// 형제 노드를 찾아서 열어줌
 	});
+	
+	//사이즈 입력시에  (모달창에)
 	$(document).on("click",".admin_tire_reg_in",function() {
 		var width = $(this).closest("tr").find(".tire_input_width").val();
 		var ratio = $(this).closest("tr").find(".tire_input_ratio").val();
@@ -231,10 +240,26 @@ function tireRegSizeReg() {
 		$(this).closest("tr").find(".tire_inch").text(inch);	
 		
 		let ti_id =$(this).closest("tr").find($(".tiIdHidden")).val(); 
+
+		//ajax로 바로바로 바뀌게 한것
 		if(ti_id !=null){
 			let ti_width=$(this).closest("tr").find($(".tire_input_width")).val()
 			let ti_ratio=$(this).closest("tr").find($(".tire_input_ratio")).val()
 			let ti_inch=$(this).closest("tr").find($(".tire_input_inch")).val()
+			
+			//input창 비여있는지 유효성 검사
+			if(ti_width == ""){
+				alert("단면폭값이 비여있습니다.");
+				return false;
+			}
+			if(ti_ratio == ""){
+				alert("편평비값이 비여있습니다.");
+				return false;
+			}
+			if(ti_inch == ""){
+				alert("인치값이 비여있습니다.");
+				return false;
+			}
 			$.ajax({
 				url : "admin.tire.size.change",
 				data : {ti_id,ti_width,ti_ratio,ti_inch},
@@ -570,13 +595,15 @@ function tirePriceChange() {
 //타이어 사이즈 추가시  저장 버튼 누르면
 function tireSizeNewInfoReg() {
 	$(document).on("click",".admin-tire-size-newInfo-reg",function() {
-		let ti_width = $(this).closest("tr").find($('.tire_input_width')).val();
-		let ti_ratio = $(this).closest("tr").find($('.tire_input_ratio')).val();
-		let ti_inch = $(this).closest("tr").find($('.tire_input_inch')).val();
-		let ti_marking = $(this).closest("tr").find($('.admin-tire-reg-marking-input')).val();
-		let ti_pricefac = $(this).closest("tr").find($('.admin-tire-reg-pricefac-input')).val();
-		let ti_stock = $(this).closest("tr").find($('.admin-tire-reg-stock-input')).val();
+		let address = $(this).closest("tr");
+		let ti_width = address.find($('.tire_input_width')).val();
+		let ti_ratio = address.find($('.tire_input_ratio')).val();
+		let ti_inch = address.find($('.tire_input_inch')).val();
+		let ti_marking = address.find($('.admin-tire-reg-marking-input')).val();
+		let ti_pricefac = address.find($('.admin-tire-reg-pricefac-input')).val();
+		let ti_stock = address.find($('.admin-tire-reg-stock-input')).val();
 		let ti_tg_id = $("#tireIdHidden").val();
+		
 		if(ti_width==""){
 			alert("단명폭값이 비여있습니다.");
 			return false;
@@ -602,6 +629,8 @@ function tireSizeNewInfoReg() {
 			data : {ti_width,ti_ratio,ti_inch,ti_marking,ti_pricefac,ti_stock,ti_tg_id},
 			success : function(data) {	
 				alert("저장완료");
+				address.find(".admin-tire-size-newInfo-reg").remove();
+				address.find(".admin-tire-size-reg-button-div").css("justify-content","center");
 			}
 		});
 		
@@ -626,6 +655,54 @@ function tireStockChange() {
 	
 	});
 }
+
+//수정페이지 사진 수정하기
+function adminTireUpdateImg() {
+	//메인사진 업로드 누를시 저장버튼
+	let mainImg = 0;
+	$(".imgUploadMain").click(function(e) {
+		if(mainImg==0){
+			$(".upload-name1").css("width","400px");
+			$(".filebox1").append("<div class='admin-tire-reg-size-modal-button1 admin-tire-main-img-newInfo-reg'>저장</div>");
+			mainImg=1;
+		}
+	});
+	//상세사진 업로드 누를시 저장버튼
+	let detailImg = 0;
+	$(".imgUploadDetail").click(function(e) {
+		if(detailImg==0){
+			$(".upload-name2").css("width","400px");
+			$(".filebox2").append("<div class='admin-tire-reg-size-modal-button1 admin-tire-detail-img-newInfo-reg'>저장</div>");
+			detailImg =1;
+		}
+	});
+	
+	//메인 이미지 저장
+	$(document).on("click",".admin-tire-main-img-newInfo-reg", function(e) {
+
+		
+		
+		$(".upload-name1").css("width","430px");
+		$(".admin-tire-main-img-newInfo-reg").remove();
+		
+	})
+	//상세이미지 저장
+	$(document).on("click",".admin-tire-detail-img-newInfo-reg", function(e) {
+
+		
+		
+		$(".upload-name2").css("width","430px");
+		$(".admin-tire-detail-img-newInfo-reg").remove();
+		
+	})
+	
+	
+}
+
+
+
+
+
 //브랜드 출력 미출력
 function BrnadprintOnOff() {
 	$(".brandPrintBtn").click(function() {
@@ -773,8 +850,6 @@ function inputEmpty() {
 		    $("#file2").focus();
 		    return false;
 		}
-		
-		
 	})
 }
 

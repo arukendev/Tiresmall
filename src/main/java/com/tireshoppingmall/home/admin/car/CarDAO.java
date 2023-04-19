@@ -20,27 +20,19 @@ import com.tireshoppingmall.home.admin.car.CarOption;
 import com.tireshoppingmall.home.admin.car.SearchCarDTO;
 @Service
 public class CarDAO {
-	
 
 	@Autowired
 	private ServletContext servletContext;
 
-
 	@Autowired
 	private SqlSession ss;
-	
 
 	private AdminCarMapper mapper;
-	
 	
 	@Autowired
 	private CarOption co;
 	
-	
-	
 	private int allCarCount;
-
-
 	
 	public int getAllCarCount() {
 		return allCarCount;
@@ -49,19 +41,48 @@ public class CarDAO {
 	public void setAllCarCount(int allCarCount) {
 		this.allCarCount = allCarCount;
 	}
+	//페이징작업
+	public void calcAllCarCount() {
+		CarDTO strartEnd = new CarDTO("","",null,null);
+		allCarCount = ss.getMapper(AdminCarMapper.class).getCarCount(strartEnd);		
+	}
+	//카 모든것 가져오기
+	public void getAllCar(int pageNo, HttpServletRequest req) {
+		mapper = ss.getMapper(AdminCarMapper.class);
+		int count = co.getCarCountPerPage();
+		int start = (pageNo - 1) * count + 1;
+		int end = start + (count - 1);
+		
+		CarDTO paging = (CarDTO) req.getSession().getAttribute("cars");
+		int CarCount = 0;
+		if (paging == null) {
+			System.out.println("null입니다");
+			
+			paging = new CarDTO();
+			paging.setC_name("");
+			paging.setC_brand("");
+			paging.setStart(new BigDecimal(start));
+			paging.setEnd(new BigDecimal(end));
+			CarCount = allCarCount;
+		}else {
+			paging.setStart(new BigDecimal(start));
+			paging.setEnd(new BigDecimal(end));
+			CarCount = ss.getMapper(AdminCarMapper.class).getCarCount(paging);
+		}
 
-	
-	
+		List<CarDTO> Car = ss.getMapper(AdminCarMapper.class).getAllCar(paging);
 
+		int pageCount = (int) Math.ceil(CarCount / (double) count);
 	
-//	public void getAllCar(Model m) {
-//	mapper = ss.getMapper(AdminCarMapper.class);
-//	m.addAttribute("cars", ss.getMapper(AdminCarMapper.class).getAllCar());
-//}
+		req.setAttribute("pageCount", pageCount);
+		req.setAttribute("cars", Car);
+		req.setAttribute("curPage", pageNo);
+		
+	}
+	
+	
 
 	public void regCar(MultipartFile file, CarDTO c, HttpServletRequest req) {
-		
-		
 		
 		String fileRealName = c.getFile().getOriginalFilename(); 
 		long size = file.getSize(); 
@@ -155,9 +176,6 @@ public class CarDAO {
 	    }
 	}
 	
-	
-	
-
 	public void deletecar(CarDTO c, HttpServletRequest req) {
 		if (ss.getMapper(AdminCarMapper.class).deletecar(c) == 1) {
 			System.out.println("삭제완료");
@@ -166,71 +184,14 @@ public class CarDAO {
 		
 	}
 
-  
+
+
 	
 
-	public void calcAllCarCount() {
-		SearchCarDTO sSel = new SearchCarDTO("","", null, null);
-		allCarCount = ss.getMapper(AdminCarMapper.class).getCarCount(sSel);
-		System.out.println(allCarCount);
-		
-	}
-	
-
- 	public void getCarlist(int pageNo, HttpServletRequest req) {
-		mapper = ss.getMapper(AdminCarMapper.class);
-		int count = co.getCarCountPerPage();
-		int start = (pageNo - 1) * count + 1;
-		int end = start + (count - 1);
-		
-		SearchCarDTO search = (SearchCarDTO) req.getSession().getAttribute("cars");
-		int CarCount = 0;
-		
-	
-		System.out.println(search);
-
-		
-		if (search == null) {
-			System.out.println("null입니다");
-			search = new SearchCarDTO();
-			search.setCarnameInput("");
-			search.setCarbrandInput("");
-			search.setStart(new BigDecimal(start));
-			search.setEnd(new BigDecimal(end));
-			CarCount = allCarCount;
-			System.out.println("1-------" + allCarCount);
-		}else {
-			System.out.println("null아님");
-			System.out.println(search.toString());
-			search.setStart(new BigDecimal(start));
-			search.setEnd(new BigDecimal(end));
-			CarCount = ss.getMapper(AdminCarMapper.class).getCarCount(search);
-			
-		}
-		List<CarDTO> Car = ss.getMapper(AdminCarMapper.class).getCarlists(search);
-		
-		System.out.println(Car);
-	
-		System.out.println(count);
-		System.out.println(allCarCount);
-		int pageCount = (int) Math.ceil(CarCount / (double) count);
-		System.out.println(CarCount);
-		System.out.println(pageCount);
-	
-		req.setAttribute("pageCount", pageCount);
-		req.setAttribute("cars", Car);
-		req.setAttribute("curPage", pageNo);
-		
-		System.out.println(Car);
-		
-		
-	}
+ 
 	
  	public void searchcar(SearchCarDTO c, HttpServletRequest req) {
- 		
-
 		req.getSession().setAttribute("cars", c);
-		
 		System.out.println(req);
 	}
 
@@ -280,58 +241,47 @@ public class CarDAO {
 
 	public void getallBrandCount(CarBrandDTO c,Model m) {
 		m.addAttribute("carcount", ss.getMapper(AdminCarMapper.class).getallBrandCount(c));
+	}
 		
-		System.out.println(m);
 	
-
+	//	public void menuSession(AdminMenuSession menuSession, HttpServletRequest req) {
+		//	AdminMenuSession menu = (AdminMenuSession) req.getSession().getAttribute("menuSession");
+		//	menu.setMenu("store");
 	
 	
+		
+	// public void getAllCar(Model m) {
+			
+			
+	//	}
 	
-
-}
-	
-
-//	public void menuSession(AdminMenuSession menuSession, HttpServletRequest req) {
-	//	AdminMenuSession menu = (AdminMenuSession) req.getSession().getAttribute("menuSession");
-	//	menu.setMenu("store");
-
-
-	
-// public void getAllCar(Model m) {
+	public void updatebrand(CarBrandDTO c, HttpServletRequest req) {
+		AdminCarMapper mm = ss.getMapper(AdminCarMapper.class);
 		
 		
-//	}
-
-public void updatebrand(CarBrandDTO c, HttpServletRequest req) {
-	AdminCarMapper mm = ss.getMapper(AdminCarMapper.class);
+		if (mm.updatebrand(c) == 1) {
+		System.out.println(c);
 	
-	
-	if (mm.updatebrand(c) == 1) {
-	System.out.println(c);
-
-		mm.updatebrandcar(c);
-		System.out.println("수정완료");
-	}else {
-		System.out.println("수정실패");
+			mm.updatebrandcar(c);
+			System.out.println("수정완료");
+		}else {
+			System.out.println("수정실패");
+		}
+		
 	}
 	
-}
+	public int carprintOnOff(CarDTO c) {
+		if (ss.getMapper(AdminCarMapper.class).carprintOnOff(c) == 1) {
+			System.out.println("**************************");
+			System.out.println(ss.getMapper(AdminCarMapper.class).carprintOnOff(c));
+			System.out.println("**************************");
+			return c.getC_print();
+		}else {
+			return 0;
+		}
+	}
 
-public int carprintOnOff(CarDTO c) {
-if (ss.getMapper(AdminCarMapper.class).carprintOnOff(c) == 1) {
-	System.out.println("**************************");
-	System.out.println(ss.getMapper(AdminCarMapper.class).carprintOnOff(c));
-	System.out.println("**************************");
-	return c.getC_print();
-}
-	
-	else {
 		
-	return 0;
-	
-}
-}
-	
 	
 }
 

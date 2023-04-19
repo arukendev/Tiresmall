@@ -174,7 +174,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="admin_tire_table_title">리스트 이미지</td>
+						<td class="admin_tire_table_title">메인 이미지</td>
 						<td>
 							<div class="admin-tire-img-container">
 								<div class="admin-tire-img-contain">
@@ -189,7 +189,7 @@
 									<div class="admin-tire-img-content">
 										<div class="filebox1 bs3-primary">
 											<input class="upload-name1" placeholder="첨부파일"
-												disabled="disabled"> <label for="file1">업로드</label>
+												disabled="disabled"> <label for="file1" class="imgUploadMain">업로드</label>
 											<input type="file" id="file1" name="file">
 										</div>
 									</div>
@@ -215,7 +215,7 @@
 									<div class="admin-tire-img-content">
 										<div class="filebox2  bs3-primary">
 											<input class="upload-name2" placeholder="첨부파일"
-												disabled="disabled"> <label for="file2">업로드</label>
+												disabled="disabled"> <label for="file2" class="imgUploadDetail">업로드</label>
 											<input type="file" id="file2" name="files"  multiple="multiple">
 										</div>
 									</div>

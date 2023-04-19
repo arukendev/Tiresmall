@@ -6,11 +6,14 @@ import com.tireshoppingmall.home.admin.car.SearchCarDTO;
 
 public interface AdminCarMapper {
 
+	int getCarCount(CarDTO startend);
+	//지울것
+	List<CarDTO> getCarlists(CarDTO search);
+
+	List<CarDTO> getAllCar(CarDTO paging);
+
 	
-
-	int getCarCount(SearchCarDTO search);
-
-
+	
 	CarDTO getCar(CarDTO c);
 
 	List<CarDTO> getAllCar();
@@ -20,9 +23,9 @@ public interface AdminCarMapper {
 	int updatecar(CarDTO c);
 
 	int deletecar(CarDTO c);
+	
 
-	List<CarDTO> getCarlists(SearchCarDTO search);
-
+	
 
 	List<CarDTO> getAllCar(SearchCarDTO search);
 
@@ -52,8 +55,7 @@ public interface AdminCarMapper {
 
 
 	int carprintOnOff(CarDTO c);
-	
-	
+
 
 	
 }

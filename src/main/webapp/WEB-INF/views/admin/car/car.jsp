@@ -41,60 +41,41 @@ function addSize2() {
 
 </head>
 <body>
-
-
 	<input id="whatMenu" value="car" type="hidden">
 	<input id="sm" value="1" type="hidden"> 
 	<div class="container sub">
-
-
-
 		<div class="car-findselect">
-  <div class="car-findarea">
-    <div id="car_searchBox">
-      <form action="car.search.do">
-        <div class="car_searchTitle">
-          <div>
-           
-            메이커    <select  id = "" name="carbrandInput" style="float: left; margin-left: 20px;">
-              <c:forEach var="cblist" items="${carbrand}">
-                <option value="${cblist.cb_name}">${cblist.cb_name}</option>
-              </c:forEach>
-            </select> 
-          </div>
-        </div>
-        <input name="carnameInput" value=""  type="hidden">
-        <button class="car-findareabutton" style="float: left;">메이커 검색</button>
-      </form>
-      <form name="carsearchform" action="car.search.do">
-        <div class="car_searchTitle">
-          <div class="car_searchID">
-            <label for="car_searchid">차종</label> 
-            <input id="carnameInput" name="carnameInput" style="text-align: center;" onkeypress="JavaScript:press(this.form)">
-          </div>
-        </div>
-        <button class="carsearchButton">차종 검색</button>
-        <input name="carbrandInput" value=""  type="hidden">
-      </form>
-    </div>
-  </div>
-  	 <div class="carRegButton1" style="float: right;">
+			<div class="car-findarea">
+		    	<div id="car_searchBox">
+		      		<form action="car.search.do">
+		        		<div class="car_searchTitle">
+			          		<div>
+			          	  		메이커
+			          	  		<select id = "carBrand" name="c_brand">
+			          	  			<option value="전체">전체</option>
+				              		<c:forEach var="cblist" items="${carbrand}">
+				                		<option value="${cblist.cb_name}">${cblist.cb_name}</option>
+				              		</c:forEach>
+			            		</select> 
+			          		</div>
+		       			</div>
+		        		<input name="c_namet" value=""  type="hidden">
+		       			<div class="car_searchTitle">
+		          			<div class="car_searchID">
+		            			<label for="car_searchid">차종</label> 
+		            			<input id="carnameInput" name="c_name" style="text-align: center;" onkeypress="JavaScript:press(this.form)">
+		          			</div>
+		        		</div>
+		        		<button class="carsearchButton">검색</button>
+		        		<input name="carbrandInput" value=""  type="hidden">
+		      		</form>
+		    	</div>
+		  	</div>
+		  	<div class="carRegButton1" style="float: right;">
 				<button class="carRegButton">신규등록</button>
 			</div>
-  
-</div>
-				
-		
-				
-				</div>
-			
-		
-			
-
-
-
-
-
+		</div>
+	</div>
 
 			<table id="admin_car_content">
 				<tr>
@@ -155,15 +136,8 @@ function addSize2() {
 					</tr>
 				</c:forEach>
 			</table>
-	
 
 
-	
-	
-	
-	
-	
-	
 
 	<div id="paging-box">
 		<c:if test="${curPage != 1 }">
@@ -385,5 +359,5 @@ function addSize2() {
 	
 	
 
-</body>
+	</body>
 </html>

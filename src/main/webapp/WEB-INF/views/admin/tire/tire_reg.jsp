@@ -205,7 +205,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="admin_tire_table_title">리스트 이미지</td>
+						<td class="admin_tire_table_title">상세 이미지</td>
 						<td>
 							<div class="admin-tire-img-container">
 								<div class="admin-tire-img-contain">

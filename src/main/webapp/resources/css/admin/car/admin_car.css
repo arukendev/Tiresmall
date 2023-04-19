@@ -1,5 +1,12 @@
 @charset "UTF-8";
-
+/* height: 29px;
+    width: 200px;
+    font-size: 14pt;
+    border-radius: 10px;
+    font-family: GmarketSansMedium;
+    text-align: center;
+    align-items: center;
+    valign: middle; */
 @font-face {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
@@ -8,12 +15,16 @@
 }
 
 
-select {
-	width: 200px;
-	padding: .8em .5em;
-	border: 1px solid #999;
-	display: flex;
-	margin-right: 5px;
+#carBrand {
+	margin-left:10px;
+	height: 29px;
+    width: 200px;
+    font-size: 14pt;
+    border-radius: 10px;
+    font-family: GmarketSansMedium;
+    text-align: center;
+    align-items: center;
+    valign: middle;
 }
 
 .car-findselect {
@@ -1035,11 +1046,6 @@ a {
 	margin-left: 10px;
 }
 
-
-
-
-
-
 .car_searchTitle {
  display: flex;
 	justify-content:center;
@@ -1057,22 +1063,6 @@ a {
   display: flex;
   align-items: center;
 }
-
-.car_searchTitle select {
- display: flex;
-	justify-content:center;
-	align-items:center;
-	font-size: 12pt;
-	margin-right: 20px;
-	padding:6px;
-	border-radius:10px;
-	background-color: white;
-	font-family: GmarketSansMedium;
-	height: 35px;
-	color:#181C32;
-	height: 30px;
-}
-
 
 .car_searchTitle label {
   margin-right: 10px;

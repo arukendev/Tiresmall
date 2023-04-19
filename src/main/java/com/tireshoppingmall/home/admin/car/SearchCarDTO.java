@@ -51,7 +51,7 @@ public class SearchCarDTO {
 		return "SearchCarDTO [carbrandInput=" + carbrandInput + ", carnameInput=" + carnameInput + ", start=" + start
 				+ ", end=" + end + "]";
 	}
-	public static void clearSearch(HttpServletRequest req) {
+	public static void CarPaging(HttpServletRequest req) {
 		req.getSession().setAttribute("cars", null);
 		
 	}

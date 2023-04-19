@@ -291,7 +291,7 @@
 .admin-tire-size-reg-delete{
 	height:20px;
 	width:35px;
-	margin-left:30px;
+	margin-left:34px;
 	margin-right:5px;
 	border-radius:7px;
 	font-weight: 900;
@@ -386,6 +386,14 @@
 	margin:10px;
 	font-family: GmarketSansMedium;
 }
+.filebox1, .filebox2{
+	display: flex;
+	justify-content: center;
+}
+.admin-tire-main-img-newInfo-reg, .admin-tire-detail-img-newInfo-reg{
+	margin-left: 5px;
+}
+
 .filebox1 input[type="file"],.filebox2 input[type="file"] {
   position: absolute;
   width: 1px;

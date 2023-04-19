@@ -1,5 +1,9 @@
 package com.tireshoppingmall.home.admin.car;
 
+import java.math.BigDecimal;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class CarDTO {
@@ -16,11 +20,75 @@ public class CarDTO {
 	private MultipartFile file;
 	private String c_file;
 	
-	@Override
-	public String toString() {
-		return "CarDTO [c_id=" + c_id + ", c_name=" + c_name + ", c_year1=" + c_year1 + ", c_year2=" + c_year2
-				+ ", c_option=" + c_option + ", c_brand=" + c_brand + ", c_ft=" + c_ft + ", c_bt=" + c_bt + ", c_print="
-				+ c_print + ", file=" + file + ", c_file=" + c_file + "]";
+	//페이징
+	private BigDecimal start;
+	private BigDecimal end;
+
+	public CarDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public CarDTO(String c_id, String c_name, String c_year1, String c_year2, String c_option, String c_brand,
+			String c_ft, String c_bt, int c_print, MultipartFile file, String c_file) {
+		super();
+		this.c_id = c_id;
+		this.c_name = c_name;
+		this.c_year1 = c_year1;
+		this.c_year2 = c_year2;
+		this.c_option = c_option;
+		this.c_brand = c_brand;
+		this.c_ft = c_ft;
+		this.c_bt = c_bt;
+		this.c_print = c_print;
+		this.file = file;
+		this.c_file = c_file;
+	}
+	
+	public CarDTO(String c_id, String c_name, String c_year1, String c_year2, String c_option, String c_brand,
+			String c_ft, String c_bt, int c_print, MultipartFile file, String c_file, BigDecimal start,
+			BigDecimal end) {
+		super();
+		this.c_id = c_id;
+		this.c_name = c_name;
+		this.c_year1 = c_year1;
+		this.c_year2 = c_year2;
+		this.c_option = c_option;
+		this.c_brand = c_brand;
+		this.c_ft = c_ft;
+		this.c_bt = c_bt;
+		this.c_print = c_print;
+		this.file = file;
+		this.c_file = c_file;
+		this.start = start;
+		this.end = end;
+	}
+	//페이징 작업
+	public CarDTO(String c_name, String c_brand, BigDecimal start, BigDecimal end) {
+		super();
+		this.c_name = c_name;
+		this.c_brand = c_brand;
+		this.start = start;
+		this.end = end;
+	}
+	
+
+	public BigDecimal getStart() {
+		return start;
+	}
+
+
+
+	public void setStart(BigDecimal start) {
+		this.start = start;
+	}
+
+	public BigDecimal getEnd() {
+		return end;
+	}
+
+	public void setEnd(BigDecimal end) {
+		this.end = end;
 	}
 
 	public String getC_id() {
@@ -111,27 +179,17 @@ public class CarDTO {
 		this.c_file = c_file;
 	}
 
-	public CarDTO(String c_id, String c_name, String c_year1, String c_year2, String c_option, String c_brand,
-			String c_ft, String c_bt, int c_print, MultipartFile file, String c_file) {
-		super();
-		this.c_id = c_id;
-		this.c_name = c_name;
-		this.c_year1 = c_year1;
-		this.c_year2 = c_year2;
-		this.c_option = c_option;
-		this.c_brand = c_brand;
-		this.c_ft = c_ft;
-		this.c_bt = c_bt;
-		this.c_print = c_print;
-		this.file = file;
-		this.c_file = c_file;
-	}
-
-	public CarDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	
+	@Override
+	public String toString() {
+		return "CarDTO [c_id=" + c_id + ", c_name=" + c_name + ", c_year1=" + c_year1 + ", c_year2=" + c_year2
+				+ ", c_option=" + c_option + ", c_brand=" + c_brand + ", c_ft=" + c_ft + ", c_bt=" + c_bt + ", c_print="
+				+ c_print + ", file=" + file + ", c_file=" + c_file + "]";
+	}
+	public static void CarPaging(HttpServletRequest req) {
+		req.getSession().setAttribute("cars", null);
+		
+	}
 
 	
 }
