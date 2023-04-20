@@ -10,10 +10,10 @@ function deletecb1(cbbbb) {
 
 $(document).ready(
 		function($) {
-			$(".carRegButton").on("click", function(event) { // 팝업오픈 버튼 누르면
+/*			$(".carRegButton").on("click", function(event) { // 팝업오픈 버튼 누르면
 				$("#carregpopup01").show(); // 팝업 오픈
 				$("body").append('<div class="backon"></div>'); // 뒷배경 생성
-			});
+			});*/
 
 			$("body").on(
 					"click",
@@ -62,7 +62,7 @@ function deletecar(carrr) {
 
 
 
-function updatecar(id, name, year1, year2, option, brand, ft, bt, print, c_file) {
+function updatecar(id, name, year1, year2, brand, ft, bt, print, c_file) {
 
 	// c_bta_u나 c_fta_u에 값이 들어있는 경우
 	
@@ -99,7 +99,6 @@ function updatecar(id, name, year1, year2, option, brand, ft, bt, print, c_file)
 	$('#c_year1_u').val(year1);
 	$('#c_year2_u').val(year2);
 	$('#c_print_u').val(print);
-	$('#c_option_u').val(option);
 	$('#c_brand_u').val(brand);
 	$('.updatefileinputstyle').html(c_file);
 	$('#c_file_u').attr('readonly', true);
@@ -325,5 +324,21 @@ function carprintOnOff() {
 	});
 }
 
+function deleteSize2() {
+	const ftbttmstyle2outdiv = event.target.closest('.ftbttmstyle2outdiv');
+
+	if (ftbttmstyle2outdiv) {
+		ftbttmstyle2outdiv.querySelector('.c_ftinput').value = '';
+		ftbttmstyle2outdiv.querySelector('.c_btinput').value = '';
+
+		ftbttmstyle2outdiv.style.display = 'none';
+	}
+}
+
+function addSize2() {
+	const ftbttmstyle3outdiv = document
+			.querySelector('.ftbttmstyle3outdiv');
+	ftbttmstyle3outdiv.style.display = 'block';
+}
 
 

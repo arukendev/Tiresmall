@@ -212,7 +212,7 @@
 									</table>
 								</td>
 							
-								<td class="td_c1">${status.count }
+								<td class="td_c1">${status.count + (curPage-1)*count}
 							
 								</td>
 								<td class="td_c2">${o.o_sortation }</td>

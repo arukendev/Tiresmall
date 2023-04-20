@@ -2,17 +2,13 @@ package com.tireshoppingmall.home.admin.car;
 
 import java.util.List;
 
-import com.tireshoppingmall.home.admin.car.SearchCarDTO;
-
 public interface AdminCarMapper {
 
 	int getCarCount(CarDTO startend);
-	//지울것
-	List<CarDTO> getCarlists(CarDTO search);
-
-	List<CarDTO> getAllCar(CarDTO paging);
-
 	
+	List<CarDTO> getAllCar(CarDTO paging);
+	
+	List<CarDTO> getAllCarBrands();
 	
 	CarDTO getCar(CarDTO c);
 
@@ -23,35 +19,23 @@ public interface AdminCarMapper {
 	int updatecar(CarDTO c);
 
 	int deletecar(CarDTO c);
-	
 
-	
-
-	List<CarDTO> getAllCar(SearchCarDTO search);
+	int deletebrand(CarDTO c);
 
 
-	List<CarBrandDTO> getAllCarBrands();
+	int regbrand(CarDTO c);
 
 
-	int deletebrand(CarBrandDTO c);
+	List<CarDTO> getallBrandCount(CarDTO c);
 
 
-	int regbrand(CarBrandDTO c);
+	int deletebrandcar(CarDTO c);
 
 
-	List<CarBrandDTO> getCarbrandselectlist();
+	int updatebrand(CarDTO c);
 
 
-	List<CarBrandDTO> getallBrandCount(CarBrandDTO c);
-
-
-	int deletebrandcar(CarBrandDTO c);
-
-
-	int updatebrand(CarBrandDTO c);
-
-
-	int updatebrandcar(CarBrandDTO c);
+	int updatebrandcar(CarDTO c);
 
 
 	int carprintOnOff(CarDTO c);

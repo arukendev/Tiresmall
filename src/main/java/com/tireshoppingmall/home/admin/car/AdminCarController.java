@@ -45,18 +45,22 @@ public class AdminCarController {
 	
 	//admin.car.brand.go
 	@RequestMapping(value = "/admin.car.brand.go", method = RequestMethod.GET)
-
-	
-
-	public String carBrandGo(CarBrandDTO c,HttpServletRequest req,Model m) {
-
-		
+	public String carBrandGo(CarDTO c,HttpServletRequest req,Model m) {
 		//AdminMenuSession menuSession
-
-		cDAO.getallCarBrands(m);
+		cDAO.getallCarBrands(req);
 		cDAO.getallBrandCount(c,m);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car_brand.jsp");
+		return "admin/master";
+	}
+	//admin.car.reg.go
+	@RequestMapping(value = "/admin.car.reg.go", method = RequestMethod.GET)
+	public String carregGo(HttpServletRequest req) {
+		
+		cDAO.getallCarBrands(req);
+		
+		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
+		req.setAttribute("contentPage", "car/car_reg.jsp");
 		return "admin/master";
 	}
 	
@@ -66,7 +70,6 @@ public class AdminCarController {
 		
 		cDAO.regCar(file,c, req);
 		cDAO.getAllCar(1, req);
-		cDAO.getCarbrandselectlist(m);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car.jsp");
 		return "admin/master";
@@ -77,7 +80,6 @@ public class AdminCarController {
 		
 		cDAO.updateCar(file,c, req);
 		cDAO.getAllCar(1, req);
-		cDAO.getCarbrandselectlist(m);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car.jsp");
 		return "admin/master";
@@ -88,8 +90,6 @@ public class AdminCarController {
 	public String cardeletedo(Model m,CarDTO c, HttpServletRequest req) {
 		
 		cDAO.deletecar(c,req);
-
-		cDAO.getCarbrandselectlist(m);
 		cDAO.getAllCar(1, req);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car.jsp");
@@ -98,11 +98,10 @@ public class AdminCarController {
 	
 	
 	@RequestMapping(value = "/car.search.do", method = RequestMethod.GET)
-	public String carsearchdo(Model m,SearchCarDTO c, HttpServletRequest req) {
+	public String carsearchdo(Model m,CarDTO c, HttpServletRequest req) {
 		
 		cDAO.searchcar(c,req);	//세션
 		cDAO.getAllCar(1, req);
-		cDAO.getCarbrandselectlist(m);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car.jsp");
 		return "admin/master";
@@ -110,18 +109,16 @@ public class AdminCarController {
 	
 	
 	@RequestMapping(value = "/car.page.change", method = RequestMethod.GET)
-	public String PagingCar(Model m,SearchCarDTO c, HttpServletRequest req, @RequestParam int p) {
+	public String PagingCar(Model m,CarDTO c, HttpServletRequest req, @RequestParam int p) {
 		
 		cDAO.getAllCar(p, req);
-		cDAO.getCarbrandselectlist(m);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car.jsp");
 		return "admin/master";
 	}
-	
+
 	@RequestMapping(value = "/brand.delete.do", method = RequestMethod.GET)
-	public String branddeletedo(Model m,CarBrandDTO c, HttpServletRequest req) {
-		
+	public String branddeletedo(Model m,CarDTO c, HttpServletRequest req) {
 		cDAO.deletebrand(c,req);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car_brand.jsp");
@@ -136,10 +133,10 @@ public class AdminCarController {
 	
 	
 	@RequestMapping(value = "/reg.brand.do", method = RequestMethod.GET)
-	public String brandregdo(Model m,CarBrandDTO c, HttpServletRequest req) {
+	public String brandregdo(Model m,CarDTO c, HttpServletRequest req) {
 		
 		cDAO.regbrand(c, req);
-		cDAO.getallCarBrands(m);
+		cDAO.getallCarBrands(req);
 		cDAO.getallBrandCount(c,m);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car_brand.jsp");
@@ -148,10 +145,10 @@ public class AdminCarController {
 	
 	
 	@RequestMapping(value = "/update.brand.do", method = RequestMethod.GET)
-	public String brandupdatedo(Model m,CarBrandDTO c, HttpServletRequest req) {
+	public String brandupdatedo(Model m,CarDTO c, HttpServletRequest req) {
 		
 		cDAO.updatebrand(c, req);
-		cDAO.getallCarBrands(m);
+		cDAO.getallCarBrands(req);
 		cDAO.getallBrandCount(c,m);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car_brand.jsp");

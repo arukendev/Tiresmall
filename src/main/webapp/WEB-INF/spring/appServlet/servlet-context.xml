@@ -159,6 +159,7 @@
 		class="com.tireshoppingmall.home.admin.car.CarOption">
 		<beans:constructor-arg value="10"></beans:constructor-arg>
 	</beans:bean>
+	
 	<!-- navermail설정 -->
 	<beans:bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">

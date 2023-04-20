@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="resources/css/admin/tire/admin_tire_reg.css">
+<link rel="stylesheet" href="resources/css/admin/tire/admin_tire_reg.css">
+<link rel="stylesheet" href="resources/css/admin/car/admin_car_reg.css">
 <script src="resources/js/admin/tire/admin_tire.js"></script>
 </head>
 <body>
@@ -26,81 +26,28 @@
 						<td class="admin_tire_table_title">브랜드</td>
 						<td>
 							<div class="admin-tire-reg-radio-di">
-								<label class="admin-tire-teg-label"> 
-									<input type="radio"name="tg_brand" value="넥센타이어" class="admin-tire-teg-input" id="tireBrandFocus">
-									<div class="rad-design"></div>
-									<div class="rad-text">넥센타이어</div>
-								</label> 
-								<label class="admin-tire-teg-label"> 
-									<input type="radio" name="tg_brand" value="금호타이어" class="admin-tire-teg-input">
-									<div class="rad-design"></div>
-									<div class="rad-text">금호타이어</div>
-								</label> 
-								<label class="admin-tire-teg-label"> 
-									<input type="radio" name="tg_brand" value="미쉐린타이어" class="admin-tire-teg-input">
-									<div class="rad-design"></div>
-									<div class="rad-text">미쉐린타이어</div>
-								</label> 
-								<label class="admin-tire-teg-label"> 
-									<input type="radio" name="tg_brand" value="콘티넨탈타이어"class="admin-tire-teg-input">
-									<div class="rad-design"></div>
-									<div class="rad-text">콘티넨탈타이어</div>
-								</label> 
-								<label class="admin-tire-teg-label"> 
-									<input type="radio" name="tg_brand" value="한국타이어" class="admin-tire-teg-input">
-									<div class="rad-design"></div>
-									<div class="rad-text">한국타이어</div>
-								</label> 
-								<label class="admin-tire-teg-label"> 
-									<input type="radio" name="tg_brand" value="요코하마타이어" class="admin-tire-teg-input">
-									<div class="rad-design"></div>
-									<div class="rad-text">요코하마타이어</div>
-								</label> 
-								<label class="admin-tire-teg-label"> 
-									<input type="radio" name="tg_brand" value="브리지스톤타이어" class="admin-tire-teg-input">
-									<div class="rad-design"></div>
-									<div class="rad-text">브리지스톤타이어</div>
-								</label> 
-								<label class="admin-tire-teg-label"> 
-								<input type="radio" name="tg_brand" value="굳이어타이어" class="admin-tire-teg-input">
-									<div class="rad-design"></div>
-									<div class="rad-text">굳이어타이어</div>
-								</label>
-							</div>
-							<div class="admin-tire-reg-radio-di">
-								<label class="admin-tire-teg-label"> 
-								<input type="radio"name="tg_brand" value="던롭타이어" class="admin-tire-teg-input">
-									<div class="rad-design"></div>
-									<div class="rad-text">던롭타이어</div>
-								</label> 
-								<label class="admin-tire-teg-label"> 
-								<input type="radio" name="tg_brand" value="피렐리타이어" class="admin-tire-teg-input">
-									<div class="rad-design"></div>
-									<div class="rad-text">피렐리타이어</div>
-								</label> 
-								<label class="admin-tire-teg-label"> 
-								<input type="radio" name="tg_brand" value="BF굿리치타이어" class="admin-tire-teg-input">
-									<div class="rad-design"></div>
-									<div class="rad-text">BF굿리치타이어</div>
-								</label>
+								 <select id="carBrand" name="c_brand">
+									<c:forEach var="cb" items="${carbrands}">
+										<option value="${cb.cb_name}">${cb.cb_name}</option>
+									</c:forEach>
+								</select>
 							</div>
 						</td>
 					</tr>
 					<tr>
-						<td class="admin_tire_table_title">모델명</td>
-						<td><input type="text" name="tg_name"
-							id="admin-tire-reg-name-input" /></td>
+						<td class="admin_tire_table_title">차종명</td>
+						<td>
+							<input type="text" name="tg_name"
+								id="admin-tire-reg-name-input" />
+						</td>
 					</tr>
 					<tr>
-						<td class="admin_tire_table_title">설명</td>
+						<td class="admin_tire_table_title">연식</td>
 						<td>
 							<div>
-								<div>
-									<input type="text" name="tg_text" id="admin-tire-reg-txt-input" value=" "/>
-								</div>
-								<!-- <div>타이어 특성 고르기</div> -->
+								
 							</div>
-						</td>
+						</td>					
 					</tr>
 					<tr>
 						<td class="admin_tire_table_title">출력</td>
@@ -115,28 +62,6 @@
 									<input type="radio" name="tg_print" class="admin-tire-teg-input" value="0" checked="checked">
 									<div class="rad-design"></div>
 									<div class="rad-text">숨김</div>
-								</label>
-							</div>
-						</td>
-					</tr>
-					<tr>
-					
-					</tr>
-					<tr>
-						<td class="admin_tire_table_title">추천</td>
-						<td>
-							<div class="admin-tire-reg-radio-di">
-								<label class="admin-tire-teg-label"> 
-									<input type="checkbox" name="tg_suv" class="admin-tire-teg-input" value="1">
-									<!-- <input type="hidden" name="tg_suv" class="admin-tire-teg-input" id="suv_check_hidden" value="0"> -->
-									<div class="rad-design"></div>
-									<div class="rad-text">SUV추천</div>
-								</label> 
-								<label class="admin-tire-teg-label"> 
-									<input type="checkbox" name="tg_sedan" class="admin-tire-teg-input"  value="1">
-									<!-- <input type="hidden" name="tg_sedan" class="admin-tire-teg-input" id="sedan_check_hidden" value="0"> -->
-									<div class="rad-design"></div>
-									<div class="rad-text">승용차 추천</div>
 								</label>
 							</div>
 						</td>
@@ -205,7 +130,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="admin_tire_table_title">메인 이미지</td>
+						<td class="admin_tire_table_title">이미지</td>
 						<td>
 							<div class="admin-tire-img-container">
 								<div class="admin-tire-img-contain">
@@ -225,31 +150,6 @@
 										</div>
 									</div>
 								</div>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td class="admin_tire_table_title">상세 이미지</td>
-						<td>
-							<div class="admin-tire-img-container">
-								<div class="admin-tire-img-contain">
-									<div class="admin-tire-img-title"
-										style="border-right: 2px solid white;">현재 이미지</div>
-									<div class="admin-tire-img-content admin_tire_reg_img_preview">
-									</div>
-								</div>
-								<div class="admin-tire-img-contain">
-									<div class="admin-tire-img-title">이미지 등록</div>
-									<div class="admin-tire-img-content">
-										<div class="filebox2  bs3-primary">
-											<input class="upload-name2" placeholder="첨부파일"
-												disabled="disabled"> <label for="file2">업로드</label>
-											<input type="file" id="file2" name="files"  multiple="multiple">
-										</div>
-									</div>
-								</div>
-
-
 							</div>
 						</td>
 					</tr>

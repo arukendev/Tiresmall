@@ -1,7 +1,6 @@
 package com.tireshoppingmall.home.admin.tire;
 
 import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -55,9 +54,9 @@ public class TireDAO {
 		int count = no.getTireCountPerPage();
 		int start = (pageNo - 1) * count + 1;
 		int end = start + (count - 1);
-		
 
 		TireDTO paging = (TireDTO)req.getSession().getAttribute("tireDTO");
+
 		int tireCount = 0;
 		if (paging == null) {
 			paging = new TireDTO();
@@ -78,10 +77,16 @@ public class TireDAO {
 			t.setTg_num(ss.getMapper(AdminTireMapper.class).getTireCountByMz(t.getTg_id()));
 		}
 		
+		
+		List<TireDTO> tireBrands = ss.getMapper(AdminTireMapper.class).getTireBrandPrint();
+	//	List<TireDTO> tireBrands = ss.getMapper(AdminTireMapper.class).getTireBrand();
+
+		
 		int pageCount = (int) Math.ceil(tireCount / (double) count);
 		req.setAttribute("count", count);
 		req.setAttribute("pageCount", pageCount);
 		req.setAttribute("tires", tires);
+		req.setAttribute("tireBrands", tireBrands);		
 		req.setAttribute("curPage", pageNo);		
 	}
 	
@@ -96,7 +101,7 @@ public class TireDAO {
 	//타이어 브랜드 작업~~~~~~!!!
 
 	public void getTireBrand(HttpServletRequest req) {
-		List<TireDTO> brands =ss.getMapper(AdminTireMapper.class).getTireBrand();
+		List<TireDTO> brands = ss.getMapper(AdminTireMapper.class).getTireBrand();
 		
 		for (TireDTO t : brands) {
 			t.setTb_num(ss.getMapper(AdminTireMapper.class).getTireBrandCount(t.getTb_name()));

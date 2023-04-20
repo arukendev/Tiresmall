@@ -2,55 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tireshoppingmall.home.admin.car.AdminCarMapper">
 	<!--페이징 작업  -->
-	<select id="getCarCount" resultType="int" parameterType="com.tireshoppingmall.home.admin.car.SearchCarDTO">
+	<select id="getCarCount" resultType="int">
 		select count(*) from Car
 		where c_name like '%'||#{c_name}||'%'
 		<if test="c_brand != '전체'">
-			and c_brand = #{c_brand} 
+			and c_brand like '%'||#{c_brand}||'%'
 		</if>
 	</select>
 	
 	<!-- 차 전체 가져오기 -->
-	<select id="getAllCar">
+	<select id="getAllCar" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
 		select * from 
-		(select rownum as rn, c_id, c_name, c_year1, c_year2, c_option,c_brand, c_ft, c_bt, c_print, c_file,cb_name, cb_order
-		from (select * from Car where 
-		<if test="c_brand != '전체' || c_brand != ''">
-			c_brand = #{c_brand} and 
-		</if>
-		c_name = %'||#{c_name}||'%'
-		<!-- ORDER BY c_id desc -->)
+		(select rownum as rn, c_id, c_name, c_year1, c_year2,c_brand, c_ft, c_bt, c_print, c_file, cb_name
+		from (select * from car INNER JOIN car_brand ON c_brand = cb_name
+		where 
+		<if test="c_brand != '전체'">
+			c_brand like '%'||#{c_brand}||'%' and 
+		</if> 
+		c_name like '%'||#{c_name}||'%'
+		ORDER BY c_year2 desc)
 		)WHERE rn &gt;= #{start} and rn &lt;=#{end} 
-	</select>
-
-	<select id="getCarlists" resultType="com.tireshoppingmall.home.admin.car.CarDTO" parameterType="com.tireshoppingmall.home.admin.car.SearchCarDTO">
-
-	select * from(
-	SELECT rownum as rn, c_id, c_name, c_year1, c_year2, c_option,
-	           c_brand, c_ft, c_bt, c_print, c_file,
-	           cb_name, cb_order
-	FROM (
-		SELECT c.*, cb.*
-	    FROM Car c
-	    INNER JOIN car_brand cb ON c.c_brand = cb.cb_name
-	    WHERE c.c_name LIKE '%'||#{carnameInput}||'%'
-	     <if test="carbrandInput != ''">
-	            AND c.c_brand = #{carbrandInput}
-	     </if>
-	    ORDER BY TO_NUMBER(cb.cb_order) ASC, c.c_brand ASC
-	)
-	)  WHERE rn &gt;= #{start} and rn &lt;=#{end} 
 	</select>
 
 	<insert id="regCar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 		insert into Car
-		values(#{c_id},#{c_name},#{c_year1},#{c_year2},#{c_option},#{c_brand},#{c_ft},#{c_bt},#{c_print},#{c_file})
+		values(#{c_id},#{c_name},#{c_year1},#{c_year2},#{c_brand},#{c_ft},#{c_bt},#{c_print},#{c_file})
 	</insert>
 	
 	<update id ="updatecar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 	update Car set
 	c_name = #{c_name}, c_year1 = #{c_year1}, c_year2 = #{c_year2},
-	c_option = #{c_option}, c_brand = #{c_brand}, c_ft = #{c_ft},
+	c_brand = #{c_brand}, c_ft = #{c_ft},
 	c_bt = #{c_bt}, c_print = #{c_print}, c_file = #{c_file}
 	where c_id = #{c_id}
 	</update>
@@ -63,8 +45,8 @@
 		update Car set c_print = #{c_print}
 		where c_id = #{c_id}
 	</update>
-
-	<select id="getAllCarBrands" resultType="com.tireshoppingmall.home.admin.car.CarBrandDTO">
+	<!-- 차브랜드 다가져오기 -->
+	<select id="getAllCarBrands" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
 	SELECT * FROM car_brand
 	ORDER BY LENGTH(CB_ORDER), TO_NUMBER(CB_ORDER)
 	</select>
@@ -78,17 +60,12 @@
    	 delete from car_brand where cb_name = #{cb_name}
 	</delete>
 
-	<insert id="regbrand" parameterType="com.tireshoppingmall.home.admin.car.CarBrandDTO">
+	<insert id="regbrand" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 		insert into car_brand
 		values(#{cb_name},#{cb_order})
 	</insert>
-	
-	<select id="getCarbrandselectlist" resultType="com.tireshoppingmall.home.admin.car.CarBrandDTO">
-		 select cb_name from car_brand
-		 ORDER BY CAST(CB_ORDER AS NUMBER) ASC
-	</select>
 
-	<select id= "getallBrandCount" resultType="com.tireshoppingmall.home.admin.car.CarBrandDTO">
+	<select id= "getallBrandCount" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
 		SELECT COALESCE(COUNT(car.c_id), 0) AS cb_ea
 		FROM car_brand LEFT JOIN car ON car_brand.cb_name = car.c_brand
 		GROUP BY car_brand.cb_name, car_brand.cb_order
@@ -96,13 +73,13 @@
 	</select>
 
 
-	<update id="updatebrandcar" parameterType="com.tireshoppingmall.home.admin.car.CarBrandDTO">
+	<update id="updatebrandcar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 		update Car 
 		set c_brand = #{new_cb_name}
 		where c_brand = #{old_cb_name}
 	</update>
 
-	<update id = "updatebrand" parameterType="com.tireshoppingmall.home.admin.car.CarBrandDTO">
+	<update id = "updatebrand" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 		update car_brand
     	set 
     	cb_name = #{new_cb_name}, cb_order = #{cb_order}

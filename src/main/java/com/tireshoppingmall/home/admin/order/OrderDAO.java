@@ -91,6 +91,7 @@ public class OrderDAO {
 		req.setAttribute("orders", orders);
 		req.setAttribute("pageCount", pageCount);
 		req.setAttribute("curPage", pageNo);
+		req.setAttribute("count", count);
 
 		} catch (Exception e) {
 			e.printStackTrace();
