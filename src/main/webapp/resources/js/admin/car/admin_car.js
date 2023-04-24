@@ -6,12 +6,17 @@ $(function() {
 	
 	//타이어
 	carTire();
+	//input값 체크
+	inputEmpty() ;
 	
 	//자동차 이미지 작업
 	carImgReg();
 	
 	//이미지가 없을시
 	notImg();
+	
+	//브랜드 모달
+	carBrandModal();
 	
 })
 
@@ -26,11 +31,11 @@ function tireRegSizeAdd() {
 								"<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>" +
 								"<div class='admin-tire-reg-size-modal-input'>" +
 									"<div class='admin-tire-reg-size-modal-input'>" +
-									"<input class='tire_input_width1' name='ti_width' maxlength='3'> " +
-									"<span class='size-span'>/</span> " +
-									"<input class='tire_input_ratio1' name='ti_ratio' maxlength='2'>" +
-									"<span class='size-span'>R</span> " +
-									"<input class='tire_input_inch1' name='ti_inch' maxlength='2'>" +
+									"<input class='tire_input_width1' name='tf_width' maxlength='3'>"+ 
+									"<span class='size-span'>/</span> "+
+									"<input class='tire_input_ratio1' name='tf_ratio' maxlength='2'>"+
+									"<span class='size-span'>R</span> "+
+									"<input class='tire_input_inch1' name='tf_inch' maxlength='2'>"+
 								"</div>" +
 									"<div class='admin-tire-reg-size-modal-button'>" +
 										"<div class='admin_tire_reg_in1 admin-tire-reg-size-modal-button1'>입력</div>" +
@@ -40,11 +45,11 @@ function tireRegSizeAdd() {
 							"</div>" +
 						"</div>" +
 						"<div class='admin_tire_size_reg_modal_open1'>" +
-							"<span class='tire_width1 size-span'>---</span> " +
-							"<span class='size-span'>/</span> " +
-							"<span class='tire_ratio1 size-span'>--</span> " +
-							"<span class='size-span'>R</span> " +
-							"<span class='tire_inch1 size-span'>--</span>" +
+						"<span class='tire_width1 size-span'>---</span>" +
+						"<span class='size-span'>&nbsp;/&nbsp;</span>" +
+						"<span class='tire_ratio1 size-span'>--</span>" +
+						"<span class='size-span'>&nbsp;R&nbsp;</span>" +
+						"<span class='tire_inch1 size-span'>--</span>" +
 						"</div>" +
 					"</td>" +
 					"<td class='admin-tire-size-reg-content'>" +
@@ -53,11 +58,11 @@ function tireRegSizeAdd() {
 								"<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>	" +
 								"<div class='admin-tire-reg-size-modal-input'>" +
 									"<div class='admin-tire-reg-size-modal-input'>" +
-										"<input class='tire_input_width2' maxlength='3'>" +
-										"<span class='size-span'>/</span> " +
-										"<input class='tire_input_ratio2' maxlength='2'>" +
-										" <span class='size-span'>R</span> " +
-										"<input class='tire_input_inch2' maxlength='2'>" +
+										"<input class='tire_input_width2' name='tb_width' maxlength='3'>"+ 
+										"<span class='size-span'>/</span> "+
+										"<input class='tire_input_ratio2' name='tb_ratio' maxlength='2'>"+
+										"<span class='size-span'>R</span> "+
+										"<input class='tire_input_inch2' name='tb_inch' maxlength='2'>"+
 									"</div>" +
 									"<div class='admin-tire-reg-size-modal-button'>" +
 										"<div class='admin_tire_reg_in2 admin-tire-reg-size-modal-button1'>입력</div>" +
@@ -67,18 +72,17 @@ function tireRegSizeAdd() {
 							"</div>" +
 						"</div>	" +
 						"<div class='admin_tire_size_reg_modal_open2'>" +
-							"<span class='tire_width2 size-span'>---</span> " +
-							"<span nclass='size-span'>/</span> " +
-							"	<span class='tire_ratio2 size-span'>--</span>" +
-							"<span class='size-span'>R</span> " +
-							"<span class='tire_inch2 size-span'>--</span>" +
+						"<span class='tire_width2 size-span'>---</span>" +
+						"<span class='size-span'>&nbsp;/&nbsp;</span>" +
+						"<span class='tire_ratio2 size-span'>--</span>" +
+						"<span class='size-span'>&nbsp;R&nbsp;</span>" +
+						"<span class='tire_inch2 size-span'>--</span>" +
 						"</div>" +
 					"</td>" +
 					"<td class='admin-tire-size-reg-content'>" +
 					"<div class='admin-tire-size-reg-delete'>삭제</div></td>" +
 					"</tr>");
-
-		$(".admin-tire-reg-name").text($("#admin-tire-reg-name-input").val()); 
+		
 	});
 }
 
@@ -116,7 +120,7 @@ function carTire() {
 	
 	//사이즈 입력시에  (모달창에)
 	//앞타이어
-	$(document).on("click",".admin_tire_reg_in1",function() {
+	$(document).on("click",".admin_tire_reg_in1",function() {	
 		var width = $(this).closest("tr").find(".tire_input_width1").val();
 		var ratio = $(this).closest("tr").find(".tire_input_ratio1").val();
 		var inch = $(this).closest("tr").find(".tire_input_inch1").val();
@@ -164,7 +168,7 @@ function carTire() {
 			$(this).closest("tr").find(".tire_width2").text(width);
 			$(this).closest("tr").find(".tire_ratio2").text(ratio);
 			$(this).closest("tr").find(".tire_inch2").text(inch);	
-			
+
 			$(".admin-tire-reg-size-modal2").css("display","none");
 		});
 
@@ -227,30 +231,87 @@ function notImg() {
 }
 
 
+function updateCar(id) {
+	location.href = 'admin.car.update.go?c_id=' + id;
+}
 
 
+function inputEmpty() {
+	$(".admin-tire-reg-button").click(function() {
+		let returnResult =0;	//틀렸으면 1을 저장하여 return false를 해줌 
+		$(".admin_tire_validation_test").each(function (i) {
+			if($("input[name='tf_width']").eq(i).val()==""){
+				alert((i+1)+"번째 앞타이어 단면폭 값이 비여있습니다.");
+				returnResult=1;
+				return false;
+			}
+			if($("input[name='tf_ratio']").eq(i).val()==""){
+				alert((i+1)+"번째 앞타이어 편평비 값이 비여있습니다.");
+				returnResult=1;
+				return false;
+			}
+			if($("input[name='tf_inch']").eq(i).val()==""){
+				alert((i+1)+"번째 앞타이어 인치 값이 비여있습니다.");
+				returnResult=1;
+				return false;
+			}
 
+			if($("input[name='tb_width']").eq(i).val()==""){
+				alert((i+1)+"번째 뒷타이어 단면폭 값이 비여있습니다.");
+				returnResult=1;
+				return false;
+			}
+			if($("input[name='tb_ratio']").eq(i).val()==""){
+				alert((i+1)+"번째 뒷타이어 편평비 값이 비여있습니다.");
+				returnResult=1;
+				return false;
+			}
+			if($("input[name='tb_inch']").eq(i).val()==""){
+				alert((i+1)+"번째 뒷타이어 인치 값이 비여있습니다.");
+				returnResult=1;
+				return false;
+			}
+		
+		});
+		if(returnResult==1){
+			return false;
+		}
+	})
+}
 
-
-
-
-
-
-function deletecb1(cbbbb) {
+function updateCar(id) {
+	location.href = 'admin.car.update.go?c_id=' + id;
+}
+function deletecar(id) {
 	let ok = confirm('정말 삭제하시겠습니까?');
 	if (ok) {
-		location.href = 'brand.delete.do?cb_name=' + cbbbb;
+		location.href = 'admin.car.delete.do?c_id=' + id;
+	}
+
+}
+
+
+
+function carBrandModal() {
+	$(".brandRegButton").click(function() {
+		$("#brandregpopup01").css("display","flex");
+	})
+}
+
+
+
+
+function deletecb1(cbname) {
+	let ok = confirm('정말 삭제하시겠습니까?');
+	if (ok) {
+		location.href = 'brand.delete.do?cb_name=' + cbname;
 	}
 }
 
 
 
-function deletecar(carrr) {
-	let ok = confirm('정말 삭제하시겠습니까?');
-	if (ok) {
-		location.href = 'admin.car.delete.do?c_id=' + carrr;
-	}
 
-}
+
+
 
 

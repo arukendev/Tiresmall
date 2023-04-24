@@ -123,14 +123,14 @@ function tireRegSizeAdd() {
 				"<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>" +
 				"<div class='admin-tire-reg-size-modal-input'>" +
 				"<div class='admin-tire-reg-size-modal-input'>" +
-				"<input class='tire_input_width'name='ti_width' maxlength='3'>" + 
-				"<span class='size-span'>/</span>" +
-				"<input class='tire_input_ratio' name='ti_ratio'  maxlength='2'>" +
-				"<span class='size-span'>R</span>" +
-				"	<input class='tire_input_inch' name='ti_inch' maxlength='2'>" +
+					"<input class='tire_input_width'name='ti_width' maxlength='3'>" + 
+					"<span class='size-span'>/</span>" +
+					"<input class='tire_input_ratio' name='ti_ratio'  maxlength='2'>" +
+					"<span class='size-span'>R</span>" +
+					"<input class='tire_input_inch' name='ti_inch' maxlength='2'>" +
 				"</div>" +
-				"	<div class='admin-tire-reg-size-modal-button'>" +
-				"	<div class='admin_tire_reg_in admin-tire-reg-size-modal-button1'>입력</div>" +
+					"<div class='admin-tire-reg-size-modal-button'>" +
+					"<div class='admin_tire_reg_in admin-tire-reg-size-modal-button1'>입력</div>" +
 				"<div class='admin_tire_reg_cen admin-tire-reg-size-modal-button2'>취소</div>" +
 				"</div>" +
 				"</div>" +
@@ -157,43 +157,45 @@ function tireRegSizeAdd() {
 
 function tireUpdateRegSizeAdd() {
 	$(document).on("click","#admin_tire_update_size_button",function() {
-		$("#admin_tire_size_add").append("<tr style='height: 50px;'>" +
-				"<td class='admin-tire-size-reg-content'>" +	
-				"<div class='admin-tire-reg-size-modal'>" +
-				"<div class='admin-tire-reg-size-modal-container'>" +
-				"<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>" +
-				"<div class='admin-tire-reg-size-modal-input'>" +
-				"<div class='admin-tire-reg-size-modal-input'>" +
-				"<input class='tire_input_width' name='ti_width' maxlength='3'>" + /*그냥 여기다 name을 넣고 밑에 hidden은 지워됨*/ 
-				"<span class='size-span'>/</span>" +
-				"<input class='tire_input_ratio' name='ti_ratio' maxlength='2'>" +
-				"<span class='size-span'>R</span>" +
-				"	<input class='tire_input_inch' name='ti_inch' maxlength='2'>" +
-				"</div>" +
-				"	<div class='admin-tire-reg-size-modal-button' maxlength='2'>" +
-				"	<div class='admin_tire_reg_in admin-tire-reg-size-modal-button1'>입력</div>" +
-				"<div class='admin_tire_reg_cen admin-tire-reg-size-modal-button2'>취소</div>" +
-				"</div>" +
-				"</div>" +
-				"</div>" +
-				"</div> " +
-				"<div class='admin_tire_size_reg_modal_open'>" +
-				"<span class='tire_width size-span'>---</span>" +
-				"<span class='size-span'>&nbsp;/&nbsp;</span>" +
-				"<span class='tire_ratio size-span'>--</span>" +
-				"<span class='size-span'>&nbsp;R&nbsp;</span>" +
-				"<span class='tire_inch size-span'>--</span>" +
-				"</div>" +
-				"</td>" +
-				"<td class='admin-tire-size-reg-content'><span class='admin-tire-reg-name'></span></td>" +
-				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-marking-input' name='ti_marking'></td>" +
-				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-pricefac-input' name='ti_pricefac'>&nbsp;원</td>" +
-				"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-stock-input' name='ti_stock' value='0'>&nbsp;개</td>" +
-				"<td class='admin-tire-size-reg-content'>" +
-				"<div class='admin-tire-size-reg-button-div'>"+
-				"<div class='admin-tire-reg-size-modal-button1 admin-tire-size-newInfo-reg'>저장</div>"+
-				"<div class='admin-tire-size-reg-delete' style='margin-left:5px;'>삭제</div></td>" +
-				"</div>"+
+		$("#admin_tire_size_add").append(
+				"<tr style='height: 50px;'>" +
+					"<td class='admin-tire-size-reg-content'>" +	
+						"<div class='admin-tire-reg-size-modal'>" +
+							"<div class='admin-tire-reg-size-modal-container'>" +
+								"<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>" +
+								"<div class='admin-tire-reg-size-modal-input'>" +
+									"<div class='admin-tire-reg-size-modal-input'>" +
+										"<input class='tire_input_width' name='ti_width' maxlength='3'>" + /*그냥 여기다 name을 넣고 밑에 hidden은 지워됨*/ 
+										"<span class='size-span'>/</span>" +
+										"<input class='tire_input_ratio' name='ti_ratio' maxlength='2'>" +
+										"<span class='size-span'>R</span>" +
+										"<input class='tire_input_inch' name='ti_inch' maxlength='2'>" +
+									"</div>" +
+									"<div class='admin-tire-reg-size-modal-button' maxlength='2'>" +
+										"<div class='admin_tire_reg_in admin-tire-reg-size-modal-button1'>입력</div>" +
+										"<div class='admin_tire_reg_cen admin-tire-reg-size-modal-button2'>취소</div>" +
+									"</div>" +
+								"</div>" +
+							"</div>" +
+						"</div> " +
+						"<div class='admin_tire_size_reg_modal_open'>" +
+							"<span class='tire_width size-span'>---</span>" +
+							"<span class='size-span'>&nbsp;/&nbsp;</span>" +
+							"<span class='tire_ratio size-span'>--</span>" +
+							"<span class='size-span'>&nbsp;R&nbsp;</span>" +
+							"<span class='tire_inch size-span'>--</span>" +
+						"</div>" +
+					"</td>" +
+					"<td class='admin-tire-size-reg-content'><span class='admin-tire-reg-name'></span></td>" +
+					"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-marking-input' name='ti_marking'></td>" +
+					"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-pricefac-input' name='ti_pricefac'>&nbsp;원</td>" +
+					"<td class='admin-tire-size-reg-content'><input class='admin-tire-reg-stock-input' name='ti_stock' value='0'>&nbsp;개</td>" +
+					"<td class='admin-tire-size-reg-content'>" +
+						"<div class='admin-tire-size-reg-button-div'>"+
+							"<div class='admin-tire-reg-size-modal-button1 admin-tire-size-newInfo-reg'>저장</div>"+
+							"<div class='admin-tire-size-reg-delete' style='margin-left:5px;'>삭제</div>" +
+						"</div>"+
+					"</td>" +
 				"</tr>");
 		$(".admin-tire-reg-name").text($("#admin-tire-reg-name-input").val()); 
 	});

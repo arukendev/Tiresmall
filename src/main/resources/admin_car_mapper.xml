@@ -23,11 +23,16 @@
 		ORDER BY c_year2 desc)
 		)WHERE rn &gt;= #{start} and rn &lt;=#{end} 
 	</select>
+	
+	<select id="getCar" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
+		select * from car where c_id = #{val}
+	</select>
 
 	<insert id="regCar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 		insert into Car
-		values(#{c_id},#{c_name},#{c_year1},#{c_year2},#{c_brand},#{c_ft},#{c_bt},#{c_file})
+		values(car_seq.nextval,#{c_name},#{c_year1},#{c_year2},#{c_brand},#{c_ft},#{c_bt},#{c_file})
 	</insert>
+	
 	
 	<update id ="updatecar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 	update Car set
@@ -48,7 +53,7 @@
 	<!-- 차브랜드 다가져오기 -->
 	<select id="getAllCarBrands" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
 	SELECT * FROM car_brand
-	ORDER BY LENGTH(CB_ORDER), TO_NUMBER(CB_ORDER)
+	ORDER by cb_name
 	</select>
 
 

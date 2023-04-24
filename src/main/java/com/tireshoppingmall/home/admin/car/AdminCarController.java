@@ -57,13 +57,24 @@ public class AdminCarController {
 	
 	@RequestMapping(value = "/admin.car.reg.do", method = RequestMethod.POST)
 	public String carRegdo(CarDTO c, HttpServletRequest req) {
-		
+
 		cDAO.regCar(c, req);
 		cDAO.getAllCar(1, req);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car.jsp");
 		return "admin/master";
 	}
+	
+	@RequestMapping(value = "/admin.car.update.go", method = RequestMethod.GET)
+	public String carupdatedo(CarDTO c, HttpServletRequest req) {
+
+		cDAO.getCar(c,req);
+		
+		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
+		req.setAttribute("contentPage", "car/car_update.jsp");
+		return "admin/master";
+	}
+	
 	
 	@RequestMapping(value = "/admin.car.update.do", method = RequestMethod.POST)
 	public String carupdatedo(MultipartFile file,CarDTO c, HttpServletRequest req) {

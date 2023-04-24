@@ -10,7 +10,7 @@ public interface AdminCarMapper {
 	
 	List<CarDTO> getAllCarBrands();
 	
-	CarDTO getCar(CarDTO c);
+	CarDTO getCar(int c_id);
 
 	List<CarDTO> getAllCar();
 

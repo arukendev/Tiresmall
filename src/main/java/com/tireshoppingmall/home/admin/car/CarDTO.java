@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class CarDTO {
 	
 	//자동차
-	private String c_id;
+	private int c_id;
 	private String c_name;
 	private String c_year1;
 	private String c_year2;
@@ -20,12 +20,13 @@ public class CarDTO {
 	private String c_file;
 	
 	//자동차 타이어 등록 배열
-	private String[] tire_input_width1;
-	private String[] tire_input_ratio1;
-	private String[] tire_input_inch1;
-	private String[] tire_input_width2;
-	private String[] tire_input_ratio2;
-	private String[] tire_input_inch2;
+	private String[] tf_width;
+	private String[] tf_ratio;
+	private String[] tf_inch;
+	
+	private String[] tb_width;
+	private String[] tb_ratio;
+	private String[] tb_inch;
 	
 	//자동차 브랜드
 	private String cb_name;
@@ -42,7 +43,7 @@ public class CarDTO {
 	public CarDTO() {
 	}
 	
-	public CarDTO(String c_id, String c_name, String c_year1, String c_year2, String c_brand,
+	public CarDTO(int c_id, String c_name, String c_year1, String c_year2, String c_brand,
 			String c_ft, String c_bt, MultipartFile file, String c_file) {
 		super();
 		this.c_id = c_id;
@@ -56,7 +57,7 @@ public class CarDTO {
 		this.c_file = c_file;
 	}
 	
-	public CarDTO(String c_id, String c_name, String c_year1, String c_year2, String c_brand,
+	public CarDTO(int c_id, String c_name, String c_year1, String c_year2, String c_brand,
 			String c_ft, String c_bt, MultipartFile file, String c_file, BigDecimal start,
 			BigDecimal end) {
 		super();
@@ -73,11 +74,10 @@ public class CarDTO {
 		this.end = end;
 	}
 
-	
-	public CarDTO(String c_id, String c_name, String c_year1, String c_year2, String c_brand, String c_ft, String c_bt,
-			MultipartFile file, String c_file, String[] tire_input_width1, String[] tire_input_ratio1,
-			String[] tire_input_inch1, String[] tire_input_width2, String[] tire_input_ratio2,
-			String[] tire_input_inch2) {
+	public CarDTO(int c_id, String c_name, String c_year1, String c_year2, String c_brand, String c_ft, String c_bt,
+			MultipartFile file, String c_file, String[] tf_width, String[] tf_ratio, String[] tf_inch,
+			String[] tb_width, String[] tb_ratio, String[] tb_inch, String cb_name, String old_cb_name,
+			String new_cb_name, String cb_ea, int cb_order, String cb_img, BigDecimal start, BigDecimal end) {
 		super();
 		this.c_id = c_id;
 		this.c_name = c_name;
@@ -88,12 +88,20 @@ public class CarDTO {
 		this.c_bt = c_bt;
 		this.file = file;
 		this.c_file = c_file;
-		this.tire_input_width1 = tire_input_width1;
-		this.tire_input_ratio1 = tire_input_ratio1;
-		this.tire_input_inch1 = tire_input_inch1;
-		this.tire_input_width2 = tire_input_width2;
-		this.tire_input_ratio2 = tire_input_ratio2;
-		this.tire_input_inch2 = tire_input_inch2;
+		this.tf_width = tf_width;
+		this.tf_ratio = tf_ratio;
+		this.tf_inch = tf_inch;
+		this.tb_width = tb_width;
+		this.tb_ratio = tb_ratio;
+		this.tb_inch = tb_inch;
+		this.cb_name = cb_name;
+		this.old_cb_name = old_cb_name;
+		this.new_cb_name = new_cb_name;
+		this.cb_ea = cb_ea;
+		this.cb_order = cb_order;
+		this.cb_img = cb_img;
+		this.start = start;
+		this.end = end;
 	}
 
 	//페이징 작업
@@ -115,52 +123,52 @@ public class CarDTO {
 		this.cb_img = cb_img;
 	}
 	
-	public String[] getTire_input_width1() {
-		return tire_input_width1;
+	public String[] getTf_width() {
+		return tf_width;
 	}
 
-	public void setTire_input_width1(String[] tire_input_width1) {
-		this.tire_input_width1 = tire_input_width1;
+	public void setTf_width(String[] tf_width) {
+		this.tf_width = tf_width;
 	}
 
-	public String[] getTire_input_ratio1() {
-		return tire_input_ratio1;
+	public String[] getTf_ratio() {
+		return tf_ratio;
 	}
 
-	public void setTire_input_ratio1(String[] tire_input_ratio1) {
-		this.tire_input_ratio1 = tire_input_ratio1;
+	public void setTf_ratio(String[] tf_ratio) {
+		this.tf_ratio = tf_ratio;
 	}
 
-	public String[] getTire_input_inch1() {
-		return tire_input_inch1;
+	public String[] getTf_inch() {
+		return tf_inch;
 	}
 
-	public void setTire_input_inch1(String[] tire_input_inch1) {
-		this.tire_input_inch1 = tire_input_inch1;
+	public void setTf_inch(String[] tf_inch) {
+		this.tf_inch = tf_inch;
 	}
 
-	public String[] getTire_input_width2() {
-		return tire_input_width2;
+	public String[] getTb_width() {
+		return tb_width;
 	}
 
-	public void setTire_input_width2(String[] tire_input_width2) {
-		this.tire_input_width2 = tire_input_width2;
+	public void setTb_width(String[] tb_width) {
+		this.tb_width = tb_width;
 	}
 
-	public String[] getTire_input_ratio2() {
-		return tire_input_ratio2;
+	public String[] getTb_ratio() {
+		return tb_ratio;
 	}
 
-	public void setTire_input_ratio2(String[] tire_input_ratio2) {
-		this.tire_input_ratio2 = tire_input_ratio2;
+	public void setTb_ratio(String[] tb_ratio) {
+		this.tb_ratio = tb_ratio;
 	}
 
-	public String[] getTire_input_inch2() {
-		return tire_input_inch2;
+	public String[] getTb_inch() {
+		return tb_inch;
 	}
 
-	public void setTire_input_inch2(String[] tire_input_inch2) {
-		this.tire_input_inch2 = tire_input_inch2;
+	public void setTb_inch(String[] tb_inch) {
+		this.tb_inch = tb_inch;
 	}
 
 	public String getCb_img() {
@@ -229,11 +237,11 @@ public class CarDTO {
 		this.end = end;
 	}
 
-	public String getC_id() {
+	public int getC_id() {
 		return c_id;
 	}
 
-	public void setC_id(String c_id) {
+	public void setC_id(int c_id) {
 		this.c_id = c_id;
 	}
 

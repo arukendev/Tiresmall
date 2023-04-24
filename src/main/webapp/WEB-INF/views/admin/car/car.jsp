@@ -74,13 +74,21 @@
 			<tr id="admin_cars_content">
 				<td class="admin_car_table_td">${status.count + (curPage-1)*count}</td>
 				<td class="admin_car_table_td">${c.c_brand }</td>
-				<td class="admin_car_table_td">${c.c_year1 }~${c.c_year2 }</td>
+				<td class="admin_car_table_td">${c.c_year1 }&nbsp;~&nbsp;${c.c_year2 }</td>
 				<td class="admin_car_table_td">${c.c_name }</td>
-				<td class="admin_car_table_td">앞 :${c.c_ft } / 뒤 :${c.c_bt }</td>
 				<td class="admin_car_table_td">
-					<button class="updatecarbutton">수정</button>
-					<button type="button" class="deletecarbutton"
-						id="updatecar('${c.c_id}')" onclick="deletecar('${c.c_id}')">삭제</button>
+				${c.c_ft }
+				${c.c_bt }
+			<%--  		<c:forEach items="${tires }" var="ts">
+						<c:forEach items="${ts }" var="tire">
+							${tire }&nbsp;
+						</c:forEach>
+					</c:forEach> --%>
+				
+				</td>
+				<td class="admin_car_table_td">
+					<button class="updatecarbutton" onclick="updateCar('${c.c_id}')">수정</button>
+					<button type="button" class="deletecarbutton" onclick="deletecar('${c.c_id}')">삭제</button>
 				</td>
 			</tr>
 		</c:forEach>

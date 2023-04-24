@@ -58,7 +58,6 @@
 		</div>
 		<!-- 모달창 -->
 		<div id="brandregpopup01" class="carbrandregbuttonarea">
-			<div class="close">X</div>
 			<div>
 				<form action="reg.brand.do" name="regform"
 					onsubmit="return carbrandregcall();">
