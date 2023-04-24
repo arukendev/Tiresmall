@@ -342,14 +342,14 @@ FROM (
 
 
 
-insert into Car values('TestCar4','T7','2022','2023','에어백','폭스바겐','225/45R17','225/45R17','1','a.jpg');
-insert into Car values('TestCar5','페이스맨','2013','2016','파워핸들,블랙박스','미니','225/45R17','225/45R17','1','a.jpg');
-insert into Car values('TestCar4','T7','2022','2023','에어백','폭스바겐','225/45R17','225/45R17','1','a.jpg');
-insert into Car values('TestCar4','T7','2022','2023','에어백','폭스바겐','225/45R17','225/45R17','1','a.jpg');
-insert into Car values('TestCar4','T7','2022','2023','에어백','폭스바겐','225/45R17','225/45R17','1','a.jpg');
-insert into Car values('TestCar4','T7','2022','2023','에어백','폭스바겐','225/45R17','225/45R17','1','a.jpg');
-insert into Car values('TestCar4','T7','2022','2023','에어백','폭스바겐','225/45R17','225/45R17','1','a.jpg');
-insert into Car values('TestCar4','T7','2022','2023','에어백','폭스바겐','225/45R17','225/45R17','1','a.jpg');
+insert into Car values('8','T7','2022','2023','폭스바겐','225/45R17','225/45R17','1','a.jpg');
+insert into Car values('7','페이스맨','2013','2016','파워핸들,블랙박스','미니','225/45R17','225/45R17','1','a.jpg');
+insert into Car values('6','T7','2022','2023','폭스바겐','225/45R17','225/45R17','1','a.jpg');
+insert into Car values('5','T7','2022','2023','폭스바겐','225/45R17','225/45R17','1','a.jpg');
+insert into Car values('4','T7','2022','2023','폭스바겐','225/45R17','225/45R17','1','a.jpg');
+insert into Car values('3','T7','2022','2023','폭스바겐','225/45R17','225/45R17','1','a.jpg');
+insert into Car values('2','T7','2022','2023','에어백','폭스바겐','225/45R17','225/45R17','1','a.jpg');
+insert into Car values('1','T7','2022','2023','에어백','폭스바겐','225/45R17','225/45R17','1','a.jpg');
 
 		
 

@@ -1,3 +1,238 @@
+$(function() {
+	//사이즈 추가
+	tireRegSizeAdd();
+	//사이즈 삭제
+	tireRegSizeDelete();
+	
+	//타이어
+	carTire();
+	
+	//자동차 이미지 작업
+	carImgReg();
+	
+	//이미지가 없을시
+	notImg();
+	
+})
+
+//사이즈 추가시
+function tireRegSizeAdd() {
+	$(document).on("click","#admin_tire_size_button",function() {
+		$("#admin_tire_size_add").append(
+				"<tr style='height: 50px;' class='admin_tire_validation_test'>" +
+					"<td class='admin-tire-size-reg-content'>" +
+						"<div class='admin-tire-reg-size-modal1'>	" +
+							"<div class='admin-tire-reg-size-modal-container1'>" +
+								"<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>" +
+								"<div class='admin-tire-reg-size-modal-input'>" +
+									"<div class='admin-tire-reg-size-modal-input'>" +
+									"<input class='tire_input_width1' name='ti_width' maxlength='3'> " +
+									"<span class='size-span'>/</span> " +
+									"<input class='tire_input_ratio1' name='ti_ratio' maxlength='2'>" +
+									"<span class='size-span'>R</span> " +
+									"<input class='tire_input_inch1' name='ti_inch' maxlength='2'>" +
+								"</div>" +
+									"<div class='admin-tire-reg-size-modal-button'>" +
+										"<div class='admin_tire_reg_in1 admin-tire-reg-size-modal-button1'>입력</div>" +
+										"<div class='admin_tire_reg_cen1 admin-tire-reg-size-modal-button2'>취소</div>" +
+									"</div>" +
+								"</div>" +
+							"</div>" +
+						"</div>" +
+						"<div class='admin_tire_size_reg_modal_open1'>" +
+							"<span class='tire_width1 size-span'>---</span> " +
+							"<span class='size-span'>/</span> " +
+							"<span class='tire_ratio1 size-span'>--</span> " +
+							"<span class='size-span'>R</span> " +
+							"<span class='tire_inch1 size-span'>--</span>" +
+						"</div>" +
+					"</td>" +
+					"<td class='admin-tire-size-reg-content'>" +
+						"<div class='admin-tire-reg-size-modal2'>" +
+							"<div class='admin-tire-reg-size-modal-container2'>	" +
+								"<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>	" +
+								"<div class='admin-tire-reg-size-modal-input'>" +
+									"<div class='admin-tire-reg-size-modal-input'>" +
+										"<input class='tire_input_width2' maxlength='3'>" +
+										"<span class='size-span'>/</span> " +
+										"<input class='tire_input_ratio2' maxlength='2'>" +
+										" <span class='size-span'>R</span> " +
+										"<input class='tire_input_inch2' maxlength='2'>" +
+									"</div>" +
+									"<div class='admin-tire-reg-size-modal-button'>" +
+										"<div class='admin_tire_reg_in2 admin-tire-reg-size-modal-button1'>입력</div>" +
+										"<div class='admin_tire_reg_cen2 admin-tire-reg-size-modal-button2'>취소</div>" +
+									"</div>" +
+								"</div>" +
+							"</div>" +
+						"</div>	" +
+						"<div class='admin_tire_size_reg_modal_open2'>" +
+							"<span class='tire_width2 size-span'>---</span> " +
+							"<span nclass='size-span'>/</span> " +
+							"	<span class='tire_ratio2 size-span'>--</span>" +
+							"<span class='size-span'>R</span> " +
+							"<span class='tire_inch2 size-span'>--</span>" +
+						"</div>" +
+					"</td>" +
+					"<td class='admin-tire-size-reg-content'>" +
+					"<div class='admin-tire-size-reg-delete'>삭제</div></td>" +
+					"</tr>");
+
+		$(".admin-tire-reg-name").text($("#admin-tire-reg-name-input").val()); 
+	});
+}
+
+//사이즈 삭제시
+function tireRegSizeDelete() {
+	$(document).on("click",".admin-tire-size-reg-delete",function() {
+		let address =$(this).closest("tr"); 
+		let ti_id =address.find($(".tiIdHidden")).val(); 
+		if(ti_id!=null){
+			var ok = confirm("정말 삭제하시겠습니까?");
+			if (ok) {
+				$.ajax({
+					url : "admin.tire.size.delete",
+					data : {ti_id},
+					success : function(data) {
+						address.remove();	
+						alert("삭제성공");
+					}
+				});
+			}
+		}else{
+			$(this).closest("tr").remove();			
+		}
+	});
+}
+
+//사이즈 맞게 맞기
+function carTire() {
+	$(document).on("click",".admin_tire_size_reg_modal_open1",function() {	
+		$(this).siblings().css("display","flex");			// 형제 노드를 찾아서 열어줌
+	});
+	$(document).on("click",".admin_tire_size_reg_modal_open2",function() {	
+		$(this).siblings().css("display","flex");			// 형제 노드를 찾아서 열어줌
+	});
+	
+	//사이즈 입력시에  (모달창에)
+	//앞타이어
+	$(document).on("click",".admin_tire_reg_in1",function() {
+		var width = $(this).closest("tr").find(".tire_input_width1").val();
+		var ratio = $(this).closest("tr").find(".tire_input_ratio1").val();
+		var inch = $(this).closest("tr").find(".tire_input_inch1").val();
+
+		$(this).closest("tr").find(".tire_width1").text(width);
+		$(this).closest("tr").find(".tire_ratio1").text(ratio);
+		$(this).closest("tr").find(".tire_inch1").text(inch);	
+		
+		/*let ti_id =$(this).closest("tr").find($(".tiIdHidden")).val(); 
+
+		//ajax로 바로바로 바뀌게 한것
+		if(ti_id !=null){
+			let ti_width=$(this).closest("tr").find($(".tire_input_width")).val()
+			let ti_ratio=$(this).closest("tr").find($(".tire_input_ratio")).val()
+			let ti_inch=$(this).closest("tr").find($(".tire_input_inch")).val()
+			
+			//input창 비여있는지 유효성 검사
+			if(ti_width == ""){
+				alert("단면폭값이 비여있습니다.");
+				return false;
+			}
+			if(ti_ratio == ""){
+				alert("편평비값이 비여있습니다.");
+				return false;
+			}
+			if(ti_inch == ""){
+				alert("인치값이 비여있습니다.");
+				return false;
+			}
+			$.ajax({
+				url : "admin.tire.size.change",
+				data : {ti_id,ti_width,ti_ratio,ti_inch},
+				success : function(data) {
+				}
+			});*/
+			$(".admin-tire-reg-size-modal1").css("display","none");
+		});
+		
+		//뒤타이어
+		$(document).on("click",".admin_tire_reg_in2",function() {
+			var width = $(this).closest("tr").find(".tire_input_width2").val();
+			var ratio = $(this).closest("tr").find(".tire_input_ratio2").val();
+			var inch = $(this).closest("tr").find(".tire_input_inch2").val();
+
+			$(this).closest("tr").find(".tire_width2").text(width);
+			$(this).closest("tr").find(".tire_ratio2").text(ratio);
+			$(this).closest("tr").find(".tire_inch2").text(inch);	
+			
+			$(".admin-tire-reg-size-modal2").css("display","none");
+		});
+
+		
+
+	
+		//취소 누를시
+		$(document).on("click",".admin_tire_reg_cen1",function() {
+			$(".admin-tire-reg-size-modal1").css("display","none");
+			$(this).closest("tr").find($(".tire_input_width1")).val()=="";
+			$(this).closest("tr").find($(".tire_input_ratio1")).val()=="";
+			$(this).closest("tr").find($(".tire_input_inch1")).val()=="";	
+		});
+		$(document).on("click",".admin_tire_reg_cen2",function() {
+			$(".admin-tire-reg-size-modal2").css("display","none");
+			$(this).closest("tr").find($(".tire_input_width2")).val()=="";
+			$(this).closest("tr").find($(".tire_input_ratio2")).val()=="";
+			$(this).closest("tr").find($(".tire_input_inch2")).val()=="";	
+		});
+}
+//자동차 등록페이지 사진css
+function carImgReg() {
+	
+	let tg_id = $('#tireIdHidden').val();
+	let formData = new FormData();
+	$("#file1").on('change',function(e){
+		var arSplitUrl = $("#file1").val().split("\\");
+		var nArLength = arSplitUrl.length;
+		var fileName = arSplitUrl[nArLength-1];
+		$(".upload-name1").val(fileName);
+		
+		
+		//사진 미리보기
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+
+		filesArr.forEach(function(f) {
+			if(!f.type.match("image.*")){
+				alert("이미지 파일만 업로드 가능합니다.");
+				return;
+			}
+			var sel_file =f;
+	
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$("#imagePreview").attr('src',e.target.result);
+			}
+			reader.readAsDataURL(f);
+		})
+
+	});
+}
+
+function notImg() {
+	$(".admin-tire-reg-button").click(function() {
+		if($("#file1").val()==""){
+			$("#file1").remove();
+		}
+	})
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -8,49 +243,7 @@ function deletecb1(cbbbb) {
 	}
 }
 
-$(document).ready(
-		function($) {
-/*			$(".carRegButton").on("click", function(event) { // 팝업오픈 버튼 누르면
-				$("#carregpopup01").show(); // 팝업 오픈
-				$("body").append('<div class="backon"></div>'); // 뒷배경 생성
-			});*/
 
-			$("body").on(
-					"click",
-					function(event) {
-						if (event.target.className == 'close'
-								|| event.target.className == 'backon') {
-							 $(".preview-image .upload-thumb").attr("src", "");
-							    $(".fileinputstyle").text("");
-							$("#carregpopup01").hide(); // close버튼 이거나 뒷배경 클릭시
-														// 팝업 삭제
-							$(".backon").hide();
-						}
-
-					});
-
-		});
-
-$(document).ready(
-		function($) {
-			$(".brandRegButton").on("click", function(event) { // 팝업오픈 버튼 누르면
-				$("#brandregpopup01").show(); // 팝업 오픈
-				$("body").append('<div class="backon"></div>'); // 뒷배경 생성
-			});
-
-			$("body").on(
-					"click",
-					function(event) {
-						if (event.target.className == 'close'
-								|| event.target.className == 'backon') {
-							$("#brandregpopup01").hide(); // close버튼 이거나 뒷배경
-															// 클릭시 팝업 삭제
-							$(".backon").hide();
-						}
-
-					});
-
-		});
 
 function deletecar(carrr) {
 	let ok = confirm('정말 삭제하시겠습니까?');
@@ -58,287 +251,6 @@ function deletecar(carrr) {
 		location.href = 'admin.car.delete.do?c_id=' + carrr;
 	}
 
-}
-
-
-
-function updatecar(id, name, year1, year2, brand, ft, bt, print, c_file) {
-
-	// c_bta_u나 c_fta_u에 값이 들어있는 경우
-	
-
-	$(document).ready(
-			function($) {
-				$(".updatecarbutton").on("click", function(event) { // 팝업오픈 버튼
-																	// 누르면
-					$("#updatecarpopup01").show(); // 팝업 오픈
-					$("body").append('<div class="backon"></div>'); // 뒷배경 생성
-				});
-
-				$("body").on(
-					    "click",
-					    function(event) {
-					        if (event.target.className == 'close'
-					            || event.target.className == 'backon') {
-					            $(".preview-image .update-upload-thumb").attr("src", "");
-					            $(".updatefileinputstyle").text("");
-					            $("#updatecarpopup01").hide(); // close버튼 이거나 뒷배경 클릭시 팝업 삭제
-					            $(".backon").hide();
-
-					            // 업로드 요소 초기화
-					            $("#c_file_u").val(""); // 파일 선택 input 초기화
-					            $(".updatefileinputstyle").text("No file selected"); // 파일명 출력 초기화
-					            $(".update-upload-thumb").attr("src", ""); // 미리보기 이미지 초기화
-					        }
-					    });
-
-			});
-
-	$('#c_id_u').val(id);
-	$('#c_name_u').val(name);
-	$('#c_year1_u').val(year1);
-	$('#c_year2_u').val(year2);
-	$('#c_print_u').val(print);
-	$('#c_brand_u').val(brand);
-	$('.updatefileinputstyle').html(c_file);
-	$('#c_file_u').attr('readonly', true);
-	
-	 const carImg = document.getElementById('carImg');
-	  carImg.src = `resources/web/${c_file}`;
-	  
-	  document.querySelector('.update-upload-thumb').addEventListener('load', function() {
-		  document.getElementById('carImg').style.display = 'none';
-		});
-	  
-	 //...
-
-	// c_ft_u와 c_bt_u에서 값을 가져온 뒤 콤마로 분할하여 배열로 저장
-	var ftArray = ft.split(',');
-	var btArray = bt.split(',');
-
-	// div를 생성할 개수를 구한다
-	var numOfDivs = Math.max(ftArray.length, btArray.length);
-
-	// 기존에 있던 div들을 모두 제거한다
-	$('#updatesizeInputs').empty();
-
-	// numOfDivs 만큼 div를 생성한다
-	for (var i = 0; i < numOfDivs; i++) {
-		addupdateSize();
-	}
-
-	console.log("!!!!!!");
-	console.log(numOfDivs);
-	console.log("!!!!!!");
-
-	// 생성된 div에 값을 넣어준다
-	for (var i = 0; i < numOfDivs; i++) {
-		var ftValue = i < ftArray.length ? ftArray[i] : "";
-		var btValue = i < btArray.length ? btArray[i] : "";
-		$('#updatesizeInputs .ftinputstyle:eq(' + i + ') input').val(ftValue);
-		$('#updatesizeInputs .btinputstyle:eq(' + i + ') input').val(btValue);
-		
-		
-		
-		
-	}
-	
-	
-	if (file) {
-	    var reader = new FileReader();
-	    reader.onload = function(e) {
-	      $(".preview-image .update-upload-thumb").attr("src", e.target.result);
-	    };
-	    reader.readAsDataURL(file);
-	  }
-
-	
-	
-}
- 
-
-function updatecb1(name, order) {
-
-	$(document).ready(
-			function($) {
-				$(".updatecarbrandbutton").on("click", function(event) { // 팝업오픈
-																			// 버튼
-																			// 누르면
-					$("#updatebrandpopup01").show(); // 팝업 오픈
-					$("body").append('<div class="backon"></div>'); // 뒷배경 생성
-				});
-
-				$("body").on(
-						"click",
-						function(event) {
-							if (event.target.className == 'close'
-									|| event.target.className == 'backon') {
-								
-								$("#updatebrandpopup01").hide(); // close버튼
-																	// 이거나 뒷배경
-																	// 클릭시 팝업 삭제
-								$(".backon").hide();
-							}
-						});
-
-			});
-
-	$('#cb_name_u').val(name);
-	$('#cb_name_u').attr('readonly', true);
-	$('#cb_order_u').val(order);
-
-}
-
-
-function addSize() {
-	  var ftInput = '<div style="display: block;"><div class="ftinputstyle" style="float: left;"><input style="height: 30px; width:198px;" name="c_ft" id="c_ft" class="c_ftinput"></div></div>';
-	  var btInput = '<div style="display: block;"><div class="btinputstyle" style="float: left;"><input style="height: 30px; width:193px;" name="c_bt" id="c_bt" class="c_btinput"></div></div>';
-	  var tmInput = '<div class="tmreginputstyle" style="float: left;">' +
-	    '<div class="admin-tire-size-reg-delete">' + '삭제</div>' + '</div>';
-	  var sizeInputs = document.getElementById('sizeInputs');
-	  var newInput =  '<div class="size-info">' +
-	  	'<br><br>' +
-	
-	    '<div class="ftbttmstyle">' +
-	    '<div class="ftstyle" style="height: 30px; width:200px; border: 1px solid white;">앞타이어</div>' +
-	    '<div class="btstyle" style="height: 30px; width:200px; border: 1px solid white;">뒤타이어</div>' +
-	    '<div class="tmstyle" style="height: 30px; width:200px; border: 1px solid white;">관리</div>' +
-	    '</div>'  + ftInput + btInput + tmInput + '</div>';
-	  sizeInputs.innerHTML += newInput;
-	  
-	  var deleteBtns = document.querySelectorAll('.admin-tire-size-reg-delete');
-	  for (var i = 0; i < deleteBtns.length; i++) {
-	    deleteBtns[i].addEventListener('click', function(e) {
-	      e.target.closest('.size-info').remove();
-	    });
-	  }
-	}
-
-
-function addupdateSize() {
-	  // ...
-	  
-	  var sizeInputs = document.getElementById('updatesizeInputs');
-	  var newInput = document.createElement('div');
-	  newInput.className = 'size-info';
-	  
-	  // ... 새로운 요소의 내용을 추가
-	  
-	  var ftInput = '<div style="display: block;"><div class="ftinputstyle" style="float: left;"><input style="height: 40px; width:197px;" name="c_ft" id="c_ft_u" class="c_ftinput"></div></div>';
-	  var btInput = '<div style="display: block;"><div class="btinputstyle" style="float: left;"><input style="height: 40px; width:195px;" name="c_bt" id="c_bt_u" class="c_btinput"></div></div>';
-	  var tmInput = '<div class="tminputstyle" style="float: left;">' +
-	                  '<div class="admin-tire-size-reg-delete">삭제</div>' +
-	                '</div>';
-	  newInput.innerHTML = '<br><br><br>' +
-	                       '<div class="ftbttmstyle">' +
-	                         '<div class="ftstyle" style="height: 30px; width:200px; border: 1px solid white;">앞타이어</div>' +
-	                         '<div class="btstyle" style="height: 30px; width:200px; border: 1px solid white;">뒤타이어</div>' +
-	                         '<div class="tmstyle" style="height: 30px; width:200px; border: 1px solid white;">관리</div>' +
-	                       '</div>' + ftInput + btInput + tmInput;
-	  
-	  sizeInputs.appendChild(newInput);
-	  
-	  var deleteBtns = document.querySelectorAll('.admin-tire-size-reg-delete');
-	  for (var i = 0; i < deleteBtns.length; i++) {
-	    deleteBtns[i].addEventListener('click', function(e) {
-	      e.target.closest('.size-info').remove();
-	    });
-	  }
-	}
-
-function previewImagereg(event) {
-	  var input = event.target;
-	  var preview = document.querySelector('.preview-image .upload-thumb');
-	  var filename = input.files[0].name;
-	  var fileinputstyle = document.querySelector('.fileinputstyle');
-
-	  if (input.files && input.files[0]) {
-	    var reader = new FileReader();
-	    reader.onload = function(event) {
-	      preview.src = event.target.result;
-	    }
-	    reader.readAsDataURL(input.files[0]);
-	  }
-
-	  fileinputstyle.textContent = filename;
-	
-	}
-
-function previewImage(event) {
-	  var input = event.target;
-	  var preview = document.querySelector('.preview-image .update-upload-thumb');
-	  var filename = input.files[0].name;
-	  var fileinputstyle = document.querySelector('.updatefileinputstyle');
-
-	  if (input.files && input.files[0]) {
-	    var reader = new FileReader();
-	    reader.onload = function(event) {
-	      preview.src = event.target.result;
-	    }
-	    reader.readAsDataURL(input.files[0]);
-	  }
-
-	  fileinputstyle.textContent = filename;
-	
-	}
-
-
-
-
-$(document).ready(function() {
-		carprintOnOff();
-	});
-
-
-
-function carprintOnOff() {
-	$(".carprintbtn").click(function() {
-		let onoff = $(this).text();
-		let c_id = $(this).val();
-		let c_print = onoff == '출력' ? 0 : 1;
-
-		  console.log("c_id: ", c_id);
-	        console.log("c_print: ", c_print);
-		
-		let btnEl = $(this);
-	
-		$.ajax({
-    url: "admin.car.print.onoff",
-    data: {
-        c_print,  // 수정 필요
-        c_id
-    },
-    success: function(data) {
-
-				
-				if (data === 1) {
-					btnEl.text('출력');
-					btnEl.attr('class', 'carprintbtn admin_car_printBTN');
-				} else {
-		
-					btnEl.attr('class', 'carprintbtn admin_car_notPrintBTN');
-					btnEl.text('미출력');
-				}
-			}
-		});
-	});
-}
-
-function deleteSize2() {
-	const ftbttmstyle2outdiv = event.target.closest('.ftbttmstyle2outdiv');
-
-	if (ftbttmstyle2outdiv) {
-		ftbttmstyle2outdiv.querySelector('.c_ftinput').value = '';
-		ftbttmstyle2outdiv.querySelector('.c_btinput').value = '';
-
-		ftbttmstyle2outdiv.style.display = 'none';
-	}
-}
-
-function addSize2() {
-	const ftbttmstyle3outdiv = document
-			.querySelector('.ftbttmstyle3outdiv');
-	ftbttmstyle3outdiv.style.display = 'block';
 }
 
 

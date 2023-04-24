@@ -38,8 +38,6 @@ public interface AdminCarMapper {
 	int updatebrandcar(CarDTO c);
 
 
-	int carprintOnOff(CarDTO c);
-
 
 	
 }

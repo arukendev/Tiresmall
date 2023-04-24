@@ -13,7 +13,7 @@
 	<!-- 차 전체 가져오기 -->
 	<select id="getAllCar" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
 		select * from 
-		(select rownum as rn, c_id, c_name, c_year1, c_year2,c_brand, c_ft, c_bt, c_print, c_file, cb_name
+		(select rownum as rn, c_id, c_name, c_year1, c_year2,c_brand, c_ft, c_bt, c_file, cb_name
 		from (select * from car INNER JOIN car_brand ON c_brand = cb_name
 		where 
 		<if test="c_brand != '전체'">
@@ -26,14 +26,14 @@
 
 	<insert id="regCar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 		insert into Car
-		values(#{c_id},#{c_name},#{c_year1},#{c_year2},#{c_brand},#{c_ft},#{c_bt},#{c_print},#{c_file})
+		values(#{c_id},#{c_name},#{c_year1},#{c_year2},#{c_brand},#{c_ft},#{c_bt},#{c_file})
 	</insert>
 	
 	<update id ="updatecar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 	update Car set
 	c_name = #{c_name}, c_year1 = #{c_year1}, c_year2 = #{c_year2},
 	c_brand = #{c_brand}, c_ft = #{c_ft},
-	c_bt = #{c_bt}, c_print = #{c_print}, c_file = #{c_file}
+	c_bt = #{c_bt}, c_file = #{c_file}
 	where c_id = #{c_id}
 	</update>
 
@@ -41,10 +41,10 @@
 		delete Car where c_id = #{c_id}
 	</delete>
 
-	<update id="carprintOnOff">
-		update Car set c_print = #{c_print}
-		where c_id = #{c_id}
-	</update>
+	
+	
+	<!-- 차 브랜드 -->
+
 	<!-- 차브랜드 다가져오기 -->
 	<select id="getAllCarBrands" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
 	SELECT * FROM car_brand
@@ -62,7 +62,7 @@
 
 	<insert id="regbrand" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 		insert into car_brand
-		values(#{cb_name},#{cb_order})
+		values(#{cb_name},#{cb_order},#{cb_img})
 	</insert>
 
 	<select id= "getallBrandCount" resultType="com.tireshoppingmall.home.admin.car.CarDTO">

@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tireshoppingmall.home.admin.car.CarDTO;
@@ -87,49 +86,66 @@ public class CarDAO {
 		
 	}
 
-	public void regCar(MultipartFile file, CarDTO c, HttpServletRequest req) {
+	//자동차 등록
+	public void regCar(CarDTO c, HttpServletRequest req) {
 
-		String fileRealName = c.getFile().getOriginalFilename();
-		long size = file.getSize();
+		//사진이 있을경우
+		if(c.getFile() != null) {
+			String fileRealName = c.getFile().getOriginalFilename();
 
-		System.out.println("파일명 : " + fileRealName);
-		System.out.println("용량크기(byte) : " + size);
+			System.out.println("파일명 : " + fileRealName);
 
-		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-		String uploadFolder = servletContext.getRealPath("resources/web");
+			String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+			String uploadFolder = servletContext.getRealPath("resources/web/main/car");
 
-		UUID uuid = UUID.randomUUID();
-		System.out.println(uuid.toString());
-		String[] uuids = uuid.toString().split("-");
+			UUID uuid = UUID.randomUUID();
+			System.out.println(uuid.toString());
+			String[] uuids = uuid.toString().split("-");
 
-		String uniqueName = uuids[0];
-		System.out.println("생성된 고유문자열" + uniqueName);
-		System.out.println("확장자명" + fileExtension);
+			String uniqueName = uuids[0];
+			System.out.println("생성된 고유문자열" + uniqueName);
+			System.out.println("확장자명" + fileExtension);
 
-		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension); // 적용 후
+			File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension); // 적용 후
 
-		try {
-			c.getFile().transferTo(saveFile);
-			c.setC_file(uniqueName + fileExtension);
-			AdminCarMapper mm = ss.getMapper(AdminCarMapper.class);
-			System.out.println("upload successed!");
-			req.setAttribute("fileName", uniqueName + fileExtension);
+			try {
+				c.getFile().transferTo(saveFile);
+				c.setC_file(uniqueName + fileExtension);
+				AdminCarMapper mm = ss.getMapper(AdminCarMapper.class);
+				System.out.println("upload successed!");
+				req.setAttribute("fileName", uniqueName + fileExtension);
 
-			System.out.println(c);
+				System.out.println(c);
 
-			if (mm.regCar(c) == 1) {
-				System.out.println("등록성공");
-				allCarCount++;
-				req.setAttribute("r", "등록성공");
-			} else {
-				req.setAttribute("r", "등록 실패");
+				if (mm.regCar(c) == 1) {
+					System.out.println("등록성공");
+					allCarCount++;
+					req.setAttribute("r", "등록성공");
+				} else {
+					req.setAttribute("r", "등록 실패");
+					new File(uploadFolder + "/" + fileRealName).delete();
+			        System.out.println("삭제성공");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		}else {//사진이 없을경우
+			String carFT="";
+			String carRT="";
+			
+			for (int i = 0; i < c.getTire_input_inch1().length; i++) {
+				if((i+1) != c.getTire_input_inch1().length) { 
+					carFT+= c.getTire_input_width1()[i] + c.getTire_input_ratio1()[i] + c.getTire_input_inch1()[i]+"/";
+					carRT+= c.getTire_input_width2()[i] + c.getTire_input_ratio2()[i] + c.getTire_input_inch2()[i]+"/";
+				}else { //마지막일경우
+					carFT+= c.getTire_input_width1()[i] + c.getTire_input_ratio1()[i] + c.getTire_input_inch1()[i];
+					carRT+= c.getTire_input_width2()[i] + c.getTire_input_ratio2()[i] + c.getTire_input_inch2()[i];
+				}
+				
 			}
-
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+			
 		}
+	
 	}
 
 	public void updateCar(MultipartFile file, CarDTO c, HttpServletRequest req) {
@@ -219,8 +235,8 @@ public class CarDAO {
 		
 	}
 
-	public void getallBrandCount(CarDTO c, Model m) {
-		m.addAttribute("carcount", ss.getMapper(AdminCarMapper.class).getallBrandCount(c));
+	public void getallBrandCount(CarDTO c, HttpServletRequest req) {
+		req.setAttribute("carcount", ss.getMapper(AdminCarMapper.class).getallBrandCount(c));
 	}
 
 	public void updatebrand(CarDTO c, HttpServletRequest req) {
@@ -236,15 +252,6 @@ public class CarDAO {
 		}
 	}
 
-	public int carprintOnOff(CarDTO c) {
-		if (ss.getMapper(AdminCarMapper.class).carprintOnOff(c) == 1) {
-			System.out.println("**************************");
-			System.out.println(ss.getMapper(AdminCarMapper.class).carprintOnOff(c));
-			System.out.println("**************************");
-			return c.getC_print();
-		} else {
-			return 0;
-		}
-	}
+
 
 }

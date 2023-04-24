@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 // import com.tireshoppingmall.home.admin.AdminMenuSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +26,7 @@ public class AdminCarController {
 	//admin.car.go
 	@RequestMapping(value = "/admin.car.go", method = RequestMethod.GET)
 
-	public String carGo(HttpServletRequest req,Model m) {
+	public String carGo(HttpServletRequest req) {
 	
 		if (firstReq) {
 			cDAO.calcAllCarCount();
@@ -38,21 +37,12 @@ public class AdminCarController {
 		
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car.jsp");
-		return "admin/master";
-		
-		
+		return "admin/master";	
 	}
 	
-	//admin.car.brand.go
-	@RequestMapping(value = "/admin.car.brand.go", method = RequestMethod.GET)
-	public String carBrandGo(CarDTO c,HttpServletRequest req,Model m) {
-		//AdminMenuSession menuSession
-		cDAO.getallCarBrands(req);
-		cDAO.getallBrandCount(c,m);
-		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
-		req.setAttribute("contentPage", "car/car_brand.jsp");
-		return "admin/master";
-	}
+
+	
+	
 	//admin.car.reg.go
 	@RequestMapping(value = "/admin.car.reg.go", method = RequestMethod.GET)
 	public String carregGo(HttpServletRequest req) {
@@ -65,10 +55,10 @@ public class AdminCarController {
 	}
 	
 	
-	@RequestMapping(value = "/reg.car.do", method = RequestMethod.POST)
-	public String carRegdo(Model m,MultipartFile file,CarDTO c, HttpServletRequest req) {
+	@RequestMapping(value = "/admin.car.reg.do", method = RequestMethod.POST)
+	public String carRegdo(CarDTO c, HttpServletRequest req) {
 		
-		cDAO.regCar(file,c, req);
+		cDAO.regCar(c, req);
 		cDAO.getAllCar(1, req);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car.jsp");
@@ -76,7 +66,7 @@ public class AdminCarController {
 	}
 	
 	@RequestMapping(value = "/admin.car.update.do", method = RequestMethod.POST)
-	public String carupdatedo(Model m,MultipartFile file,CarDTO c, HttpServletRequest req) {
+	public String carupdatedo(MultipartFile file,CarDTO c, HttpServletRequest req) {
 		
 		cDAO.updateCar(file,c, req);
 		cDAO.getAllCar(1, req);
@@ -87,7 +77,7 @@ public class AdminCarController {
 	
 	
 	@RequestMapping(value = "/admin.car.delete.do", method = RequestMethod.GET)
-	public String cardeletedo(Model m,CarDTO c, HttpServletRequest req) {
+	public String cardeletedo(CarDTO c, HttpServletRequest req) {
 		
 		cDAO.deletecar(c,req);
 		cDAO.getAllCar(1, req);
@@ -98,7 +88,7 @@ public class AdminCarController {
 	
 	
 	@RequestMapping(value = "/car.search.do", method = RequestMethod.GET)
-	public String carsearchdo(Model m,CarDTO c, HttpServletRequest req) {
+	public String carsearchdo(CarDTO c, HttpServletRequest req) {
 		
 		cDAO.searchcar(c,req);	//세션
 		cDAO.getAllCar(1, req);
@@ -109,7 +99,7 @@ public class AdminCarController {
 	
 	
 	@RequestMapping(value = "/car.page.change", method = RequestMethod.GET)
-	public String PagingCar(Model m,CarDTO c, HttpServletRequest req, @RequestParam int p) {
+	public String PagingCar(CarDTO c, HttpServletRequest req, @RequestParam int p) {
 		
 		cDAO.getAllCar(p, req);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
@@ -118,7 +108,7 @@ public class AdminCarController {
 	}
 
 	@RequestMapping(value = "/brand.delete.do", method = RequestMethod.GET)
-	public String branddeletedo(Model m,CarDTO c, HttpServletRequest req) {
+	public String branddeletedo(CarDTO c, HttpServletRequest req) {
 		cDAO.deletebrand(c,req);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car_brand.jsp");
@@ -127,17 +117,24 @@ public class AdminCarController {
 	
 	
 	
-	
-	
-	
-	
+	//카 브랜드 작업
+	//admin.car.brand.go
+	@RequestMapping(value = "/admin.car.brand.go", method = RequestMethod.GET)
+	public String carBrandGo(CarDTO c,HttpServletRequest req) {
+		//AdminMenuSession menuSession
+		cDAO.getallCarBrands(req);
+		cDAO.getallBrandCount(c,req);
+		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
+		req.setAttribute("contentPage", "car/car_brand.jsp");
+		return "admin/master";
+	}
 	
 	@RequestMapping(value = "/reg.brand.do", method = RequestMethod.GET)
-	public String brandregdo(Model m,CarDTO c, HttpServletRequest req) {
+	public String brandregdo(CarDTO c, HttpServletRequest req) {
 		
 		cDAO.regbrand(c, req);
 		cDAO.getallCarBrands(req);
-		cDAO.getallBrandCount(c,m);
+		cDAO.getallBrandCount(c,req);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car_brand.jsp");
 		return "admin/master";
@@ -145,23 +142,15 @@ public class AdminCarController {
 	
 	
 	@RequestMapping(value = "/update.brand.do", method = RequestMethod.GET)
-	public String brandupdatedo(Model m,CarDTO c, HttpServletRequest req) {
+	public String brandupdatedo(CarDTO c, HttpServletRequest req) {
 		
 		cDAO.updatebrand(c, req);
 		cDAO.getallCarBrands(req);
-		cDAO.getallBrandCount(c,m);
+		cDAO.getallBrandCount(c,req);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car_brand.jsp");
 		return "admin/master";
 	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/admin.car.print.onoff", method = RequestMethod.GET)
-	public int carprintOnOff(CarDTO c, HttpServletRequest req) {
-		return cDAO.carprintOnOff(c);
-
-	}
-	
 	
 	
 }
