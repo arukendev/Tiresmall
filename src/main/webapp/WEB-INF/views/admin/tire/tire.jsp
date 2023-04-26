@@ -134,18 +134,6 @@
 					<a style="color: black;" href="tire.page.change?p=${curPage + 1 }">다음</a>
 				</c:if>
 			</div>
-
-	
-			<div id="tireBrandModal">
-			
-			
-			</div>
-
-
-
-
-
-
 		</div>
 	</div>
 </body>

@@ -157,12 +157,12 @@ select rownum as rn,
 
 
 
-		create table car_brand(
-		cb_name varchar2(20 char)primary key,
-		
-		cb_order varchar2(20 char)
-		
-		);
+create table car_brand(
+	cb_id number(5)primary key,
+	cb_name varchar2(50 char) not null,		
+	cb_img varchar2(1000 char)		
+);
+create
 		
 		
 		
@@ -185,46 +185,49 @@ GROUP BY c_brand
 		SELECT DISTINCT c_brand FROM car;
 		
 		
-insert into car_brand values('대우','4');
-insert into car_brand values('BMW','3');
-insert into car_brand values('기아','2');
-insert into car_brand values('람보르기니','1');
+		
+		alter table car
+add CONSTRAINT FK_car
+    FOREIGN KEY(c_brand)
+    REFERENCES car_brand(cb_name)
+    ON DELETE CASCADE; 
+ 
 
-
-
-
-
-insert into car_brand values('미니','6');
-insert into car_brand values('현대','7');
-insert into car_brand values('쉐보레(대우)','8');
-insert into car_brand values('르노삼성','9');
-insert into car_brand values('쌍용','10');
-insert into car_brand values('닛산','11');
-insert into car_brand values('렉서스','12');
-insert into car_brand values('로터스','13');
-insert into car_brand values('링컨','14');
-insert into car_brand values('마세라티','15');
-insert into car_brand values('맥라렌','16');
-insert into car_brand values('미쓰미시','17');
-insert into car_brand values('벤틀리','18');
-insert into car_brand values('볼보','19');
-insert into car_brand values('사브','20');
-insert into car_brand values('스바루','21');
-insert into car_brand values('시토로엥','22');
-insert into car_brand values('아우디','23');
-insert into car_brand values('애스턴마틴','24');
-insert into car_brand values('인피니티','25');
-insert into car_brand values('재규어','26');
-insert into car_brand values('지프','27');
-insert into car_brand values('캐딜락','28');
-insert into car_brand values('크라이슬러','29');
-insert into car_brand values('토요타','30');
-insert into car_brand values('페라리','31');
-insert into car_brand values('포드','32');
-insert into car_brand values('포르쉐','33');
-insert into car_brand values('푸조','34');
-insert into car_brand values('피아트','35');
-insert into car_brand values('혼다','36');
+insert into car_brand values('대우','');
+insert into car_brand values('BMW','');
+insert into car_brand values('기아','');
+insert into car_brand values('람보르기니','');
+insert into car_brand values('미니','');
+insert into car_brand values('현대','');
+insert into car_brand values('쉐보레(대우)','');
+insert into car_brand values('르노삼성','');
+insert into car_brand values('쌍용','');
+insert into car_brand values('닛산','');
+insert into car_brand values('렉서스','');
+insert into car_brand values('로터스','');
+insert into car_brand values('링컨','');
+insert into car_brand values('마세라티','');
+insert into car_brand values('맥라렌','');
+insert into car_brand values('미쓰미시','');
+insert into car_brand values('벤틀리','');
+insert into car_brand values('볼보','');
+insert into car_brand values('사브','');
+insert into car_brand values('스바루','');
+insert into car_brand values('시토로엥','');
+insert into car_brand values('아우디','');
+insert into car_brand values('애스턴마틴','');
+insert into car_brand values('인피니티','');
+insert into car_brand values('재규어','');
+insert into car_brand values('지프','');
+insert into car_brand values('캐딜락','');
+insert into car_brand values('크라이슬러','');
+insert into car_brand values('토요타','');
+insert into car_brand values('페라리','');
+insert into car_brand values('포드','');
+insert into car_brand values('포르쉐','');
+insert into car_brand values('푸조','');
+insert into car_brand values('피아트','');
+insert into car_brand values('혼다','');
 
 
 

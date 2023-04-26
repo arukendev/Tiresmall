@@ -120,7 +120,10 @@ public class AdminCarController {
 
 	@RequestMapping(value = "/brand.delete.do", method = RequestMethod.GET)
 	public String branddeletedo(CarDTO c, HttpServletRequest req) {
+		
 		cDAO.deletebrand(c,req);
+		cDAO.getallCarBrands(req);
+		
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car_brand.jsp");
 		return "admin/master";
@@ -134,7 +137,7 @@ public class AdminCarController {
 	public String carBrandGo(CarDTO c,HttpServletRequest req) {
 		//AdminMenuSession menuSession
 		cDAO.getallCarBrands(req);
-		cDAO.getallBrandCount(c,req);
+
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car_brand.jsp");
 		return "admin/master";
@@ -145,7 +148,6 @@ public class AdminCarController {
 		
 		cDAO.regbrand(c, req);
 		cDAO.getallCarBrands(req);
-		cDAO.getallBrandCount(c,req);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car_brand.jsp");
 		return "admin/master";
@@ -157,7 +159,6 @@ public class AdminCarController {
 		
 		cDAO.updatebrand(c, req);
 		cDAO.getallCarBrands(req);
-		cDAO.getallBrandCount(c,req);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car_brand.jsp");
 		return "admin/master";

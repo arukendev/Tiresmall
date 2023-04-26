@@ -62,7 +62,7 @@
 								<tbody id="admin_tire_size_add">
 
 									<!--사이에 추가할때마다 생기고 지워지는 공간  밑은 추가되는것들 -->
-									
+									<c:forEach items="${frontTire }" var="ft" end="${size }">
 										<tr style='height: 50px;' class="admin_tire_validation_test">
 											<td class='admin-tire-size-reg-content'>
 												<div class='admin-tire-reg-size-modal1'>
@@ -124,7 +124,7 @@
 											<td class='admin-tire-size-reg-content'><div
 													class='admin-tire-size-reg-delete'>삭제</div></td>
 										</tr>
-								
+									</c:forEach>
 								</tbody>
 							</table>
 						</td>

@@ -17,7 +17,7 @@ $(function() {
 	
 	//브랜드 모달
 	carBrandModal();
-	
+
 })
 
 //사이즈 추가시
@@ -293,9 +293,20 @@ function deletecar(id) {
 
 
 function carBrandModal() {
+	//신규 등록 누를시
 	$(".brandRegButton").click(function() {
-		$("#brandregpopup01").css("display","flex");
+		$("#admin_car_brand_reg_modal").css("display","flex");
 	})
+	//취소 버튼 누를시
+	$(".admin_carBrand_deleteBTN").click(function() {
+		$("#admin_car_brand_reg_modal").css("display","none");
+		$(".admin_car_brand_reg_brant_name").val()==null;
+	})
+	
+	
+	
+	
+	
 }
 
 

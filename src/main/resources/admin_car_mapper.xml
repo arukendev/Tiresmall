@@ -24,9 +24,12 @@
 		)WHERE rn &gt;= #{start} and rn &lt;=#{end} 
 	</select>
 	
+	
 	<select id="getCar" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
-		select * from car where c_id = #{val}
+		select * from car where C_ID = #{c_id}
 	</select>
+	
+	
 
 	<insert id="regCar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 		insert into Car
@@ -57,24 +60,17 @@
 	</select>
 
 
-	<delete id="deletebrandcar">
-	    delete from Car where c_brand = #{cb_name}
-	</delete>
-
 	<delete id="deletebrand">
-   	 delete from car_brand where cb_name = #{cb_name}
+   		delete from car_brand where cb_name = #{cb_name}
 	</delete>
 
 	<insert id="regbrand" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 		insert into car_brand
-		values(#{cb_name},#{cb_order},#{cb_img})
+		values(#{cb_name},'')
 	</insert>
 
-	<select id= "getallBrandCount" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
-		SELECT COALESCE(COUNT(car.c_id), 0) AS cb_ea
-		FROM car_brand LEFT JOIN car ON car_brand.cb_name = car.c_brand
-		GROUP BY car_brand.cb_name, car_brand.cb_order
-		ORDER BY TO_NUMBER(car_brand.cb_order) ASC
+	<select id= "getallBrandCount" resultType="int">
+		select count(*) from car where c_brand = #{cb_name}
 	</select>
 
 

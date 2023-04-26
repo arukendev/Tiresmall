@@ -115,7 +115,6 @@ window.addEventListener("keydown", (e) => {
 	if(e.keyCode == 27){
 		$("#cancleModal").trigger("click");
 	}
-
 });
 	
 	

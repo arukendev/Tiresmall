@@ -26,8 +26,6 @@ public class CarDAO {
 	@Autowired
 	private SqlSession ss;
 
-	private AdminCarMapper mapper;
-
 	@Autowired
 	private CarOption co;
 
@@ -49,7 +47,6 @@ public class CarDAO {
 
 	// 카 모든것 가져오기
 	public void getAllCar(int pageNo, HttpServletRequest req) {
-		mapper = ss.getMapper(AdminCarMapper.class);
 		int count = co.getCarCountPerPage();
 		int start = (pageNo - 1) * count + 1;
 		int end = start + (count - 1);
@@ -230,18 +227,60 @@ public class CarDAO {
 		List<CarDTO> carBrands = ss.getMapper(AdminCarMapper.class).getAllCarBrands();
 		System.out.println(c.getC_id());
 		
-		CarDTO Car = ss.getMapper(AdminCarMapper.class).getCar(c.getC_id());
-		String ft =  c.getC_ft().replace("앞 : ", "").replace("/", "").replace("R", "");;
-		System.out.println(ft);
-		c.getC_bt();
+		CarDTO Car = ss.getMapper(AdminCarMapper.class).getCar(c);
+		System.out.println(Car.getC_name());
+		System.out.println(Car.getC_ft());
+		System.out.println("해결?");
+		String[] frontTire =  Car.getC_ft().replaceAll("앞 : ", "").replaceAll("/", "").replaceAll("R", "").split("!");
+		String[] rearTire = Car.getC_bt().replaceAll("뒤 : ", "").replaceAll("/", "").replaceAll("R", "").split("!");
+			
+		String[] tf_width = new String[frontTire.length];
+		String[] tf_ratio = new String[frontTire.length];
+		String[] tf_inch = new String[frontTire.length];
 		
+		String[] tb_width = new String[frontTire.length];
+		String[] tb_ratio = new String[frontTire.length];
+		String[] tb_inch = new String[frontTire.length];
+		
+		//현재 frontTire 값 :1111111	2222222		3333333			111/11R11   
+		//현재 rearTire 값 : 1111111	2222222		3333333
+		
+		for (int i = 0; i < rearTire.length; i++) {
+			tf_width[i] = frontTire[i].substring(0+(7*i),3+(7*i));
+			tf_ratio[i] = frontTire[i].substring(3+(7*i),5+(7*i));
+			tf_inch[i] = frontTire[i].substring(5+(7*i),3+(7*i));
+
+			tb_width[i] = rearTire[i].substring(0+(7*i),3+(7*i));
+			tb_ratio[i] = rearTire[i].substring(3+(7*i),5+(7*i));
+			tb_inch[i] = rearTire[i].substring(5+(7*i),7+(7*i));
+		}
+
+		Car.setTf_width(tf_ratio);
+		Car.setTf_ratio(tf_width);
+		Car.setTf_inch(tf_inch);
+		
+		Car.setTb_width(tb_width);
+		Car.setTb_ratio(tb_ratio);
+		Car.setTb_inch(tb_inch);
+		
+		for (String s : tb_inch) {
+			System.out.println(Car.getTf_width());
+			System.out.println(Car.getTf_ratio());
+			System.out.println(Car.getTf_inch());
+			System.out.println(Car.getTb_width());
+			System.out.println(Car.getTb_ratio());
+			System.out.println(Car.getTb_inch());
+			System.out.println("------------"+s);
+		}
+		int size = frontTire.length;
+		
+		req.setAttribute("size", size);
 		req.setAttribute("car", Car);
 		req.setAttribute("carbrands", carBrands);
 
 	}
 
 	public void deletebrand(CarDTO c, HttpServletRequest req) {
-		ss.getMapper(AdminCarMapper.class).deletebrandcar(c);
 
 		if (ss.getMapper(AdminCarMapper.class).deletebrand(c) == 1) {
 			System.out.println("삭제완료");
@@ -258,14 +297,17 @@ public class CarDAO {
 	}
 
 	public void getallCarBrands(HttpServletRequest req) {
+		List<CarDTO> carBrands =  ss.getMapper(AdminCarMapper.class).getAllCarBrands();
+		req.setAttribute("carbrands", carBrands);
 		
-		req.setAttribute("carbrands", ss.getMapper(AdminCarMapper.class).getAllCarBrands());
+		for (CarDTO c : carBrands) {
+			c.setCb_num(ss.getMapper(AdminCarMapper.class).getallBrandCount(c.getCb_name()));
+			
+		}
 		
 	}
 
-	public void getallBrandCount(CarDTO c, HttpServletRequest req) {
-		req.setAttribute("carcount", ss.getMapper(AdminCarMapper.class).getallBrandCount(c));
-	}
+
 
 	public void updatebrand(CarDTO c, HttpServletRequest req) {
 

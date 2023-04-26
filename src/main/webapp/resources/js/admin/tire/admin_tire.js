@@ -279,6 +279,12 @@ function tireRegSizeReg() {
 		$(this).closest("tr").find($(".tire_input_ratio")).val()=="";
 		$(this).closest("tr").find($(".tire_input_inch")).val()=="";	
 	});
+	
+	$(document).on("click",".admin_tire_brand_reg_cen", function() {
+		$(".admin-tire-reg-size-modal").css("display","none");
+		$(".tire-brand-input").val()=="";
+		$(".tire-brand-input").val()=="";
+	})
 }
 
 //타이어 등록페이지 사진css
@@ -771,8 +777,20 @@ function tireBrandModal() {
 	$("#admin_tireBrand_reg").click(function() {
 		$('.admin-tire-reg-size-modal').css("display","flex");	
 
+		window.addEventListener("keydown", (e) => {
+			if(e.keyCode == 27){
+				console.log(e.keyCode);
+				$(".admin_tire_brand_reg_cen").trigger("click");
+			}
+			if(e.keyCode == 13){
+				console.log(e.keyCode);
+				$(".admin_tire_brand_reg_in").trigger("click");
+			}
+		});
+
 		
 	})
+	
 }
 
 function numberInput() {
@@ -853,6 +871,6 @@ function inputEmpty() {
 		    return false;
 		}
 	})
-}
 
+}
 

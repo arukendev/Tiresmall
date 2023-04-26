@@ -8,9 +8,7 @@ public interface AdminCarMapper {
 	
 	List<CarDTO> getAllCar(CarDTO paging);
 	
-	List<CarDTO> getAllCarBrands();
-	
-	CarDTO getCar(int c_id);
+	CarDTO getCar(CarDTO c);
 
 	List<CarDTO> getAllCar();
 
@@ -19,23 +17,22 @@ public interface AdminCarMapper {
 	int updatecar(CarDTO c);
 
 	int deletecar(CarDTO c);
-
-	int deletebrand(CarDTO c);
-
+	
+	//차 브랜드
+	List<CarDTO> getAllCarBrands();
+	
+	int getallBrandCount(String cb_name);
 
 	int regbrand(CarDTO c);
-
-
-	List<CarDTO> getallBrandCount(CarDTO c);
-
-
-	int deletebrandcar(CarDTO c);
-
+	
+	int deletebrand(CarDTO c);
 
 	int updatebrand(CarDTO c);
 
 
 	int updatebrandcar(CarDTO c);
+
+	
 
 
 

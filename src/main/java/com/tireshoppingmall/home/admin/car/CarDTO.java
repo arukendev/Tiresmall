@@ -30,11 +30,8 @@ public class CarDTO {
 	
 	//자동차 브랜드
 	private String cb_name;
-	private String old_cb_name;
-	private String new_cb_name;
-	private String cb_ea;
-	private int cb_order;
-	private String cb_img;
+	private int cb_num;
+	
 	
 	//페이징
 	private BigDecimal start;
@@ -73,11 +70,9 @@ public class CarDTO {
 		this.start = start;
 		this.end = end;
 	}
-
 	public CarDTO(int c_id, String c_name, String c_year1, String c_year2, String c_brand, String c_ft, String c_bt,
 			MultipartFile file, String c_file, String[] tf_width, String[] tf_ratio, String[] tf_inch,
-			String[] tb_width, String[] tb_ratio, String[] tb_inch, String cb_name, String old_cb_name,
-			String new_cb_name, String cb_ea, int cb_order, String cb_img, BigDecimal start, BigDecimal end) {
+			String[] tb_width, String[] tb_ratio, String[] tb_inch, String cb_name, BigDecimal start, BigDecimal end) {
 		super();
 		this.c_id = c_id;
 		this.c_name = c_name;
@@ -95,11 +90,6 @@ public class CarDTO {
 		this.tb_ratio = tb_ratio;
 		this.tb_inch = tb_inch;
 		this.cb_name = cb_name;
-		this.old_cb_name = old_cb_name;
-		this.new_cb_name = new_cb_name;
-		this.cb_ea = cb_ea;
-		this.cb_order = cb_order;
-		this.cb_img = cb_img;
 		this.start = start;
 		this.end = end;
 	}
@@ -112,20 +102,26 @@ public class CarDTO {
 		this.start = start;
 		this.end = end;
 	}
+	
 	//자동차 브랜드
-	public CarDTO(String cb_name, String old_cb_name, String new_cb_name, String cb_ea, int cb_order, String cb_img) {
+	public CarDTO(String cb_name) {
 		super();
 		this.cb_name = cb_name;
-		this.old_cb_name = old_cb_name;
-		this.new_cb_name = new_cb_name;
-		this.cb_ea = cb_ea;
-		this.cb_order = cb_order;
-		this.cb_img = cb_img;
 	}
 	
+	
+	public int getCb_num() {
+		return cb_num;
+	}
+
+	public void setCb_num(int cb_num) {
+		this.cb_num = cb_num;
+	}
+
 	public String[] getTf_width() {
 		return tf_width;
 	}
+
 
 	public void setTf_width(String[] tf_width) {
 		this.tf_width = tf_width;
@@ -171,13 +167,6 @@ public class CarDTO {
 		this.tb_inch = tb_inch;
 	}
 
-	public String getCb_img() {
-		return cb_img;
-	}
-
-	public void setCb_img(String cb_img) {
-		this.cb_img = cb_img;
-	}
 
 	public String getCb_name() {
 		return cb_name;
@@ -187,37 +176,7 @@ public class CarDTO {
 		this.cb_name = cb_name;
 	}
 
-	public String getOld_cb_name() {
-		return old_cb_name;
-	}
 
-	public void setOld_cb_name(String old_cb_name) {
-		this.old_cb_name = old_cb_name;
-	}
-
-	public String getNew_cb_name() {
-		return new_cb_name;
-	}
-
-	public void setNew_cb_name(String new_cb_name) {
-		this.new_cb_name = new_cb_name;
-	}
-
-	public String getCb_ea() {
-		return cb_ea;
-	}
-
-	public void setCb_ea(String cb_ea) {
-		this.cb_ea = cb_ea;
-	}
-
-	public int getCb_order() {
-		return cb_order;
-	}
-
-	public void setCb_order(int cb_order) {
-		this.cb_order = cb_order;
-	}
 
 	public BigDecimal getStart() {
 		return start;
@@ -309,13 +268,6 @@ public class CarDTO {
 		this.c_file = c_file;
 	}
 
-	
-	@Override
-	public String toString() {
-		return "CarDTO [c_id=" + c_id + ", c_name=" + c_name + ", c_year1=" + c_year1 + ", c_year2=" + c_year2
-				+ ", c_brand=" + c_brand + ", c_ft=" + c_ft + ", c_bt=" + c_bt +
-				", file=" + file + ", c_file=" + c_file + "]";
-	}
 	public static void CarPaging(HttpServletRequest req) {
 		req.getSession().setAttribute("cars", null);
 	}
