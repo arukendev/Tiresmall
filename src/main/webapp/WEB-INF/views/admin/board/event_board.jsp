@@ -163,6 +163,6 @@
 			<a style="color: black;" href="event.page.change?p=${curPage + 1 }">다음</a>
 		</c:if>
 	</div>
-
+	<script src="resources/js/admin/board/event_board.js"></script>
 </body>
 </html>

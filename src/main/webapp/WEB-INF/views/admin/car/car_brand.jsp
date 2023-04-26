@@ -41,26 +41,6 @@
 					</div>
 				</div> 
 			</form>
-				<!-- <div id="admin_car_brand_reg_modal">
-					<div class="admin_car_brand_reg_page">
-						<div class="admin_car_brand_reg_title">차 메이커 등록</div>
-						<div>
-							<div>
-								<div class="admin_car_brand_reg_BrandName">
-									<div class="admin_car_brand_reg_td_title">브랜드 명</div>
-									<div><input class="admin_car_brand_reg_brand_name" name="cb_name"></div>
-								</div>
-							</div>
-						</div>
-					
-						<div class="admin_carBrand_reg_button">
-							<button class="admin-carBrand-reg-button">등록</button> 
-							<div class="admin_carBrand_deleteBTN">취소</div> 
-						</div>
-					</div>
-				</div> -->
-	
-
 			
 			<table id="admin_car_content">
 				<tr>
