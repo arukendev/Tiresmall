@@ -22,24 +22,44 @@
 				</div>
 			</div>
 			<!-- 모달창  -->
-			<div id="admin_car_brand_reg_modal">
-				<div class="admin_car_brand_reg_page">
-					<form action="reg.brand.do">
-						<div class="admin_car_brand_reg_page_table">
-							<div class="admin_car_brand_reg_title">차 메이커 등록</div>
-							<div class="admin_car_brand_reg_BrandName">
-								<div class="admin_car_brand_reg_td_title">브랜드 명</div>
-								<div class="admin_car_brand_reg_brand_name"><input name="cb_name"></div>
+			<form action="reg.brand.do">
+				<div id='admin_car_brand_reg_modal'>
+					<div class='admin_car_brand_reg_page'>
+						<div class='admin_car_brand_reg_title'>차 메이커 등록</div>
+						<div class='admin-car-brand-reg-input'> 
+							<div class='admin-car-brand-reg-input'>
+								<div class="admin_car_brand_reg_BrandName">
+									<div class="admin_car_brand_reg_td_title">브랜드명</div>
+									<div><input class="admin_car_brand_reg_brand_name" name="cb_name" required="required"></div>
+								</div>
 							</div>
-							<div class="admin_carBrand_reg_button">
-								<button class="admin-carBrand-reg-button">등록</button> 
-								<div class="admin_carBrand_deleteBTN">취소</div> 
+							<div class='admin_carBrand_reg_button'>
+								<button class='admin-carBrand-reg-button'>입력</button>
+								<div class='admin_carBrand_deleteBTN'>취소</div>
 							</div>
-			
 						</div>
-					</form>
-				</div>
-			</div>
+					</div>
+				</div> 
+			</form>
+				<!-- <div id="admin_car_brand_reg_modal">
+					<div class="admin_car_brand_reg_page">
+						<div class="admin_car_brand_reg_title">차 메이커 등록</div>
+						<div>
+							<div>
+								<div class="admin_car_brand_reg_BrandName">
+									<div class="admin_car_brand_reg_td_title">브랜드 명</div>
+									<div><input class="admin_car_brand_reg_brand_name" name="cb_name"></div>
+								</div>
+							</div>
+						</div>
+					
+						<div class="admin_carBrand_reg_button">
+							<button class="admin-carBrand-reg-button">등록</button> 
+							<div class="admin_carBrand_deleteBTN">취소</div> 
+						</div>
+					</div>
+				</div> -->
+	
 
 			
 			<table id="admin_car_content">

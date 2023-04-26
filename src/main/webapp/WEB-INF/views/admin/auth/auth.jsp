@@ -140,14 +140,14 @@
 
 			<table id="auth_content">
 				<tr>
-					<td class="auth_content_title auth_no">No.</td>
+					<td class="auth_content_title auth_no" style="border-left-color:#343a40; ">No.</td>
 					<td class="auth_content_title auth_sortation">구분</td>
 					<td class="auth_content_title auth_id">ID</td>
 					<td class="auth_content_title auth_name">이 름</td>
 					<td class="auth_content_title auth_phoneNum">연락처</td>
 					<td class="auth_content_title auth_carNum">자동차 번호</td>
 					<td class="auth_content_title auth_date">등록일</td>
-					<td class="auth_content_title auth_management">관리</td>
+					<td class="auth_content_title auth_management"style="border-right-color:#343a40; ">관리</td>
 				</tr>
 				<c:if test="${empty manyAuth}">
 					<tr>

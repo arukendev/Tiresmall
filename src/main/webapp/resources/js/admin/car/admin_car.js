@@ -296,12 +296,33 @@ function carBrandModal() {
 	//신규 등록 누를시
 	$(".brandRegButton").click(function() {
 		$("#admin_car_brand_reg_modal").css("display","flex");
+		
+		window.addEventListener("keydown", (e) => {
+			if(e.keyCode == 27){
+				$(".admin_carBrand_deleteBTN").trigger("click");		
+			}
+			if(e.keyCode == 13){
+				$(".admin-carBrand-reg-button").trigger("click");
+			}
+		});
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	})
 	//취소 버튼 누를시
 	$(".admin_carBrand_deleteBTN").click(function() {
 		$("#admin_car_brand_reg_modal").css("display","none");
 		$(".admin_car_brand_reg_brant_name").val()==null;
 	})
+	
 	
 	
 	

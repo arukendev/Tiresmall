@@ -176,7 +176,11 @@ a {
 		border-bottom: 1px solid #e5e5e5;
 	}
 }
-
+#admin_car_content{
+	width: 99%;
+	margin-left: 10px;
+	margin-right: 10px;
+}
 
 .admin_car_content_title {
 	font-size: 15pt;

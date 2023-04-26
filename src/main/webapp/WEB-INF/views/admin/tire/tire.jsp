@@ -32,8 +32,8 @@
 					</div>
 					<div class="tire_searchTitle">
 						<div class="tire_searchID">
-							<label for="tire_searchid">모델명</label> <input id="tire_Name"
-								name="tg_name">
+							<label for="tire_searchid">모델명</label> 
+							<input id="tire_Name" name="tg_name">
 						</div>
 					</div>
 					<div id="searchBtn">

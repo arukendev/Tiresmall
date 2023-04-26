@@ -61,7 +61,7 @@ $('.order_modal_go').click(function() {
 	modal_content_td[10].innerText = arr[18];								// 주문자메모
 	modal_content_td[12].innerText = arr[17];								// 배송지
 	modal_content_td[13].innerText = arr[7];								// 결제방법
-	modal_content_td[14].innerText = arr[8];								// 주문금액
+	modal_content_td[14].innerText = arr[8]+"원";								// 주문금액
 	modal_content_td[15].innerText = $(this).find(".td_c00").text();		// 방문예약일
 	
 	/*	if(arr[5]!=''){
@@ -90,11 +90,11 @@ $('.order_modal_go').click(function() {
 	let tire_tr = $(this).find('.tire_content_tr');
 	let tire_tr2 = $(tire_tr).clone();
 	let content = `<tr>
-						<th class="tire_th">종류</th>
+						<th class="tire_th"style="border-left-color: black;">종류</th>
 						<th class="tire_th">브랜드명</th>
 						<th class="tire_th">제품명</th>
 						<th class="tire_th">스펙</th>
-						<th class="tire_th">주문수량</th>
+						<th class="tire_th"style="border-right-color: black;">주문수량</th>
 					</tr>`
 		$("#product-table").append(content);
 		$("#product-table").append(tire_tr2);
@@ -114,6 +114,9 @@ $('.modal-label').each(function(i, rInput) {
 window.addEventListener("keydown", (e) => {
 	if(e.keyCode == 27){
 		$("#cancleModal").trigger("click");
+	}
+	if(e.keyCode == 13){
+		$(".admin-carBrand-reg-button").trigger("click");
 	}
 });
 	

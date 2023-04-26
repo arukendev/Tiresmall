@@ -10,6 +10,7 @@
 	background-color: #333333;
 	border: 1px solid;
 	color: white;
+	padding: 10px;
 }
 
 .modal_table td {
@@ -18,7 +19,7 @@
 
 .notice_header {
 	display: flex;
-	background-color: #CCCCCC;
+	background-color: #eee;
 	align-items: center;
 	justify-content: center;
 	height: 70px;
@@ -59,10 +60,12 @@
 }
 .modal-wrapper {
 	width: 100%;
-    height: 100vh;
+    height: 107vh;
     display: flex;
     padding-top: 60px;
     justify-content: center;
+ 	align-items:center;
+ 	margin-top:-100px;
     background-color: rgba(0, 0, 0, 0.3);
 }
 

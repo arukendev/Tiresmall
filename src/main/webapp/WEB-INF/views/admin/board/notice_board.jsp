@@ -64,7 +64,7 @@
 			<form class="notice_form" action="search.do">
 				<div>
 					<div class="select_box">
-								<div class="no-drag">구분</div>
+						<div class="no-drag">구분</div>
 						<select name="selectOption" id="sortationSelect"
 							class="notice_select">
 							<option value="0">전체</option>
