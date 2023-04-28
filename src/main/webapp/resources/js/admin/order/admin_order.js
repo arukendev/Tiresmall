@@ -100,26 +100,23 @@ $('.order_modal_go').click(function() {
 		$("#product-table").append(tire_tr2);
 	
 	
-$('.modal-label').each(function(i, rInput) {
-	if(arr[1] == rInput.value){
-		$(rInput).attr("checked", "checked");
-	}
-})
+	$('.modal-label').each(function(i, rInput) {
+		if(arr[1] == rInput.value){
+			$(rInput).attr("checked", "checked");
+		}
+	})
 
-// modal_content_td[15].innerText = arr[1];
-	
-	
-	
-	
-window.addEventListener("keydown", (e) => {
-	if(e.keyCode == 27){
-		$("#cancleModal").trigger("click");
-	}
-	if(e.keyCode == 13){
-		$(".admin-carBrand-reg-button").trigger("click");
-	}
-});
-	
+	// modal_content_td[15].innerText = arr[1];
+
+	window.addEventListener("keydown", (e) => {
+		if(e.keyCode == 27){
+			$("#cancleModal").trigger("click");
+		}
+		if(e.keyCode == 13){
+			$(".admin-carBrand-reg-button").trigger("click");
+		}
+	});
+		
 	
 })
 
@@ -127,5 +124,13 @@ $("#cancleModal").click(function() {
 	$('#order_modal').hide();
 	// 모달 off
 	$("body").css("overflow", 'auto');
+});
+
+//검색 엔터로 검색
+window.addEventListener("keydown", (e) => {
+
+	if(e.keyCode == 13){
+		$(".orderBtn").trigger("click");
+	}
 });
 

@@ -7,6 +7,10 @@
 	border-radius: 7px;
 }
 
+#admin_order_contain{
+	padding: 20px;	
+}
+
 .modal_table {
 	background-color: white;
 	width: 100%;

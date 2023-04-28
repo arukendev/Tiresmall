@@ -17,7 +17,12 @@ $(function() {
 	
 	//브랜드 모달
 	carBrandModal();
-
+	//엔터로 검색
+	$(window).keydown(function(e) {
+		if(e.keyCode == 13){
+			$(".carsearchButton").trigger("click");
+		}
+	})
 })
 
 //사이즈 추가시

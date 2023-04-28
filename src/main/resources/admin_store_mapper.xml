@@ -3,35 +3,21 @@
 <mapper
 	namespace="com.tireshoppingmall.home.admin.store.AdminStoreMapper">
 	<select id="getBranchCount" resultType="int">
-
-		select count(*)
-		from branch
-		where b_branchname
-		like
-		'%'||#{branchnameInput}||'%'
-		<if test="branchareaInput != ''">and b_area = #{branchareaInput} </if>
+		select count(*) from branch
+		where b_branchname like '%'||#{b_branchname}||'%'
+		<if test="b_area != ''">and b_area = #{b_area} </if>
 	</select>
 
+ 
+	<select id="getBranchlist" resultType="com.tireshoppingmall.home.admin.store.BranchDTO">
 
-	<select id="getBranchlist"
-		resultType="com.tireshoppingmall.home.admin.store.BranchDTO"
-		parameterType="com.tireshoppingmall.home.admin.store.SearchBranchDTO">
-
-	select *
-from
-(select rownum as rn, b_id, b_sortation, b_area, b_addr,
-b_name , b_time ,
-b_service , b_mapdata, b_manager , b_managernumber ,
-b_branchname,
-b_branchnumber ,b_cr ,b_email,b_file
-from(
-select * from
-branch where
-b_branchname like '%'||#{branchnameInput}||'%'
-<if test="branchareaInput != ''"> and b_area = #{branchareaInput} </if>
-)
-)  where rn &gt;= #{start} and rn &lt;= #{end}
-
+		select * from (
+		select rownum as rn, b_id, b_sortation, b_area, b_addr,b_name, b_time, b_service, b_mapdata,
+		b_manager, b_managernumber, b_branchname, b_branchnumber, b_cr , b_email, b_file
+		from(select * from branch where 
+		b_branchname like '%'||#{b_branchname}||'%'
+		<if test="b_area != ''"> and b_area = #{b_area} </if>)
+		)  where rn &gt;= #{start} and rn &lt;= #{end}
 	</select>
 
 
@@ -46,17 +32,16 @@ b_branchname like '%'||#{branchnameInput}||'%'
 		parameterType="com.tireshoppingmall.home.admin.store.BranchDTO">
 
 		insert into branch
-		values(#{b_id},#{b_sortation},#{b_area},#{b_addr},#{b_name},#{b_time},#{b_service},#{b_mapdata},#{b_manager},#{b_managernumber},#{b_branchname},#{b_branchnumber},#{b_cr},#{b_email},#{b_file})
+		values(branch_seq.nextval,#{b_sortation},#{b_area},#{b_addr},#{b_name},#{b_time},#{b_service},#{b_mapdata},#{b_manager},#{b_managernumber},#{b_branchname},#{b_branchnumber},#{b_cr},#{b_email},#{b_file})
 
 
 	</insert>
 
-	<select id="branchSearchbranchname" resultType="com.tireshoppingmall.home.admin.store.BranchDTO"
-		parameterType="com.tireshoppingmall.home.admin.store.SearchBranchDTO">
+	<select id="branchSearchbranchname" resultType="com.tireshoppingmall.home.admin.store.BranchDTO">
 
 		select * from branch where 
-		b_branchname like '%'||#{branchnameInput}||'%'
-		<if test="branchareaInput != ''"> and b_area = #{branchareaInput}  </if>
+		b_branchname like '%'||#{b_branchname}||'%'
+		<if test="b_area != ''"> and b_area = #{b_area}  </if>
 
 	</select>
 

@@ -63,6 +63,12 @@ $(function() {
 	 //form에서 input이 비여있는지
 	 inputEmpty();
 	 
+	$(window).keydown(function(e) {
+		if(e.keyCode == 13){
+			$(".searchtirebtn").trigger("click");
+		}
+	})
+	 
 })
 
 //세단,suv 추천 일반 값 넘기기

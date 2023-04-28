@@ -1,5 +1,9 @@
 package com.tireshoppingmall.home.admin.store;
 
+import java.math.BigDecimal;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class BranchDTO {
@@ -20,19 +24,44 @@ public class BranchDTO {
 	private String b_email;
 	private MultipartFile file;
 	private String b_file;
+	
+	//페이징
+	private BigDecimal start;
+	private BigDecimal end;
+	
+
 	public BranchDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	public BranchDTO(String b_id, String b_sortation, String b_area, String b_addr, String b_name, String b_time,
+			String b_service, String b_mapdata, String b_manager, String b_managernumber, String b_branchname,
+			String b_branchnumber, String b_cr, String b_email, String b_file) {
+		super();
+		this.b_id = b_id;
+		this.b_sortation = b_sortation;
+		this.b_area = b_area;
+		this.b_addr = b_addr;
+		this.b_name = b_name;
+		this.b_time = b_time;
+		this.b_service = b_service;
+		this.b_mapdata = b_mapdata;
+		this.b_manager = b_manager;
+		this.b_managernumber = b_managernumber;
+		this.b_branchname = b_branchname;
+		this.b_branchnumber = b_branchnumber;
+		this.b_cr = b_cr;
+		this.b_email = b_email;
+		this.b_file = b_file;
+	}
+
+
+
 	public BranchDTO( String b_id, String b_sortation, String b_area, String b_addr, String b_name,
 			String b_time, String b_service, String b_mapdata, String b_manager, String b_managernumber,
 			String b_branchname, String b_branchnumber, String b_cr, String b_email, MultipartFile file,
 			String b_file) {
-
-
-
-
 		super();
 		this.b_id = b_id;
 		this.b_sortation = b_sortation;
@@ -52,6 +81,30 @@ public class BranchDTO {
 		this.b_file = b_file;
 	}
 
+	//페이징
+	public BranchDTO(String b_area, String b_branchname, BigDecimal start, BigDecimal end) {
+		super();
+		this.b_area = b_area;
+		this.b_branchname = b_branchname;
+		this.start = start;
+		this.end = end;
+	}
+
+	public BigDecimal getStart() {
+		return start;
+	}
+
+	public void setStart(BigDecimal start) {
+		this.start = start;
+	}
+
+	public BigDecimal getEnd() {
+		return end;
+	}
+
+	public void setEnd(BigDecimal end) {
+		this.end = end;
+	}
 
 	public String getB_id() {
 		return b_id;
@@ -150,6 +203,12 @@ public class BranchDTO {
 	public void setB_file(String b_file) {
 		this.b_file = b_file;
 	}
+	
+	public static void clearSearch(HttpServletRequest req) {
+		req.getSession().setAttribute("branchDTO", null);
+		
+	}
+	
 
 	@Override
 	public String toString() {

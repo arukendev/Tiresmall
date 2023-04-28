@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/admin/auth/admin_auth.css">
-<link rel="stylesheet" href="resources/css/admin/tire/admin_tire.css">
 <link rel="stylesheet" href="resources/css/admin/board/notice_board.css">
 <script src="resources/js/admin/auth/admin_auth.js"></script>
 </head>
@@ -40,7 +39,7 @@
 									<div class="auth-modal-info-title">
 										아이디
 									</div>
-									<div class="auth-modal-info-content">
+									<div id="auth_id" class="auth-modal-info-content">
 										아이디111
 									</div>
 								</div>
@@ -48,13 +47,13 @@
 									<div class="auth-modal-info-title"><!--가로  -->
 										회원명		
 									</div>
-									<div class="auth-modal-info-content"><!--가로  -->
+									<div id="auth_name" class="auth-modal-info-content"><!--가로  -->
 										회원명111		
 									</div>
 									<div class="auth-modal-info-title"><!--가로  -->
 										전화번호	
 									</div>
-									<div class="auth-modal-info-content"><!--가로  -->
+									<div id="auth_phone" class="auth-modal-info-content"><!--가로  -->
 										전화번호	222	
 									</div>
 								</div>
@@ -62,13 +61,13 @@
 									<div class="auth-modal-info-title"><!--가로  -->
 										제조사		
 									</div>
-									<div class="auth-modal-info-content"><!--가로  -->
+									<div id="auth_carBrand" class="auth-modal-info-content"><!--가로  -->
 										제조사111	
 									</div>
 									<div class="auth-modal-info-title"><!--가로  -->
 										차량명		
 									</div>
-									<div class="auth-modal-info-content"><!--가로  -->
+									<div id="auth_carName" class="auth-modal-info-content"><!--가로  -->
 										차량명		
 									</div>
 								</div>
@@ -76,13 +75,13 @@
 									<div class="auth-modal-info-title auth-modal-info-final-line"><!--가로  -->
 										차량년식
 									</div>
-									<div class="auth-modal-info-content"><!--가로  -->
+									<div id="auth_carYear"class="auth-modal-info-content"><!--가로  -->
 										차량년식111	
 									</div>
 									<div class="auth-modal-info-title auth-modal-info-final-line"><!--가로  -->
 										차량번호		
 									</div>
-									<div class="auth-modal-info-content"><!--가로  -->
+									<div id="auth_carNUm" class="auth-modal-info-content"><!--가로  -->
 										차량번호111
 									</div>
 								</div>				
@@ -90,8 +89,8 @@
 						
 						</div>
 						<div id="auth_modal_btn">
-							<button class="admin_notPrintBTN">수정</button>
-							<div class="admin_deleteBTN ">취소</div>
+							<button class="admin_printBTN">수정</button>
+							<div class="admin_cenBTN">취소</div>
 						</div>
 					</div>
 				</form>
@@ -131,7 +130,7 @@
 						</div>
 					</div> -->
 					<div id="searchBtn">
-						<button>검색</button>
+						<button id="adminauthserch">검색</button>
 					</div>
 				</div>
 			</form>

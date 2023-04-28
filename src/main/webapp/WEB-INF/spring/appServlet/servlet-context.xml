@@ -145,7 +145,7 @@
 	</beans:bean>
 
 
-	<!-- Branch 몇개씩 보여줄지 -->
+	<!-- Store 몇개씩 보여줄지 -->
 
 	<beans:bean id="bo"
 		class="com.tireshoppingmall.home.admin.store.BranchOption">
