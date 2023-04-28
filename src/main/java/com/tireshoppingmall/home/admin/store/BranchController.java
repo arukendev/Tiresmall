@@ -62,19 +62,18 @@ public class BranchController {
 	@RequestMapping(value = "/admin.store.reg.go", method = RequestMethod.GET)
 	public String storeRegGo(HttpServletRequest req) {
 
+		req.setAttribute("contentPage", "store/branchReg.jsp");	
 		return "admin/master";
-
 	}
-
-	@RequestMapping(value = "/reg.branch.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin.store.reg.do", method = RequestMethod.GET)
 	public String storeRegDo(MultipartFile file,BranchDTO b, HttpServletRequest req) {
 
 		sDAO.regBranch(file,b, req);
 		sDAO.getAllBranch(1, req);
-	//	bDAO.getAllBranch(m);
+		
+		
 		req.setAttribute("contentPage", "store/branch.jsp");
 		return "admin/master";
-
 	}
 
 

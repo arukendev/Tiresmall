@@ -73,7 +73,44 @@ $(function() {
 			$("#hidden_b_area").val("");
 		}
 	})
+
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function updatebranch(id, sortation, area, addr, name, time, service, mapdata,
 		manager, managernumber, branchname, branchnumber, cr, email, b_file) {

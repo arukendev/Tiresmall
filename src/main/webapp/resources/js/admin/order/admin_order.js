@@ -113,7 +113,7 @@ $('.order_modal_go').click(function() {
 			$("#cancleModal").trigger("click");
 		}
 		if(e.keyCode == 13){
-			$(".admin-carBrand-reg-button").trigger("click");
+			$("#updateModal").trigger("click");
 		}
 	});
 		
