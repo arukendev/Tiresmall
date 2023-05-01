@@ -303,12 +303,11 @@ select {
 
 
 .admin-store-reg-info-content{
-	width: 84%;
-	border: 1px solid black;
 	display: flex;
 	align-items: center;
-	padding: 5px;
+	padding: 10px;
 	font-size: 15pt;	
+	min-width: 500px;
 }
 
 .admin-store-reg-label {
@@ -378,41 +377,31 @@ select {
 	width:150px;
 	border-radius:5px;
 	padding:5px;
-	font-size:12pt;
+	font-size:14pt;
 	font-family: GmarketSansMedium;
 }
 
 .admin-store-reg-info-input{
 	margin: 5px;
-	padding:5px;
+	padding:7px;
 	padding-left: 10px;
 	border-radius:5px;
 	font-size:12pt;
 	font-family: GmarketSansMedium;
 	width: 540px;
 }
+.storeAddrWidth{
+	width: 380px;
+}
+.storeNameWidth{
+	width: 480px;
+}
+.storeTimeWidth{
+	width: 1045px;
+}
+
+
 /* #6b6b6b  */
-.admin-store-reg-info-name-input{
-	margin: 5px;
-	padding:5px;
-	padding-left: 10px;
-	border-radius:5px;
-	font-size:12pt;
-	font-family: GmarketSansMedium;
-	width: 100px;
-}
-
-.admin-store-reg-info-input2{
-	margin: 5px;
-	padding:5px;
-	padding-left: 10px;
-	border-radius:5px;
-	font-size:12pt;
-	font-family: GmarketSansMedium;
-	width: 200px;
-}
-
-
 
 
 #auth_modal_btn {
@@ -504,41 +493,59 @@ select {
     background-color: #212529;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* regPageCSS */
-#admin-tire-reg-whatPage{
+#admin-store-reg-whatPage{
 	margin-left: 110px;
 }
 
-#admin_tire_table_container{
+#admin_store_table_container{
 	display: flex;
 	justify-content: center;
 	margin-bottom: 100px;
 }
 
-#admin_tire_table{
+#admin_store_table{
 	margin-top:10px;
-	width: 1300px;
+	width: 1200px;
 	border: 1px solid #212529;
 	border-spacing:0px;
 }
 
-#admin-tire-reg{
+#admin-store-reg{
 	height:70px;
 	display: flex;
 	align-items:center;
 	min-width: 300px;
-	background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
-	
+	background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);	
 }
 
 
 
-.admin_tire_table_title{
+.admin_store_table_title{
 	text-align: center;
 	background-color: #212529;
 	color:white;
-	width: 130px;
+	width: 140px;
 	min-width: 100px;
+	height: 60px;
+	font-size: 15pt;
 } 
 
 .admin-tire-reg-radio-di{
@@ -748,19 +755,19 @@ select {
 }
 
 
-.admin-tire-reg-size-modal-button1, .admin-tire-reg-button{
+.admin-store-reg-button{
 	border-radius:7px;
-	padding:6px;
+	padding:8px;
 	color: #0d6efd;
     background-color: #fff;
-    border :1px solid #0d6efd;
-    font-size: 12pt;
+    border :2px solid #0d6efd;
+    font-size: 16pt;
     font-weight: 900;
     cursor: pointer; 
     user-select: none;
     font-family: GmarketSansMedium;	
 }
-.admin-tire-reg-size-modal-button1:hover, .admin-tire-reg-button:hover{
+.admin-store-reg-button:hover{
 	color: #fff;
     background-color: #0d6efd;
     border-color: #0d6efd;
@@ -864,7 +871,7 @@ select {
 .admin-tire-img-contain{
 	width: 49%;	
 }
-.admin-tire-img-title{
+.admin-store-img-title{
 	display:flex;
 	justify-content:center;
 	align-items:center;
@@ -921,10 +928,9 @@ select {
   border-bottom-color: #e2e2e2;
   border-radius: .25em;
 }
-
 /* named upload */
 .filebox1 .upload-name1,.filebox2 .upload-name2 {
-  width: 430px;
+  width: 400px;
   display: inline-block;
   padding: .5em .75em;
   font-size: inherit;
@@ -950,10 +956,10 @@ select {
 }
 
 
-#admin_tire_reg_button{
+#admin_store_reg_button{
 	margin-left:60px;
 	width:100%;	
-	height:50px;
+	height:100px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -961,22 +967,22 @@ select {
 
 
 
-.admin_tire_reg_deleteBTN{
+.admin_store_reg_deleteBTN{
 	margin-left:50px;
 	margin-right:5px;
 	border-radius:7px;
 	font-weight: 900;
-	font-size: 12pt;
-	padding:6px;
+	font-size: 16pt;
+	padding:8px;
 	color: #dc3545;
     background-color: #fff;
-    border:1px solid #dc3545;
-      cursor: pointer; 
+    border:2px solid #dc3545;
+    cursor: pointer; 
     user-select: none;	
     font-family: GmarketSansMedium;
 }
 
-.admin_tire_reg_deleteBTN:hover{
+.admin_store_reg_deleteBTN:hover{
 	color: #fff;
     background-color: #dc3545;
     border-color: #dc3545;
