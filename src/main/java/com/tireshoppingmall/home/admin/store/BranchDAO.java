@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class BranchDAO {
@@ -52,7 +51,7 @@ public class BranchDAO {
 		
 		if (pasing == null) {
 			pasing = new BranchDTO();
-			pasing.setB_branchname("");
+			pasing.setB_name("");
 			pasing.setB_area("");
 			pasing.setStart(new BigDecimal(start));
 			pasing.setEnd(new BigDecimal(end));
@@ -65,7 +64,7 @@ public class BranchDAO {
 		
 		System.out.println("여기가 문제인가?1");
 		System.out.println(pasing.getB_area());
-		System.out.println(pasing.getB_branchname());
+		System.out.println(pasing.getB_name());
 		List<BranchDTO> Branch = ss.getMapper(AdminStoreMapper.class).getBranchlist(pasing);
 
 		int pageCount = (int) Math.ceil(BranchCount / (double) count);
@@ -80,42 +79,10 @@ public class BranchDAO {
 
 	}
 	
-	public void regBranch(MultipartFile file, BranchDTO b, HttpServletRequest req) {
-		
-		String b_area1 = req.getParameter("b_area1");
-		String b_area2 = req.getParameter("b_area2");
-		String b_area = b_area1 + b_area2;
-		String b_sortation = req.getParameter("b_sortation");
-		String b_addr = req.getParameter("b_addr");
-		String b_time = req.getParameter("b_time");
-		String b_service = req.getParameter("b_service");
-		String b_mapdata = req.getParameter("b_mapdata");
-		String b_name = req.getParameter("b_name");
-		String b_manager = req.getParameter("b_manager");
-		String b_managernumber = req.getParameter("b_managernumber");
-		String b_branchnumber = req.getParameter("b_branchnumber");
-		String b_branchname = req.getParameter("b_branchname");
-		String b_cr = req.getParameter("b_cr");
-		String b_email = req.getParameter("b_email");
+	public void regBranch( BranchDTO bDTO, HttpServletRequest req) {
 
-		b.setB_area(b_area);
-
-		System.out.println(b_sortation);
-		System.out.println(b_area);
-		System.out.println(b_addr);
-		System.out.println(b_name);
-		System.out.println(b_time);
-		System.out.println(b_service);
-		System.out.println(b_mapdata);
-		System.out.println(b_manager);
-		System.out.println(b_managernumber);
-		System.out.println(b_branchname);
-		System.out.println(b_branchnumber);
-		System.out.println(b_cr);
-		System.out.println(b_email);
-
-		String fileRealName = b.getFile().getOriginalFilename();
-		long size = file.getSize();
+		String fileRealName = bDTO.getFile().getOriginalFilename();
+		long size = bDTO.getFile().getSize();
 
 		System.out.println("파일명 : " + fileRealName);
 		System.out.println("용량크기(byte) : " + size);
@@ -132,15 +99,13 @@ public class BranchDAO {
 		System.out.println("확장자명" + fileExtension);
 
 		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension); // 적용 후
-
 		try {
-			b.getFile().transferTo(saveFile);
-			b.setB_file(uniqueName + fileExtension);
-			AdminStoreMapper mm = ss.getMapper(AdminStoreMapper.class);
+			bDTO.getFile().transferTo(saveFile);
+			bDTO.setB_file(uniqueName + fileExtension);
 			System.out.println("upload successed!");
 			req.setAttribute("fileName", uniqueName + fileExtension);
-
-			if (mm.regBranch(b) == 1) {
+			
+			if (ss.getMapper(AdminStoreMapper.class).regBranch(bDTO) == 1) {
 				allBranchCount++;
 				System.out.println("등록성공");
 				req.setAttribute("r", "등록성공");
@@ -148,37 +113,30 @@ public class BranchDAO {
 				req.setAttribute("r", "등록 실패");
 			}
 
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void getbranch(BranchDTO b, HttpServletRequest req) {
-		BranchDTO branch = ss.getMapper(AdminStoreMapper.class).getbranch(b);
-		req.setAttribute("branch1", branch);
 
 	}
 
-	public void updatebranch(MultipartFile file, BranchDTO b, HttpServletRequest req) {
-		String b_area1 = req.getParameter("b_area1");
-		String b_area2 = req.getParameter("b_area2");
-		String b_area = b_area1 + "\t" + b_area2;
+	public void getbranch(BranchDTO bDTO, HttpServletRequest req) {
+		BranchDTO branch = ss.getMapper(AdminStoreMapper.class).getbranch(bDTO);
+		req.setAttribute("branch", branch);
 
-		b.setB_area(b_area);
+	}
 
+	public void updatebranch(BranchDTO bDTO, HttpServletRequest req) {
 		// 파일 업로드가 되었을 때
-		if (!file.isEmpty()) {
-			String fileRealName = file.getOriginalFilename();
-			long size = file.getSize();
+		if (!bDTO.getFile().isEmpty()) {
+			String fileRealName = bDTO.getFile().getOriginalFilename();
+			long size = bDTO.getFile().getSize();
 
 			System.out.println("파일명 : " + fileRealName);
 			System.out.println("용량크기(byte) : " + size);
 
 			String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
 			String uploadFolder = servletContext.getRealPath("resources/web/main/store");
-
+			
 			UUID uuid = UUID.randomUUID();
 			System.out.println(uuid.toString());
 			String[] uuids = uuid.toString().split("-");
@@ -190,22 +148,23 @@ public class BranchDAO {
 			File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension); // 적용 후
 
 			try {
-				file.transferTo(saveFile);
-				b.setB_file(uniqueName + fileExtension);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
+				//기존 사진 삭제
+			    new File(uploadFolder + "/" + bDTO.getB_file()).delete();
+				bDTO.getFile().transferTo(saveFile);
+				bDTO.setB_file(uniqueName + fileExtension);
+			}catch (IOException e) {
 				e.printStackTrace();
 			}
-		} else { // 파일 업로드를 하지 않았을 때
+		} else { 
+			// 파일 업로드를 하지 않았을 때
 			// 기존 DB에 있는 파일명을 유지
-			BranchDTO existingBranch = ss.getMapper(AdminStoreMapper.class).getbranch(b);
+			BranchDTO existingBranch = ss.getMapper(AdminStoreMapper.class).getbranch(bDTO);
 			if (existingBranch != null) {
-				b.setB_file(existingBranch.getB_file());
+				bDTO.setB_file(existingBranch.getB_file());
 			}
 		}
 
-		int updateResult = ss.getMapper(AdminStoreMapper.class).updatebranch(b);
+		int updateResult = ss.getMapper(AdminStoreMapper.class).updatebranch(bDTO);
 		if (updateResult == 1) {
 			allBranchCount++;
 			System.out.println("등록성공");
@@ -215,8 +174,8 @@ public class BranchDAO {
 		}
 	}
 
-	public void deletebranch(BranchDTO b, HttpServletRequest req) {
-		if (ss.getMapper(AdminStoreMapper.class).deletebranch(b) == 1) {
+	public void deletebranch(BranchDTO bDTO, HttpServletRequest req) {
+		if (ss.getMapper(AdminStoreMapper.class).deletebranch(bDTO) == 1) {
 			System.out.println("삭제완료");
 			allBranchCount--;
 		}

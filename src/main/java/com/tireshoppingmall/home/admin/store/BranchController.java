@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class BranchController {
@@ -65,22 +64,31 @@ public class BranchController {
 		req.setAttribute("contentPage", "store/branchReg.jsp");	
 		return "admin/master";
 	}
-	@RequestMapping(value = "/admin.store.reg.do", method = RequestMethod.GET)
-	public String storeRegDo(MultipartFile file,BranchDTO b, HttpServletRequest req) {
+	@RequestMapping(value = "/admin.store.reg.do", method = RequestMethod.POST)
+	public String storeRegDo(BranchDTO bDTO, HttpServletRequest req) {
 
-		sDAO.regBranch(file,b, req);
+		sDAO.regBranch(bDTO, req);
 		sDAO.getAllBranch(1, req);
 		
 		
 		req.setAttribute("contentPage", "store/branch.jsp");
 		return "admin/master";
 	}
+	
+	@RequestMapping(value = "/admin.store.update.go", method = RequestMethod.GET)
+	public String branchupdateGo(BranchDTO bDTO, HttpServletRequest req) {
+		sDAO.getbranch(bDTO,req);
+		
+		req.setAttribute("contentPage", "store/branchReg.jsp");
+		return "admin/master";
+
+	}
 
 
 	@RequestMapping(value = "/admin.store.update.do", method = RequestMethod.POST)
-	public String branchupdateDo(BranchDTO b, MultipartFile file, HttpServletRequest req) {
+	public String branchupdateDo(BranchDTO bDTO, HttpServletRequest req) {
 
-		sDAO.updatebranch(file, b, req);
+		sDAO.updatebranch(bDTO, req);
 		sDAO.getAllBranch(1, req);
 	//	bDAO.getAllBranch(m);
 
@@ -91,9 +99,9 @@ public class BranchController {
 	}
 
 	@RequestMapping(value = "/admin.store.delete.go", method = RequestMethod.GET)
-	public String branchdelete(BranchDTO b, HttpServletRequest req) {
+	public String branchdelete(BranchDTO bDTO, HttpServletRequest req) {
 
-		sDAO.deletebranch(b, req);
+		sDAO.deletebranch(bDTO, req);
 		sDAO.getAllBranch(1, req);
 	//	bDAO.getAllBranch(m);
 

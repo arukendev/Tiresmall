@@ -18,7 +18,6 @@ public class BranchDTO {
 	private String b_mapdata;
 	private String b_manager;
 	private String b_managernumber;
-	private String b_branchname;
 	private String b_branchnumber;
 	private String b_cr;
 	private String b_email;
@@ -36,7 +35,7 @@ public class BranchDTO {
 	}
 
 	public BranchDTO(String b_id, String b_sortation, String b_area, String b_addr, String b_name, String b_time,
-			String b_service, String b_mapdata, String b_manager, String b_managernumber, String b_branchname,
+			String b_service, String b_mapdata, String b_manager, String b_managernumber,
 			String b_branchnumber, String b_cr, String b_email, String b_file) {
 		super();
 		this.b_id = b_id;
@@ -49,7 +48,6 @@ public class BranchDTO {
 		this.b_mapdata = b_mapdata;
 		this.b_manager = b_manager;
 		this.b_managernumber = b_managernumber;
-		this.b_branchname = b_branchname;
 		this.b_branchnumber = b_branchnumber;
 		this.b_cr = b_cr;
 		this.b_email = b_email;
@@ -60,8 +58,7 @@ public class BranchDTO {
 
 	public BranchDTO( String b_id, String b_sortation, String b_area, String b_addr, String b_name,
 			String b_time, String b_service, String b_mapdata, String b_manager, String b_managernumber,
-			String b_branchname, String b_branchnumber, String b_cr, String b_email, MultipartFile file,
-			String b_file) {
+			String b_branchnumber, String b_cr, String b_email, MultipartFile file,String b_file) {
 		super();
 		this.b_id = b_id;
 		this.b_sortation = b_sortation;
@@ -73,7 +70,6 @@ public class BranchDTO {
 		this.b_mapdata = b_mapdata;
 		this.b_manager = b_manager;
 		this.b_managernumber = b_managernumber;
-		this.b_branchname = b_branchname;
 		this.b_branchnumber = b_branchnumber;
 		this.b_cr = b_cr;
 		this.b_email = b_email;
@@ -82,10 +78,10 @@ public class BranchDTO {
 	}
 
 	//페이징
-	public BranchDTO(String b_area, String b_branchname, BigDecimal start, BigDecimal end) {
+	public BranchDTO(String b_area, String b_name, BigDecimal start, BigDecimal end) {
 		super();
 		this.b_area = b_area;
-		this.b_branchname = b_branchname;
+		this.b_name = b_name;
 		this.start = start;
 		this.end = end;
 	}
@@ -167,12 +163,6 @@ public class BranchDTO {
 		this.b_managernumber = b_managernumber;
 	}
 
-	public String getB_branchname() {
-		return b_branchname;
-	}
-	public void setB_branchname(String b_branchname) {
-		this.b_branchname = b_branchname;
-	}
 	public String getB_branchnumber() {
 		return b_branchnumber;
 	}
@@ -208,17 +198,17 @@ public class BranchDTO {
 		req.getSession().setAttribute("branchDTO", null);
 		
 	}
-	
 
 	@Override
 	public String toString() {
 		return "BranchDTO [b_id=" + b_id + ", b_sortation=" + b_sortation + ", b_area=" + b_area + ", b_addr=" + b_addr
 				+ ", b_name=" + b_name + ", b_time=" + b_time + ", b_service=" + b_service + ", b_mapdata=" + b_mapdata
-				+ ", b_manager=" + b_manager + ", b_managernumber=" + b_managernumber + ", b_branchname=" + b_branchname
-				+ ", b_branchnumber=" + b_branchnumber + ", b_cr=" + b_cr + ", b_email=" + b_email + ", file=" + file
-				+ ", b_file=" + b_file + "]";
+				+ ", b_manager=" + b_manager + ", b_managernumber=" + b_managernumber + ", b_branchnumber="
+				+ b_branchnumber + ", b_cr=" + b_cr + ", b_email=" + b_email + ", file=" + file + ", b_file=" + b_file
+				+ ", start=" + start + ", end=" + end + "]";
 	}
-
+	
+	
 
 
 	

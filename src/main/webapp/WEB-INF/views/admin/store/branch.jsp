@@ -29,7 +29,7 @@
 				</div>
 				<div class="branch_searcharea">
 					장착점명 
-					<input name="b_branchname" style="text-align: center;">
+					<input name="b_name" style="text-align: center;">
 				</div>
 				<div>
 					<button class="branchsearchButton">검색</button>
@@ -46,7 +46,7 @@
 		<tr>
 			<td class="admin_car_content_title admin_store_no"
 				style="border-right: 1px solid white;">No.</td>
-			<td class="admin_car_content_title admin_store_branchname"
+			<td class="admin_car_content_title admin_store_name"
 				style="border-right: 1px solid white;">장착점명</td>
 			<td class="admin_car_content_title admin_store_area"
 				style="border-right: 1px solid white;">지역</td>
@@ -67,18 +67,12 @@
 		<c:forEach items="${branchs }" var="b" varStatus="status">
 			<tr id="admin_cars_content">
 				<td class="admin_car_table_td">${status.count + (curPage-1)*count}</td>
-				<td class="admin_car_table_td">[${b.b_sortation}]${b.b_branchname }</td>
+				<td class="admin_car_table_td">[${b.b_sortation}]${b.b_name }</td>
 				<td class="admin_car_table_td">${b.b_area }</td>
 				<td class="admin_car_table_td">${b.b_manager }</td>
 				<td class="admin_car_table_td">${b.b_branchnumber }</td>
 				<td class="admin_car_table_td">
-					<button class="updatebranchbutton"
-						onclick="updatebranch('${b.b_id}', '${b.b_sortation }',
-					'${b.b_area }','${b.b_addr } ',
-					'${b.b_name }','${b.b_time }',
-					'${b.b_service }','${b.b_mapdata }','${b.b_manager }',
-					'${b.b_managernumber}','${b.b_branchname}','${b.b_branchnumber}',
-					'${b.b_cr}','${b.b_email}','${b.b_file }')">수정</button>
+					<button class="updatebranchbutton" onclick="location.href='admin.store.update.go?b_id=${b.b_id}'">수정</button>
 					<button type="button" class="deletebranchbutton"
 						id="updatebranch('${b.b_id}')" onclick="deletebranch('${b.b_id}')">삭제</button>
 				</td>
