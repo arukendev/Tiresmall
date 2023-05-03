@@ -70,7 +70,7 @@
 				<td class="admin_car_table_td">[${b.b_sortation}]${b.b_name }</td>
 				<td class="admin_car_table_td">${b.b_area }</td>
 				<td class="admin_car_table_td">${b.b_manager }</td>
-				<td class="admin_car_table_td">${b.b_branchnumber }</td>
+				<td class="admin_car_table_td">${b.b_managernumber }</td>
 				<td class="admin_car_table_td">
 					<button class="updatebranchbutton" onclick="location.href='admin.store.update.go?b_id=${b.b_id}'">수정</button>
 					<button type="button" class="deletebranchbutton"

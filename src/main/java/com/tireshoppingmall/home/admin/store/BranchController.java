@@ -87,7 +87,6 @@ public class BranchController {
 
 	@RequestMapping(value = "/admin.store.update.do", method = RequestMethod.POST)
 	public String branchupdateDo(BranchDTO bDTO, HttpServletRequest req) {
-
 		sDAO.updatebranch(bDTO, req);
 		sDAO.getAllBranch(1, req);
 	//	bDAO.getAllBranch(m);

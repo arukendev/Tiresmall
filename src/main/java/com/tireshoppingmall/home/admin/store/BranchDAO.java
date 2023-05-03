@@ -127,7 +127,9 @@ public class BranchDAO {
 
 	public void updatebranch(BranchDTO bDTO, HttpServletRequest req) {
 		// 파일 업로드가 되었을 때
-		if (!bDTO.getFile().isEmpty()) {
+		System.out.println(bDTO.getFile());
+		System.out.println("111");
+		if (bDTO.getFile() != null) {
 			String fileRealName = bDTO.getFile().getOriginalFilename();
 			long size = bDTO.getFile().getSize();
 

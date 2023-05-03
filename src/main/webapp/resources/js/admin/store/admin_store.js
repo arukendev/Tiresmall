@@ -5,10 +5,8 @@ $(function() {
 	
 	branchRegImg();
 
-	
-	
-	
-	
+	//비여있는지 검사
+	emptyProsecutor();
 	
 	
 	
@@ -63,15 +61,14 @@ function AreaArry() {
 
 	// 시/도 선택 박스 초기화
 
-	$("select[name^=b_area1]").each(
-			function() {
-				$selsido = $(this);
-				$.each(eval(area0), function() {
-					$selsido.append("<option value='" + this + "'>" + this
-							+ "</option>");
-				});
-				$selsido.next().append("<option value=''>구/군 선택</option>");
-			});
+	$("select[name^=b_area1]").each(function() {
+		$selsido = $(this);
+		$.each(eval(area0), function() {
+			$selsido.append("<option value='" + this + "'>" + this
+					+ "</option>");
+		});
+		$selsido.next().append("<option value=''>구/군 선택</option>");
+	});
 
 	// 시/도 선택시 구/군 설정
 
@@ -114,7 +111,44 @@ function AreaArry() {
 			$("#hiddenStoreReg_b_area").val("");
 		}
 	})
+	
 
+	//업데이트  $("#hiddenB_id").val() 이 숫자이면 true 아니면 false
+	if($.isNumeric($("#hiddenB_id").val())){
+		let b_sortation = $("#hiddenB_sortation").val();
+		let b_id = $("#hiddenB_id").val();
+		let b_area = $("#hiddenB_area").val();
+
+		let b_area1;
+		let b_area2;
+		
+		//구분 체크드
+		if(b_sortation=="직영점 (당일 장착점)"){
+			$(".partnership").prop("checked", false)
+			$(".directManagement").prop("checked", true);
+		}
+		//지역 구하기
+		for (var i = 0; i < area0.length; i++) {
+			if(b_area.includes(area0[i])){	
+				b_area1 = area0[i];
+				b_area2 = b_area.replace(area0[i],"");
+			}
+		}
+		$("#storeRegDo").append("<option selected='selected'>" + b_area1 + "</option>");
+		$("#storeRegSi").append("<option selected='selected'>" + b_area2 + "</option>");
+		
+		$(".admin-store-reg-button").text("저장");
+		$("#admin_store_table_container").attr("action", "admin.store.update.do");
+		//theForm.action = "test01.asp";
+		$(".admin-store-reg-button").click(function() {
+			if($("#file1").val()==""){
+				$("#file1").remove();
+			}
+		})
+		
+		
+		
+	}
 }
 
 function branchRegImg() {
@@ -147,7 +181,20 @@ function branchRegImg() {
 
 	});
 }
-
+function emptyProsecutor() {
+	$(".admin-store-reg-button").click(function() {
+		if(!$.isNumeric($("#hiddenB_id").val())){
+			if($("#hiddenStoreReg_b_area").val()==""){
+				alert("지역을 선택해주세요");
+				return false;
+			}
+			if($("#file1").val()==""){
+				alert("사진을 업로드해주세요");
+				return false;
+			}
+		}
+	})
+}
 
 function deletebranch(iddd) {
 	let ok = confirm('정말 삭제하시겠습니까?');
