@@ -19,37 +19,35 @@
 	<input id="sm" value="1" type="hidden"> 
 	<div id="notice_modal" class="notice_modal hidden"
 		style="display: none;">
-
 		<form id="reg_modal" action="reg.notice.do">
 			<div class="modal-wrapper">
 				<div class="notice_modalcontent">
 					<div class="notice_header">공지사항</div>
-					<div>
+					<div id="notice_modal_main_content">
 						<input type="hidden" name="n_no" id="idInput_M">
 
 						<table class="modal_table" border="1">
 							<tr>
-								<td class="left_td">구분/제목</td>
-								<td>구분</td>
-								<td width="100px;"><select name="selectOption"
-									id="sortationSelect_M" class="notice_select">
+								<td class="left_td">구분</td>
+								<td width="100px;">
+								<select name="selectOption"id="sortationSelect_M" class="notice_select">
 										<option value="안내">안내</option>
 										<option value="매장">매장</option>
 										<option value="프로모션">프로모션</option>
 								</select></td>
-								<td>제목</td>
+								<td class="left_td">제목</td>
 								<td><input name="n_title" id="titleInput_M"></td>
 							</tr>
 							<tr>
 								<td class="left_td">내용</td>
-								<td align="center" colspan="4"><textarea name="n_txt"
+								<td align="center" colspan="3"><textarea name="n_txt"
 										id="txtInput_M"></textarea></td>
 							</tr>
 						</table>
 
 					</div>
 					<div class="modalBtn">
-						<button class="modalBtn1">입력</button>
+						<button class="modalBtn1">저장</button>
 						<button class="modalBtn2" id="cancleModal" type="button">취소</button>
 					</div>
 				</div>

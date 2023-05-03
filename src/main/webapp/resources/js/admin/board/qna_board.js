@@ -85,6 +85,14 @@ $('.qna_modal_go').click(function() {
 
 })
 
+$(".modalBtn1").click(function() {
+	if($("#txtInput_Reply").val() == ""){
+		alert("답변을 해주세요");
+		$("#txtInput_Reply").focus();
+		return false;
+	}
+})
+
 $("#cancleModal").click(function() {
 	$('#qna_modal').hide();
 	// 모달 off

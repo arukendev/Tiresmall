@@ -59,7 +59,7 @@ $('#notice_reg_modal').click(function() {
 	$(idInput).val('');
 	$(titleInput).val('');
 	$(sortationM).val('');
-	// $(txtInput).val('');
+	$(txtInput).val('');
 	$(txtInput).text(txt.replaceAll("<br>", "\r\n"));
 	$("#n_date").val('');
 	//모달 on
