@@ -30,11 +30,12 @@
 							<tr>
 								<td class="left_td">구분</td>
 								<td width="100px;">
-								<select name="selectOption"id="sortationSelect_M" class="notice_select">
+									<select name="selectOption"id="sortationSelect_M" class="notice_select">
 										<option value="안내">안내</option>
 										<option value="매장">매장</option>
 										<option value="프로모션">프로모션</option>
-								</select></td>
+									</select>
+								</td>
 								<td class="left_td">제목</td>
 								<td><input name="n_title" id="titleInput_M"></td>
 							</tr>
