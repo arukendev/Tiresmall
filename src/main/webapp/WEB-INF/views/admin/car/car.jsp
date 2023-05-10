@@ -77,14 +77,11 @@
 				<td class="admin_car_table_td">${c.c_year1 }&nbsp;~&nbsp;${c.c_year2 }</td>
 				<td class="admin_car_table_td">${c.c_name }</td>
 				<td class="admin_car_table_td">
-				${c.c_ft }
-				${c.c_bt }
-			<%--  		<c:forEach items="${tires }" var="ts">
+			 		<c:forEach items="${tires }" var="ts">
 						<c:forEach items="${ts }" var="tire">
 							${tire }&nbsp;
 						</c:forEach>
-					</c:forEach> --%>
-				
+					</c:forEach>
 				</td>
 				<td class="admin_car_table_td">
 					<button class="updatecarbutton" onclick="updateCar('${c.c_id}')">수정</button>

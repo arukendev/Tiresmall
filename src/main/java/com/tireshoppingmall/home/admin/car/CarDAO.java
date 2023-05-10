@@ -67,24 +67,26 @@ public class CarDAO {
 
 		List<CarDTO> car = ss.getMapper(AdminCarMapper.class).getAllCar(paging);
 		// 타이어 사이즈 가져오기
-		/*String[] frontTireSize;
+		String[] frontTireSize;
 		String[] rearTireSize;
-		String[][] TireSizes = new String[car.size()][];
+		String[][] TireSizes = null;			//2차원 배열은 무조건  new String[][]  []안에 크기 선언을 해줘야한다(둘다) 안하면 터짐;;;;
+												//null을 안써도 터짐;;;
 
-		if(car.size() != 0) {
+		if(car.size() != 0) {	
 			//몇번째 자동차
-			for (int i = 0; i < car.size(); i++) {
+			for (int i = 0; i < car.size(); i++) {	//i는 하나 의 라인 하나의 자동차
 				//앞바퀴 뒷바퀴 !로 나눠서 배열에 저장
 				frontTireSize = car.get(i).getC_ft().split("!");
 				rearTireSize = car.get(i).getC_bt().split("!");
-				
+				TireSizes = new String[car.size()][frontTireSize.length]; //2차원배열은 무조건 둘다 크기 선언을 해줘야한다는 것을 암
 				//저장한것을 앞 : 뒤:  / 앞: 뒤: / 앞: 뒤:  로 보여주기 위해서  
 				for (int j = 0; j < frontTireSize.length; j++) {
-					TireSizes[i][j] = frontTireSize[j] +" "+ rearTireSize[j];
+					TireSizes[i][j] = frontTireSize[j] +" "+ rearTireSize[j] +"\n";
 				}
+
 			}
 			req.setAttribute("tires", TireSizes);
-		}*/
+		}
 		
 
 		List<CarDTO> carBrands = ss.getMapper(AdminCarMapper.class).getAllCarBrands();
