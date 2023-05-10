@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,9 +78,11 @@
 				<td class="admin_car_table_td">${c.c_year1 }&nbsp;~&nbsp;${c.c_year2 }</td>
 				<td class="admin_car_table_td">${c.c_name }</td>
 				<td class="admin_car_table_td">
-			 		<c:forEach items="${tires }" var="ts">
+			 		<c:forEach items="${tires }" var="ts" begin="${status.count -1}" end="${status.count-1}">
 						<c:forEach items="${ts }" var="tire">
-							${tire }&nbsp;
+							<c:if test="${tire != null }">
+								<c:out value="${tire }" /><br>
+							</c:if>
 						</c:forEach>
 					</c:forEach>
 				</td>

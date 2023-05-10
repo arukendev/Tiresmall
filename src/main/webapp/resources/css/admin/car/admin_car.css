@@ -197,7 +197,7 @@ a {
 }
 
 .admin_car_brand {
-	width: 7%;
+	width: 12%;
 }
 
 .admin_car_year {
@@ -205,11 +205,11 @@ a {
 }
 
 .admin_car_name {
-	width: 10%;
+	width: 15%;
 }
 
 .admin_car_tiresize {
-	width: 40%;
+	width: 30%;
 }
 
 .admin_car_management {

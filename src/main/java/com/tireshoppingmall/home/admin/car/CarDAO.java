@@ -3,6 +3,7 @@ package com.tireshoppingmall.home.admin.car;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -66,25 +67,37 @@ public class CarDAO {
 		}
 
 		List<CarDTO> car = ss.getMapper(AdminCarMapper.class).getAllCar(paging);
+		
 		// 타이어 사이즈 가져오기
-		String[] frontTireSize;
+		String[] frontTireSize = null;
 		String[] rearTireSize;
-		String[][] TireSizes = null;			//2차원 배열은 무조건  new String[][]  []안에 크기 선언을 해줘야한다(둘다) 안하면 터짐;;;;
+		String[][] TireSizes = new String[car.size()][10]; //ArrayList도 한번 생각해보기	
+												//최대 10은 안넘으니 일단 10으로 만들어둠
+												//2차원 배열은 무조건  new String[][]  []안에 크기 선언을 해줘야한다(둘다) 안하면 터짐;;;;
 												//null을 안써도 터짐;;;
-
 		if(car.size() != 0) {	
 			//몇번째 자동차
+			System.out.println("첫번째");
 			for (int i = 0; i < car.size(); i++) {	//i는 하나 의 라인 하나의 자동차
 				//앞바퀴 뒷바퀴 !로 나눠서 배열에 저장
 				frontTireSize = car.get(i).getC_ft().split("!");
 				rearTireSize = car.get(i).getC_bt().split("!");
-				TireSizes = new String[car.size()][frontTireSize.length]; //2차원배열은 무조건 둘다 크기 선언을 해줘야한다는 것을 암
 				//저장한것을 앞 : 뒤:  / 앞: 뒤: / 앞: 뒤:  로 보여주기 위해서  
 				for (int j = 0; j < frontTireSize.length; j++) {
-					TireSizes[i][j] = frontTireSize[j] +" "+ rearTireSize[j] +"\n";
+					TireSizes[i][j] = frontTireSize[j] +" "+ rearTireSize[j];
+					System.out.println("TireSizes["+i+"]["+j+"]의 값 : "+TireSizes[i][j]);
+					System.out.println(TireSizes);
 				}
-
 			}
+
+			System.out.println("두번째");
+			for (int i = 0; i < car.size(); i++) {	//i는 하나 의 라인 하나의 자동차
+				for (int j = 0; j < frontTireSize.length; j++) {
+					System.out.println("TireSizes["+i+"]["+j+"]의 값 : "+TireSizes[i][j]);
+					System.out.println(TireSizes);
+				}
+			}
+	
 			req.setAttribute("tires", TireSizes);
 		}
 		
@@ -249,12 +262,18 @@ public class CarDAO {
 		
 		for (int i = 0; i < rearTire.length; i++) {
 			tf_width[i] = frontTire[i].substring(0+(7*i),3+(7*i));
+			System.out.println(tf_width[i]);
 			tf_ratio[i] = frontTire[i].substring(3+(7*i),5+(7*i));
+			System.out.println(tf_ratio[i]);
 			tf_inch[i] = frontTire[i].substring(5+(7*i),3+(7*i));
+			System.out.println(tf_inch[i]);
 
 			tb_width[i] = rearTire[i].substring(0+(7*i),3+(7*i));
+			System.out.println(tb_width[i]);
 			tb_ratio[i] = rearTire[i].substring(3+(7*i),5+(7*i));
+			System.out.println(tb_ratio[i]);
 			tb_inch[i] = rearTire[i].substring(5+(7*i),7+(7*i));
+			System.out.println(tb_inch[i]);
 		}
 
 		Car.setTf_width(tf_ratio);
