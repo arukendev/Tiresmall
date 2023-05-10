@@ -46,7 +46,27 @@ $('.order_modal_go').click(function() {
 		arr.push($(input).val());
 		// modal_content_td[i].innerText = val;
 	});
-	console.log(arr[19]);
+	console.log("1 번째  "+arr[1]);
+	console.log("2 번째  "+arr[2]);
+	console.log("3 번째  "+arr[3]);
+	console.log("4 번째  "+arr[4]);
+	console.log("5 번째  "+arr[5]);
+	console.log("6 번째  "+arr[6]);
+	console.log("7 번째  "+arr[7]);
+	console.log("8 번째  "+arr[8]);
+	console.log("9 번째  "+arr[9]);
+	console.log("10 번째  "+arr[10]);
+	console.log("11 번째  "+arr[11]);
+	console.log("12 번째  "+arr[12]);
+	console.log("13 번째  "+arr[13]);
+	console.log("14 번째  "+arr[14]);
+	console.log("15 번째  "+arr[15]);
+	console.log("16 번째  "+arr[16]);
+	console.log("17 번째  "+arr[17]);
+	console.log("18 번째  "+arr[18]);
+	console.log("19 번째  "+arr[19]);
+	console.log("20 번째  "+arr[20]);
+
 	
 	// console.log(arr);
 	modal_content_td[0].innerText = arr[0];									// 주문번호
@@ -76,15 +96,12 @@ $('.order_modal_go').click(function() {
 		console.log($('#orderNo_M').val());
 		console.log($(".modal-label:checked").val());
 		console.log(arr[19]);
-		$("#o_no").val(arr[19]);
+		$("#o_no").val(arr[4]);
 		console.log($("#o_no").val());
 		$("#o_step").val($(".modal-label:checked").val());
 		
-		if (!confirm('수정 하시겠습니까?')) {
-			// 취소
-		} else {
-			$("#update_modal").submit();
-		}
+		$("#update_modal").submit();
+
 	})
 	
 	let tire_tr = $(this).find('.tire_content_tr');

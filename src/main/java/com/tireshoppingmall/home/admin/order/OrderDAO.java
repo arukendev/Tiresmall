@@ -56,7 +56,6 @@ public class OrderDAO {
 		if (orderSearch == null) {
 			orderSearch = new OrderSearchDTO(new BigDecimal(start), new BigDecimal(end), "", "", "", "", "");
 			orderCount = allOrderCount;
-			System.out.println("null이면---" + allOrderCount);
 		} else {
 			orderSearch.setStart(new BigDecimal(start));
 			orderSearch.setEnd(new BigDecimal(end));
@@ -72,19 +71,13 @@ public class OrderDAO {
 				String tirePK[] = (product.split("/")); // 4 , 6
 				String pk = tirePK[0];
 				String tireCount = tirePK[1];
-				System.out.println(pk);
 				List<TireDTO> tireListDto = ss.getMapper(AdminTireMapper.class).getTireGroupforDetail(pk);
 					for (TireDTO tDto : tireListDto) {
 						tDto.setTi_count(Integer.parseInt(tireCount));
 						order_tires.add(tDto);
-						
-						System.out.println(tDto);
 					}
-					System.out.println(tireCount);
-				
 			}
 			order.setO_products(order_tires);
-			
 		}
 
 		int pageCount = (int) Math.ceil(orderCount / (double) count);
@@ -99,11 +92,9 @@ public class OrderDAO {
 		}
 	}
 
-	public void updateOrder(HttpServletRequest req, String o_no,String o_step) {
-		OrderUpdateDTO ouDTO = new OrderUpdateDTO(o_no, o_step);
-			System.out.println("왜실패????????");
-			System.out.println(ouDTO.getO_no());
-			System.out.println(ouDTO.getO_step());
+	public void updateOrder(HttpServletRequest req,OrderUpdateDTO ouDTO) {
+
+
 		if (ss.getMapper(AdminOrderMapper.class).updateOrder(ouDTO) == 1) {
 			System.out.println(ouDTO.getO_no());
 			System.out.println(ouDTO.getO_step());
@@ -111,6 +102,8 @@ public class OrderDAO {
 			
 		} else {
 			System.out.println("실패~~~~~~~");
+			System.err.println(ouDTO.getO_no());
+			System.err.println(ouDTO.getO_step());
 		}
 	}
 

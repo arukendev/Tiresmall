@@ -40,12 +40,10 @@ public interface AdminTireMapper {
 	List<TireDTO> getTireItem(TireDTO tDTO);
 
 	TireDTO getTireGroupDetail(int tg_id);
+	
+	int getTireGroupUpdate(TireListDTO tDTO);
 
 	int tireSizeDelete(int ti_id);
-	
-	int tireNameChage(TireDTO tDTO);
-
-	int tireTextChage(TireDTO tDTO);
 
 	int tireSizeChage(TireDTO tDTO);
 
@@ -70,6 +68,8 @@ public interface AdminTireMapper {
 	int tireImgUpdate(TireDTO tDTO);
 
 	int tireImgsUpdate(TireDTO tDTO);
+
+	
 
 
 }

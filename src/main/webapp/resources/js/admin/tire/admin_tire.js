@@ -38,17 +38,17 @@ $(function() {
 	
 	// 체크드
 	tireHiddenSelected();
-	//타이어이름 변경시
-	tireNameFocusout();
-	//타이어 텍스트 변경시
-	tireTextFocusout();
+	
+	//업데이트 이미지 없을떄
+	tireUpdateNotImg();
 	
 	//타이어 사이즈tr 포커스아웃시 
 	tireMarkingChange();
 	tirePriceChange();
 	tireStockChange();
-	//수정페이지 사진 수정하기
-	adminTireUpdateImg();
+	
+	
+	
 	
 	//타이어 브랜드 작업
 	//출력 여부
@@ -295,8 +295,7 @@ function tireRegSizeReg() {
 
 //타이어 등록페이지 사진css
 function tireRegImgReg() {
-	
-	let tg_id = $('#tireIdHidden').val();
+
 	let formData = new FormData();
 	$("#file1").on('change',function(e){
 		var arSplitUrl = $("#file1").val().split("\\");
@@ -319,33 +318,6 @@ function tireRegImgReg() {
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				$("#imagePreview").attr('src',e.target.result);
-				if($('#tireIdHidden').val() != null){
-					let file1 = $("input[name=file]")[0].files;
-					console.log(file1);
-					for(let i=0; i<file1.length; i++) {
-						formData.append("file", file1[i]);
-					}
-						
-					let tg_id=$('#tireIdHidden').val();
-					console.log(tg_id);
-					let tg_img=$('#tireDetailHidden').val();
-					console.log(tg_img);
-					$.ajax({
-						type: "POST",
-					   	url: "admin.tire.img.change",
-					    data : {formData,tg_id,tg_img},
-					    processData: false,
-					   	contentType: false,
-					   	success: function (data) {
-					   		if(data==1){
-					   			alert('성공!!');
-					   	   	}else{
-					   	    	alert('실패!!');
-					   	    }
-					   	}
-					});
-	
-				}
 			}
 			reader.readAsDataURL(f);
 		})
@@ -399,42 +371,17 @@ function tireRegImgReg() {
 				let files = e.target.result
 				var img_html = "<img src='" +files +"\'/>";
 				$(".admin_tire_reg_img_preview").append(img_html);
-				
-				if($('#tireIdHidden').val() != null){
-					let file2 = $("input[name=fileS]")[0].files;
-					console.log(file2);
-					for(let i=0; i<file2.length; i++) {
-						formData.append("files", file2[i]);
-					}
-					let tg_id=$('#tireIdHidden').val();
-					let tg_detail =$("#tireDetailHidden").val();
-					
-					$.ajax({
-				   	      type: "POST",
-				   	   	  enctype: "multipart/form-data",
-				   	      url: "admin.tire.imgs.change",
-				       	  data : {formData,tg_id,tg_detail},
-				       	  processData: false,
-				   	      contentType: false,
-				   	      success: function (data) {
-				   	    	if(data==1){
-				   	    		alert('성공!!');
-				   	    	}else{
-				   	    		alert('실패!!');
-				   	    	}
-				   	      }
-					});
-				}
 			}
 			reader.readAsDataURL(f);
 		})
 	});
-	
-	
-	
-	
-	
 }
+
+
+
+
+
+
 
 // 타이어브랜드 삭제
 function tireBrandDelete(name) {
@@ -538,41 +485,22 @@ function tireHiddenSelected() {
 	};
 }
 
-//타이어이름 인풋창 밖으로 나갈떄 이름 변경
-function tireNameFocusout() {
-	
-	let tg_nameBefor = $("#admin-tire-reg-name-input").val();
-	$("#admin-tire-reg-name-input").focusout(function() {
-		let tg_name = $(this).val();
-		if(tg_nameBefor != tg_name){
-			let tg_id= $("#tireIdHidden").val();
-			$.ajax({
-				url : "admin.tire.name.change",
-				data : {tg_name,tg_id},
-				success : function(data) {
-					tg_nameBefor = tg_name;
-				}
-			});
+//수정 페이지 이미지이 없이 저장할때
+function tireUpdateNotImg() {
+	$(".admin_tire_update_do").click(function() {
+
+		if($("#file1").val()==""){
+			$("#file1").remove();
+		}		
+		
+		
+		//있어야 DAO에서 size가 0이 됨
+		if($("#file2")[0].files.length == 0){
+			$("#file2").remove();
 		}
 	});
 }
-//타이어텍스트 인풋창 밖으로 나갈떄 내용변경
-function tireTextFocusout() {
-	let tg_textbefore = $('#admin-tire-reg-txt-input').val();
-	$("#admin-tire-reg-txt-input").focusout(function(){
-		let tg_text = $(this).val();
-		if(tg_textbefore != tg_text){
-			let tg_id= $("#tireIdHidden").val();
-			$.ajax({
-				url : "admin.tire.text.change",
-				data : {tg_text,tg_id},
-				success : function(data) {
-					tg_textbefore = tg_text;
-				}
-			});
-		}
-	});
-}
+
 
 //수정페이지 마킹 변경시
 function tireMarkingChange() {
@@ -670,48 +598,6 @@ function tireStockChange() {
 	});
 }
 
-//수정페이지 사진 수정하기
-function adminTireUpdateImg() {
-	//메인사진 업로드 누를시 저장버튼
-	let mainImg = 0;
-	$(".imgUploadMain").click(function(e) {
-		if(mainImg==0){
-			$(".upload-name1").css("width","400px");
-			$(".filebox1").append("<div class='admin-tire-reg-size-modal-button1 admin-tire-main-img-newInfo-reg'>저장</div>");
-			mainImg=1;
-		}
-	});
-	//상세사진 업로드 누를시 저장버튼
-	let detailImg = 0;
-	$(".imgUploadDetail").click(function(e) {
-		if(detailImg==0){
-			$(".upload-name2").css("width","400px");
-			$(".filebox2").append("<div class='admin-tire-reg-size-modal-button1 admin-tire-detail-img-newInfo-reg'>저장</div>");
-			detailImg =1;
-		}
-	});
-	
-	//메인 이미지 저장
-	$(document).on("click",".admin-tire-main-img-newInfo-reg", function(e) {
-
-		
-		
-		$(".upload-name1").css("width","430px");
-		$(".admin-tire-main-img-newInfo-reg").remove();
-		
-	})
-	//상세이미지 저장
-	$(document).on("click",".admin-tire-detail-img-newInfo-reg", function(e) {
-
-		
-		
-		$(".upload-name2").css("width","430px");
-		$(".admin-tire-detail-img-newInfo-reg").remove();
-		
-	})
-	
-	
-}
 
 
 

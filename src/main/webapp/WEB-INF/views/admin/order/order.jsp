@@ -119,9 +119,9 @@
 				</div>
 				<form id="update_modal" action="update.order.do">
 					<div class="modalBtn">
+						<input type="hidden" name="o_no" id="o_no"> 
+						<input type="hidden" name="o_step" id="o_step">
 						<button class="modalBtn0" id="updateModal" type="button">저장</button>
-						<input type="hidden" name="o_no" id="o_no"> <input
-							type="hidden" name="o_step" id="o_step">
 						<button class="modalBtn2 modal-del" id="deleteModal" type="button">삭제</button>
 						<button class="modalBtn2" id="cancleModal" type="button">닫기</button>
 					</div>

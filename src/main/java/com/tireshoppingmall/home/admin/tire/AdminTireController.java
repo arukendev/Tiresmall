@@ -134,23 +134,25 @@ public class AdminTireController {
 		req.setAttribute("contentPage", "tire/tire_update.jsp");
 		return "admin/master";
 	}
+	//admin.tire.update.do
+	@RequestMapping(value = "/admin.tire.update.do", method = RequestMethod.POST)
+	public String tireUpdateDo(MultipartFile file,MultipartHttpServletRequest files,HttpServletRequest req,TireListDTO tDTO) {		
+
+		tDAO.tireUpdate(file,files,req,tDTO);
+		
+		TireDTO.TirePagsing(req);
+		tDAO.getAllTireGroup(1,req);
+			
+		req.setAttribute("subMenuPage", "tire/tire_subMenu.jsp");
+		req.setAttribute("contentPage", "tire/tire.jsp");
+		return "admin/master";
+			
+	}
 	//admin.tire.size.delete
 	@ResponseBody
 	@RequestMapping(value = "admin.tire.size.delete", method = RequestMethod.GET)
 	public int adminTireSizeDelete(TireDTO tDTO) {	
 		return tDAO.tireSizeDelte(tDTO);
-	}
-	//admin.tire.name.change
-	@ResponseBody
-	@RequestMapping(value = "admin.tire.name.change", method = RequestMethod.GET)
-	public int adminTireNameChange(TireDTO tDTO) {	
-		return tDAO.tireNameChange(tDTO);
-	}
-	//admin.tire.text.change
-	@ResponseBody
-	@RequestMapping(value = "admin.tire.text.change", method = RequestMethod.GET)
-	public int adminTireTextChange(TireDTO tDTO) {	
-		return tDAO.tireTextChange(tDTO);
 	}
 	//admin.tire.size.change
 	@ResponseBody

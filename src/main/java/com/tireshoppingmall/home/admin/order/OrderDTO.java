@@ -14,10 +14,13 @@ public class OrderDTO {
 	private Date o_orderdate;
 	private String o_ordername;
 	private String o_product;
+	
 	private List<TireDTO> o_products;
+	
 	public List<TireDTO> getO_products() {
 		return o_products;
 	}
+	
 	public void setO_products(ArrayList<TireDTO> order_tires) {
 		this.o_products = order_tires;
 	}
