@@ -25,7 +25,6 @@ public class AdminBoardController {
 	private boolean noticeFirstReq;
 	private boolean faqFirstReq;
 	private boolean qnaFirstReq;
-
 	private boolean eventFirstReq;
 	
 	@Autowired
