@@ -22,6 +22,7 @@ a:visited {
 .notice_form {
 	width: 100%;
 	background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+	height: 60px;
 }
 
 .notice_form>div {
@@ -32,12 +33,23 @@ a:visited {
 .nb_content {
 	width: 100%;
 	height: 100%;
+	display: flex;
+    justify-content: center;
 }
 
 .notice_content {
-	width: 100%;
-	min-width: 1200px;
-	padding-top: 10px;
+	margin-top: 10px;
+	margin-bottom:60px;
+    width: 99%;
+    min-width: 1200px;
+    padding-top: 10px;
+    border-spacing: 0px;
+    border: 1px #a39485 solid;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+    width: 99%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .input_box>div {
@@ -46,7 +58,7 @@ a:visited {
 	justify-content: center;
 	align-items: center;
 	display: flex;
-	background-color: black;
+	background-color: #181C32;
 	color: white;
 }
 
@@ -56,7 +68,7 @@ a:visited {
 	justify-content: center;
 	align-items: center;
 	display: flex;
-	background-color: black;
+	background-color: #181C32;
 	color: white;
 }
 
@@ -66,7 +78,7 @@ a:visited {
 	justify-content: center;
 	align-items: center;
 	display: flex;
-	background-color: black;
+	background-color: #181C32;
 	color: white;
 }
 
@@ -156,42 +168,44 @@ textarea:focus{
 .th_head {
 	font-size: 15pt;
 	padding: 20px;
-	background-color: black;
+	background-color: #343a40;
     color: white;
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
     user-select:none;
+    text-align: center;
+    border: 1px solid white;
 }
 
 .td_c1 {
 	width: 10%;
-	background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+	border: 1px solid black;
 }
 
 .td_c2 {
 	width: 10%;
-	background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+	border: 1px solid black;
 }
 
 .td_c3 {
 	width: 10%;
-	background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+	border: 1px solid black;
 }
 
 .td_c4 {
-	width: 50%;
-	background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+	width: 40%;
+	border: 1px solid black;
 }
 
 .td_c5 {
-	width: 10%;
-	background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+	width: 20%;
+	border: 1px solid black;
 }
 
 .td_c6 {
 	width: 10%;
-	background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+	border: 1px solid black;
 }
 
 .tdBtn>button {
@@ -221,14 +235,16 @@ textarea:focus{
 }
 
 #paging-box{
-	display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 40px;
-    background-color: white;
-    padding-top: 10px;
-    padding-bottom: 10px;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 40px;
+	background-color: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	position: fixed;
+  	bottom: 0px;
 }
 
 #paging-box a{
@@ -262,6 +278,7 @@ textarea:focus{
 }
 
 .input_box input {
+  padding-left:10px;
   height: 27px;
   font-size: 11pt;
   border-radius: 10px;
@@ -288,6 +305,7 @@ textarea:focus{
 }
 
 .input_box1 input {
+	padding-left:10px;
   height: 27px;
   font-size: 11pt;
   border-radius: 10px;
@@ -311,6 +329,7 @@ textarea:focus{
 }
 
 .input_box2 input {
+  padding-left:10px;
   height: 27px;
   font-size: 11pt;
   border-radius: 10px;

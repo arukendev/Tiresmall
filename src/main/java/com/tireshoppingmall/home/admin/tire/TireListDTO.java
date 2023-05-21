@@ -2,6 +2,9 @@ package com.tireshoppingmall.home.admin.tire;
 
 import java.util.Arrays;
 
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 public class TireListDTO {
 
 	//타이어 그룹
@@ -32,6 +35,8 @@ public class TireListDTO {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
 	public TireListDTO(int tg_id, String tg_brand, String tg_name, String tg_img, String tg_text, int tg_num,
 			int tg_dcrate, int tg_print, int tg_sedan, int tg_suv, String tg_detail, int ti_id, int ti_tg_id,
 			String[] ti_marking, int[] ti_width, int[] ti_ratio, int[] ti_inch, int[] ti_stock, int[] ti_pricefac) {
@@ -56,6 +61,7 @@ public class TireListDTO {
 		this.ti_stock = ti_stock;
 		this.ti_pricefac = ti_pricefac;
 	}
+
 
 
 	public int getTg_id() {

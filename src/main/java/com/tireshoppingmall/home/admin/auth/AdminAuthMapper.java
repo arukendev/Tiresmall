@@ -2,8 +2,6 @@ package com.tireshoppingmall.home.admin.auth;
 
 import java.util.List;
 
-import com.tireshoppingmall.home.admin.tire.TireDTO;
-
 public interface AdminAuthMapper {
 
 	int authDelete(AuthDTO aDTO);

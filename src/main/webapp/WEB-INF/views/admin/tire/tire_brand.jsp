@@ -29,11 +29,11 @@
 						<div class='admin-tire-reg-size-modal-input'>
 							<div class="admin-tire-brand-size-modal-title">
 								<div class="tire-brand-reg-title">브랜드명</div>
-								<div><input class="tire-brand-input" name="tb_name"></div>
+								<div><input class="tire-brand-input" name="tb_name" required="required"></div>
 							</div>
 							<div class="admin-tire-brand-size-modal-title">
 								<div class="tire-brand-reg-title">출력순서</div>
-								<div><input class="tire-brand-input" name="tb_order"></div>
+								<div><input class="tire-brand-input" name="tb_order" required="required" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></div>
 							</div>
 							<div class="admin-tire-brand-size-modal-title">
 								<div class="tire-brand-reg-title">출력여부</div>
@@ -50,8 +50,8 @@
 							</div>
 						</div>
 						<div class='admin-tire-reg-size-modal-button'>
-							<button class='admin_tire_reg_in admin-tire-reg-size-modal-button1'>입력</button>
-							<div class='admin_tire_reg_cen admin-tire-reg-size-modal-button2'>취소</div>
+							<button class='admin_tire_brand_reg_in admin-tire-reg-size-modal-button1'>입력</button>
+							<div class='admin_tire_brand_reg_cen admin-tire-reg-size-modal-button2'>취소</div>
 						</div>
 					</div>
 				</div>
@@ -76,9 +76,9 @@
 			</c:if>
 
 			<c:forEach items="${brands }" var="t" varStatus="status">
-				<tr id="admin_tire_brands_content">
+				<tr class="admin_tire_brands_content">
 					<td class="admin_tire_table_td">${status.count}</td>
-					<td class="admin_tire_table_td"><!-- <input class="admin-tire-brand-name" value="" name="tb_name"> -->${t.tb_name }</td>
+					<td class="admin_tire_table_td">${t.tb_name }</td>
 					<td class="admin_tire_table_td"><input class="admin-tire-brand-order" value="${t.tb_order }" name="tb_order" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">번</td>
 					<td class="admin_tire_table_td">
 						<c:choose>

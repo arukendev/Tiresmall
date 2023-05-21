@@ -230,5 +230,5 @@ delete from tire_brand where tb_name= 'BF굿리치타이어';
 select * from tire_group left OUTER JOIN tire_item
 	on tg_id = ti_tg_id where tg_id = 1;
 
-
+update product_order set o_step = '배송준비중' where o_no = '117';
 

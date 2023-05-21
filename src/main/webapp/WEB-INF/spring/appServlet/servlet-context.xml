@@ -123,7 +123,7 @@
 
 	<beans:bean id="oo"
 		class="com.tireshoppingmall.home.admin.order.OrderOption">
-		<beans:constructor-arg value="7"></beans:constructor-arg>
+		<beans:constructor-arg value="10"></beans:constructor-arg>
 	</beans:bean>
 
 	<!-- admin.auth 몇개씩 보여줄지 -->
@@ -145,7 +145,7 @@
 	</beans:bean>
 
 
-	<!-- Branch 몇개씩 보여줄지 -->
+	<!-- Store 몇개씩 보여줄지 -->
 
 	<beans:bean id="bo"
 		class="com.tireshoppingmall.home.admin.store.BranchOption">
@@ -159,6 +159,7 @@
 		class="com.tireshoppingmall.home.admin.car.CarOption">
 		<beans:constructor-arg value="10"></beans:constructor-arg>
 	</beans:bean>
+	
 	<!-- navermail설정 -->
 	<beans:bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">

@@ -36,12 +36,12 @@ public class AuthDAO {
 	
 	public void getAllAuth(int pageNo,HttpServletRequest req) {
 		int count = no.getAuthCountPerPage();
-		
 		int start = (pageNo - 1) * count + 1;
 		int end = start + (count - 1);
 		
 		AuthDTO paging = (AuthDTO)req.getSession().getAttribute("authDTO");
 		int authCount = 0;
+		
 		if (paging == null) {
 			paging = new AuthDTO();
 			paging.setU_id("");
@@ -52,17 +52,13 @@ public class AuthDAO {
 			paging.setEnd(new BigDecimal(end));
 			authCount = allAuthCount;
 		}else {
-			System.out.println("아닐때");
 			paging.setStart(new BigDecimal(start));
 			paging.setEnd(new BigDecimal(end));
 			authCount = ss.getMapper(AdminAuthMapper.class).getAuthCount(paging);
 		}
-		System.out.println(paging.toString());
+	
 		List<AuthDTO> manyAuth = ss.getMapper(AdminAuthMapper.class).getAuth(paging);
-		for (AuthDTO aa : manyAuth) {
-			System.out.println(aa.toString());
-		}
-		System.out.println(manyAuth);
+	
 		int pageCount = (int) Math.ceil(authCount / (double) count);
 	
 		req.setAttribute("count", count);

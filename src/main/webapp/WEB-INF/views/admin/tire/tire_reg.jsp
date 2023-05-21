@@ -96,7 +96,7 @@
 						<td>
 							<div>
 								<div>
-									<input type="text" name="tg_text" id="admin-tire-reg-txt-input" />
+									<input type="text" name="tg_text" id="admin-tire-reg-txt-input" value=" "/>
 								</div>
 								<!-- <div>타이어 특성 고르기</div> -->
 							</div>
@@ -162,16 +162,16 @@
 								<tbody id="admin_tire_size_add">
 								
 								<!--사이에 추가할때마다 생기고 지워지는 공간  밑은 추가되는것들 -->
-									<tr style='height: 50px;'>
+									<tr style='height: 50px;' class="admin_tire_validation_test">
 										<td class='admin-tire-size-reg-content'>
 											<div class='admin-tire-reg-size-modal'>
 												<div class='admin-tire-reg-size-modal-container'>
 													<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>
 													<div class='admin-tire-reg-size-modal-input'>
 														<div class='admin-tire-reg-size-modal-input'>
-															<input class='tire_input_width'name='ti_width'  maxlength='3'>
+															<input type="text"    class='tire_input_width'name='ti_width'  maxlength='3'>
 															<span class='size-span'>/</span>
-															<input class='tire_input_ratio' name='ti_ratio' maxlength='2'>
+															<input type="text"  class='tire_input_ratio' name='ti_ratio' maxlength='2'>
 															<span class='size-span'>R</span>
 															<input class='tire_input_inch' name='ti_inch' maxlength='2'>
 														</div>
@@ -205,7 +205,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="admin_tire_table_title">리스트 이미지</td>
+						<td class="admin_tire_table_title">메인 이미지</td>
 						<td>
 							<div class="admin-tire-img-container">
 								<div class="admin-tire-img-contain">

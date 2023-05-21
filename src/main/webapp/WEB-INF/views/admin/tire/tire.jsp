@@ -21,26 +21,19 @@
 				<div id="tire_searchBox">
 					<div class="tire_searchTitle">
 						<div>
-							브랜드 <select id="tire_brand" name="tg_brand">
-								<option value="1">전체</option>
-								<option value="2">미쉐린타이어</option>
-								<option value="3">금호타이어</option>
-								<option value="4">콘티넨탈타이어</option>
-								<option value="5">한국타이어</option>
-								<option value="6">넥센타이어</option>
-								<option value="7">요코하마타이어</option>
-								<option value="8">브리지스톤타이어</option>
-								<option value="9">굳이어타이어</option>
-								<option value="10">던롭타이어</option>
-								<option value="11">피렐리타이어</option>
-								<option value="12">BF굿리치타이어</option>
+							브랜드 
+							<select id="tire_brand" name="tg_brand">
+								<option value="전체">전체</option>
+								<c:forEach var="tb" items="${tireBrands }">
+									<option value="${tb.tb_name }">${tb.tb_name }</option>
+								</c:forEach>				
 							</select>
 						</div>
 					</div>
 					<div class="tire_searchTitle">
 						<div class="tire_searchID">
-							<label for="tire_searchid">모델명</label> <input id="tire_Name"
-								name="tg_name">
+							<label for="tire_searchid">모델명</label> 
+							<input id="tire_Name" name="tg_name">
 						</div>
 					</div>
 					<div id="searchBtn">
@@ -141,18 +134,6 @@
 					<a style="color: black;" href="tire.page.change?p=${curPage + 1 }">다음</a>
 				</c:if>
 			</div>
-
-	
-			<div id="tireBrandModal">
-			
-			
-			</div>
-
-
-
-
-
-
 		</div>
 	</div>
 </body>

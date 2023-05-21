@@ -281,6 +281,7 @@ public class AdminBoardController {
 	@RequestMapping(value = "/event.detail", method = RequestMethod.GET)
 	public String eventDetail(HttpServletRequest req, EventDTO eventDTO) {
 		eventDAO.eventDetail(eventDTO, req);
+		
 		req.setAttribute("subMenuPage", "board/board_subMenu.jsp");
 		req.setAttribute("contentPage", "board/event_detail.jsp");
 		return "admin/master";

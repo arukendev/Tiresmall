@@ -8,9 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/admin/auth/admin_auth.css">
-<link rel="stylesheet" href="resources/css/admin/tire/admin_tire.css">
 <link rel="stylesheet" href="resources/css/admin/board/notice_board.css">
-<link rel="stylesheet" href="resources/css/admin/board/notice_modal.css">
 <script src="resources/js/admin/auth/admin_auth.js"></script>
 </head>
 <body>
@@ -20,77 +18,79 @@
 
 			<!-- 모달 창  -->
 			<div id="auth_modal">
-				<form action="admin.update.go" method="post">
+				<form action="admin.update.go" method="post" class="auth-modal-form">
 				<input type="hidden" name="i_no" id="auth_i_no" value="">
 					<div id="auth_modal_container">
 						<div id="auth_modalInfo">회원정보</div>
 						<div id="auth_modal_page">
-							<div id="auth_basicInfo">
-								<div class="auth_modal_title"
-									style="border-bottom: 1px solid #eee">기본정보</div>
-								<div id="auth_basic_content">
-									<div class="auth_modal_content">
-										<div id="auth__modal_searchTitle">
-											구분 <select id="auth_modal_sortation" name="i_grade">
-												<option value="1" class="auth_sortation_option1">일반</option>
-												<option value="2" class="auth_sortation_option2">업체</option>
-												<option value="3" class="auth_sortation_option3">관리자</option>
-											</select>
-										</div>
-										<div class="auth_modal_input">
-											아이디 <input type="text" id="auth_id" name="u_id" value="" />
-										</div>
-										<div class="auth_modal_input">
-											회원명 <input type="text" id="auth_name" name="i_name" />
-										</div>
-										<div class="auth_modal_input">
-											전화번호 <input type="text" id="auth_phone" name="i_phone" />
-										</div>
+							<!-- 구분 설정/ 아이디 / 회원명 / 전화번호 / 차랑명 / 제조사 / 차량번호 / 차량년식 -->
+							<div id="auth-modal-in-info">
+								<div class="auth-modal-lenght"><!-- 세로 -->
+									<div class="auth-modal-info-title"><!--가로  -->
+										구분
 									</div>
-									<div class="auth_modal_content">
-										<div class="auth_modal_input">
-											차량명 <input type="text" id="auth_carName" name="mc_model" />
-										</div>
-										<div class="auth_modal_input">
-											제조사 <input type="text" id="auth_carBrand" name="mc_brand" />
-										</div>
-										<div class="auth_modal_input">
-											차량번호 <input type="text" id="auth_carNUm" name="mc_number" />
-										</div>
-										<div class="auth_modal_input">
-											차량년식 <input type="text" id="auth_carYear" name="mc_year" />
-										</div>
+									<div class="auth-modal-info-content">
+										<select id="auth_modal_sortation" name="i_grade">
+											<option value="1" class="auth_sortation_option1">일반</option>
+											<option value="2" class="auth_sortation_option2">업체</option>
+											<option value="3" class="auth_sortation_option3">관리자</option>
+										</select>
+									</div>
+									<div class="auth-modal-info-title">
+										아이디
+									</div>
+									<div id="auth_id" class="auth-modal-info-content">
+										아이디111
 									</div>
 								</div>
-							</div>
-							<div id="auth_companyInfo">
-								<div class="auth_modal_title">업체정보</div>
-								<div id="auth_basic_content">
-									<div class="auth_modal_content">
-										<div class="auth_modal_input">
-											업체명<input type="text" name="" />
-										</div>
-										<div class="auth_modal_input">
-											연락처<input type="text" name="" />
-										</div>
-										<div class="auth_modal_input">
-											대표자명<input type="text" name="" />
-										</div>
-										<div class="auth_modal_input">
-											사업자번호<input type="text" name="" />
-										</div>
+								<div class="auth-modal-lenght"><!-- 세로 -->
+									<div class="auth-modal-info-title"><!--가로  -->
+										회원명		
 									</div>
-									<div class="auth_modal_content">
-										<div class="auth_modal_input auth_modal_addr">
-											주소<input type="text" name="" />
-										</div>
+									<div id="auth_name" class="auth-modal-info-content"><!--가로  -->
+										회원명111		
+									</div>
+									<div class="auth-modal-info-title"><!--가로  -->
+										전화번호	
+									</div>
+									<div id="auth_phone" class="auth-modal-info-content"><!--가로  -->
+										전화번호	222	
 									</div>
 								</div>
-							</div>
+								<div class="auth-modal-lenght"><!-- 세로 -->
+									<div class="auth-modal-info-title"><!--가로  -->
+										제조사		
+									</div>
+									<div id="auth_carBrand" class="auth-modal-info-content"><!--가로  -->
+										제조사111	
+									</div>
+									<div class="auth-modal-info-title"><!--가로  -->
+										차량명		
+									</div>
+									<div id="auth_carName" class="auth-modal-info-content"><!--가로  -->
+										차량명		
+									</div>
+								</div>
+								<div class="auth-modal-lenght"><!-- 세로 -->
+									<div class="auth-modal-info-title auth-modal-info-final-line"><!--가로  -->
+										차량년식
+									</div>
+									<div id="auth_carYear"class="auth-modal-info-content"><!--가로  -->
+										차량년식111	
+									</div>
+									<div class="auth-modal-info-title auth-modal-info-final-line"><!--가로  -->
+										차량번호		
+									</div>
+									<div id="auth_carNUm" class="auth-modal-info-content"><!--가로  -->
+										차량번호111
+									</div>
+								</div>				
+							</div>	
+						
 						</div>
 						<div id="auth_modal_btn">
-							<button class="admin_notPrintBTN">수정</button>
-							<div class="admin_deleteBTN ">취소</div>
+							<button class="admin_printBTN">수정</button>
+							<div class="admin_cenBTN">취소</div>
 						</div>
 					</div>
 				</form>
@@ -130,7 +130,7 @@
 						</div>
 					</div> -->
 					<div id="searchBtn">
-						<button>검색</button>
+						<button id="adminauthserch">검색</button>
 					</div>
 				</div>
 			</form>
@@ -140,14 +140,14 @@
 
 			<table id="auth_content">
 				<tr>
-					<td class="auth_content_title auth_no">No.</td>
+					<td class="auth_content_title auth_no" style="border-left-color:#343a40; ">No.</td>
 					<td class="auth_content_title auth_sortation">구분</td>
 					<td class="auth_content_title auth_id">ID</td>
 					<td class="auth_content_title auth_name">이 름</td>
 					<td class="auth_content_title auth_phoneNum">연락처</td>
 					<td class="auth_content_title auth_carNum">자동차 번호</td>
 					<td class="auth_content_title auth_date">등록일</td>
-					<td class="auth_content_title auth_management">관리</td>
+					<td class="auth_content_title auth_management"style="border-right-color:#343a40; ">관리</td>
 				</tr>
 				<c:if test="${empty manyAuth}">
 					<tr>

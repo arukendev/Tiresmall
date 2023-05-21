@@ -4,15 +4,18 @@ $(function() {
 	});
 	
 	
-	$(".admin_deleteBTN").click(function() {
+	$(".admin_cenBTN").click(function() {
 		$("#auth_modal").css("display","none");
 	})
 	
 	$(window).keydown(function(e) {
-		if(e.keyCode == 27){
-			$("#auth_modal_cancel").trigger("click");
+		if(e.keyCode == 13){
+			$("#adminauthserch").trigger("click");
 		}
 	})
+
+	
+	
 	
 	
 });
@@ -34,13 +37,23 @@ function updateauth(no,id,grade,name,phone,carNum,carName,carBrand,carYear) {
 	console.log(carYear);
 	
 	$('#auth_i_no').val(no);
-	$('#auth_id').val(id);
-	$('#auth_name').val(name);
-	$('#auth_phone').val(phone);
-	$('#auth_carNUm').val(carNum);
-	$('#auth_carName').val(carName);
-	$('#auth_carBrand').val(carBrand);
-	$('#auth_carYear').val(carYear +"년");
+	$('#auth_id').text(id);
+	$('#auth_name').text(name);
+	$('#auth_phone').text(phone);
+	$('#auth_carNUm').text(carNum);
+	$('#auth_carName').text(carName);
+	$('#auth_carBrand').text(carBrand);
+	$('#auth_carYear').text(carYear +"년");
+	
+	$(window).keydown(function(e) {
+		if(e.keyCode == 13){
+			$(".admin_printBTN").trigger("click");
+		}
+		if(e.keyCode == 27){
+			$(".admin_cenBTN").trigger("click");
+		}
+	})
+
 }
 
 function deleteAuth(id) {

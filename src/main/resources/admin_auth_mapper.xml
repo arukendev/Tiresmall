@@ -43,9 +43,9 @@
 		<if test="u_id != ''">
 			u.u_id like '%'||#{u_id}||'%' and
 		</if>
-		ui.i_name like '%'||#{i_name}||'%'
+			ui.i_name like '%'||#{i_name}||'%'
 		<if test="mc_number != null">
-		and mc.mc_number = #{mc_number}
+			and mc.mc_number = #{mc_number}
 		</if>
 		<if test="i_grade != 0">
 			and ui.i_grade = #{i_grade}
