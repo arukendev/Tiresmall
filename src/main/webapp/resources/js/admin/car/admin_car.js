@@ -23,6 +23,9 @@ $(function() {
 			$(".carsearchButton").trigger("click");
 		}
 	})
+	
+	//브랜드 이름 변경ajax
+	CarBrandNameChange();
 })
 
 //사이즈 추가시
@@ -134,35 +137,10 @@ function carTire() {
 		$(this).closest("tr").find(".tire_ratio1").text(ratio);
 		$(this).closest("tr").find(".tire_inch1").text(inch);	
 		
-		/*let ti_id =$(this).closest("tr").find($(".tiIdHidden")).val(); 
+		let ti_id =$(this).closest("tr").find($(".tiIdHidden")).val(); 
 
-		//ajax로 바로바로 바뀌게 한것
-		if(ti_id !=null){
-			let ti_width=$(this).closest("tr").find($(".tire_input_width")).val()
-			let ti_ratio=$(this).closest("tr").find($(".tire_input_ratio")).val()
-			let ti_inch=$(this).closest("tr").find($(".tire_input_inch")).val()
-			
-			//input창 비여있는지 유효성 검사
-			if(ti_width == ""){
-				alert("단면폭값이 비여있습니다.");
-				return false;
-			}
-			if(ti_ratio == ""){
-				alert("편평비값이 비여있습니다.");
-				return false;
-			}
-			if(ti_inch == ""){
-				alert("인치값이 비여있습니다.");
-				return false;
-			}
-			$.ajax({
-				url : "admin.tire.size.change",
-				data : {ti_id,ti_width,ti_ratio,ti_inch},
-				success : function(data) {
-				}
-			});*/
 			$(".admin-tire-reg-size-modal1").css("display","none");
-		});
+	});
 		
 		//뒤타이어
 		$(document).on("click",".admin_tire_reg_in2",function() {
@@ -338,11 +316,34 @@ function carBrandModal() {
 
 
 
-function deletecb1(cbname) {
+function deleteCarBrand(cbid) {
 	let ok = confirm('정말 삭제하시겠습니까?');
 	if (ok) {
-		location.href = 'brand.delete.do?cb_name=' + cbname;
+		location.href = 'admin.car.brand.delete.do?cb_id=' + cbid;
 	}
+}
+
+function CarBrandNameChange() {
+	
+	let old_cb_name;
+	let cb_name;
+	let cb_id;
+	$(".admin_car_brand_name").click(function() {
+		old_cb_name = $(this).val()
+	})
+	
+	$(".admin_car_brand_name").focusout(function() {
+		cb_name = $(this).val();
+		cb_id = $(this).next().val();
+		if(old_cb_name != cb_name){
+			$.ajax({
+				url : "admin.car.bande.name.change",
+				data : {cb_name,cb_id},
+				success : function(data) {	
+				}
+			});
+		}
+	})
 }
 
 

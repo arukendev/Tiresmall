@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tireshoppingmall.home.admin.tire.TireDTO;
+
 @Controller
 public class AdminCarController {
 	
@@ -118,7 +120,9 @@ public class AdminCarController {
 		return "admin/master";
 	}
 
-	@RequestMapping(value = "/brand.delete.do", method = RequestMethod.GET)
+	
+	//카 브랜드	
+	@RequestMapping(value = "/admin.car.brand.delete.do", method = RequestMethod.GET)
 	public String branddeletedo(CarDTO c, HttpServletRequest req) {
 		
 		cDAO.deletebrand(c,req);
@@ -154,15 +158,13 @@ public class AdminCarController {
 	}
 	
 	
-	@RequestMapping(value = "/update.brand.do", method = RequestMethod.GET)
-	public String brandupdatedo(CarDTO c, HttpServletRequest req) {
+	@ResponseBody
+	@RequestMapping(value = "admin.car.bande.name.change", method = RequestMethod.GET)
+	public int carBrandNameChangeDO(CarDTO c, HttpServletRequest req) {
 		
-		cDAO.updatebrand(c, req);
-		cDAO.getallCarBrands(req);
-		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
-		req.setAttribute("contentPage", "car/car_brand.jsp");
-		return "admin/master";
+
+		return cDAO.carBrandNameChange(c);
 	}
 	
-	
+
 }

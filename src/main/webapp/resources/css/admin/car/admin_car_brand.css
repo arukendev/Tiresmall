@@ -149,6 +149,15 @@
 	border-color: #dc3545;
 }
 
+.admin_car_brand_name{
+	border: none;
+	text-align:center;
+	width:80%;
+	padding: 10px;
+	font-size: 15pt;
+	font-family: GmarketSansMedium;
+}
+
 
 
 

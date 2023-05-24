@@ -65,13 +65,12 @@
 				style="border-right: 1px solid white;">관리</td>
 		</tr>
 		<c:if test="${empty cars}">
-			<table>
-				<tr>
-					<td colspan="6" style="text-align: center;">데이터가 존재하지않습니다.</td>
-				</tr>
-			</table>
+			<tr>
+				<td colspan="6" style="text-align: center;">데이터가 존재하지않습니다.</td>
+			</tr>
 		</c:if>
 		<c:forEach items="${cars }" var="c" varStatus="status">
+		<c:forTokens items="" delims=""></c:forTokens>
 			<tr id="admin_cars_content">
 				<td class="admin_car_table_td">${status.count + (curPage-1)*count}</td>
 				<td class="admin_car_table_td">${c.c_brand }</td>

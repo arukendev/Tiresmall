@@ -55,20 +55,21 @@
 						style="border-right: 1px solid white;">관리</td>
 				</tr>
 				<c:if test="${empty carbrands}">
-					<table>
-						<tr>
-							<td colspan="5" style="text-align: center;">데이터가 존재하지않습니다.</td>
-						</tr>
-					</table>
+					<tr>
+						<td colspan="4" style="text-align: center;">데이터가 존재하지않습니다.</td>
+					</tr>
 				</c:if>
 				<c:forEach items="${carbrands}" var="cb" varStatus="status">
 					<tr id="admin_cars_content">					
 						<td class="admin_car_table_td">${status.count }</td>
-						<td class="admin_car_table_td">${cb.cb_name}</td>
+						<td class="admin_car_table_td">
+							<input name="cb_name" value="${cb.cb_name}" class="admin_car_brand_name">
+							<input type="hidden" value="${cb.cb_id}">
+						</td>
 						<td class="admin_car_table_td">${cb.cb_num }</td>
 						<td class="admin_car_table_td">
 							<button type="button" class="deletecarbrandbutton"
-								onclick="deletecb1('${cb.cb_name}')">삭제</button>
+								onclick="deletecb1('${cb.cb_id}')">삭제</button>
 						</td>
 					</tr>
 				</c:forEach>
