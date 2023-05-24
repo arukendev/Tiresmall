@@ -137,7 +137,10 @@
 									<div class="admin-tire-img-title"
 										style="border-right: 2px solid white;">현재 이미지</div>
 									<div class="admin-tire-img-content">
-										<img id="imagePreview">
+										<c:if test="${car.c_file != null}">
+											<img src="resources/web/main/car/${car.c_file}">
+										</c:if>
+										<img id="imagePreview" >
 									</div>
 								</div>
 								<div class="admin-tire-img-contain">
@@ -147,6 +150,7 @@
 											<input class="upload-name1" placeholder="첨부파일"
 												disabled="disabled"> <label for="file1">업로드</label>
 											<input type="file" id="file1" name="file">
+											<input type="hidden" name="c_file" value="${c.c_file }">
 										</div>
 									</div>
 								</div>

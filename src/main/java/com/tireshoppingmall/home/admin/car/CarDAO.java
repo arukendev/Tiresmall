@@ -1,7 +1,6 @@
 package com.tireshoppingmall.home.admin.car;
 
 import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.tireshoppingmall.home.admin.car.CarDTO;
 import com.tireshoppingmall.home.admin.car.CarOption;
@@ -122,7 +120,6 @@ public class CarDAO {
 				carFT+= "앞 : " + c.getTf_width()[i] + "/" +  c.getTf_ratio()[i] + "R" + c.getTf_inch()[i];
 				carRT+= "뒤 : " + c.getTb_width()[i] + "/" +  c.getTb_ratio()[i] + "R" + c.getTb_inch()[i];
 			}
-			
 		}
 		c.setC_ft(carFT);
 		c.setC_bt(carRT);
@@ -172,13 +169,26 @@ public class CarDAO {
 	
 	}
 
-	public void updateCar(MultipartFile file, CarDTO c, HttpServletRequest req) {
+	public void updateCar(CarDTO c, HttpServletRequest req) {
 		String uploadFolder = servletContext.getRealPath("resources/web");
-
+		String carFT = "";
+		String carRT = "";
+		for (int i = 0; i < c.getTf_inch().length; i++) {
+			if((i+1) != c.getTf_inch().length) { 
+				carFT += "앞 : " + c.getTf_width()[i] + "/" + c.getTf_ratio()[i] + "R" + c.getTf_inch()[i]+"!";
+				carRT += "뒤 : " + c.getTb_width()[i] + "/" + c.getTb_ratio()[i] + "R" + c.getTb_inch()[i]+"!";
+			}else { //마지막일경우
+				carFT+= "앞 : " + c.getTf_width()[i] + "/" +  c.getTf_ratio()[i] + "R" + c.getTf_inch()[i];
+				carRT+= "뒤 : " + c.getTb_width()[i] + "/" +  c.getTb_ratio()[i] + "R" + c.getTb_inch()[i];
+			}
+		}
+		c.setC_ft(carFT);
+		c.setC_bt(carRT);
+		
 		// 파일이 업로드 되었을 때만 새로운 파일 생성
-		if (!file.isEmpty()) {
-			String fileRealName = file.getOriginalFilename();
-			long size = file.getSize();
+		if (c.getFile() != null) {
+			String fileRealName = c.getFile().getOriginalFilename();
+			long size = c.getFile().getSize();
 			System.out.println("파일명 : " + fileRealName);
 			System.out.println("용량크기(byte) : " + size);
 
@@ -187,26 +197,24 @@ public class CarDAO {
 			System.out.println(uuid.toString());
 			String[] uuids = uuid.toString().split("-");
 			String uniqueName = uuids[0];
-			System.out.println("생성된 고유문자열" + uniqueName);
-			System.out.println("확장자명" + fileExtension);
+			System.out.println("생성된 고유문자열 : " + uniqueName);
+			System.out.println("확장자명 : " + fileExtension);
 			File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
 			try {
-				file.transferTo(saveFile);
+				c.getFile().transferTo(saveFile);
+				new File(uploadFolder + "/" + c.getC_file()).delete();
 				c.setC_file(uniqueName + fileExtension);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
+			}catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else {
-			// 파일이 업로드 되지 않았을 때 기존 파일명을 유지
-			c.setC_file(c.getFile().getOriginalFilename());
 		}
-
-		AdminCarMapper mm = ss.getMapper(AdminCarMapper.class);
+		
+		//c_brand로 car_brand의 id값 을 가져와서 c_cb_id에 세팅
+		c.setC_cb_id(ss.getMapper(AdminCarMapper.class).getBrandId(c.getC_brand()));
 		try {
-			if (mm.updatecar(c) == 1) {
-				System.out.println(c);
+			System.out.println("11");
+			if (ss.getMapper(AdminCarMapper.class).updatecar(c) == 1) {
+				System.out.println("22");
 				System.out.println("수정성공");
 			} else {
 				System.out.println("수정실패");
@@ -246,7 +254,6 @@ public class CarDAO {
 			carTireSize.add(new CarDTO(frontTire[i].substring(0,3),frontTire[i].substring(3,5),frontTire[i].substring(5,7),
 					rearTire[i].substring(0,3),rearTire[i].substring(3,5),rearTire[i].substring(5,7)));
 		}
-
 
 		req.setAttribute("car", Car);
 		req.setAttribute("carTireSize", carTireSize);

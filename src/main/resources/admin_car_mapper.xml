@@ -28,8 +28,7 @@
 	<select id="getCar" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
 		select * from car where C_ID = #{c_id}
 	</select>
-	
-	
+
 
 	<insert id="regCar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 		insert into Car
@@ -42,10 +41,10 @@
 	
 	
 	<update id ="updatecar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
-	update Car set
+	update car set
 	c_name = #{c_name}, c_year1 = #{c_year1}, c_year2 = #{c_year2},
 	c_brand = #{c_brand}, c_ft = #{c_ft},
-	c_bt = #{c_bt}, c_file = #{c_file}
+	c_bt = #{c_bt}, c_file = #{c_file}, c_cb_id = #{c_cb_id}
 	where c_id = #{c_id}
 	</update>
 
