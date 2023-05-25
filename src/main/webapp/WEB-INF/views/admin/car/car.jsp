@@ -23,7 +23,7 @@
 				<div class="car_searchTitle">
 					<div>
 						메이커 <select id="carBrand" name="c_brand">
-							<option value="전체">전체</option>
+							<option value="0">전체</option>
 							<c:forEach var="cb" items="${carBrands}">
 								<option value="${cb.cb_name}">${cb.cb_name}</option>
 							</c:forEach>

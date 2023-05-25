@@ -65,7 +65,8 @@ public class CarDAO {
 		}
 
 		List<CarDTO> car = ss.getMapper(AdminCarMapper.class).getAllCar(paging);
-		
+		//타이어 브랜드  차에 맞게 맞춰서 가져오기
+			
 		// 타이어 사이즈 가져오기
 		String[] frontTireSize = null;
 		String[] rearTireSize;
@@ -170,7 +171,7 @@ public class CarDAO {
 	}
 
 	public void updateCar(CarDTO c, HttpServletRequest req) {
-		String uploadFolder = servletContext.getRealPath("resources/web");
+		String uploadFolder = servletContext.getRealPath("resources/web/main/car");
 		String carFT = "";
 		String carRT = "";
 		for (int i = 0; i < c.getTf_inch().length; i++) {
@@ -208,13 +209,12 @@ public class CarDAO {
 				e.printStackTrace();
 			}
 		}
-		
+		System.out.println("c_file의 값 : " + c.getC_file());
 		//c_brand로 car_brand의 id값 을 가져와서 c_cb_id에 세팅
 		c.setC_cb_id(ss.getMapper(AdminCarMapper.class).getBrandId(c.getC_brand()));
 		try {
-			System.out.println("11");
 			if (ss.getMapper(AdminCarMapper.class).updatecar(c) == 1) {
-				System.out.println("22");
+
 				System.out.println("수정성공");
 			} else {
 				System.out.println("수정실패");
@@ -243,6 +243,7 @@ public class CarDAO {
 		System.out.println(c.getC_id());
 		
 		CarDTO Car = ss.getMapper(AdminCarMapper.class).getCar(c);
+		
 		
 		String[] frontTire =  Car.getC_ft().replaceAll("앞 : ", "").replaceAll("/", "").replaceAll("R", "").split("!");
 		String[] rearTire = Car.getC_bt().replaceAll("뒤 : ", "").replaceAll("/", "").replaceAll("R", "").split("!");
@@ -288,9 +289,11 @@ public class CarDAO {
 		
 	}
 
-
-
 	public int carBrandNameChange(CarDTO c) {
+		//car 브랜드 이름 변경
+		if(ss.getMapper(AdminCarMapper.class).carBrandChange(c)>=0) {
+			System.out.println("변경 성공");
+		}
 		
 		return ss.getMapper(AdminCarMapper.class).carBrandNameChange(c);
 	}

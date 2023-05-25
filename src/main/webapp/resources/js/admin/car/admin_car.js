@@ -26,6 +26,7 @@ $(function() {
 	
 	//브랜드 이름 변경ajax
 	CarBrandNameChange();
+
 })
 
 //사이즈 추가시
@@ -193,6 +194,9 @@ function carImgReg() {
 				alert("이미지 파일만 업로드 가능합니다.");
 				return;
 			}
+			if($('.imagePreview').length>0){	
+				$(".imagePreview").find('img').remove();
+			}
 			var sel_file =f;
 	
 			var reader = new FileReader();
@@ -288,16 +292,6 @@ function carBrandModal() {
 				$(".admin-carBrand-reg-button").trigger("click");
 			}
 		});
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 	})
 	//취소 버튼 누를시
@@ -305,12 +299,6 @@ function carBrandModal() {
 		$("#admin_car_brand_reg_modal").css("display","none");
 		$(".admin_car_brand_reg_brant_name").val()==null;
 	})
-	
-	
-	
-	
-	
-	
 }
 
 
@@ -328,6 +316,7 @@ function CarBrandNameChange() {
 	let old_cb_name;
 	let cb_name;
 	let cb_id;
+	
 	$(".admin_car_brand_name").click(function() {
 		old_cb_name = $(this).val()
 	})
@@ -335,7 +324,8 @@ function CarBrandNameChange() {
 	$(".admin_car_brand_name").focusout(function() {
 		cb_name = $(this).val();
 		cb_id = $(this).next().val();
-		if(old_cb_name != cb_name){
+		
+		if(old_cb_name != cb_name && cb_name != ""){
 			$.ajax({
 				url : "admin.car.bande.name.change",
 				data : {cb_name,cb_id},

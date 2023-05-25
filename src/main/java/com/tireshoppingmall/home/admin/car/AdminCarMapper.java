@@ -36,6 +36,10 @@ public interface AdminCarMapper {
 
 	int carBrandNameChange(CarDTO c);
 
+	String getBrnadName(int c_cb_id);
+
+	int carBrandChange(CarDTO c);
+
 	
 
 	

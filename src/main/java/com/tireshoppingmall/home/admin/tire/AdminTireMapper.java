@@ -55,7 +55,11 @@ public interface AdminTireMapper {
 
 	int tireBrandPrintOnOff(TireDTO tDTO);
 
-	int tireSBrandNameChange(TireDTO tDTO);
+	
+	//타이어 브랜드 이름 변경
+	int tireBrandNameChange(TireDTO tDTO);
+	//타이어 그룹 브랜드 이름변경
+	int tireGroupBrandNameChange(TireDTO tDTO);
 
 	int tireGroupDcrateChange(TireDTO tDTO);
 
@@ -68,6 +72,8 @@ public interface AdminTireMapper {
 	int tireImgUpdate(TireDTO tDTO);
 
 	int tireImgsUpdate(TireDTO tDTO);
+
+	
 
 	
 

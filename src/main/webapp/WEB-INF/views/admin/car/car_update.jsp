@@ -14,7 +14,6 @@
 <body>
 	<input id="whatMenu" value="car" type="hidden">
 	<input id="sm" value="1" type="hidden">
-	<input id="" value="${car.c_id }" type="hidden">
 	<div class="container sub">
 		<div id="tire_container">
 			<div id="admin-tire-reg">
@@ -22,6 +21,7 @@
 			</div>
 			<form action="admin.car.update.do" id="admin_tire_table_container"
 				method="post" enctype="multipart/form-data">
+				<input id="" value="${car.c_id }" type="hidden" name="c_id">
 				<table id="admin_tire_table" border="1">
 					<tr>
 						<td class="admin_tire_table_title">브랜드</td>

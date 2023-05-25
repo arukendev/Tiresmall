@@ -628,23 +628,24 @@ function BrnadprintOnOff() {
 //타이어 브랜드 입력 후
 function tireBrandForcusout() {
 	//타이어 브랜드명 변경
-	/*let brandNameBefor="";
+	let brandNameBefor="";
 	$(".admin-tire-brand-name").click(function name() {
 		brandNameBefor=$(this).val();
 	});
 	$(".admin-tire-brand-name").focusout(function() {
 		let tb_name=$(this).val();
+		let tb_id=$(this).next().val();
+		
 		if(brandNameBefor!=tb_name && tb_name!=""){
-			alert(tb_name);
 			$.ajax({
 				url : "admin.tire.brand.name.change",
-				data : {tb_name,brandNameBefor},
+				data : {tb_name,tb_id},
 				success : function(data) {
 					alert('성공');
 				}
 			});
 		}
-	});*/
+	});
 	
 	//타이어 브랜드 출력 순 변경
 	$(".admin-tire-brand-order").focusout(function() {

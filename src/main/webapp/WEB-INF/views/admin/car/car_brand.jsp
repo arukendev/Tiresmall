@@ -64,12 +64,12 @@
 						<td class="admin_car_table_td">${status.count }</td>
 						<td class="admin_car_table_td">
 							<input name="cb_name" value="${cb.cb_name}" class="admin_car_brand_name">
-							<input type="hidden" value="${cb.cb_id}">
+							<input type="hidden" value="${cb.cb_id}" class="car_brand_name">
 						</td>
 						<td class="admin_car_table_td">${cb.cb_num }</td>
 						<td class="admin_car_table_td">
 							<button type="button" class="deletecarbrandbutton"
-								onclick="deletecb1('${cb.cb_id}')">삭제</button>
+								onclick="deleteCarBrand('${cb.cb_id}')">삭제</button>
 						</td>
 					</tr>
 				</c:forEach>

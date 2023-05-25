@@ -172,11 +172,19 @@
 	set tb_ea = #{tb_ea}
 	where tb_name= #{tb_name}
 </update>
-<!-- <update id="tireSBrandNameChange">
+
+<update id="tireBrandNameChange">
 	update tire_brand
 	set tb_name = #{tb_name}
-	where tb_name= #{brandNameBefor}
-</update> -->
+	where tb_id= #{tb_id}
+</update>
+
+<update id="tireGroupBrandNameChange">
+	update tire_group
+	set tg_brand = #{tb_name}
+	where tg_tb_id = #{tb_id}
+</update>
+
 <update id="tireBrandOrderChange">
 	update tire_brand
 	set tb_order = #{tb_order}
@@ -184,7 +192,7 @@
 </update>
 
 <insert id="regTireBrand">
-	insert into tire_brand values(#{tb_name},#{tb_ea},#{tb_order})
+	insert into tire_brand values(#{tb_name},#{tb_ea},#{tb_order},tire_brand_seq.nextval)
 </insert>
 
 <insert id="adminTireSizeNewInsertReg">
