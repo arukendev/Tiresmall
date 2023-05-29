@@ -74,13 +74,12 @@ $(".on-off").click(function(){
 		success : function(data) {
 			console.log(data);
 			if(data == 1){
-			onoffEl.text('on');
-			onoffEl.css("backgroundColor", "#198754");
-
-			alert('팝업 설정 On');
+				onoffEl.text('on');
+				onoffEl.attr('class','admin_printBTN on-off');
+				alert('팝업 설정 On');
 			}else{
 				onoffEl.text('off');
-				onoffEl.css("backgroundColor", "red");
+				onoffEl.attr('class','admin_notPrintBTN on-off');
 				alert('팝업 설정 Off');
 			}
 		}
