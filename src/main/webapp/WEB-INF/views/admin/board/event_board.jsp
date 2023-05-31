@@ -5,6 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0"
 	charset="UTF-8">
 <title>event board</title>
@@ -27,17 +30,23 @@
 						<table class="modal_table">
 							<tr>
 								<td class="left_td">제목</td>
-								<td><input name="e_title" id="e_title"
-									class="modalInput" required="required"></td>
+								<td>
+									<input name="e_title" id="e_title"
+									class="modalInput" required="required">
+								</td>
 							</tr>
 							<tr>
 								<td class="left_td">내용</td>
-								<td><textarea name="e_content"
-										id="e_content" required="required"></textarea></td>
+								<td>
+									<textarea name="e_content"
+										id="e_content" required="required"></textarea>
+								</td>
 							</tr>
 							<tr>
 								<td class="left_td">종료일</td>
-								<td><input name="e_duration" id="e_duration" autocomplete="off" required="required" maxlength="10"></td>
+								<td>
+									<input name="e_duration" id="e_duration" autocomplete="off" required="required" maxlength="10">
+								</td>
 							</tr>
 							<tr>
 								<td class="left_td">메인이미지</td>
@@ -49,7 +58,7 @@
 								<td class="left_td">상세이미지</td>
 								<td align="center">
 									<input type="file" multiple="multiple" name="detailimg[]" id="e_detailimg" required="required">
-										</td>
+								</td>
 							</tr>
 							<tr>
 								<td class="left_td">상태</td>

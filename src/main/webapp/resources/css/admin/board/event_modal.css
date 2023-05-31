@@ -1,23 +1,44 @@
 @charset "UTF-8";
 
+
+#event-modal {
+	width: -webkit-fill-available;
+	position: fixed;
+    top: 0;
+	/*
+    height: 100vh;
+      */
+}
+.modal-wrapper {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+.notice_modalcontent{
+	width: 70%;
+	height: 82vh;
+	position: relative;
+	background-color: white;
+    border-radius: 7px;
+    padding: 4px;	
+    top: 72px;
+}
+
 .modal_table {
 	background-color: white;
-	width: 100%;
+	width: 96%;
 	height: 100%;
 	border-collapse: collapse;
+	margin: 20px;
 }
 
 .left_td {
 	background-color: #333333;
 	color: white;
-}
-
-#event-modal {
-	position: absolute;
-	width: -webkit-fill-available;
-	/*
-    height: 100vh;
-      */
+	font-size: 15pt;
+	padding: 1px;
 }
 
 .modal_table td {
@@ -28,7 +49,7 @@
 
 .notice_header {
 	display: flex;
-	background-color: #CCCCCC;
+	background-color: #eee;
 	align-items: center;
 	justify-content: center;
 	height: 70px;
@@ -41,17 +62,10 @@
 	background-color: white;
 	align-items: center;
 	justify-content: center;
-	height: 70px;
+	height: 20px;
 }
 
-.modalBtn1 {
-	color: white;
-	background-color: black;
-}
 
-.modalBtn2 {
-	color: black;
-}
 
 #e_content {
 	width: 90%;
@@ -80,28 +94,52 @@
 	outline: none;
 }
 
-.modal-wrapper {
-	width: 100%;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	background-color: rgba(0, 0, 0, 0.3);
-}
 
 .modalBtn1 {
 	width: 90px;
 	height: 35px;
 	margin: 5px;
-	font-size: large;
+	margin-right: 15px;
+    padding: 6px;
+    border-radius: 7px;
+    border: 1px solid #0d6efd;
+    color: #0d6efd;
+    background-color: #fff;
+    font-size: 13pt;
+    font-weight: 900;
+    cursor: pointer;
+    user-select: none;
+    font-family: GmarketSansMedium;
+}
+.modalBtn1:hover{
+	color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
 }
 
 .modalBtn2 {
 	width: 90px;
 	height: 35px;
 	margin: 10px;
-	font-size: large;
-	background-color: white;
+	margin-left: 15px;
+    margin-right: 15px;
+    padding: 6px;
+    border-radius: 7px;
+    border-color: #212529;
+    font-weight: 900;
+    font-size: 13pt;
+    color: #212529;
+    background-color: #fff;
+    cursor: pointer;
+    user-select: none;
+    font-family: GmarketSansMedium;
 }
+.modalBtn2:hover{
+	color: #fff;
+    background-color: #212529;
+    border-color: #212529;
+}
+
 
 .modalInput {
 	height: 30px;

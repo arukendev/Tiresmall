@@ -193,6 +193,20 @@ pageEncoding="UTF-8"%>
     		</c:forEach>
 			<jsp:include page="${eventModal}"></jsp:include>
 		<dialog>
+		
+	<div id="home-modal">
+		<!-- 넥센 페이지 처럼 작업 -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+		
     <script src="resources/js/main/home/main_home.js"></script>
   </body>
 </html>

@@ -339,11 +339,7 @@ textarea:focus {
 	color: black;
 }
 
-.notice_modalcontent {
-	width: 70%;
-	position: relative;
-	top: 39px;
-}
+
 
 #paging-box {
 	display: flex;
