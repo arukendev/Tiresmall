@@ -5,7 +5,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>대전 타이어쇼핑몰</title>
+    <title>논산 타이어쇼핑몰</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -25,7 +25,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   <body>
     <div class="index_shadow"></div>
     <div class="index_container">
-      <header>
+      <header >
         <div class="index_header">
           <div class="index_hTop">
             <div class="index_hTopLeft">
@@ -79,8 +79,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               </a>
             </div>
             <div class="index_topNav">
-              <div class="index_tnMenu index_tnSearch">
-                <a href="search.size">타이어 찾기</a>
+              <div class="index_tnMenu index_tnSearch hoem-modal-open">
+                 <a href="search.size">타이어 찾기</a>
               </div>
               <div class="index_tnMenu index_tnBrand">
                 <a href="product.brand?b=&p=1">브랜드별 타이어</a>
@@ -115,7 +115,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="index_dropMenu">
           <ul class="index_dropSearch index_dropWrapper">
             <li class="index_dropMenu_menu">
-              <div class="index_dropMenu_txt">
+              <div class="index_dropMenu_txt "><!--hoem-modal-open  -->
+          	<!-- 	    타이어 사이즈로 검색 -->
                 <a class="index_dropSearch_a" href="search.size"
                   >타이어 사이즈로 검색</a
                 >

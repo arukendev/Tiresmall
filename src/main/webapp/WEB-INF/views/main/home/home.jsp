@@ -23,7 +23,81 @@ pageEncoding="UTF-8"%>
           loop
           style="width: 100%"
         ></video>
-      </div>
+     </div>
+     <div id="home-modal">
+		<div id="home-modal-container">
+			<div id="home-modal-container-title">
+				타이어 사이즈 찾기
+				<p class="btn_close">
+					<a>"닫기"</a>
+				</p>
+			</div>
+			<div id="home-modal-search-select">
+				<div id="home-modal-tire-search" class="home-modal-search-div">타이어 사이즈로 찾기</div>
+				<div id="home-modal-car-search" class="home-modal-search-div">차종으로 사이즈 찾기</div>
+			</div>
+			<div id="home-modal-search-content">
+				<form action="" id="home-modal-tire-search-container">
+					<div id="home-modal-tire-search-content">
+					<!-- <div id="home-modal-tire-search-content-img">
+							<img alt="" src="resources/web/main/search/searchTireGuideImg2.png">
+						</div>	 -->
+						<div id="home-modal-tire-search-content-text">
+							<span class="home-modal-span tire-width">단면폭</span>
+								<img alt="" src="resources/web/main/search/right-arrow.png">
+							<span class="home-modal-span tire-ratio">편평비</span>
+								<img alt="" src="resources/web/main/search/right-arrow.png">
+							<span class="home-modal-span tire-inch">인치</span>
+						</div>
+						<div id="home-modal-tire-search-content-item">
+							<ol class="item-list">
+								<li value="145">145</li>
+								<li value="155">155</li>
+								<li value="165">165</li>
+								<li value="170">170</li>
+								<li value="175">175</li>
+								<li value="185">185</li>
+								<li value="195">195</li>
+								<li value="205">205</li>
+								<li value="215">215</li>
+								<li value="225">225</li>
+								<li value="235">235</li>
+								<li value="245">245</li>
+								<li value="255">255</li>
+								<li value="265">265</li>
+								<li value="275">275</li>
+								<li value="285">285</li>
+								<li value="295">295</li>
+								<li value="305">305</li>
+								<li value="315">315</li>
+								<li value="325">325</li>
+								<li value="335">335</li>
+								<li value="345">345</li>
+								<li value="355">355</li>
+							</ol>
+						</div>	
+					</div>					
+					<div class="home-modal-search-butten">
+						<button class="home-modal-tire-search">검색</button>
+					</div>
+				</form>
+				<form action="" id="home-modal-car-search-container">
+					<div  id="home-modal-car-search-content">
+						차종으로 타이어 사이즈 검색
+					</div>
+					<div class="home-modal-search-butten">
+						<button class="home-modal-car-search">검색</button>
+					</div>
+				</form>
+
+
+
+				
+			</div>
+		</div>
+	</div>
+	
+      
       <section>
         <div class="home_title">
           <img src="resources/web/logo4.png" style="height: 35px" />
@@ -31,7 +105,7 @@ pageEncoding="UTF-8"%>
           <hr />
         </div>
         <div class="home_manual">
-          <div class="home_manual_menu">
+          <div class="home_manual_menu hoem-modal-open">
             <img
               src="resources/web/main/home/manual_1.png"
               style="width: 300px"
@@ -194,18 +268,7 @@ pageEncoding="UTF-8"%>
 			<jsp:include page="${eventModal}"></jsp:include>
 		<dialog>
 		
-	<div id="home-modal">
-		<!-- 넥센 페이지 처럼 작업 -->
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	</div>
+
 		
     <script src="resources/js/main/home/main_home.js"></script>
   </body>
