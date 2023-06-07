@@ -14,16 +14,16 @@
 	height: 100vh;
 	display: flex;
 	justify-content: center;
+	align-items:center;
 	background-color: rgba(0, 0, 0, 0.3);
 }
 .notice_modalcontent{
 	width: 70%;
-	height: 82vh;
+	height: 600px;
 	position: relative;
 	background-color: white;
     border-radius: 7px;
     padding: 4px;	
-    top: 72px;
 }
 
 .modal_table {

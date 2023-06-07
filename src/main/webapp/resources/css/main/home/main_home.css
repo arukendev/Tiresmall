@@ -169,8 +169,8 @@ a {
 }
 
 #home-modal-container{
-	width: 50%;
-	height: 550px;
+	width: 750px;
+	height: 500px;
 	background-color: white;
 	position: relative;
 }
@@ -185,19 +185,19 @@ a {
 	position: relative;
 }
 
-.btn_close {
+.btn_close, .btn_close2{
     position: absolute;
     right: 0;
     top: 5px;
 }
-.btn_close a {
+.btn_close a , .btn_close2 a{
     display: block;
     position: relative;
     width: 50px;
     height: 50px;
     text-indent: -9999px;
 }
-.btn_close a:after {
+.btn_close a:after, .btn_close2 a:after{
     transform: rotate(-45deg);
     
     content: "";
@@ -209,7 +209,7 @@ a {
     background: black;
     
 }
-.btn_close a:before {
+.btn_close a:before, .btn_close2 a:before {
     transform: rotate(45deg);
     
     content: "";
@@ -250,10 +250,28 @@ a {
 	display: none;
 }
 #home-modal-tire-search-content{
-	height: 360px;
+	height: 350px;
+	position: relative;
 }
 #home-modal-car-search-content{
 	height: 360px;
+}
+.home-modal-tire-search-what{
+	position: absolute;
+	bottom: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.home-modal-tire-search-what-text{
+	padding: 5px;
+	background-color: var(--red);
+	color: white;
+	font-size: 15pt;
+    font-weight: 400;
+    border-radius: 3px;
 }
 
 
@@ -280,11 +298,14 @@ a {
 }
 .tire-width{
 	color: #d85050;
-	
 }
 
 #home-modal-tire-search-content-text img{
 	max-width: 20px;
+}
+
+#home-modal-tire-search-content-item{
+	text-align: center;
 }
 
 
@@ -295,6 +316,7 @@ a {
     flex-wrap: wrap;
     align-content: flex-start;
     align-items: stretch;
+    width: 100%;
 	height: 370px;
     overflow-y: auto;
     overscroll-behavior-y: contain;
@@ -313,11 +335,138 @@ a {
 	color: white;
 }
 
+.home-modal-tire-select-result{
+	display: none;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 350px;
+	position: relative;
+}
+.home-modal-tire-select-result-text{	
+	margin-bottom:60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size:30pt;
+	font-weight: 800;
+	color:var(--red); 
+}
+.rearTireResult{
+	display: none;
+}
+
+.home-modal-result-span{
+	margin: 0 20px 0 20px;
+	font-size:30pt;
+	font-weight: 800;
+	color:var(--red); 
+}
+.front-tire{
+	float: right;
+	font-size: 10pt;
+}
+
+
+.home-modal-tire-result-text{
+	font-size: 10pt;
+	position: absolute;
+	bottom:90px;
+}
+
+.home-modal-tire-select-result-button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	bottom:25px;
+	position: absolute;
+}
+.home-modal-tire-select-result-back{
+	margin:0px 10px 0px 10px;
+	padding: 10px;
+	
+	border-radius:3px;
+	font-size: 13pt;
+	font-weight:500;
+	background-color: gray;
+	color:white;
+}
+
+.home-modal-rear-tire-select{
+	margin:0px 15px 0px 15px;
+	padding: 10px;
+	border: 1px solid black;
+	border-radius:3px;
+	font-size: 13pt;
+	font-weight:500;
+}
+.home-modal-tire-select-go{
+	margin:0px 10px 0px 10px;
+	padding: 7px 10px 7px 10px;
+	font-size: 13pt;
+	font-weight:500;
+	border: none;
+	border-radius:3px;
+	background-color:var(--red);
+	color:white;
+}
+
+.home-modal-tire-select-result-back:hover{
+ 	background-color: rgb(172, 172, 172);
+}
+.home-modal-rear-tire-select:hover{
+	background-color: rgb(208, 208, 208);
+	border: 1px solid rgb(208, 208, 208);
+}
+.home-modal-tire-select-go:hover{
+	background-color:#d85050; 
+	
+}
 
 
 
 
+/* 타이어 어떻게 알아보는지 알려주는 모달  */
 
+#home-modal-what-know-tire{
+	top: 0px;
+    width: 100%;
+    min-width:1500px;
+    height: 100%;
+    display: none;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 10002;
+}
+#home-modal-what-know-tire-container{
+	width: 750px;
+	height: 600px;
+	background-color: white;
+}
+#home-modal-tire-search-what-img{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+#home-modal-tire-search-what-img img{
+	height: 550px;
+}
+.home-modal-what-know-tire-buttun{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.home-modal-what-know-tire-buttun-close{
+	font-size: 15pt;
+	padding: 10px;
+	color: white;
+	background-color: var(--red);
+	font-weight: 500;
+    border-radius: 3px;
+}
 
 
 

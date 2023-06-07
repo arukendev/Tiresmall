@@ -37,16 +37,13 @@ pageEncoding="UTF-8"%>
 				<div id="home-modal-car-search" class="home-modal-search-div">차종으로 사이즈 찾기</div>
 			</div>
 			<div id="home-modal-search-content">
-				<form action="" id="home-modal-tire-search-container">
+				<div id="home-modal-tire-search-container">
 					<div id="home-modal-tire-search-content">
-					<!-- <div id="home-modal-tire-search-content-img">
-							<img alt="" src="resources/web/main/search/searchTireGuideImg2.png">
-						</div>	 -->
 						<div id="home-modal-tire-search-content-text">
 							<span class="home-modal-span tire-width">단면폭</span>
-								<img alt="" src="resources/web/main/search/right-arrow.png">
+								<img src="resources/web/main/search/right-arrow.png">
 							<span class="home-modal-span tire-ratio">편평비</span>
-								<img alt="" src="resources/web/main/search/right-arrow.png">
+								<img src="resources/web/main/search/right-arrow.png">
 							<span class="home-modal-span tire-inch">인치</span>
 						</div>
 						<div id="home-modal-tire-search-content-item">
@@ -76,27 +73,73 @@ pageEncoding="UTF-8"%>
 								<li value="355">355</li>
 							</ol>
 						</div>	
+						<div class="home-modal-tire-search-what">
+							<div class="home-modal-tire-search-what-text">
+								내차 타이어 사이즈 어떻게 아나요? 
+							</div>
+						</div>
+						<div class='home-modal-tire-select-result'>
+							<div class='home-modal-tire-select-result-text'>
+								<span class="home-modal-result-span front-tire-width">245</span>
+								/
+								<span class="home-modal-result-span front-tire-ratio">45</span>
+								R
+								<span class="home-modal-result-span front-tire-inch">18</span>
+							</div>
+							<div class='home-modal-tire-select-result-text rearTireResult'>
+								<span class="home-modal-result-span rear-tire-width">235</span>
+								/
+								<span class="home-modal-result-span rear-tire-ratio">55</span>
+								R
+								<span class="home-modal-result-span rear-tire-inch">19</span>
+							</div>
+							<div class='home-modal-tire-result-text'>
+								※ 타이어 앞, 뒤가 다른 경우 '타이어 추가' 버튼을 눌러주세요.
+							</div>
+							<div class='home-modal-tire-select-result-button'>
+								<div class="home-modal-tire-select-result-back">다시 선택</div>
+								<div class="home-modal-rear-tire-select">타이어 추가</div>
+								<form action=''>
+									<input type="hidden" name="front_tire_width" id="front_tire_width">
+									<input type="hidden" name="front_tire_ratio" id="front_tire_ratio">
+									<input type="hidden" name="front_tire_inch" id="front_tire_inch">
+									<input type="hidden" name="rear_tire_width" id="rear_tire_width">
+									<input type="hidden" name="rear_tire_ratio" id="rear_tire_ratio">
+									<input type="hidden" name="rear_tire_inch" id="rear_tire_inch">
+									<button class="home-modal-tire-select-go">검색</button>
+								</form>
+							</div>
+							
+							
+						</div>
 					</div>					
-					<div class="home-modal-search-butten">
+<!-- 					<div class="home-modal-search-butten">
 						<button class="home-modal-tire-search">검색</button>
-					</div>
-				</form>
-				<form action="" id="home-modal-car-search-container">
+					</div> -->
+				</div>
+				<div id="home-modal-car-search-container">
 					<div  id="home-modal-car-search-content">
 						차종으로 타이어 사이즈 검색
 					</div>
-					<div class="home-modal-search-butten">
-						<button class="home-modal-car-search">검색</button>
-					</div>
-				</form>
 
-
-
-				
+				</div>
 			</div>
 		</div>
 	</div>
-	
+
+	<div id="home-modal-what-know-tire">
+		<div id="home-modal-what-know-tire-container">	
+			<div id="home-modal-tire-search-what-img">
+				<img src="resources/web/main/search/searchTireGuideImg2.png">
+				<p class="btn_close2">
+					<a>"닫기"</a>
+				</p>
+			</div>
+			<div class="home-modal-what-know-tire-buttun">
+				<div class="home-modal-what-know-tire-buttun-close">닫기 </div>
+			</div>
+		</div>
+	</div>
       
       <section>
         <div class="home_title">

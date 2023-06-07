@@ -15,12 +15,14 @@
 #product_wrap_top {
   display: flex;
   border-bottom: solid 2px #ab1e21;
+  padding-top: 70px;
+  padding-bottom: 65px;
 }
 
 #product_search {
   display: flex;
   justify-content: space-between;
-  padding: 10px 30px;
+  padding: 30px 30px;
   align-items: center;
 }
 

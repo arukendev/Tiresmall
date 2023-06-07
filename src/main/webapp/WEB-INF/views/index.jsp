@@ -115,11 +115,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="index_dropMenu">
           <ul class="index_dropSearch index_dropWrapper">
             <li class="index_dropMenu_menu">
-              <div class="index_dropMenu_txt "><!--hoem-modal-open  -->
-          	<!-- 	    타이어 사이즈로 검색 -->
-                <a class="index_dropSearch_a" href="search.size"
-                  >타이어 사이즈로 검색</a
-                >
+              <div class="index_dropMenu_txt hoem-modal-open"><!--hoem-modal-open  -->
+          		    타이어 사이즈로 검색
+              <!--   <a class="index_dropSearch_a " href="search.size">
+                	타이어 사이즈로 검색
+                </a> -->
                 <a class="index_dropSearch_a" href="search.car"
                   >차종으로 검색</a
                 >
