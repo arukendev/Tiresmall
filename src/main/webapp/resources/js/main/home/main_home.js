@@ -59,6 +59,13 @@ homeShadow[6].addEventListener("mouseleave", () => {
 });
 
 
+
+
+
+
+
+
+
 var keydown = false;
 //모달 js
 $(".hoem-modal-open").click(function() {
