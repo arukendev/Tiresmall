@@ -89,6 +89,34 @@ $(".hoem-modal-open").click(function() {
 
 	});
 })
+$(".hoem-modal-car-open").click(function() {
+	$("#home-modal").css("display","flex");
+	$("#home-modal-car-search").css("color","white");
+	$("#home-modal-car-search").css("background-color","var(--red)");
+	$("#home-modal-tire-search").css("color","black");
+	$("#home-modal-tire-search").css("background-color","white");
+
+	$("#home-modal-tire-search-container").css("display","none");
+	$("#home-modal-car-search-container").css("display","block");
+	keydown = false;
+	window.addEventListener("keydown", (e) => {
+		if (keydown) return;
+		if(e.keyCode == 27){
+			console.log(e.keyCode);
+			if($("#home-modal-what-know-tire").css("display") == "flex") { 
+				 return;
+			}else{
+				$(".btn_close").trigger("click");
+				keydown = true;
+			}	
+		}
+		if(e.keyCode == 13){
+			console.log(e.keyCode);
+			$(".home-modal-search").trigger("click");
+		}
+
+	});
+})
 
 //모달 끄기
 $(".btn_close").click(function() {

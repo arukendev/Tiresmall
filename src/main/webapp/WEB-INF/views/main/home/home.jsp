@@ -99,7 +99,7 @@ pageEncoding="UTF-8"%>
 							<div class='home-modal-tire-select-result-button'>
 								<div class="home-modal-tire-select-result-back">다시 선택</div>
 								<div class="home-modal-rear-tire-select">타이어 추가</div>
-								<form action=''>
+								<form action='product.tire.search'>
 									<input type="hidden" name="front_tire_width" id="front_tire_width">
 									<input type="hidden" name="front_tire_ratio" id="front_tire_ratio">
 									<input type="hidden" name="front_tire_inch" id="front_tire_inch">

@@ -79,8 +79,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               </a>
             </div>
             <div class="index_topNav">
-              <div class="index_tnMenu index_tnSearch hoem-modal-open">
-                 <a href="search.size">타이어 찾기</a>
+              <div class="index_tnMenu index_tnSearch">
+                 <a>타이어 찾기</a>
               </div>
               <div class="index_tnMenu index_tnBrand">
                 <a href="product.brand?b=&p=1">브랜드별 타이어</a>
@@ -119,12 +119,12 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <a class="index_dropSearch_a hoem-modal-open">
                 	타이어 사이즈로 검색
                 </a>
-                <a class="index_dropSearch_a" href="search.car"
-                  >차종으로 검색</a
-                >
-                <a class="index_dropSearch_a" href="search.product"
-                  >제품명으로 찾기</a
-                >
+                <a class="index_dropSearch_a hoem-modal-car-open">
+                	차종으로 검색
+                </a>
+                <a class="index_dropSearch_a">
+              		 제품명으로 찾기
+                </a>
               </div>
               <div class="index_dropMenu_img">
                 <img
