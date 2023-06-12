@@ -8,7 +8,9 @@ public class ProductDTO {
 	private String tg_text;
 	private int tg_dcrate;
 	private String tg_detail;
+	
 	private int ti_id;
+	private int ti_tg_id;
 	private int ti_width;
 	private int ti_ratio;
 	private int ti_inch;
@@ -16,14 +18,23 @@ public class ProductDTO {
 	private int ti_stock;
 	private int ti_pricefac;
 	
+	private String front_tire_width;
+	private String front_tire_ratio;
+	private String front_tire_inch;
+	private String rear_tire_width;
+	private String rear_tire_ratio;
+	private String rear_tire_inch;
+	
+	
 	public ProductDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	//전체
 	public ProductDTO(int tg_id, String tg_brand, String tg_name, String tg_img, String tg_text, int tg_dcrate,
-			String tg_detail, int ti_id, int ti_width, int ti_ratio, int ti_inch, String ti_marking, int ti_stock,
-			int ti_pricefac) {
+			String tg_detail, int ti_id, int ti_tg_id, int ti_width, int ti_ratio, int ti_inch, String ti_marking,
+			int ti_stock, int ti_pricefac, String front_tire_width, String front_tire_ratio, String front_tire_inch,
+			String rear_tire_width, String rear_tire_ratio, String rear_tire_inch) {
 		super();
 		this.tg_id = tg_id;
 		this.tg_brand = tg_brand;
@@ -33,14 +44,64 @@ public class ProductDTO {
 		this.tg_dcrate = tg_dcrate;
 		this.tg_detail = tg_detail;
 		this.ti_id = ti_id;
+		this.ti_tg_id = ti_tg_id;
 		this.ti_width = ti_width;
 		this.ti_ratio = ti_ratio;
 		this.ti_inch = ti_inch;
 		this.ti_marking = ti_marking;
 		this.ti_stock = ti_stock;
 		this.ti_pricefac = ti_pricefac;
+		this.front_tire_width = front_tire_width;
+		this.front_tire_ratio = front_tire_ratio;
+		this.front_tire_inch = front_tire_inch;
+		this.rear_tire_width = rear_tire_width;
+		this.rear_tire_ratio = rear_tire_ratio;
+		this.rear_tire_inch = rear_tire_inch;
 	}
 
+
+	public int getTi_tg_id() {
+		return ti_tg_id;
+	}
+	public void setTi_tg_id(int ti_tg_id) {
+		this.ti_tg_id = ti_tg_id;
+	}
+	public String getFront_tire_width() {
+		return front_tire_width;
+	}
+	public void setFront_tire_width(String front_tire_width) {
+		this.front_tire_width = front_tire_width;
+	}
+	public String getFront_tire_ratio() {
+		return front_tire_ratio;
+	}
+	public void setFront_tire_ratio(String front_tire_ratio) {
+		this.front_tire_ratio = front_tire_ratio;
+	}
+	public String getFront_tire_inch() {
+		return front_tire_inch;
+	}
+	public void setFront_tire_inch(String front_tire_inch) {
+		this.front_tire_inch = front_tire_inch;
+	}
+	public String getRear_tire_width() {
+		return rear_tire_width;
+	}
+	public void setRear_tire_width(String rear_tire_width) {
+		this.rear_tire_width = rear_tire_width;
+	}
+	public String getRear_tire_ratio() {
+		return rear_tire_ratio;
+	}
+	public void setRear_tire_ratio(String rear_tire_ratio) {
+		this.rear_tire_ratio = rear_tire_ratio;
+	}
+	public String getRear_tire_inch() {
+		return rear_tire_inch;
+	}
+	public void setRear_tire_inch(String rear_tire_inch) {
+		this.rear_tire_inch = rear_tire_inch;
+	}
 	public int getTg_id() {
 		return tg_id;
 	}

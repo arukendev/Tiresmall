@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -238,6 +239,36 @@ public class ProductDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	// 타이어 검색
+	public void getTireSeachProductGroup(HttpServletRequest request, ProductDTO pDTO) {
+		System.out.println("---------------------");
+		System.out.println(pDTO.getFront_tire_width());
+		System.out.println(pDTO.getFront_tire_ratio());
+		System.out.println(pDTO.getFront_tire_inch());
+		System.out.println(pDTO.getRear_tire_width());
+		System.out.println(pDTO.getRear_tire_ratio());
+		System.out.println(pDTO.getRear_tire_inch());
+		
+		List<ProductDTO> joinDTO = new ArrayList<ProductDTO>();
+		
+		List<ProductDTO> resultFrontpDTO = ss.getMapper(ProductMapper.class).getFrontTireGroup(pDTO);
+		joinDTO.addAll(resultFrontpDTO);
+		
+		if(pDTO.getRear_tire_width()!="") {
+			List<ProductDTO> resultRearpDTO = ss.getMapper(ProductMapper.class).getRearTireGroup(pDTO);
+			joinDTO.addAll(resultRearpDTO);
+		}
+		int count = joinDTO.size();
+		
+		request.setAttribute("pGroups", joinDTO);
+		request.setAttribute("count", count);
+		
+		
+		
+		
+		
 	}
 
 }

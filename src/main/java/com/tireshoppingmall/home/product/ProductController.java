@@ -54,6 +54,18 @@ public class ProductController {
 		request.setAttribute("content", "main/product/product.jsp");
 		return "index";
 	}
+	
+	//타이어 검색
+	@RequestMapping(value = "/product.tire.search", method = RequestMethod.GET)
+	public String ProductTireSearch(HttpServletRequest request, ProductDTO pDTO) {
+
+		pDAO.getTireSeachProductGroup(request,pDTO);
+
+		
+		request.setAttribute("content", "main/product/searchProduct.jsp");
+		return "index";
+	}
+	
 
 	@RequestMapping(value = "/product.brand.type", method = RequestMethod.GET)
 	public String goProductType(HttpServletRequest request, @RequestParam String b, @RequestParam int p,

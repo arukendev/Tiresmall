@@ -73,4 +73,24 @@
 		and tg_id = #{tg_id}
 		order by ti_inch, ti_width, ti_ratio
 	</select>
+	
+	<!-- 타이어 검색  -->
+	<select id="getFrontTireGroup"  resultType="com.tireshoppingmall.home.product.ProductDTO">
+		select * from tire_item, tire_group
+		where tg_id = ti_tg_id
+		and ti_width = #{front_tire_width}
+		and ti_ratio = #{front_tire_ratio}
+		and ti_inch = #{front_tire_inch}
+
+	</select>
+	<select id="getRearTireGroup"  resultType="com.tireshoppingmall.home.product.ProductDTO">
+		select * from tire_item, tire_group
+		where tg_id = ti_tg_id
+		and ti_width = #{rear_tire_width}
+		and ti_ratio = #{rear_tire_ratio}
+		and ti_inch = #{rear_tire_inch}
+	</select>
+	
+	
+	
 </mapper>

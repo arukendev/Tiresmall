@@ -25,4 +25,9 @@ public interface ProductMapper {
 	ProductDTO getProduct(ProductDTO pDTO);
 
 	List<ProductDTO> getProductSizes(ProductDTO pDTO);
+
+	List<ProductDTO> getFrontTireGroup(ProductDTO pDTO);
+	
+	List<ProductDTO> getRearTireGroup(ProductDTO pDTO);
+	
 }
