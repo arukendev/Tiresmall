@@ -25,6 +25,7 @@ public class ProductDTO {
 	private String rear_tire_ratio;
 	private String rear_tire_inch;
 	
+	private int result_price;
 	
 	public ProductDTO() {
 		super();
@@ -34,7 +35,7 @@ public class ProductDTO {
 	public ProductDTO(int tg_id, String tg_brand, String tg_name, String tg_img, String tg_text, int tg_dcrate,
 			String tg_detail, int ti_id, int ti_tg_id, int ti_width, int ti_ratio, int ti_inch, String ti_marking,
 			int ti_stock, int ti_pricefac, String front_tire_width, String front_tire_ratio, String front_tire_inch,
-			String rear_tire_width, String rear_tire_ratio, String rear_tire_inch) {
+			String rear_tire_width, String rear_tire_ratio, String rear_tire_inch, int result_price) {
 		super();
 		this.tg_id = tg_id;
 		this.tg_brand = tg_brand;
@@ -57,14 +58,102 @@ public class ProductDTO {
 		this.rear_tire_width = rear_tire_width;
 		this.rear_tire_ratio = rear_tire_ratio;
 		this.rear_tire_inch = rear_tire_inch;
+		this.result_price = result_price;
 	}
-
-
+	
+	
+	
+	
+	
+	public int getTg_id() {
+		return tg_id;
+	}
+	public void setTg_id(int tg_id) {
+		this.tg_id = tg_id;
+	}
+	public String getTg_brand() {
+		return tg_brand;
+	}
+	public void setTg_brand(String tg_brand) {
+		this.tg_brand = tg_brand;
+	}
+	public String getTg_name() {
+		return tg_name;
+	}
+	public void setTg_name(String tg_name) {
+		this.tg_name = tg_name;
+	}
+	public String getTg_img() {
+		return tg_img;
+	}
+	public void setTg_img(String tg_img) {
+		this.tg_img = tg_img;
+	}
+	public String getTg_text() {
+		return tg_text;
+	}
+	public void setTg_text(String tg_text) {
+		this.tg_text = tg_text;
+	}
+	public int getTg_dcrate() {
+		return tg_dcrate;
+	}
+	public void setTg_dcrate(int tg_dcrate) {
+		this.tg_dcrate = tg_dcrate;
+	}
+	public String getTg_detail() {
+		return tg_detail;
+	}
+	public void setTg_detail(String tg_detail) {
+		this.tg_detail = tg_detail;
+	}
+	public int getTi_id() {
+		return ti_id;
+	}
+	public void setTi_id(int ti_id) {
+		this.ti_id = ti_id;
+	}
 	public int getTi_tg_id() {
 		return ti_tg_id;
 	}
 	public void setTi_tg_id(int ti_tg_id) {
 		this.ti_tg_id = ti_tg_id;
+	}
+	public int getTi_width() {
+		return ti_width;
+	}
+	public void setTi_width(int ti_width) {
+		this.ti_width = ti_width;
+	}
+	public int getTi_ratio() {
+		return ti_ratio;
+	}
+	public void setTi_ratio(int ti_ratio) {
+		this.ti_ratio = ti_ratio;
+	}
+	public int getTi_inch() {
+		return ti_inch;
+	}
+	public void setTi_inch(int ti_inch) {
+		this.ti_inch = ti_inch;
+	}
+	public String getTi_marking() {
+		return ti_marking;
+	}
+	public void setTi_marking(String ti_marking) {
+		this.ti_marking = ti_marking;
+	}
+	public int getTi_stock() {
+		return ti_stock;
+	}
+	public void setTi_stock(int ti_stock) {
+		this.ti_stock = ti_stock;
+	}
+	public int getTi_pricefac() {
+		return ti_pricefac;
+	}
+	public void setTi_pricefac(int ti_pricefac) {
+		this.ti_pricefac = ti_pricefac;
 	}
 	public String getFront_tire_width() {
 		return front_tire_width;
@@ -102,115 +191,13 @@ public class ProductDTO {
 	public void setRear_tire_inch(String rear_tire_inch) {
 		this.rear_tire_inch = rear_tire_inch;
 	}
-	public int getTg_id() {
-		return tg_id;
+	public int getResult_price() {
+		return result_price;
 	}
-
-	public void setTg_id(int tg_id) {
-		this.tg_id = tg_id;
+	public void setResult_price(int result_price) {
+		this.result_price = result_price;
 	}
-
-	public String getTg_brand() {
-		return tg_brand;
-	}
-
-	public void setTg_brand(String tg_brand) {
-		this.tg_brand = tg_brand;
-	}
-
-	public String getTg_name() {
-		return tg_name;
-	}
-
-	public void setTg_name(String tg_name) {
-		this.tg_name = tg_name;
-	}
-
-	public String getTg_img() {
-		return tg_img;
-	}
-
-	public void setTg_img(String tg_img) {
-		this.tg_img = tg_img;
-	}
-
-	public String getTg_text() {
-		return tg_text;
-	}
-
-	public void setTg_text(String tg_text) {
-		this.tg_text = tg_text;
-	}
-
-	public int getTg_dcrate() {
-		return tg_dcrate;
-	}
-
-	public void setTg_dcrate(int tg_dcrate) {
-		this.tg_dcrate = tg_dcrate;
-	}
-
-	public String getTg_detail() {
-		return tg_detail;
-	}
-
-	public void setTg_detail(String tg_detail) {
-		this.tg_detail = tg_detail;
-	}
-
-	public int getTi_id() {
-		return ti_id;
-	}
-
-	public void setTi_id(int ti_id) {
-		this.ti_id = ti_id;
-	}
-
-	public int getTi_width() {
-		return ti_width;
-	}
-
-	public void setTi_width(int ti_width) {
-		this.ti_width = ti_width;
-	}
-
-	public int getTi_ratio() {
-		return ti_ratio;
-	}
-
-	public void setTi_ratio(int ti_ratio) {
-		this.ti_ratio = ti_ratio;
-	}
-
-	public int getTi_inch() {
-		return ti_inch;
-	}
-
-	public void setTi_inch(int ti_inch) {
-		this.ti_inch = ti_inch;
-	}
-
-	public String getTi_marking() {
-		return ti_marking;
-	}
-
-	public void setTi_marking(String ti_marking) {
-		this.ti_marking = ti_marking;
-	}
-
-	public int getTi_stock() {
-		return ti_stock;
-	}
-
-	public void setTi_stock(int ti_stock) {
-		this.ti_stock = ti_stock;
-	}
-
-	public int getTi_pricefac() {
-		return ti_pricefac;
-	}
-
-	public void setTi_pricefac(int ti_pricefac) {
-		this.ti_pricefac = ti_pricefac;
-	}
+	
+	
+	
 }

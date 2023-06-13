@@ -327,6 +327,8 @@ $(".home-modal-what-know-tire-buttun-close").click(function() {
 	$("#home-modal-what-know-tire").css("display","none");
 })
 
+
+//타이어 사이즈로 검색 지우기
 function homeModalTireSeachInitialization() {
 	$(".tire-width").text("단면폭");	
 	$(".tire-ratio").text("편평비");
@@ -369,6 +371,12 @@ function homeModalTireSeachInitialization() {
 			"<li value='355'>355</li>" +
 		"</ol>"
 	);
+}
+
+//차종으로 검색 지우기
+function homeModalCarSeachInitialization() {
+	
+	
 }
 
 

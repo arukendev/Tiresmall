@@ -33,7 +33,8 @@
 		</div>
 		<div id="product_container">
 			<c:forEach items="${pGroups }" var="pGroup">
-				<a href="product.detail?tg_id=${pGroup.tg_id }">
+				<a href="product.detail?tg_id=${pGroup.tg_id }
+						&ti_width=${pGroup.ti_width }&ti_ratio=${pGroup.ti_ratio }&ti_inch=${pGroup.ti_inch }">
 					<div class="product_item">
 						<div class="product_item_hidden">
 						</div>
@@ -54,7 +55,14 @@
 						<div class="product_item_size">${pGroup.ti_width }/${pGroup.ti_ratio }R${pGroup.ti_inch }</div>
 						<div class="product_item_price">
 								<input type="hidden" class="pl_dcRate" value="${pGroup.tg_dcrate}">
-							￦ <span class="pl_minPriceSpan">${pGroup.ti_pricefac }</span>
+								<span class="detail_discount">${pGroup.tg_dcrate}%</span>
+             				   	<span class="detail_final_price">
+             				   		<fmt:formatNumber value="${pGroup.result_price }" type="currency"/>
+             				   	</span>
+                				<span class="detail_not_price">
+                					<fmt:formatNumber value="${pGroup.ti_pricefac }" type="currency"/>
+                				</span>
+							
 								<input type="hidden" class="pl_minPrice" value="${pGroup.ti_pricefac}">
 						</div>
 						<div class="product_item_detail"><i class="fa-solid fa-magnifying-glass"></i>상세보기</div>

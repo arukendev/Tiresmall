@@ -288,3 +288,33 @@
 .product_nav_brand:hover .product_nav_brandNameBadge {
   display: block;
 }
+
+/* searchProduct css */
+
+.detail_discount{
+	font-size: 25px;
+    font-weight: 400;
+    color: var(--red);
+}
+.detail_final_price{
+	font-size: 25px;
+    font-weight: 500;
+}
+.detail_not_price{
+	font-size: 15px;
+    color: #aaa;
+    text-decoration: line-through;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

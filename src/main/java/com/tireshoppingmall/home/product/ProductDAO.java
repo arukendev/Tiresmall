@@ -139,10 +139,25 @@ public class ProductDAO {
 	}
 
 	public void getProduct(HttpServletRequest request, ProductDTO pDTO) {
+		
+		if(pDTO.getTi_inch() != 0) {
+			System.out.println("여기옴");	
+			ProductDTO searchProduct = pDTO;
+			System.out.println(searchProduct.getTi_inch());
+			System.out.println(searchProduct.getTi_width());
+			System.out.println(searchProduct.getTi_ratio());
+			request.setAttribute("searchProduct", searchProduct);
+			
+		}else {
+			System.out.println("오면 안되는곳에 옴");
+		}
+		
 		ProductDTO product = ss.getMapper(ProductMapper.class).getProduct(pDTO);
 		String[] detailImg = product.getTg_detail().split("!");
 		request.setAttribute("product", product);
 		request.setAttribute("detailImg", detailImg);
+		
+		
 	}
 
 	public Sizes getProductSizes(HttpServletRequest request, ProductDTO pDTO) {
@@ -254,21 +269,22 @@ public class ProductDAO {
 		List<ProductDTO> joinDTO = new ArrayList<ProductDTO>();
 		
 		List<ProductDTO> resultFrontpDTO = ss.getMapper(ProductMapper.class).getFrontTireGroup(pDTO);
+		for (ProductDTO p : resultFrontpDTO) {
+			p.setResult_price(p.getTi_pricefac() * (100-p.getTg_dcrate()) / 100);
+		}
 		joinDTO.addAll(resultFrontpDTO);
 		
 		if(pDTO.getRear_tire_width()!="") {
 			List<ProductDTO> resultRearpDTO = ss.getMapper(ProductMapper.class).getRearTireGroup(pDTO);
+			for (ProductDTO p : resultRearpDTO) {
+				p.setResult_price(p.getTi_pricefac() * (100-p.getTg_dcrate()) / 100);
+			}
 			joinDTO.addAll(resultRearpDTO);
 		}
-		int count = joinDTO.size();
 		
 		request.setAttribute("pGroups", joinDTO);
-		request.setAttribute("count", count);
-		
-		
-		
-		
-		
+		request.setAttribute("count", joinDTO.size());
+
 	}
 
 }
