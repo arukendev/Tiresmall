@@ -400,7 +400,7 @@ section {
 	border-radius: 10px;
 	font-weight: 600;
 }
-.tire-width{
+.tire-width, .car-brand{
 	color: #d85050;
 }
 
@@ -526,6 +526,19 @@ section {
 	background-color:#d85050; 
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

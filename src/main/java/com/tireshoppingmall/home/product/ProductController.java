@@ -1,5 +1,7 @@
 package com.tireshoppingmall.home.product;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.chainsaw.Main;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tireshoppingmall.home.admin.car.CarDTO;
 import com.tireshoppingmall.home.admin.order.OrderDTO;
 import com.tireshoppingmall.home.auth.MemberDAO;
 import com.tireshoppingmall.home.order.MainOrderController;
@@ -89,6 +92,24 @@ public class ProductController {
 		request.setAttribute("content", "main/product/detail.jsp");
 		return "index";
 	}
+	@RequestMapping(value = "/product.car.brand.get.ajax", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	public @ResponseBody List<CarDTO> ProductCarBrandGetAjax() {
+		return pDAO.getProductCarBrand();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@ResponseBody
 	@RequestMapping(

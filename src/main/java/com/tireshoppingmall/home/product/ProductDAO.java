@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tireshoppingmall.home.admin.auth.AuthDTO;
+import com.tireshoppingmall.home.admin.car.CarDTO;
 
 @Service
 public class ProductDAO {
@@ -285,6 +286,11 @@ public class ProductDAO {
 		request.setAttribute("pGroups", joinDTO);
 		request.setAttribute("count", joinDTO.size());
 
+	}
+
+	public List<CarDTO> getProductCarBrand() {
+		System.out.println("여긴옴?");
+		return ss.getMapper(ProductMapper.class).getCarAllBrand();
 	}
 
 }

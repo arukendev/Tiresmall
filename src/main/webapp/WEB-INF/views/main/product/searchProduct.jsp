@@ -52,7 +52,16 @@
 							<p>${pGroup.tg_brand }</p>
 							<p class="item_title_p">${pGroup.tg_name }</p>
 						</div>
-						<div class="product_item_size">${pGroup.ti_width }/${pGroup.ti_ratio }R${pGroup.ti_inch }</div>
+						<div class="product_item_size">
+							<c:choose>
+								<c:when test="${pGroup.ti_ratio } !=0">
+									${pGroup.ti_width }/${pGroup.ti_ratio }R${pGroup.ti_inch }
+								</c:when>
+								<c:otherwise>
+									${pGroup.ti_width }R${pGroup.ti_inch }
+								</c:otherwise>
+							</c:choose>
+						</div>
 						<div class="product_item_price">
 								<input type="hidden" class="pl_dcRate" value="${pGroup.tg_dcrate}">
 								<span class="detail_discount">${pGroup.tg_dcrate}%</span>

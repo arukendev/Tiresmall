@@ -110,9 +110,9 @@ function reset() {
 
 
 
+//모달 js
 
 var keydown = false;
-//모달 js
 $(".hoem-modal-open").click(function() {
 	$("#home-modal").css("display","flex");
 	keydown = false;
@@ -134,6 +134,8 @@ $(".hoem-modal-open").click(function() {
 
 	});
 })
+
+//메인 바에서 차종으로 검색을 누를경우
 $(".hoem-modal-car-open").click(function() {
 	$("#home-modal").css("display","flex");
 	$("#home-modal-car-search").css("color","white");
@@ -143,6 +145,9 @@ $(".hoem-modal-car-open").click(function() {
 
 	$("#home-modal-tire-search-container").css("display","none");
 	$("#home-modal-car-search-container").css("display","block");
+	
+	homeModalCarBrandListJson();
+	
 	keydown = false;
 	window.addEventListener("keydown", (e) => {
 		if (keydown) return;
@@ -169,7 +174,7 @@ $(".btn_close").click(function() {
 	homeModalTireSeachInitialization();	
 })
 
-
+//차종으로 검색
 $("#home-modal-car-search").click(function() {
 	$("#home-modal-car-search").css("color","white");
 	$("#home-modal-car-search").css("background-color","var(--red)");
@@ -179,7 +184,11 @@ $("#home-modal-car-search").click(function() {
 	$("#home-modal-tire-search-container").css("display","none");
 	$("#home-modal-car-search-container").css("display","block");
 	homeModalTireSeachInitialization();
+	
+	homeModalCarBrandListJson();
 })
+
+//타이어 사이즈로 검색 
 $("#home-modal-tire-search").click(function() {
 	$("#home-modal-tire-search").css("color","white");
 	$("#home-modal-tire-search").css("background-color","var(--red)");
@@ -190,6 +199,7 @@ $("#home-modal-tire-search").click(function() {
 })
 
 $(document).on("click",".item-list li", function() {
+
 	let result = $(this).val();
 	if(result>140){	//140보다 크면 단면폭
 		
@@ -204,6 +214,7 @@ $(document).on("click",".item-list li", function() {
 		$(".item-list").remove(); 
 		$("#home-modal-tire-search-content-item").append(
 			"<ol class='item-list'>" +
+			"<li value='0'>--</li>" +
 			"<li value='25'>25</li>" +
 			"<li value='30'>30</li>" +
 			"<li value='35'>35</li>" +
@@ -221,14 +232,27 @@ $(document).on("click",".item-list li", function() {
 		$(".tire-width").css("color","black");
 		$(".tire-ratio").css("color","#d85050");
 
-	}else if(result>=25){//25보다 크면 편평비
+	}else if(result>=25 || result == 0){//25보다 크면 편평비
 		$(".tire-ratio").text(result);
 		if($("#front_tire_ratio").val()  == ""){
 			$("#front_tire_ratio").val(result);
 			$(".front-tire-ratio").text(result);
+			if(result == "0"){
+				$(".tire-ratio").css("display","none");
+				$(".imgRemove").css("display","none");
+				$(".home-modal-slush-display1").css("display","none");
+				$(".front-tire-ratio").css("display","none");
+				
+			}
 		}else{
 			$("#rear_tire_ratio").val(result);
 			$(".rear-tire-ratio").text(result);
+			if(result == "0"){
+				$(".tire-ratio").css("display","none");
+				$(".imgRemove").css("display","none");
+				$(".home-modal-slush-display2").css("display","none");
+				$(".rear-tire-ratio").css("display","none");
+			}	
 		}
 		$(".item-list").remove();
 		$("#home-modal-tire-search-content-item").append(
@@ -341,6 +365,12 @@ function homeModalTireSeachInitialization() {
 	$(".home-modal-tire-search-what").css("display","flex");
 	$(".home-modal-rear-tire-select").css("display","flex");
 	$(".rearTireResult").css("display","none");
+	$(".tire-ratio").css("display","block");
+	$(".imgRemove").css("display","block");
+	$(".front-tire-ratio").css("display","block");
+	$(".rear-tire-ratio").css("display","block");
+	$(".home-modal-slush-display1").css("display","block");
+	$(".home-modal-slush-display2").css("display","block");
 	$(".home-modal-tire-select-result-button").find("input").val("");
 	$(".front-tire").remove();
 	$(".item-list").remove();
@@ -377,6 +407,18 @@ function homeModalTireSeachInitialization() {
 function homeModalCarSeachInitialization() {
 	
 	
+}
+
+function homeModalCarBrandListJson() {
+	$.ajax({
+		url: "product.car.brand.get.ajax",
+		success : function(data) {
+			console.log("성공");
+
+			
+			
+		}
+	})
 }
 
 

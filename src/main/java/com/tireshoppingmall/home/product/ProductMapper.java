@@ -2,6 +2,8 @@ package com.tireshoppingmall.home.product;
 
 import java.util.List;
 
+import com.tireshoppingmall.home.admin.car.CarDTO;
+
 public interface ProductMapper {
 
 	List<ProductGroupDTO> getProductGroup(ProductSelector search);
@@ -29,5 +31,7 @@ public interface ProductMapper {
 	List<ProductDTO> getFrontTireGroup(ProductDTO pDTO);
 	
 	List<ProductDTO> getRearTireGroup(ProductDTO pDTO);
+
+	List<CarDTO> getCarAllBrand();
 	
 }

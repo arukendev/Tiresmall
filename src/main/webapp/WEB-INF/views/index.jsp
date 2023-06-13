@@ -228,7 +228,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 								<span class="home-modal-span tire-width">단면폭</span>
 									<img src="resources/web/main/search/right-arrow.png">
 								<span class="home-modal-span tire-ratio">편평비</span>
-									<img src="resources/web/main/search/right-arrow.png">
+									<img src="resources/web/main/search/right-arrow.png" class="imgRemove">
 								<span class="home-modal-span tire-inch">인치</span>
 							</div>
 							<div id="home-modal-tire-search-content-item">
@@ -265,18 +265,18 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 							</div>
 							<div class='home-modal-tire-select-result'>
 								<div class='home-modal-tire-select-result-text'>
-									<span class="home-modal-result-span front-tire-width">245</span>
-									/
-									<span class="home-modal-result-span front-tire-ratio">45</span>
+									<span class="home-modal-result-span front-tire-width"></span>
+									<span class="home-modal-slush-display1">/</span> 
+									<span class="home-modal-result-span front-tire-ratio"></span>
 									R
-									<span class="home-modal-result-span front-tire-inch">18</span>
+									<span class="home-modal-result-span front-tire-inch"></span>
 								</div>
 								<div class='home-modal-tire-select-result-text rearTireResult'>
-									<span class="home-modal-result-span rear-tire-width">235</span>
-									/
-									<span class="home-modal-result-span rear-tire-ratio">55</span>
+									<span class="home-modal-result-span rear-tire-width"></span>
+									<span class="home-modal-slush-display2">/</span> 
+									<span class="home-modal-result-span rear-tire-ratio"></span>
 									R
-									<span class="home-modal-result-span rear-tire-inch">19</span>
+									<span class="home-modal-result-span rear-tire-inch"></span>
 								</div>
 								<div class='home-modal-tire-result-text'>
 									※ 타이어 앞, 뒤가 다른 경우 '타이어 추가' 버튼을 눌러주세요.
@@ -294,19 +294,24 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 										<button class="home-modal-tire-select-go">검색</button>
 									</form>
 								</div>
-								
-								
 							</div>
 						</div>					
-	<!-- 					<div class="home-modal-search-butten">
-							<button class="home-modal-tire-search">검색</button>
-						</div> -->
 					</div>
 					<div id="home-modal-car-search-container">
 						<div  id="home-modal-car-search-content">
-							차종으로 타이어 사이즈 검색
+							<div id="home-modal-tire-search-content-text">
+								<span class="home-modal-span car-brand">제조사</span>
+									<img src="resources/web/main/search/right-arrow.png">
+								<span class="home-modal-span car-name">차종명</span>
+									<img src="resources/web/main/search/right-arrow.png">
+								<span class="home-modal-span car-year">생산년도</span>
+							</div>
+							<div id="home-modal-tire-search-content-item">
+								<ol class="item-list car-brand-list">
+									
+								</ol>
+							</div>	
 						</div>
-	
 					</div>
 				</div>
 			</div>
