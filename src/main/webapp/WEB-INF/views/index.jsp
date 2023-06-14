@@ -302,14 +302,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 							<div id="home-modal-tire-search-content-text">
 								<span class="home-modal-span car-brand">제조사</span>
 									<img src="resources/web/main/search/right-arrow.png">
-								<span class="home-modal-span car-name">차종명</span>
-									<img src="resources/web/main/search/right-arrow.png">
 								<span class="home-modal-span car-year">생산년도</span>
+									<img src="resources/web/main/search/right-arrow.png">
+								<span class="home-modal-span car-name">차종명</span>
 							</div>
-							<div id="home-modal-tire-search-content-item">
-								<ol class="item-list car-brand-list">
-									
-								</ol>
+							<div id="home-modal-car-search-content-item">
 							</div>	
 						</div>
 					</div>

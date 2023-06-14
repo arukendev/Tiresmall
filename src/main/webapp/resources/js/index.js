@@ -113,8 +113,9 @@ function reset() {
 //모달 js
 
 var keydown = false;
-$(".hoem-modal-open").click(function() {
+$(".hoem-modal-open").click(function(e) {
 	$("#home-modal").css("display","flex");
+	$("#home-modal-tire-search").trigger("click");
 	keydown = false;
 	window.addEventListener("keydown", (e) => {
 		if (keydown) return;
@@ -171,7 +172,8 @@ $(".hoem-modal-car-open").click(function() {
 //모달 끄기
 $(".btn_close").click(function() {
 	$("#home-modal").css("display","none");
-	homeModalTireSeachInitialization();	
+	homeModalCarSeachInitialization();
+	homeModalTireSeachInitialization();
 })
 
 //차종으로 검색
@@ -182,10 +184,9 @@ $("#home-modal-car-search").click(function() {
 	$("#home-modal-tire-search").css("background-color","white");
 
 	$("#home-modal-tire-search-container").css("display","none");
-	$("#home-modal-car-search-container").css("display","block");
 	homeModalTireSeachInitialization();
-	
-	homeModalCarBrandListJson();
+	$("#home-modal-car-search-container").css("display","block");
+	homeModalCarBrandListJson();	
 })
 
 //타이어 사이즈로 검색 
@@ -194,15 +195,19 @@ $("#home-modal-tire-search").click(function() {
 	$("#home-modal-tire-search").css("background-color","var(--red)");
 	$("#home-modal-car-search").css("color","black");
 	$("#home-modal-car-search").css("background-color","white");
-	$("#home-modal-car-search-container").css("display","none");
 	$("#home-modal-tire-search-container").css("display","block");
+
+	homeModalCarSeachInitialization();
 })
+
+let c_brand;
+let c_year1;
+let c_name;
 
 $(document).on("click",".item-list li", function() {
 
 	let result = $(this).val();
-	if(result>140){	//140보다 크면 단면폭
-		
+	if(result > 140 && result < 1000){	//140보다 크면 단면폭
 		$(".tire-width").text(result);
 		if($("#front_tire_width").val()  == ""){
 			$("#front_tire_width").val(result);
@@ -232,7 +237,7 @@ $(document).on("click",".item-list li", function() {
 		$(".tire-width").css("color","black");
 		$(".tire-ratio").css("color","#d85050");
 
-	}else if(result>=25 || result == 0){//25보다 크면 편평비
+	}else if(result < 140 && result>=25 || result == 0 ){//25보다 크면 편평비
 		$(".tire-ratio").text(result);
 		if($("#front_tire_ratio").val()  == ""){
 			$("#front_tire_ratio").val(result);
@@ -271,7 +276,7 @@ $(document).on("click",".item-list li", function() {
 		);
 		$(".tire-ratio").css("color","black");
 		$(".tire-inch").css("color","#d85050");
-	}else{//나머지는 inch
+	}else if(result < 25 && result > 0){//나머지는 inch
 		$(".tire-inch").text(result);
 		if($("#front_tire_inch").val()  == ""){
 			$("#front_tire_inch").val(result);
@@ -283,8 +288,85 @@ $(document).on("click",".item-list li", function() {
 		$(".item-list").remove();
 		$(".home-modal-tire-search-what").css("display","none"); 
 		$("#home-modal-tire-search-content-text").css("display","none");	
-		$(".home-modal-tire-select-result").css("display","flex");	
+		$(".home-modal-tire-select-result").css("display","flex");
+		
+	}else if(result >= 1000 && result < 20000){//카 브랜드 검색
+		c_brand = $(this).text();
+		$(".car-brand").text(c_brand);
+		$(".car-year").css("color","var(--red)");
+		$(".car-brand").css("color","black");
+		
+		$(".car-brand-list").remove();
+		$("#home-modal-car-search-content-item").append(
+				"<ol class='item-list car-brand-list'>" +
+					"<li value='102024'>2024</li>" +
+					"<li value='102023'>2023</li>" +
+					"<li value='102022'>2022</li>" +
+					"<li value='102021'>2021</li>" +
+					"<li value='102020'>2020</li>" +
+					"<li value='102019'>2019</li>" +
+					"<li value='102018'>2018</li>" +
+					"<li value='102017'>2017</li>" +
+					"<li value='102016'>2016</li>" +
+					"<li value='102015'>2015</li>" +
+					"<li value='102014'>2014</li>" +
+					"<li value='102013'>2013</li>" +
+					"<li value='102012'>2012</li>" +
+					"<li value='102011'>2011</li>" +
+					"<li value='102010'>2010</li>" +
+					"<li value='102009'>2009</li>" +
+					"<li value='102008'>2008</li>" +
+					"<li value='102007'>2007</li>" +
+					"<li value='102006'>2006</li>" +
+					"<li value='102005'>2005</li>" +
+					"<li value='102004'>2004</li>" +
+					"<li value='102003'>2003</li>" +
+					"<li value='102002'>2002</li>" +
+					"<li value='102001'>2001</li>" +
+					"<li value='102000'>2000</li>" +
+					"<li value='101999'>1999</li>" +
+					"<li value='101998'>1998</li>" +
+					"<li value='101997'>1997</li>" +
+					"<li value='101996'>1996</li>" +
+					"<li value='101995'>1995</li>" +
+					"<li value='101994'>1994</li>" +
+					"<li value='101993'>1993</li>" +
+				"</ol>"	
+		);
+	}else if(result > 100000 && result < 103000){
+		c_year1 = $(this).text();		 
+		$(".car-year").text(c_year1);
+		alert(c_year1);
+		$(".car-name").css("color","var(--red)");
+		$(".car-year").css("color","black");
+		$(".car-brand-list").remove();
+		
+		$("#home-modal-car-search-content-item").append(
+			"<ol class='item-list car-brand-list'>" +	
+			"</ol>"	
+		);
+		
+		
+		$.ajax({
+			url: "product.car.name.get.ajax",
+			data : {c_brand,c_year1},
+			success : function(data) {
+				console.log("성공");
+				console.log(data.length);
+				for (var i = 0; i < data.length; i++) {
+					$(".car-brand-list").append(
+						"<li value='2000" + (i+1) + "'>" + data[i].c_name + "</li>"	
+					);
+				}
+			}
+		})	
+	}else{//이제 차를 클릭 하면 그거에 대한 타이어 사이즈가 다 나오면 됨
+		
 	}
+	
+	
+	
+	
 })
 //다시 선택 누를시
 $(".home-modal-tire-select-result-back").click(function() {
@@ -338,6 +420,30 @@ $(".home-modal-rear-tire-select").click(function() {
 			"</ol>"
 		);
 })
+
+//카 브랜드 가져오기 (db에서)
+function homeModalCarBrandListJson() {	
+	$("#home-modal-car-search-content-item").append(
+		"<ol class='item-list car-brand-list'>" +	
+		"</ol>"	
+	);
+
+	$.ajax({
+		url: "product.car.brand.get.ajax",
+		success : function(data) {
+			console.log("성공");
+			console.log(data.length);
+			for (var i = 0; i < data.length; i++) {
+				console.log(data[i].cb_name);
+				console.log("100"+i);
+				$(".car-brand-list").append(
+					"<li value='100" + (i+1) + "'>" + data[i].cb_name + "</li>"	
+				);
+			}
+			
+		}
+	})
+}
 
 
 //타이어 사이즈 어떻게 보는지 알려주기
@@ -405,21 +511,16 @@ function homeModalTireSeachInitialization() {
 
 //차종으로 검색 지우기
 function homeModalCarSeachInitialization() {
-	
-	
+	$("#home-modal-car-search-container").css("display","none");
+	$(".car-brand-list").remove();
+	$(".car-brand").css("color","var(--red)");
+	$(".car-year").css("color","black");
+	$(".car-name").css("color","black");
+	$(".car-brand").text("제조사");
+	$(".car-year").text("생산년도");
+	$(".car-name").text("차종명");
 }
 
-function homeModalCarBrandListJson() {
-	$.ajax({
-		url: "product.car.brand.get.ajax",
-		success : function(data) {
-			console.log("성공");
-
-			
-			
-		}
-	})
-}
 
 
 

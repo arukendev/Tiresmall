@@ -59,7 +59,7 @@
 	<!-- 차브랜드 다가져오기 -->
 	<select id="getAllCarBrands" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
 	SELECT * FROM car_brand
-	ORDER by cb_name
+	ORDER by cb_order
 	</select>
 
 
@@ -69,7 +69,7 @@
 
 	<insert id="regbrand" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 		insert into car_brand
-		values(#{cb_name},cb_id_seq.nextval)
+		values(#{cb_name},cb_id_seq.nextval,#{cb_order})
 	</insert>
 
 	<select id= "getallBrandCount" resultType="int">

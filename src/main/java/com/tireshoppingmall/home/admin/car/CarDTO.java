@@ -42,6 +42,8 @@ public class CarDTO {
 	private String cb_name;
 	private int cb_id;
 	private int cb_num;
+	private int cb_order;
+	
 	
 	
 	//페이징
@@ -89,8 +91,8 @@ public class CarDTO {
 	public CarDTO(int c_id, int c_cb_id, String c_name, String c_year1, String c_year2, String c_brand, String c_ft,
 			String c_bt, MultipartFile file, String c_file, String[] tf_width, String[] tf_ratio, String[] tf_inch,
 			String[] tb_width, String[] tb_ratio, String[] tb_inch, String ft_width, String ft_ratio, String ft_inch,
-			String rt_width, String rt_ratio, String rt_inch, String cb_name, int cb_id, int cb_num, BigDecimal start,
-			BigDecimal end) {
+			String rt_width, String rt_ratio, String rt_inch, String cb_name, int cb_id, int cb_num, int cb_order,
+			BigDecimal start, BigDecimal end) {
 		super();
 		this.c_id = c_id;
 		this.c_cb_id = c_cb_id;
@@ -117,11 +119,11 @@ public class CarDTO {
 		this.cb_name = cb_name;
 		this.cb_id = cb_id;
 		this.cb_num = cb_num;
+		this.cb_order = cb_order;
 		this.start = start;
 		this.end = end;
 	}
 
-	
 	//업데이트
 	public CarDTO(String ft_width, String ft_ratio, String ft_inch, String rt_width, String rt_ratio, String rt_inch) {
 		super();
@@ -135,6 +137,10 @@ public class CarDTO {
 
 
 
+	
+
+
+
 	//페이징 작업
 	public CarDTO(String c_name, String c_brand, BigDecimal start, BigDecimal end) {
 		super();
@@ -145,13 +151,27 @@ public class CarDTO {
 	}
 
 	//자동차 브랜드
-	public CarDTO(String cb_name, int cb_id) {
+	public CarDTO(String cb_name, int cb_id, int cb_num, int cb_order) {
 		super();
 		this.cb_name = cb_name;
 		this.cb_id = cb_id;
+		this.cb_num = cb_num;
+		this.cb_order = cb_order;
 	}
 
-	
+	public int getCb_order() {
+		return cb_order;
+	}
+
+
+
+
+	public void setCb_order(int cb_order) {
+		this.cb_order = cb_order;
+	}
+
+
+
 
 	public int getC_cb_id() {
 		return c_cb_id;

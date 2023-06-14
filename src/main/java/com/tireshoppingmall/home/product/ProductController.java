@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.chainsaw.Main;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,16 +59,7 @@ public class ProductController {
 		return "index";
 	}
 	
-	//타이어 검색
-	@RequestMapping(value = "/product.tire.search", method = RequestMethod.GET)
-	public String ProductTireSearch(HttpServletRequest request, ProductDTO pDTO) {
 
-		pDAO.getTireSeachProductGroup(request,pDTO);
-
-		
-		request.setAttribute("content", "main/product/searchProduct.jsp");
-		return "index";
-	}
 	
 
 	@RequestMapping(value = "/product.brand.type", method = RequestMethod.GET)
@@ -92,24 +84,6 @@ public class ProductController {
 		request.setAttribute("content", "main/product/detail.jsp");
 		return "index";
 	}
-	@RequestMapping(value = "/product.car.brand.get.ajax", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-	public @ResponseBody List<CarDTO> ProductCarBrandGetAjax() {
-		return pDAO.getProductCarBrand();
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@ResponseBody
 	@RequestMapping(
@@ -155,6 +129,33 @@ public class ProductController {
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	//타이어 검색
+	@RequestMapping(value = "/product.tire.search", method = RequestMethod.GET)
+	public String ProductTireSearch(HttpServletRequest request, ProductDTO pDTO) {
+
+		pDAO.getTireSeachProductGroup(request,pDTO);
+
+		
+		request.setAttribute("content", "main/product/searchProduct.jsp");
+		return "index";
+	}
+	
+	// 차종 검색 기능
+	@RequestMapping(value = "/product.car.brand.get.ajax", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	public @ResponseBody List<CarDTO> ProductCarBrandGetAjax() {
+		return pDAO.getProductCarBrand();
+	}
+	@RequestMapping(value = "/product.car.name.get.ajax", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	public @ResponseBody List<CarDTO> ProductCarNameGetAjax(CarDTO cDTO) {
+		return pDAO.getProductCarName(cDTO);
+	}
 	
 	
 	

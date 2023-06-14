@@ -92,7 +92,14 @@
 	</select>
 	
 	<select id="getCarAllBrand" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
-		select cb_name from car_brand
+		select cb_name from car_brand ORDER BY cb_order
+	</select>
+	
+	<select id="getCarAllName" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
+		select c_name from car
+		where #{c_year1} &gt;= c_year1 
+		and #{c_year1} &lt;= c_year2
+		and c_brand = #{c_brand}
 	</select>
 	
 	

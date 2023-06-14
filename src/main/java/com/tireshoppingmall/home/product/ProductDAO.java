@@ -289,8 +289,11 @@ public class ProductDAO {
 	}
 
 	public List<CarDTO> getProductCarBrand() {
-		System.out.println("여긴옴?");
 		return ss.getMapper(ProductMapper.class).getCarAllBrand();
+	}
+
+	public List<CarDTO> getProductCarName(CarDTO cDTO) {
+		return ss.getMapper(ProductMapper.class).getCarAllName(cDTO);
 	}
 
 }
