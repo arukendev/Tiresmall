@@ -13,6 +13,8 @@ public interface AdminCarMapper {
 	List<CarDTO> getAllCar();
 
 	int regCar(CarDTO c);
+	
+	int getBrandId(String c_brand);
 
 	int updatecar(CarDTO c);
 
@@ -21,7 +23,7 @@ public interface AdminCarMapper {
 	//차 브랜드
 	List<CarDTO> getAllCarBrands();
 	
-	int getallBrandCount(String cb_name);
+	int getallBrandCount(int i);
 
 	int regbrand(CarDTO c);
 	
@@ -31,6 +33,14 @@ public interface AdminCarMapper {
 
 
 	int updatebrandcar(CarDTO c);
+
+	int carBrandNameChange(CarDTO c);
+
+	String getBrnadName(int c_cb_id);
+
+	int carBrandChange(CarDTO c);
+
+	
 
 	
 

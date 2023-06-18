@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tireshoppingmall.home.admin.auth.AuthDTO;
+import com.tireshoppingmall.home.admin.car.CarDTO;
 
 @Service
 public class ProductDAO {
@@ -138,10 +140,25 @@ public class ProductDAO {
 	}
 
 	public void getProduct(HttpServletRequest request, ProductDTO pDTO) {
+		
+		if(pDTO.getTi_inch() != 0) {
+			System.out.println("여기옴");	
+			ProductDTO searchProduct = pDTO;
+			System.out.println(searchProduct.getTi_inch());
+			System.out.println(searchProduct.getTi_width());
+			System.out.println(searchProduct.getTi_ratio());
+			request.setAttribute("searchProduct", searchProduct);
+			
+		}else {
+			System.out.println("오면 안되는곳에 옴");
+		}
+		
 		ProductDTO product = ss.getMapper(ProductMapper.class).getProduct(pDTO);
 		String[] detailImg = product.getTg_detail().split("!");
 		request.setAttribute("product", product);
 		request.setAttribute("detailImg", detailImg);
+		
+		
 	}
 
 	public Sizes getProductSizes(HttpServletRequest request, ProductDTO pDTO) {
@@ -238,6 +255,45 @@ public class ProductDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	// 타이어 검색
+	public void getTireSeachProductGroup(HttpServletRequest request, ProductDTO pDTO) {
+		System.out.println("---------------------");
+		System.out.println(pDTO.getFront_tire_width());
+		System.out.println(pDTO.getFront_tire_ratio());
+		System.out.println(pDTO.getFront_tire_inch());
+		System.out.println(pDTO.getRear_tire_width());
+		System.out.println(pDTO.getRear_tire_ratio());
+		System.out.println(pDTO.getRear_tire_inch());
+		
+		List<ProductDTO> joinDTO = new ArrayList<ProductDTO>();
+		
+		List<ProductDTO> resultFrontpDTO = ss.getMapper(ProductMapper.class).getFrontTireGroup(pDTO);
+		for (ProductDTO p : resultFrontpDTO) {
+			p.setResult_price(p.getTi_pricefac() * (100-p.getTg_dcrate()) / 100);
+		}
+		joinDTO.addAll(resultFrontpDTO);
+		
+		if(pDTO.getRear_tire_width()!="") {
+			List<ProductDTO> resultRearpDTO = ss.getMapper(ProductMapper.class).getRearTireGroup(pDTO);
+			for (ProductDTO p : resultRearpDTO) {
+				p.setResult_price(p.getTi_pricefac() * (100-p.getTg_dcrate()) / 100);
+			}
+			joinDTO.addAll(resultRearpDTO);
+		}
+		
+		request.setAttribute("pGroups", joinDTO);
+		request.setAttribute("count", joinDTO.size());
+
+	}
+
+	public List<CarDTO> getProductCarBrand() {
+		return ss.getMapper(ProductMapper.class).getCarAllBrand();
+	}
+
+	public List<CarDTO> getProductCarName(CarDTO cDTO) {
+		return ss.getMapper(ProductMapper.class).getCarAllName(cDTO);
 	}
 
 }

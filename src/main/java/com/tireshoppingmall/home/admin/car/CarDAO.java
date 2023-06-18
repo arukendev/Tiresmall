@@ -1,7 +1,6 @@
 package com.tireshoppingmall.home.admin.car;
 
 import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.tireshoppingmall.home.admin.car.CarDTO;
 import com.tireshoppingmall.home.admin.car.CarOption;
@@ -67,7 +65,8 @@ public class CarDAO {
 		}
 
 		List<CarDTO> car = ss.getMapper(AdminCarMapper.class).getAllCar(paging);
-		
+		//타이어 브랜드  차에 맞게 맞춰서 가져오기
+			
 		// 타이어 사이즈 가져오기
 		String[] frontTireSize = null;
 		String[] rearTireSize;
@@ -77,7 +76,6 @@ public class CarDAO {
 												//null을 안써도 터짐;;;
 		if(car.size() != 0) {	
 			//몇번째 자동차
-			System.out.println("첫번째");
 			for (int i = 0; i < car.size(); i++) {	//i는 하나 의 라인 하나의 자동차
 				//앞바퀴 뒷바퀴 !로 나눠서 배열에 저장
 				frontTireSize = car.get(i).getC_ft().split("!");
@@ -86,18 +84,8 @@ public class CarDAO {
 				for (int j = 0; j < frontTireSize.length; j++) {
 					TireSizes[i][j] = frontTireSize[j] +" "+ rearTireSize[j];
 					System.out.println("TireSizes["+i+"]["+j+"]의 값 : "+TireSizes[i][j]);
-					System.out.println(TireSizes);
 				}
 			}
-
-			System.out.println("두번째");
-			for (int i = 0; i < car.size(); i++) {	//i는 하나 의 라인 하나의 자동차
-				for (int j = 0; j < frontTireSize.length; j++) {
-					System.out.println("TireSizes["+i+"]["+j+"]의 값 : "+TireSizes[i][j]);
-					System.out.println(TireSizes);
-				}
-			}
-	
 			req.setAttribute("tires", TireSizes);
 		}
 		
@@ -133,7 +121,6 @@ public class CarDAO {
 				carFT+= "앞 : " + c.getTf_width()[i] + "/" +  c.getTf_ratio()[i] + "R" + c.getTf_inch()[i];
 				carRT+= "뒤 : " + c.getTb_width()[i] + "/" +  c.getTb_ratio()[i] + "R" + c.getTb_inch()[i];
 			}
-			
 		}
 		c.setC_ft(carFT);
 		c.setC_bt(carRT);
@@ -167,6 +154,9 @@ public class CarDAO {
 		}else {//사진이 없을경우		
 			c.setC_file("");
 		}
+		
+		//c_brand로 car_brand의 id값 을 가져와서 c_cb_id에 세팅
+		c.setC_cb_id(ss.getMapper(AdminCarMapper.class).getBrandId(c.getC_brand()));
 		//db저장
 		if (ss.getMapper(AdminCarMapper.class).regCar(c) == 1) {
 			System.out.println("등록성공");
@@ -180,13 +170,26 @@ public class CarDAO {
 	
 	}
 
-	public void updateCar(MultipartFile file, CarDTO c, HttpServletRequest req) {
-		String uploadFolder = servletContext.getRealPath("resources/web");
-
+	public void updateCar(CarDTO c, HttpServletRequest req) {
+		String uploadFolder = servletContext.getRealPath("resources/web/main/car");
+		String carFT = "";
+		String carRT = "";
+		for (int i = 0; i < c.getTf_inch().length; i++) {
+			if((i+1) != c.getTf_inch().length) { 
+				carFT += "앞 : " + c.getTf_width()[i] + "/" + c.getTf_ratio()[i] + "R" + c.getTf_inch()[i]+"!";
+				carRT += "뒤 : " + c.getTb_width()[i] + "/" + c.getTb_ratio()[i] + "R" + c.getTb_inch()[i]+"!";
+			}else { //마지막일경우
+				carFT+= "앞 : " + c.getTf_width()[i] + "/" +  c.getTf_ratio()[i] + "R" + c.getTf_inch()[i];
+				carRT+= "뒤 : " + c.getTb_width()[i] + "/" +  c.getTb_ratio()[i] + "R" + c.getTb_inch()[i];
+			}
+		}
+		c.setC_ft(carFT);
+		c.setC_bt(carRT);
+		
 		// 파일이 업로드 되었을 때만 새로운 파일 생성
-		if (!file.isEmpty()) {
-			String fileRealName = file.getOriginalFilename();
-			long size = file.getSize();
+		if (c.getFile() != null) {
+			String fileRealName = c.getFile().getOriginalFilename();
+			long size = c.getFile().getSize();
 			System.out.println("파일명 : " + fileRealName);
 			System.out.println("용량크기(byte) : " + size);
 
@@ -195,26 +198,23 @@ public class CarDAO {
 			System.out.println(uuid.toString());
 			String[] uuids = uuid.toString().split("-");
 			String uniqueName = uuids[0];
-			System.out.println("생성된 고유문자열" + uniqueName);
-			System.out.println("확장자명" + fileExtension);
+			System.out.println("생성된 고유문자열 : " + uniqueName);
+			System.out.println("확장자명 : " + fileExtension);
 			File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
 			try {
-				file.transferTo(saveFile);
+				c.getFile().transferTo(saveFile);
+				new File(uploadFolder + "/" + c.getC_file()).delete();
 				c.setC_file(uniqueName + fileExtension);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
+			}catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else {
-			// 파일이 업로드 되지 않았을 때 기존 파일명을 유지
-			c.setC_file(c.getFile().getOriginalFilename());
 		}
-
-		AdminCarMapper mm = ss.getMapper(AdminCarMapper.class);
+		System.out.println("c_file의 값 : " + c.getC_file());
+		//c_brand로 car_brand의 id값 을 가져와서 c_cb_id에 세팅
+		c.setC_cb_id(ss.getMapper(AdminCarMapper.class).getBrandId(c.getC_brand()));
 		try {
-			if (mm.updatecar(c) == 1) {
-				System.out.println(c);
+			if (ss.getMapper(AdminCarMapper.class).updatecar(c) == 1) {
+
 				System.out.println("수정성공");
 			} else {
 				System.out.println("수정실패");
@@ -243,64 +243,26 @@ public class CarDAO {
 		System.out.println(c.getC_id());
 		
 		CarDTO Car = ss.getMapper(AdminCarMapper.class).getCar(c);
-		System.out.println(Car.getC_name());
-		System.out.println(Car.getC_ft());
-		System.out.println("해결?");
+		
+		
 		String[] frontTire =  Car.getC_ft().replaceAll("앞 : ", "").replaceAll("/", "").replaceAll("R", "").split("!");
 		String[] rearTire = Car.getC_bt().replaceAll("뒤 : ", "").replaceAll("/", "").replaceAll("R", "").split("!");
-			
-		String[] tf_width = new String[frontTire.length];
-		String[] tf_ratio = new String[frontTire.length];
-		String[] tf_inch = new String[frontTire.length];
 		
-		String[] tb_width = new String[frontTire.length];
-		String[] tb_ratio = new String[frontTire.length];
-		String[] tb_inch = new String[frontTire.length];
 		
-		//현재 frontTire 값 :1111111	2222222		3333333			111/11R11   
-		//현재 rearTire 값 : 1111111	2222222		3333333
-		
+		//자동차 타이어 사이즈 업데이트 
+		ArrayList<CarDTO> carTireSize = new ArrayList<CarDTO>();
 		for (int i = 0; i < rearTire.length; i++) {
-			tf_width[i] = frontTire[i].substring(0+(7*i),3+(7*i));
-			System.out.println(tf_width[i]);
-			tf_ratio[i] = frontTire[i].substring(3+(7*i),5+(7*i));
-			System.out.println(tf_ratio[i]);
-			tf_inch[i] = frontTire[i].substring(5+(7*i),3+(7*i));
-			System.out.println(tf_inch[i]);
-
-			tb_width[i] = rearTire[i].substring(0+(7*i),3+(7*i));
-			System.out.println(tb_width[i]);
-			tb_ratio[i] = rearTire[i].substring(3+(7*i),5+(7*i));
-			System.out.println(tb_ratio[i]);
-			tb_inch[i] = rearTire[i].substring(5+(7*i),7+(7*i));
-			System.out.println(tb_inch[i]);
+			carTireSize.add(new CarDTO(frontTire[i].substring(0,3),frontTire[i].substring(3,5),frontTire[i].substring(5,7),
+					rearTire[i].substring(0,3),rearTire[i].substring(3,5),rearTire[i].substring(5,7)));
 		}
 
-		Car.setTf_width(tf_ratio);
-		Car.setTf_ratio(tf_width);
-		Car.setTf_inch(tf_inch);
-		
-		Car.setTb_width(tb_width);
-		Car.setTb_ratio(tb_ratio);
-		Car.setTb_inch(tb_inch);
-		
-		for (String s : tb_inch) {
-			System.out.println(Car.getTf_width());
-			System.out.println(Car.getTf_ratio());
-			System.out.println(Car.getTf_inch());
-			System.out.println(Car.getTb_width());
-			System.out.println(Car.getTb_ratio());
-			System.out.println(Car.getTb_inch());
-			System.out.println("------------"+s);
-		}
-		int size = frontTire.length;
-		
-		req.setAttribute("size", size);
 		req.setAttribute("car", Car);
+		req.setAttribute("carTireSize", carTireSize);
 		req.setAttribute("carbrands", carBrands);
 
 	}
 
+	//카브랜드
 	public void deletebrand(CarDTO c, HttpServletRequest req) {
 
 		if (ss.getMapper(AdminCarMapper.class).deletebrand(c) == 1) {
@@ -322,24 +284,18 @@ public class CarDAO {
 		req.setAttribute("carbrands", carBrands);
 		
 		for (CarDTO c : carBrands) {
-			c.setCb_num(ss.getMapper(AdminCarMapper.class).getallBrandCount(c.getCb_name()));
-			
+			c.setCb_num(ss.getMapper(AdminCarMapper.class).getallBrandCount(c.getCb_id()));		
 		}
 		
 	}
 
-
-
-	public void updatebrand(CarDTO c, HttpServletRequest req) {
-
-		if (ss.getMapper(AdminCarMapper.class).updatebrand(c) == 1) {
-			System.out.println(c);
-
-			ss.getMapper(AdminCarMapper.class).updatebrandcar(c);
-			System.out.println("수정완료");
-		} else {
-			System.out.println("수정실패");
+	public int carBrandNameChange(CarDTO c) {
+		//car 브랜드 이름 변경
+		if(ss.getMapper(AdminCarMapper.class).carBrandChange(c)>=0) {
+			System.out.println("변경 성공");
 		}
+		
+		return ss.getMapper(AdminCarMapper.class).carBrandNameChange(c);
 	}
 
 

@@ -10,6 +10,7 @@ public class CarDTO {
 	
 	//자동차
 	private int c_id;
+	private int c_cb_id;
 	private String c_name;
 	private String c_year1;
 	private String c_year2;
@@ -28,9 +29,21 @@ public class CarDTO {
 	private String[] tb_ratio;
 	private String[] tb_inch;
 	
+	//update 페이지 타이어 나오게 하기위해서(list사용)
+	private String ft_width;
+	private String ft_ratio;
+	private String ft_inch;
+	
+	private String rt_width;
+	private String rt_ratio;
+	private String rt_inch;
+	
 	//자동차 브랜드
 	private String cb_name;
+	private int cb_id;
 	private int cb_num;
+	private int cb_order;
+	
 	
 	
 	//페이징
@@ -39,6 +52,9 @@ public class CarDTO {
 
 	public CarDTO() {
 	}
+	
+	
+	
 	
 	public CarDTO(int c_id, String c_name, String c_year1, String c_year2, String c_brand,
 			String c_ft, String c_bt, MultipartFile file, String c_file) {
@@ -70,11 +86,16 @@ public class CarDTO {
 		this.start = start;
 		this.end = end;
 	}
-	public CarDTO(int c_id, String c_name, String c_year1, String c_year2, String c_brand, String c_ft, String c_bt,
-			MultipartFile file, String c_file, String[] tf_width, String[] tf_ratio, String[] tf_inch,
-			String[] tb_width, String[] tb_ratio, String[] tb_inch, String cb_name, BigDecimal start, BigDecimal end) {
+
+	//전체
+	public CarDTO(int c_id, int c_cb_id, String c_name, String c_year1, String c_year2, String c_brand, String c_ft,
+			String c_bt, MultipartFile file, String c_file, String[] tf_width, String[] tf_ratio, String[] tf_inch,
+			String[] tb_width, String[] tb_ratio, String[] tb_inch, String ft_width, String ft_ratio, String ft_inch,
+			String rt_width, String rt_ratio, String rt_inch, String cb_name, int cb_id, int cb_num, int cb_order,
+			BigDecimal start, BigDecimal end) {
 		super();
 		this.c_id = c_id;
+		this.c_cb_id = c_cb_id;
 		this.c_name = c_name;
 		this.c_year1 = c_year1;
 		this.c_year2 = c_year2;
@@ -89,10 +110,36 @@ public class CarDTO {
 		this.tb_width = tb_width;
 		this.tb_ratio = tb_ratio;
 		this.tb_inch = tb_inch;
+		this.ft_width = ft_width;
+		this.ft_ratio = ft_ratio;
+		this.ft_inch = ft_inch;
+		this.rt_width = rt_width;
+		this.rt_ratio = rt_ratio;
+		this.rt_inch = rt_inch;
 		this.cb_name = cb_name;
+		this.cb_id = cb_id;
+		this.cb_num = cb_num;
+		this.cb_order = cb_order;
 		this.start = start;
 		this.end = end;
 	}
+
+	//업데이트
+	public CarDTO(String ft_width, String ft_ratio, String ft_inch, String rt_width, String rt_ratio, String rt_inch) {
+		super();
+		this.ft_width = ft_width;
+		this.ft_ratio = ft_ratio;
+		this.ft_inch = ft_inch;
+		this.rt_width = rt_width;
+		this.rt_ratio = rt_ratio;
+		this.rt_inch = rt_inch;
+	}
+
+
+
+	
+
+
 
 	//페이징 작업
 	public CarDTO(String c_name, String c_brand, BigDecimal start, BigDecimal end) {
@@ -102,14 +149,110 @@ public class CarDTO {
 		this.start = start;
 		this.end = end;
 	}
-	
+
 	//자동차 브랜드
-	public CarDTO(String cb_name) {
+	public CarDTO(String cb_name, int cb_id, int cb_num, int cb_order) {
 		super();
 		this.cb_name = cb_name;
+		this.cb_id = cb_id;
+		this.cb_num = cb_num;
+		this.cb_order = cb_order;
 	}
+
+	public int getCb_order() {
+		return cb_order;
+	}
+
+
+
+
+	public void setCb_order(int cb_order) {
+		this.cb_order = cb_order;
+	}
+
+
+
+
+	public int getC_cb_id() {
+		return c_cb_id;
+	}
+
+
+
+
+	public void setC_cb_id(int c_cb_id) {
+		this.c_cb_id = c_cb_id;
+	}
+
+
+
+
+	public int getCb_id() {
+		return cb_id;
+	}
+
+
+
+
+	public void setCb_id(int cb_id) {
+		this.cb_id = cb_id;
+	}
+
+
+
+
+	public String getFt_width() {
+		return ft_width;
+	}
+
 	
-	
+
+
+
+	public void setFt_width(String ft_width) {
+		this.ft_width = ft_width;
+	}
+
+	public String getFt_ratio() {
+		return ft_ratio;
+	}
+
+	public void setFt_ratio(String ft_ratio) {
+		this.ft_ratio = ft_ratio;
+	}
+
+	public String getFt_inch() {
+		return ft_inch;
+	}
+
+	public void setFt_inch(String ft_inch) {
+		this.ft_inch = ft_inch;
+	}
+
+	public String getRt_width() {
+		return rt_width;
+	}
+
+	public void setRt_width(String rt_width) {
+		this.rt_width = rt_width;
+	}
+
+	public String getRt_ratio() {
+		return rt_ratio;
+	}
+
+	public void setRt_ratio(String rt_ratio) {
+		this.rt_ratio = rt_ratio;
+	}
+
+	public String getRt_inch() {
+		return rt_inch;
+	}
+
+	public void setRt_inch(String rt_inch) {
+		this.rt_inch = rt_inch;
+	}
+
 	public int getCb_num() {
 		return cb_num;
 	}

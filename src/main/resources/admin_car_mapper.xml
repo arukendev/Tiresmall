@@ -20,7 +20,7 @@
 			c_brand like '%'||#{c_brand}||'%' and 
 		</if> 
 		c_name like '%'||#{c_name}||'%'
-		ORDER BY c_year2 desc)
+		ORDER BY c_id desc)
 		)WHERE rn &gt;= #{start} and rn &lt;=#{end} 
 	</select>
 	
@@ -28,20 +28,23 @@
 	<select id="getCar" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
 		select * from car where C_ID = #{c_id}
 	</select>
-	
-	
+
 
 	<insert id="regCar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 		insert into Car
-		values(car_seq.nextval,#{c_name},#{c_year1},#{c_year2},#{c_brand},#{c_ft},#{c_bt},#{c_file})
+		values(car_seq.nextval,#{c_name},#{c_year1},#{c_year2},#{c_ft},#{c_bt},#{c_file},#{c_cb_id},#{c_brand})
 	</insert>
+	
+	<select id="getBrandId" resultType="int">
+		select cb_id from car_brand where cb_name = #{c_brand}
+	</select>
 	
 	
 	<update id ="updatecar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
-	update Car set
+	update car set
 	c_name = #{c_name}, c_year1 = #{c_year1}, c_year2 = #{c_year2},
 	c_brand = #{c_brand}, c_ft = #{c_ft},
-	c_bt = #{c_bt}, c_file = #{c_file}
+	c_bt = #{c_bt}, c_file = #{c_file}, c_cb_id = #{c_cb_id}
 	where c_id = #{c_id}
 	</update>
 
@@ -56,34 +59,33 @@
 	<!-- 차브랜드 다가져오기 -->
 	<select id="getAllCarBrands" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
 	SELECT * FROM car_brand
-	ORDER by cb_name
+	ORDER by cb_order
 	</select>
 
 
 	<delete id="deletebrand">
-   		delete from car_brand where cb_name = #{cb_name}
+   		delete from car_brand where cb_id = #{cb_id}
 	</delete>
 
 	<insert id="regbrand" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 		insert into car_brand
-		values(#{cb_name},'')
+		values(#{cb_name},cb_id_seq.nextval,#{cb_order})
 	</insert>
 
 	<select id= "getallBrandCount" resultType="int">
-		select count(*) from car where c_brand = #{cb_name}
+		select count(*) from car where c_cb_id = #{val}
 	</select>
-
-
-	<update id="updatebrandcar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
-		update Car 
-		set c_brand = #{new_cb_name}
-		where c_brand = #{old_cb_name}
+	
+	<update id="carBrandNameChange">
+		update car_brand 
+		set cb_name = #{cb_name}
+		where cb_id = #{cb_id}
+	</update>
+	<update id="carBrandChange">
+		update car 
+		set c_brand = #{cb_name}
+		where c_cb_id = #{cb_id}
 	</update>
 
-	<update id = "updatebrand" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
-		update car_brand
-    	set 
-    	cb_name = #{new_cb_name}, cb_order = #{cb_order}
-    	where cb_name = #{old_cb_name}
-	</update>
+	
 </mapper>

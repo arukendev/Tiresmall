@@ -5,10 +5,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>대전 타이어쇼핑몰</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    <title>논산 타이어쇼핑몰</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
     <link
       rel="shortcut icon"
@@ -17,15 +15,12 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     />
     <link rel="icon" href="resources/web/favicon.png" type="image/png" />
     <link rel="stylesheet" href="resources/css/index.css" />
-    <link
-      rel="stylesheet"
-      href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css"
-    />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css"/>
   </head>
   <body>
     <div class="index_shadow"></div>
     <div class="index_container">
-      <header>
+      <header >
         <div class="index_header">
           <div class="index_hTop">
             <div class="index_hTopLeft">
@@ -80,7 +75,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
             <div class="index_topNav">
               <div class="index_tnMenu index_tnSearch">
-                <a href="search.size">타이어 찾기</a>
+                 <a>타이어 찾기</a>
               </div>
               <div class="index_tnMenu index_tnBrand">
                 <a href="product.brand?b=&p=1">브랜드별 타이어</a>
@@ -115,16 +110,16 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="index_dropMenu">
           <ul class="index_dropSearch index_dropWrapper">
             <li class="index_dropMenu_menu">
-              <div class="index_dropMenu_txt">
-                <a class="index_dropSearch_a" href="search.size"
-                  >타이어 사이즈로 검색</a
-                >
-                <a class="index_dropSearch_a" href="search.car"
-                  >차종으로 검색</a
-                >
-                <a class="index_dropSearch_a" href="search.product"
-                  >제품명으로 찾기</a
-                >
+              <div class="index_dropMenu_txt"><!--hoem-modal-open  -->
+                <a class="index_dropSearch_a hoem-modal-open">
+                	타이어 사이즈로 검색
+                </a>
+                <a class="index_dropSearch_a hoem-modal-car-open">
+                	차종으로 검색
+                </a>
+                <a class="index_dropSearch_a">
+              		 제품명으로 찾기
+                </a>
               </div>
               <div class="index_dropMenu_img">
                 <img
@@ -214,6 +209,124 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
       </header>
       <main>
+	      <div id="home-modal">
+			<div id="home-modal-container">
+				<div id="home-modal-container-title">
+					타이어 사이즈 찾기
+					<p class="btn_close">
+						<a>"닫기"</a>
+					</p>
+				</div>
+				<div id="home-modal-search-select">
+					<div id="home-modal-tire-search" class="home-modal-search-div">타이어 사이즈로 찾기</div>
+					<div id="home-modal-car-search" class="home-modal-search-div">차종으로 사이즈 찾기</div>
+				</div>
+				<div id="home-modal-search-content">
+					<div id="home-modal-tire-search-container">
+						<div id="home-modal-tire-search-content">
+							<div id="home-modal-tire-search-content-text">
+								<span class="home-modal-span tire-width">단면폭</span>
+									<img src="resources/web/main/search/right-arrow.png">
+								<span class="home-modal-span tire-ratio">편평비</span>
+									<img src="resources/web/main/search/right-arrow.png" class="imgRemove">
+								<span class="home-modal-span tire-inch">인치</span>
+							</div>
+							<div id="home-modal-tire-search-content-item">
+								<ol class="item-list">
+									<li value="145">145</li>
+									<li value="155">155</li>
+									<li value="165">165</li>
+									<li value="170">170</li>
+									<li value="175">175</li>
+									<li value="185">185</li>
+									<li value="195">195</li>
+									<li value="205">205</li>
+									<li value="215">215</li>
+									<li value="225">225</li>
+									<li value="235">235</li>
+									<li value="245">245</li>
+									<li value="255">255</li>
+									<li value="265">265</li>
+									<li value="275">275</li>
+									<li value="285">285</li>
+									<li value="295">295</li>
+									<li value="305">305</li>
+									<li value="315">315</li>
+									<li value="325">325</li>
+									<li value="335">335</li>
+									<li value="345">345</li>
+									<li value="355">355</li>
+								</ol>
+							</div>	
+							<div class="home-modal-tire-search-what">
+								<div class="home-modal-tire-search-what-text">
+									내차 타이어 사이즈 어떻게 아나요? 
+								</div>
+							</div>
+							<div class='home-modal-tire-select-result'>
+								<div class='home-modal-tire-select-result-text'>
+									<span class="home-modal-result-span front-tire-width"></span>
+									<span class="home-modal-slush-display1">/</span> 
+									<span class="home-modal-result-span front-tire-ratio"></span>
+									R
+									<span class="home-modal-result-span front-tire-inch"></span>
+								</div>
+								<div class='home-modal-tire-select-result-text rearTireResult'>
+									<span class="home-modal-result-span rear-tire-width"></span>
+									<span class="home-modal-slush-display2">/</span> 
+									<span class="home-modal-result-span rear-tire-ratio"></span>
+									R
+									<span class="home-modal-result-span rear-tire-inch"></span>
+								</div>
+								<div class='home-modal-tire-result-text'>
+									※ 타이어 앞, 뒤가 다른 경우 '타이어 추가' 버튼을 눌러주세요.
+								</div>
+								<div class='home-modal-tire-select-result-button'>
+									<div class="home-modal-tire-select-result-back">다시 선택</div>
+									<div class="home-modal-rear-tire-select">타이어 추가</div>
+									<form action='product.tire.search'>
+										<input type="hidden" name="front_tire_width" id="front_tire_width">
+										<input type="hidden" name="front_tire_ratio" id="front_tire_ratio">
+										<input type="hidden" name="front_tire_inch" id="front_tire_inch">
+										<input type="hidden" name="rear_tire_width" id="rear_tire_width">
+										<input type="hidden" name="rear_tire_ratio" id="rear_tire_ratio">
+										<input type="hidden" name="rear_tire_inch" id="rear_tire_inch">
+										<button class="home-modal-tire-select-go">검색</button>
+									</form>
+								</div>
+							</div>
+						</div>					
+					</div>
+					<div id="home-modal-car-search-container">
+						<div  id="home-modal-car-search-content">
+							<div id="home-modal-tire-search-content-text">
+								<span class="home-modal-span car-brand">제조사</span>
+									<img src="resources/web/main/search/right-arrow.png">
+								<span class="home-modal-span car-year">생산년도</span>
+									<img src="resources/web/main/search/right-arrow.png">
+								<span class="home-modal-span car-name">차종명</span>
+							</div>
+							<div id="home-modal-car-search-content-item">
+							</div>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div id="home-modal-what-know-tire">
+			<div id="home-modal-what-know-tire-container">	
+				<div id="home-modal-tire-search-what-img">
+					<img src="resources/web/main/search/searchTireGuideImg2.png">
+					<p class="btn_close2">
+						<a>"닫기"</a>
+					</p>
+				</div>
+				<div class="home-modal-what-know-tire-buttun">
+					<div class="home-modal-what-know-tire-buttun-close">닫기 </div>
+				</div>
+			</div>
+		</div>
         <jsp:include page="${content}"></jsp:include>
       </main>
       <footer>
@@ -251,7 +364,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <script src="resources/js/index.js"></script>
     <script src="resources/js/main/order/cart.js"></script>
     <script src="resources/js/main/order/pay.js"></script>
-    <script src="resources/js/main/search/main_search.js"></script>
     <!-- main.board -->
     <script src="resources/js/main/board/main_board_kakao.js"></script>
     <script src="resources/js/main/board/main_board_whereAmI.js"></script>

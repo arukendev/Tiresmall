@@ -57,3 +57,22 @@ homeShadow[5].addEventListener("mouseleave", () => {
 homeShadow[6].addEventListener("mouseleave", () => {
   storeImg[4].style.transform = "scale(1)";
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

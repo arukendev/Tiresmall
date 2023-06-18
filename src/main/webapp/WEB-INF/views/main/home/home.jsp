@@ -23,7 +23,9 @@ pageEncoding="UTF-8"%>
           loop
           style="width: 100%"
         ></video>
-      </div>
+     </div>
+     
+      
       <section>
         <div class="home_title">
           <img src="resources/web/logo4.png" style="height: 35px" />
@@ -31,7 +33,7 @@ pageEncoding="UTF-8"%>
           <hr />
         </div>
         <div class="home_manual">
-          <div class="home_manual_menu">
+          <div class="home_manual_menu hoem-modal-open">
             <img
               src="resources/web/main/home/manual_1.png"
               style="width: 300px"
@@ -193,6 +195,9 @@ pageEncoding="UTF-8"%>
     		</c:forEach>
 			<jsp:include page="${eventModal}"></jsp:include>
 		<dialog>
+		
+
+		
     <script src="resources/js/main/home/main_home.js"></script>
   </body>
 </html>

@@ -14,14 +14,14 @@
 <body>
 	<input id="whatMenu" value="car" type="hidden">
 	<input id="sm" value="1" type="hidden">
-	<input id="" value="${car.c_id }" type="hidden">
 	<div class="container sub">
 		<div id="tire_container">
 			<div id="admin-tire-reg">
 				<h1 id="admin-tire-reg-whatPage">자동차 등록</h1>
 			</div>
-			<form action="admin.car.reg.do" id="admin_tire_table_container"
+			<form action="admin.car.update.do" id="admin_tire_table_container"
 				method="post" enctype="multipart/form-data">
+				<input id="" value="${car.c_id }" type="hidden" name="c_id">
 				<table id="admin_tire_table" border="1">
 					<tr>
 						<td class="admin_tire_table_title">브랜드</td>
@@ -62,7 +62,7 @@
 								<tbody id="admin_tire_size_add">
 
 									<!--사이에 추가할때마다 생기고 지워지는 공간  밑은 추가되는것들 -->
-									<c:forEach items="${frontTire }" var="ft" end="${size }">
+									<c:forEach items="${carTireSize }" var="c">
 										<tr style='height: 50px;' class="admin_tire_validation_test">
 											<td class='admin-tire-size-reg-content'>
 												<div class='admin-tire-reg-size-modal1'>
@@ -70,11 +70,11 @@
 														<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>
 														<div class='admin-tire-reg-size-modal-input'>
 															<div class='admin-tire-reg-size-modal-input'>
-																<input class='tire_input_width1' name='tf_width' maxlength='3'> 
+																<input class='tire_input_width1' name='tf_width' maxlength='3'value="${c.ft_width}"> 
 																<span class='size-span'>/</span> 
-																<input class='tire_input_ratio1' name='tf_ratio' maxlength='2'>
+																<input class='tire_input_ratio1' name='tf_ratio' maxlength='2'value="${c.ft_ratio}">
 																<span class='size-span'>R</span> 
-																<input class='tire_input_inch1' name='tf_inch' maxlength='2'>
+																<input class='tire_input_inch1' name='tf_inch' maxlength='2'value="${c.ft_inch}">
 															</div>
 															<div class='admin-tire-reg-size-modal-button'>
 																<div class='admin_tire_reg_in1 admin-tire-reg-size-modal-button1'>입력</div>
@@ -85,11 +85,11 @@
 												</div>
 	
 												<div class='admin_tire_size_reg_modal_open1'>
-													<span class='tire_width1 size-span'>---</span> 
+													<span class='tire_width1 size-span'>${c.ft_width }</span> 
 													<span class='size-span'>/</span> 
-													<span class='tire_ratio1 size-span'>--</span> 
+													<span class='tire_ratio1 size-span'>${c.ft_ratio }</span> 
 													<span class='size-span'>R</span> 
-													<span class='tire_inch1 size-span'>--</span>
+													<span class='tire_inch1 size-span'>${c.ft_inch }</span>
 												</div>
 											</td>
 
@@ -99,11 +99,11 @@
 														<div class='admin-tire-reg-size-modal-title'>사이즈 입력</div>
 														<div class='admin-tire-reg-size-modal-input'>
 															<div class='admin-tire-reg-size-modal-input'>
-																<input class='tire_input_width2' name='tb_width' maxlength='3'>
+																<input class='tire_input_width2' name='tb_width' maxlength='3' value="${c.rt_width}">                                 
 																<span class='size-span'>/</span> 
-																<input class='tire_input_ratio2' name='tb_ratio' maxlength='2'>
+																<input class='tire_input_ratio2' name='tb_ratio' maxlength='2'value="${c.rt_ratio}">
 																<span class='size-span'>R</span> 
-																<input class='tire_input_inch2' name='tb_inch' maxlength='2'>
+																<input class='tire_input_inch2' name='tb_inch' maxlength='2'value="${c.rt_inch}">
 															</div>
 															<div class='admin-tire-reg-size-modal-button'>
 																<div class='admin_tire_reg_in2 admin-tire-reg-size-modal-button1'>입력</div>
@@ -114,11 +114,11 @@
 												</div>
 	
 												<div class='admin_tire_size_reg_modal_open2'>
-													<span class='tire_width2 size-span'>---</span> 
+													<span class='tire_width2 size-span'>${c.rt_width}</span> 
 													<span class='size-span'>/</span> 
-													<span class='tire_ratio2 size-span'>--</span> 
+													<span class='tire_ratio2 size-span'>${c.rt_ratio}</span> 
 													<span class='size-span'>R</span> 
-													<span class='tire_inch2 size-span'>--</span> 
+													<span class='tire_inch2 size-span'>${c.rt_inch}</span> 
 												</div>
 											</td>
 											<td class='admin-tire-size-reg-content'><div
@@ -137,7 +137,10 @@
 									<div class="admin-tire-img-title"
 										style="border-right: 2px solid white;">현재 이미지</div>
 									<div class="admin-tire-img-content">
-										<img id="imagePreview">
+										<c:if test="${car.c_file != null}">
+											<img src="resources/web/main/car/${car.c_file}">
+										</c:if>
+										<img id="imagePreview" >
 									</div>
 								</div>
 								<div class="admin-tire-img-contain">
@@ -147,6 +150,7 @@
 											<input class="upload-name1" placeholder="첨부파일"
 												disabled="disabled"> <label for="file1">업로드</label>
 											<input type="file" id="file1" name="file">
+											<input type="hidden" name="c_file" value="${c.c_file }">
 										</div>
 									</div>
 								</div>

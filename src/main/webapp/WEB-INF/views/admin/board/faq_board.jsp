@@ -61,7 +61,7 @@
 
 
 	<div class="container sub">
-		<div class="DashBoard">
+		<div class="DashBoard nb_content">
 			<form class="notice_form" action="search.faq.do">
 				<div>
 					<div class="select_box">

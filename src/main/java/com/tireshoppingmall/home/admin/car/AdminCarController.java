@@ -1,14 +1,12 @@
 package com.tireshoppingmall.home.admin.car;
 
 import javax.servlet.http.HttpServletRequest;
-// import com.tireshoppingmall.home.admin.AdminMenuSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class AdminCarController {
@@ -66,7 +64,7 @@ public class AdminCarController {
 	}
 	
 	@RequestMapping(value = "/admin.car.update.go", method = RequestMethod.GET)
-	public String carupdatedo(CarDTO c, HttpServletRequest req) {
+	public String carupdatego(CarDTO c, HttpServletRequest req) {
 
 		cDAO.getCar(c,req);
 		
@@ -77,9 +75,9 @@ public class AdminCarController {
 	
 	
 	@RequestMapping(value = "/admin.car.update.do", method = RequestMethod.POST)
-	public String carupdatedo(MultipartFile file,CarDTO c, HttpServletRequest req) {
+	public String carupdatedo(CarDTO c, HttpServletRequest req) {
 		
-		cDAO.updateCar(file,c, req);
+		cDAO.updateCar(c, req);
 		cDAO.getAllCar(1, req);
 		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
 		req.setAttribute("contentPage", "car/car.jsp");
@@ -118,7 +116,9 @@ public class AdminCarController {
 		return "admin/master";
 	}
 
-	@RequestMapping(value = "/brand.delete.do", method = RequestMethod.GET)
+	
+	//카 브랜드	
+	@RequestMapping(value = "/admin.car.brand.delete.do", method = RequestMethod.GET)
 	public String branddeletedo(CarDTO c, HttpServletRequest req) {
 		
 		cDAO.deletebrand(c,req);
@@ -154,15 +154,14 @@ public class AdminCarController {
 	}
 	
 	
-	@RequestMapping(value = "/update.brand.do", method = RequestMethod.GET)
-	public String brandupdatedo(CarDTO c, HttpServletRequest req) {
+	@ResponseBody
+	@RequestMapping(value = "admin.car.bande.name.change", method = RequestMethod.GET)
+	public int carBrandNameChangeDO(CarDTO c, HttpServletRequest req) {
 		
-		cDAO.updatebrand(c, req);
-		cDAO.getallCarBrands(req);
-		req.setAttribute("subMenuPage", "car/car_subMenu.jsp");
-		req.setAttribute("contentPage", "car/car_brand.jsp");
-		return "admin/master";
+
+		return cDAO.carBrandNameChange(c);
 	}
+
 	
-	
+
 }

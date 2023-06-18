@@ -327,7 +327,11 @@ public class TireDAO {
 		}
 	}
 	public int tireSBrandNameChange(TireDTO tDTO) {
-		if(ss.getMapper(AdminTireMapper.class).tireSBrandNameChange(tDTO) == 1) {
+		if(ss.getMapper(AdminTireMapper.class).tireGroupBrandNameChange(tDTO)>=0) {
+			System.out.println("타이어 그룹 브랜드명 변경완료");
+		}
+		
+		if(ss.getMapper(AdminTireMapper.class).tireBrandNameChange(tDTO) == 1) {
 			return 1;
 		}else {
 			return 0;

@@ -258,7 +258,6 @@ public class AdminTireController {
 	@ResponseBody
 	@RequestMapping(value = "admin.tire.brand.name.change", method = RequestMethod.GET)
 	public int tireSBrandNameChange(TireDTO tDTO) {	
-		System.out.println("여긴옴??223");
 		return tDAO.tireSBrandNameChange(tDTO);
 	}
 	

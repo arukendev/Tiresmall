@@ -5,6 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0"
 	charset="UTF-8">
 <title>event board</title>
@@ -27,17 +30,23 @@
 						<table class="modal_table">
 							<tr>
 								<td class="left_td">제목</td>
-								<td><input name="e_title" id="e_title"
-									class="modalInput" required="required"></td>
+								<td>
+									<input name="e_title" id="e_title"
+									class="modalInput" required="required">
+								</td>
 							</tr>
 							<tr>
 								<td class="left_td">내용</td>
-								<td><textarea name="e_content"
-										id="e_content" required="required"></textarea></td>
+								<td>
+									<textarea name="e_content"
+										id="e_content" required="required"></textarea>
+								</td>
 							</tr>
 							<tr>
 								<td class="left_td">종료일</td>
-								<td><input name="e_duration" id="e_duration" autocomplete="off" required="required" maxlength="10"></td>
+								<td>
+									<input name="e_duration" id="e_duration" autocomplete="off" required="required" maxlength="10">
+								</td>
 							</tr>
 							<tr>
 								<td class="left_td">메인이미지</td>
@@ -49,7 +58,7 @@
 								<td class="left_td">상세이미지</td>
 								<td align="center">
 									<input type="file" multiple="multiple" name="detailimg[]" id="e_detailimg" required="required">
-										</td>
+								</td>
 							</tr>
 							<tr>
 								<td class="left_td">상태</td>
@@ -83,62 +92,79 @@
 		<div class="DashBoard">
 				<div class="DashBoard nb_content">
 					<div id="event-reg-btn-box">수정하시려면 사진이나 제목을 눌러주세요.
-					<button id="event-reg-btn" class= "noticeregBtn">신규 등록</button>
+						<button id="event-reg-btn" class= "noticeregBtn">신규 등록</button>
 					</div>
-					<table class="notice_content">
-						<tr>
-							<th class="th_head">No</th>
-							<th class="th_head">메인 이미지</th>
-							<th class="th_head">제목</th>
-							<th class="th_head">등록일</th>
-							<th class="th_head">마감 기한</th>
-							<th class="th_head">팝업 유무</th>
-							<th class="th_head">상태</th>
-
-						</tr>
-						<c:if test="${empty events}">
+					<div id="admin-event-table-content">
+						<table class="notice_content">
 							<tr>
-								<td colspan="5">해당 목록이없습니다</td>
+								<th class="th_head">No</th>
+								<th class="th_head">메인 이미지</th>
+								<th class="th_head">제목</th>
+								<th class="th_head">등록일</th>
+								<th class="th_head">마감 기한</th>
+								<th class="th_head">팝업 유무</th>
+								<th class="th_head">상태</th>
+	
 							</tr>
-						</c:if>
-						<c:forEach var="e" items="${events }" varStatus="status">
-							<tr class="event-tr">
-								<td class="td_c1">${status.count }</td>
-								<td class="td_c3"
-									onclick="location.href='event.detail?e_no=${e.e_no }'"><img
-									alt="" src="resources/upload-event/${e.e_mainimg }"></td>
-								<td class="td_c4"
-									onclick="location.href='event.detail?e_no=${e.e_no }'">
-									${e.e_title }</td>
-								<td class="td_c2"><fmt:formatDate
-										pattern="yyyy-MM-dd HH:mm:ss" value="${e.e_date }" /></td>
-
-								<td class="td_c2"><fmt:formatDate
-										pattern="yyyy-MM-dd HH:mm:ss" value="${e.e_duration }" /></td>
-								<td class="td_c1"><c:if test="${e.e_popup == 1 }">
-										<button type="button" class="on-off" value="${e.e_no }"
-											style="background-color: #198754">on</button>
-									</c:if> <c:if test="${e.e_popup == 0 }">
-										<button type="button" class="on-off" value="${e.e_no }"
-											style="background-color: red">off</button>
-									</c:if></td>
-								<td class="td_c2"><c:choose>
-										<c:when test="${e.e_status eq '진행중' }">
-											<button type="button" class="event-status" value="${e.e_no }"
-												style="background-color: #198754">진행중</button>
-										</c:when>
-										<c:when test="${e.e_status eq '마감' }">
-											<button type="button" class="event-status" value="${e.e_no }"
-												style="background-color: red">마감</button>
-										</c:when>
-										<c:when test="${e.e_status eq '예정' }">
-											<button type="button" class="event-status" value="${e.e_no }"
-												style="background-color: orange">예정</button>
-										</c:when>
-									</c:choose></td>
-							</tr>
-						</c:forEach>
-					</table>
+							<c:if test="${empty events}">
+								<tr>
+									<td colspan="5">해당 목록이없습니다</td>
+								</tr>
+							</c:if>
+							<c:forEach var="e" items="${events }" varStatus="status">
+								<tr class="event-tr">
+									<td class="td_c1">${status.count }</td>
+									<td class="td_c3"
+										onclick="location.href='event.detail?e_no=${e.e_no }'"><img
+										alt="" src="resources/upload-event/${e.e_mainimg }"></td>
+									<td class="td_c4"
+										onclick="location.href='event.detail?e_no=${e.e_no }'">
+										<div id="admin-event-table-td-padding">
+											${e.e_title }
+										</div>	
+									</td>
+									<td class="td_c2">
+										<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${e.e_date }" />
+									</td>
+	
+									<td class="td_c2">
+										<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${e.e_duration }" />
+									</td>
+									<td class="td_c1">
+										<c:if test="${e.e_popup == 1 }">
+											<button type="button" class="admin_printBTN on-off" value="${e.e_no }">
+												on
+											</button>
+										</c:if> 
+										<c:if test="${e.e_popup == 0 }">
+											<button type="button" class="admin_notPrintBTN on-off" value="${e.e_no }">
+												off
+											</button>
+										</c:if>
+									</td>
+									<td class="td_c2">
+										<c:choose>
+											<c:when test="${e.e_status eq '진행중' }">
+												<button type="button" class="admin-event-status-progress event-status" value="${e.e_no }">
+													진행중
+												</button>
+											</c:when>
+											<c:when test="${e.e_status eq '마감' }">
+												<button type="button" class="admin-event-status-deadline event-status" value="${e.e_no }">
+													마감
+												</button>
+											</c:when>
+											<c:when test="${e.e_status eq '예정' }">
+												<button type="button" class="admin-event-status-planning event-status" value="${e.e_no }">
+													예정
+												</button>
+											</c:when>
+										</c:choose>
+									</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
 				</div>
 		</div>
 	</div>
