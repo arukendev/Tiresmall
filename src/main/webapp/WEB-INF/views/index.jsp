@@ -299,7 +299,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 					</div>
 					<div id="home-modal-car-search-container">
 						<div  id="home-modal-car-search-content">
-							<div id="home-modal-tire-search-content-text">
+							<div id="home-modal-car-search-content-text">
 								<span class="home-modal-span car-brand">제조사</span>
 									<img src="resources/web/main/search/right-arrow.png">
 								<span class="home-modal-span car-year">생산년도</span>
@@ -307,6 +307,44 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 								<span class="home-modal-span car-name">차종명</span>
 							</div>
 							<div id="home-modal-car-search-content-item">
+							</div>					
+							<div class='home-modal-car-select-result'>	
+								<div class='home-modal-car-tire-select-result-text'>
+									<div class="home-modal-car-tire-size">111/11R11</div>
+									<div>111/11R11</div>
+									<div>111/11R11</div>
+								</div>
+								
+							<!-- 	<div class='home-modal-tire-select-result-text'>
+									<span class="home-modal-result-span front-tire-width"></span>
+									<span class="home-modal-slush-display1">/</span> 
+									<span class="home-modal-result-span front-tire-ratio"></span>
+									R
+									<span class="home-modal-result-span front-tire-inch"></span>
+								</div>
+								<div class='home-modal-tire-select-result-text rearTireResult'>
+									<span class="home-modal-result-span rear-tire-width"></span>
+									<span class="home-modal-slush-display2">/</span> 
+									<span class="home-modal-result-span rear-tire-ratio"></span>
+									R
+									<span class="home-modal-result-span rear-tire-inch"></span>
+								</div>
+								 -->
+							
+							
+							
+								<div class='home-modal-car-select-result-button'>
+									<div class="home-modal-car-select-result-back">다시 선택</div>
+									<form action='product.tire.search'>
+										<input type="hidden" name="front_tire_width" id="front_tire_width">
+										<input type="hidden" name="front_tire_ratio" id="front_tire_ratio">
+										<input type="hidden" name="front_tire_inch" id="front_tire_inch">
+										<input type="hidden" name="rear_tire_width" id="rear_tire_width">
+										<input type="hidden" name="rear_tire_ratio" id="rear_tire_ratio">
+										<input type="hidden" name="rear_tire_inch" id="rear_tire_inch">
+										<button class="home-modal-car-select-go">검색</button>
+									</form>
+								</div>
 							</div>	
 						</div>
 					</div>

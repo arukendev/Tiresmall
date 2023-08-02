@@ -35,5 +35,7 @@ public interface ProductMapper {
 	List<CarDTO> getCarAllBrand();
 
 	List<CarDTO> getCarAllName(CarDTO cDTO);
+
+	List<CarDTO> getCarAllTireSize(CarDTO cDTO);
 	
 }

@@ -81,8 +81,8 @@
 		and ti_width = #{front_tire_width}
 		and ti_ratio = #{front_tire_ratio}
 		and ti_inch = #{front_tire_inch}
-
 	</select>
+	
 	<select id="getRearTireGroup"  resultType="com.tireshoppingmall.home.product.ProductDTO">
 		select * from tire_item, tire_group
 		where tg_id = ti_tg_id
@@ -101,6 +101,12 @@
 		and #{c_year1} &lt;= c_year2
 		and c_brand = #{c_brand}
 	</select>
-	
+	<select id="getCarAllTireSize" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
+		select * from car
+		where #{c_year1} &gt;= c_year1 
+		and #{c_year1} &lt;= c_year2
+		and c_brand = #{c_brand}
+		and c_name = #{c_name}
+	</select>
 	
 </mapper>

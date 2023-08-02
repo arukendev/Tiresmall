@@ -157,6 +157,12 @@ public class ProductController {
 		return pDAO.getProductCarName(cDTO);
 	}
 	
+	//차 타이어 가져오기		product.car.tire.get.ajax
+	@RequestMapping(value = "/product.car.tire.size.get.ajax", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	public @ResponseBody List<CarDTO> ProductCarTireSizeGetAjax(CarDTO cDTO) {
+		return pDAO.getProductCarTireSize(cDTO);
+	}
+	
 	
 	
 }

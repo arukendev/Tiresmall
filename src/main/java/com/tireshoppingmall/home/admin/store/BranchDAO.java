@@ -79,7 +79,7 @@ public class BranchDAO {
 
 	}
 	
-	public void regBranch( BranchDTO bDTO, HttpServletRequest req) {
+	public void regBranch(BranchDTO bDTO, HttpServletRequest req) {
 
 		String fileRealName = bDTO.getFile().getOriginalFilename();
 		long size = bDTO.getFile().getSize();

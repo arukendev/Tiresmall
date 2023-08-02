@@ -99,7 +99,6 @@ public class TireDAO {
 	
 	
 	//타이어 브랜드 작업~~~~~~!!!
-
 	public void getTireBrand(HttpServletRequest req) {
 		List<TireDTO> brands = ss.getMapper(AdminTireMapper.class).getTireBrand();
 		
@@ -109,6 +108,7 @@ public class TireDAO {
 		req.setAttribute("brands",brands);
 		
 	}
+	
 	public void deleteTireBrand(HttpServletRequest req, TireDTO tb) {
 		
 		if(ss.getMapper(AdminTireMapper.class).deleteTireBrand(tb)==1) {
@@ -118,6 +118,7 @@ public class TireDAO {
 		}
 		
 	}
+	
 	public void deleteTireGroup(HttpServletRequest req, TireDTO tg) {
 		if(ss.getMapper(AdminTireMapper.class).deleteTireGroup(tg)==1) {
 			req.setAttribute("r", "삭제성공");
@@ -161,10 +162,11 @@ public class TireDAO {
 				for(int i = 0; i<list.size(); i++) {
 					String fileRealName = list.get(i).getOriginalFilename();
 					
-					String saveFilesName =	UUID.randomUUID().toString()+
+					System.out.println(list.get(i).getOriginalFilename());
+					String saveFilesName =	UUID.randomUUID().toString() +
 								fileRealName.substring(fileRealName.lastIndexOf("."));
 					
-					System.out.println("여러파일들 이름 : " +i+"번째파일  - " +saveFilesName );
+					System.out.println("여러파일들 이름 : " + i +"번째파일  - " + saveFilesName );
 					
 					File saveFile = new File(savePath + "\\"+ saveFilesName);	
 					if(i == 0) {

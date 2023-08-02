@@ -296,4 +296,8 @@ public class ProductDAO {
 		return ss.getMapper(ProductMapper.class).getCarAllName(cDTO);
 	}
 
+	public List<CarDTO> getProductCarTireSize(CarDTO cDTO) {
+		return ss.getMapper(ProductMapper.class).getCarAllTireSize(cDTO);
+	}
+
 }

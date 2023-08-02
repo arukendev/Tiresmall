@@ -336,7 +336,7 @@ $(document).on("click",".item-list li", function() {
 	}else if(result > 100000 && result < 103000){
 		c_year1 = $(this).text();		 
 		$(".car-year").text(c_year1);
-		alert(c_year1);
+
 		$(".car-name").css("color","var(--red)");
 		$(".car-year").css("color","black");
 		$(".car-brand-list").remove();
@@ -345,8 +345,6 @@ $(document).on("click",".item-list li", function() {
 			"<ol class='item-list car-brand-list'>" +	
 			"</ol>"	
 		);
-		
-		
 		$.ajax({
 			url: "product.car.name.get.ajax",
 			data : {c_brand,c_year1},
@@ -361,18 +359,65 @@ $(document).on("click",".item-list li", function() {
 			}
 		})	
 	}else{//이제 차를 클릭 하면 그거에 대한 타이어 사이즈가 다 나오면 됨
+		c_name = $(this).text();
+		console.log(c_name);
+		$(".car-name").text(c_name);
+		$(".car-name").css("color","black");
+		$(".car-brand-list").remove();
+		$("#home-modal-car-search-content-item").css("display","none");
+	/*	$("#home-modal-car-search-content-item").append(
+			"<ol class='item-list car-tire-size-list'></ol>"	
+		);
+		*/
+		$(".home-modal-car-select-result").css("display","flex");												
 		
+		
+		$.ajax({
+			url: "product.car.tire.size.get.ajax",
+			data : {c_brand,c_year1,c_name},
+			success : function(data) {
+				console.log("성공");
+				var front_tire = data[0].c_ft.split("!");
+				var rear_tire = data[0].c_bt.split("!");
+				
+				
+				for (var i = 0; i < front_tire.length; i++) {
+					front_tire[i] = front_tire[i].replace('앞 : ','');      
+					rear_tire[i] = rear_tire[i].replace('뒤 : ','');
+
+				/*	if(front_tire[i] == rear_tire[i]){
+						$(".car-tire-size-list").append(
+							"<li value='3000" + (i+1) + "'>" + front_tire[i] + "</li>" 
+						);
+					}else{
+						$(".car-tire-size-list").append(
+							"<li value='3000" + (i+1) + "'>" + 
+								"전륜 : "+ front_tire[i] +
+								"후륜 : "+ rear_tire[i] +
+							"</li>"
+						);	
+					}*/
+					
+				}
+			}
+		})	
 	}
 	
 	
 	
 	
 })
-//다시 선택 누를시
+//다시 선택 누를시	1.타이어	2.차
 $(".home-modal-tire-select-result-back").click(function() {
-	homeModalTireSeachInitialization();
-	
+	homeModalTireSeachInitialization();	
 })
+$(".home-modal-car-select-result-back").click(function() {
+	homeModalCarSeachInitialization();
+	$("#home-modal-car-search-container").css("display","block");
+	homeModalCarBrandListJson();
+})
+
+
 //타이어 추가 버튼
 $(".home-modal-rear-tire-select").click(function() {
 	$(".home-modal-tire-select-result").css("display","none");
@@ -477,6 +522,7 @@ function homeModalTireSeachInitialization() {
 	$(".rear-tire-ratio").css("display","block");
 	$(".home-modal-slush-display1").css("display","block");
 	$(".home-modal-slush-display2").css("display","block");
+	$(".home-modal-tire-select-result").css("display","none");
 	$(".home-modal-tire-select-result-button").find("input").val("");
 	$(".front-tire").remove();
 	$(".item-list").remove();
@@ -512,6 +558,9 @@ function homeModalTireSeachInitialization() {
 //차종으로 검색 지우기
 function homeModalCarSeachInitialization() {
 	$("#home-modal-car-search-container").css("display","none");
+	$(".home-modal-car-select-result").css("display","none");
+	$("#home-modal-car-search-content-item").css("display","flex");
+	$("#home-modal-car-search-content-text").css("display","flex");
 	$(".car-brand-list").remove();
 	$(".car-brand").css("color","var(--red)");
 	$(".car-year").css("color","black");
