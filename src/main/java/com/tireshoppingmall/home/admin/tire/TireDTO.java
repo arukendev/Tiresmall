@@ -25,7 +25,7 @@ public class TireDTO {
 	private int tg_print;       /* 출력 여부 */
 	private int tg_sedan;		/* 승용차 추천 1(t)/0(f) */
 	private int tg_suv;			/* suv 추천 1(t)/0(f)*/	
-	private String tg_detail;
+	private String tg_detail;	// 타이어상세페이지 이미지들을 나오게 함
 	private int tg_tb_id;		// tb_id랑 같은 수
 
 	

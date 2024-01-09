@@ -192,7 +192,7 @@
 </update>
 
 <insert id="regTireBrand">
-	insert into tire_brand values(#{tb_name},#{tb_ea},#{tb_order},tire_brand_seq.nextval)
+	insert into tire_brand values(tire_brand_seq.nextval, #{tb_name}, #{tb_ea}, #{tb_order})
 </insert>
 
 <insert id="adminTireSizeNewInsertReg">

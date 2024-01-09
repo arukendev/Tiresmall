@@ -46,9 +46,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 src="resources/web/main/board/tsd.png"
               /> -->
 
-              <c:if test="${sessionScope.homegradecheck.i_grade eq 3}">
                 <a href="admin.order.go?m=order">관리자</a>
-              </c:if>
+             <%--  <c:if test="${sessionScope.homegradecheck.i_grade eq 3}">
+              </c:if> --%>
             </div>
             <div class="index_hTopRight">
               <c:choose>
@@ -162,12 +162,12 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <ul class="index_dropStore index_dropWrapper">
             <li class="index_dropMenu_menu">
               <div class="index_dropMenu_txt">
-                <a class="index_dropStore_a" href="store?id=1">타이어쇼핑몰</a>
+                <a class="index_dropStore_a" href="store?id=1">타이어쇼핑몰 갈마점</a>
                 <a class="index_dropStore_a" href="store?id=2"
-                  >타이어테크 죽동점</a
+                  >타이어쇼핑몰 죽동점</a
                 >
                 <a class="index_dropStore_a" href="store?id=3"
-                  >논산 타이어쇼핑몰</a
+                  >타이어테크 논산점</a
                 >
                 <a class="index_dropStore_a" href="store?id=4"
                   >타이어테크 연무점</a
