@@ -26,7 +26,7 @@ function initMap() {
 		
 		const latV=parseFloat(document.getElementById('location_lat').value);
 		const lngV=parseFloat(document.getElementById('location_lng').value);
-		const map = new google.maps.Map(document.getElementById("store_wrap_map"), {
+		/*const map = new google.maps.Map(document.getElementById("store_wrap_map"), {
 			center: { lat: latV, lng: lngV },
 			zoom: 18,
 		});
@@ -62,8 +62,16 @@ function initMap() {
 		      anchor: marker,
 		      map,
 		    });
-		  });
+		  });*/
 		
+		  //네이버 지도
+		  
+		  var mapOptions = {
+				    center: new naver.maps.LatLng(36.3417632, 127.3663178),
+				    zoom: 10
+				};
+
+				var map = new naver.maps.Map('store_wrap_map', mapOptions);
 		
 	};	
 

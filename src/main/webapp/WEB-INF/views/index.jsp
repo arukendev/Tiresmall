@@ -5,6 +5,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
   <head>
     <meta charset="UTF-8" />
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fud1jij2os"></script>
     <title>논산 타이어쇼핑몰</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
@@ -116,9 +117,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 </a>
                 <a class="index_dropSearch_a hoem-modal-car-open">
                 	차종으로 검색
-                </a>
-                <a class="index_dropSearch_a">
-              		 제품명으로 찾기
                 </a>
               </div>
               <div class="index_dropMenu_img">

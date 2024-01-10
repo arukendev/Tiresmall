@@ -199,6 +199,9 @@ public class AuthController {
 	@RequestMapping(value = "/authRegSocial.go", method = RequestMethod.GET)
 	public String authRegSOGo(HttpServletRequest req,MemberDTO mDTO) {
 		System.out.println(req.getParameter("socialID"));
+		if(mDTO.getMc_number() =="") {
+			mDTO.setMc_number("차량없음");
+		}
 		return "main/auth/authRegSocial";
 	}
 	

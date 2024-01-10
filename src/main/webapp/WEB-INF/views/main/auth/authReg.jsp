@@ -125,7 +125,7 @@ type="image/png"
 							<option value="코란도C">코란도C</option>
 							<option value="렉스턴">렉스턴</option>
 							<option value="렉스턴 스포츠">렉스턴 스포츠</option>
-							<option value="코로나">코로나</option>
+							<option value="코나">코나</option>
 						</optgroup>
 						<optgroup label="BMW Korea">
 							<option value="5 시리즈">5 시리즈</option>
