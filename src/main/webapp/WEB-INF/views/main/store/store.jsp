@@ -18,8 +18,6 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript"
 	src="resources/js/main/store/main_store.js"></script>
-<script defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuyB2oFUoxC04Ue82J1pxusEfNPy5FBJE&callback=initMap"></script>	
 </head>
 <body>
 	<!-- <select class="sel" name="shop_complist" id="shop_complist"
@@ -66,7 +64,7 @@
 			<h2>대전 타이어쇼핑몰에서 구매 후 당일 장착서비스가 가능한 매장 안내 입니다.</h2>
 		</div>
 		<div id="store_wrap_info">
-			<div id="store_info_name">[${store.b_sortation}] ${store.b_name } </div>
+			<div id="store_info_name">${store.b_name } </div>
 			<div class="store_info_row">
 				<div class="store_info_row_index">위치안내 </div>
 				<div class="store_info_row_content storeAddress">${store.b_area } ${store.b_addr }</div>
