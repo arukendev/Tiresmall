@@ -45,10 +45,12 @@ type="image/png"
 				<div id="pw_input">
 					<input name="pw_password" type="password">
 				</div>
+				<span id="checkPW_result"></span>
 				<div class="join_title">비밀번호확인</div>
 				<div id="pwCheck_input">
 					<input name="pw_pwCheck" type="password">
 				</div>
+				<span id="checkPW_result_check"></span>
 			</div>
 			<div class="join_box">
 				<div class="join_title">이름</div>
@@ -74,93 +76,11 @@ type="image/png"
 				</div>
 			</div>
 
-			<div class="join_box_carInfo">
-				<div class="join_title">브랜드</div>
-				<div id="name_input">
-					<select id="mc_brand" name="mc_brand" onchange="selectBrand()">
-						<option value="Hyundai">현대</option>
-						<option value="Kia">기아</option>
-						<option value="GM Korea">GM 대한민국</option>
-						<option value="Renault Samsung">르노삼성</option>
-						<option value="SsangYong">쌍용</option>
-						<option value="BMW Korea">BMW 대한민국</option>
-						<option value="Mercedes-Benz Korea">메르세데스-벤츠 코리아</option>
-					</select>
-				</div>
-			</div>
-			<div class="join_box_carInfo">
-				<div class="join_title">차량모델</div>
-				<div id="name_input">
-					<select id="mc_carname" name="mc_carname">
-						<optgroup label="Hyundai">
-							<option value="그랜저">그랜저</option>
-							<option value="소나타">소나타</option>
-							<option value="팰리세이드">팰리세이드</option>
-							<option value="아반떼">아반떼</option>
-							<option value="쏘나타 하이브리드">쏘나타 하이브리드</option>
-						</optgroup>
-						<optgroup label="Kia">
-							<option value="K5">K5</option>
-							<option value="K7">K7</option>
-							<option value="셀토스">셀토스</option>
-							<option value="카니발">카니발</option>
-							<option value="니로 하이브리드">니로 하이브리드</option>
-						</optgroup>
-						<optgroup label="GM Korea">
-							<option value="트래버스">트래버스</option>
-							<option value="말리부">말리부</option>
-							<option value="카마로">카마로</option>
-							<option value="볼트">볼트</option>
-							<option value="스파크">스파크</option>
-						</optgroup>
-						<optgroup label="Renault Samsung">
-							<option value="SM6">SM6</option>
-							<option value="QM6">QM6</option>
-							<option value="SM3 Z.E.">SM3 Z.E.</option>
-							<option value="SM5">SM5</option>
-							<option value="카디셀">카디셀</option>
-						</optgroup>
-						<optgroup label="SsangYong">
-							<option value="티볼리">티볼리</option>
-							<option value="코란도C">코란도C</option>
-							<option value="렉스턴">렉스턴</option>
-							<option value="렉스턴 스포츠">렉스턴 스포츠</option>
-							<option value="코나">코나</option>
-						</optgroup>
-						<optgroup label="BMW Korea">
-							<option value="5 시리즈">5 시리즈</option>
-							<option value="7 시리즈">7 시리즈</option>
-							<option value="X3">X3</option>
-							<option value="X5">X5</option>
-							<option value="i3">i3</option>
-						</optgroup>
-						<optgroup label="Mercedes-Benz Korea">
-							<option value="E 클래스">E 클래스</option>
-							<option value="S 클래스">S 클래스</option>
-							<option value="GLE">GLE</option>
-							<option value="GLC">GLC</option>
-							<option value="EQC">
-						</optgroup>
-					</select>
-				</div>
-			</div>
-			<div class="join_box_carInfo">
-				<div class="join_title">연식</div>
-				<div id="name_input">
-					<input name="mc_year" maxlength="4" type="number">
-				</div>
-			</div>
-			<div class="join_box_carInfo">
-				<div class="join_title">차량번호</div>
-				<div id="name_input">
-					<input name="mc_number">
-				</div>
-			</div>
-
+		
 
 
 			<div id="join_btn">
-				<button>회원가입하기</button>
+				<button	class="lastCheck">회원가입하기</button>
 			</div>
 		</div>
 	</form>
