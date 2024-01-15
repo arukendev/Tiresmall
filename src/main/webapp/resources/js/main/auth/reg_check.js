@@ -7,7 +7,6 @@ $(function() {
 	
 	lastCheck();
 
-	return false;
 	
 	/*var code = "";
 	var emailBool="";*/

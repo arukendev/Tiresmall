@@ -61,7 +61,8 @@ type="image/png"
 			<div class="join_box">
 				<div class="join_title">휴대폰번호</div>
 				<div id="phoneNum_input">
-					<input name="i_phoneNum" type="number" maxlength="11">
+					<input name="i_phoneNum" maxlength="11"
+						 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" >
 				</div>
 			</div>
 			<div class="join_box">
@@ -69,11 +70,11 @@ type="image/png"
 				<div id="email_inputCheck">
 					<input name="i_email" id="i_email">
 				</div>
-				<div id="email_input">
+				<!-- <div id="email_input">
 					<input name="i_emailCheck" id="i_emailCheck">
 					<button type="button" id="mail_Check">인증번호 받기</button>
 					<button type="button" id="authnum_check">인증번호 확인</button>
-				</div>
+				</div> -->
 			</div>
 
 		

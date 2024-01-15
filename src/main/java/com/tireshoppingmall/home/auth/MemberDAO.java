@@ -23,7 +23,15 @@ public class MemberDAO {
 	
 	public void regMember(HttpServletRequest req, MemberDTO mDTO) {
 		System.out.println("값-------"+mDTO.getMc_number());
-		if(ss.getMapper(MemberMapper.class).regMember(mDTO)>=3) {
+		if(mDTO.getMc_number() == null) {
+			mDTO.setMc_number("");
+			mDTO.setMc_brand("");
+			mDTO.setMc_carname("");
+			mDTO.setMc_year("0");
+		}
+		
+		
+		if(ss.getMapper(MemberMapper.class).regMember(mDTO) >= 3) {
 			System.out.println("가입성공");
 			System.out.println(mDTO.getMc_year());
 			req.setAttribute("resultMem", "가입성공");
@@ -46,7 +54,7 @@ public class MemberDAO {
 				if (checkMemberInDB.equals(mDTO.getPw_password())) {
 					System.out.println("비밀번호 성공");
 					AuthUserDTO member = ss.getMapper(MemberMapper.class).getMember(mDTO);
-					
+					System.out.println(member.getU_id());
 					req.getSession().setAttribute("loginMember", member);
 					req.getSession().setMaxInactiveInterval(60 * 10);
 				}else {

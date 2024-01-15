@@ -115,6 +115,7 @@ public class AuthController {
 		
 		//로그인 실패할 경우
 		if (!mDAO.loginCheck(req)) {
+			System.out.println("안으로 들어옴?");
 			String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 	        System.out.println("네이버:" + naverAuthUrl);
 	        req.setAttribute("url", naverAuthUrl);
@@ -122,7 +123,9 @@ public class AuthController {
 		}
 		
 		// 로그인페이지를통하여들어온경우:	로그인후에 홈화면으로
+		System.out.println("여기옴11?");
 		if (req.getSession().getAttribute("loginRequiredByQna") == null) {
+			System.out.println("여기옴?");
 			req.setAttribute("content", "main/home/home.jsp");
 			return "redirect:/";
 		// 1:1문의페이지를통하여들어온경우:	로그인후에 1:1문의화면으로
