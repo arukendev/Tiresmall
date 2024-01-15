@@ -165,6 +165,14 @@ public class LoginSocialDAO {
 
 		public Boolean regMemberSocial(HttpServletRequest req, MemberDTO mDTO) {
 			
+			if(mDTO.getMc_number()==null) {
+				mDTO.setMc_number("");
+				mDTO.setMc_brand("");
+				mDTO.setMc_carname("");
+				mDTO.setMc_year("0");
+			}
+			
+			
 			if(ss.getMapper(MemberMapper.class).regMemberSocial(mDTO)>=3) {
 				System.out.println("가입성공");
 				req.setAttribute("resultMem", "가입성공");
