@@ -684,6 +684,10 @@ function tireBrandModal() {
 		
 	})
 	
+	//타이어 브랜드 이미지 등록
+	
+	
+	
 }
 
 function numberInput() {

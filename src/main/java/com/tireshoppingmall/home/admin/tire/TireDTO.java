@@ -12,6 +12,8 @@ public class TireDTO {
 	private int tb_num;			// 몇개가 등록되어있는지
 	private int tb_order;		// 순서 출력
 	private int tb_id;		// 순서 출력
+	private String tb_img;		// 브랜드 이미지
+	
 	
 	
 	//타이어 그룹
@@ -48,29 +50,32 @@ public class TireDTO {
 	
 	public TireDTO() {
 		// TODO Auto-generated constructor stub
-	}
+	}		
 	
 	//브랜드 페이지
-	public TireDTO(String tb_name, int tb_ea, int tb_num, int tb_order,int tb_id) {
+	public TireDTO(String tb_name, int tb_ea, int tb_num, int tb_order, int tb_id, String tb_img) {
 		super();
 		this.tb_name = tb_name;
 		this.tb_ea = tb_ea;
 		this.tb_num = tb_num;
 		this.tb_order = tb_order;
 		this.tb_id = tb_id;
+		this.tb_img = tb_img;
 	}
 
 	//전체
-	public TireDTO(String tb_name, int tb_ea, int tb_num, int tb_order, int tb_id, int tg_id, String tg_brand,
-			String tg_name, String tg_img, String tg_text, int tg_num, int tg_dcrate, int tg_print, int tg_sedan,
-			int tg_suv, String tg_detail, int tg_tb_id, int ti_id, int ti_tg_id, String ti_marking, int ti_width,
-			int ti_ratio, int ti_inch, int ti_stock, int ti_pricefac, int ti_count, BigDecimal start, BigDecimal end) {
+	public TireDTO(String tb_name, int tb_ea, int tb_num, int tb_order, int tb_id, String tb_img, int tg_id,
+			String tg_brand, String tg_name, String tg_img, String tg_text, int tg_num, int tg_dcrate, int tg_print,
+			int tg_sedan, int tg_suv, String tg_detail, int tg_tb_id, int ti_id, int ti_tg_id, String ti_marking,
+			int ti_width, int ti_ratio, int ti_inch, int ti_stock, int ti_pricefac, int ti_count, BigDecimal start,
+			BigDecimal end) {
 		super();
 		this.tb_name = tb_name;
 		this.tb_ea = tb_ea;
 		this.tb_num = tb_num;
 		this.tb_order = tb_order;
 		this.tb_id = tb_id;
+		this.tb_img = tb_img;
 		this.tg_id = tg_id;
 		this.tg_brand = tg_brand;
 		this.tg_name = tg_name;
@@ -96,6 +101,7 @@ public class TireDTO {
 		this.end = end;
 	}
 	
+	
 
 	//검색 페이징 작업 객체호출
 	public TireDTO(String tg_brand, String tg_name, BigDecimal start, BigDecimal end) {
@@ -106,33 +112,13 @@ public class TireDTO {
 		this.end = end;
 	}
 
-	public int getTb_id() {
-		return tb_id;
-	}
-
-	public void setTb_id(int tb_id) {
-		this.tb_id = tb_id;
-	}
-
-	public int getTg_tb_id() {
-		return tg_tb_id;
-	}
-
-	public void setTg_tb_id(int tg_tb_id) {
-		this.tg_tb_id = tg_tb_id;
-	}
-
 	public String getTb_name() {
 		return tb_name;
 	}
 
-
-
 	public void setTb_name(String tb_name) {
 		this.tb_name = tb_name;
 	}
-
-
 
 	public int getTb_ea() {
 		return tb_ea;
@@ -156,6 +142,22 @@ public class TireDTO {
 
 	public void setTb_order(int tb_order) {
 		this.tb_order = tb_order;
+	}
+
+	public int getTb_id() {
+		return tb_id;
+	}
+
+	public void setTb_id(int tb_id) {
+		this.tb_id = tb_id;
+	}
+
+	public String getTb_img() {
+		return tb_img;
+	}
+
+	public void setTb_img(String tb_img) {
+		this.tb_img = tb_img;
 	}
 
 	public int getTg_id() {
@@ -237,13 +239,21 @@ public class TireDTO {
 	public void setTg_suv(int tg_suv) {
 		this.tg_suv = tg_suv;
 	}
-	
+
 	public String getTg_detail() {
 		return tg_detail;
 	}
 
 	public void setTg_detail(String tg_detail) {
 		this.tg_detail = tg_detail;
+	}
+
+	public int getTg_tb_id() {
+		return tg_tb_id;
+	}
+
+	public void setTg_tb_id(int tg_tb_id) {
+		this.tg_tb_id = tg_tb_id;
 	}
 
 	public int getTi_id() {
@@ -301,7 +311,7 @@ public class TireDTO {
 	public void setTi_stock(int ti_stock) {
 		this.ti_stock = ti_stock;
 	}
-	
+
 	public int getTi_pricefac() {
 		return ti_pricefac;
 	}
@@ -333,7 +343,7 @@ public class TireDTO {
 	public void setEnd(BigDecimal end) {
 		this.end = end;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "TireDTO [tb_name=" + tb_name + ", tb_ea=" + tb_ea + ", tb_num=" + tb_num + ", tb_order=" + tb_order

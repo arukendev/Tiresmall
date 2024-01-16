@@ -211,6 +211,10 @@ function lastCheck() {
 			alert("비밀번호가 일치하지 않습니다.");
 			$("input[name=pw_pwCheck]").focus();
 			return false;
+		}else if($("input[name=i_name]").val().leght == 0){
+			alert("이름을 입력해주세요");
+			$("input[name=i_name]").focus();
+			return false;
 		}else if($('#checkNum_result_check').val() == 0 ){
 			alert("전화번호를 다시입력해주세요");
 			$("input[name=i_phoneNum]").focus();

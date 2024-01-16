@@ -62,6 +62,7 @@
 		<table id="admin_tire_brand_content">
 			<tr>
 				<td class="admin_tire_content_title admin_tire_brand_no" style="border-right: 2px solid white">No.</td>
+				<td class="admin_tire_content_title admin_tire_brand_img"style="border-right: 2px solid white">브랜드이미지</td>
 				<td class="admin_tire_content_title admin_tire_brand_name"style="border-right: 2px solid white">브랜드명</td>
 				<td class="admin_tire_content_title admin_tire_print_order"style="border-right: 2px solid white">출력 순서</td>
 				<td class="admin_tire_content_title admin_tire_brand_Print"style="border-right: 2px solid white">출력 여부</td>
@@ -78,6 +79,10 @@
 			<c:forEach items="${brands }" var="t" varStatus="status">
 				<tr class="admin_tire_brands_content">
 					<td class="admin_tire_table_td">${status.count}</td>
+					<td class="admin_tire_table_td">
+						<input value="${t.tb_img }" name = "tb_img " class = "admin-tire-brand-img">
+						<input type="hidden" value="${t.tb_id }">
+					</td>
 					<td class="admin_tire_table_td">
 						<input value="${t.tb_name }" name = "tb_name" class = "admin-tire-brand-name">
 						<input type="hidden" value="${t.tb_id }">
