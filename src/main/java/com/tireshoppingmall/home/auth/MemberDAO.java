@@ -29,7 +29,7 @@ public class MemberDAO {
 			mDTO.setMc_carname("");
 			mDTO.setMc_year("0");
 		}
-		
+		mDTO.setU_logintype("1");
 		
 		if(ss.getMapper(MemberMapper.class).regMember(mDTO) >= 3) {
 			System.out.println("가입성공");
@@ -163,6 +163,11 @@ public class MemberDAO {
 	public int setPassword(MemberDTO mDTO) {
 		
 		return ss.getMapper(MemberMapper.class).pwSet(mDTO);
+	}
+
+	public int phoneNumCheck(String phoneNum) {
+		System.out.println("카운트 값 : " + ss.getMapper(MemberMapper.class).phoneNumCheck(phoneNum));
+		return ss.getMapper(MemberMapper.class).phoneNumCheck(phoneNum);		
 	}
 
 	

@@ -1,25 +1,14 @@
 package com.tireshoppingmall.home.auth;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -29,10 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.util.UrlPathHelper;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -243,6 +230,20 @@ public class AuthController {
 		System.out.println("cnt : " + cnt);
 		return cnt;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/phoneNumberCheck", method = RequestMethod.POST)
+	public int phoneNumberCheck(@RequestParam("phoneNum") String phoneNum,Model model) {
+		System.out.println("phoneNum : " + phoneNum);
+		
+		int cnt = mDAO.phoneNumCheck(phoneNum);
+		System.out.println("cnt : " + cnt);
+		return cnt;
+	}
+	
+	
+	
+	
 	@ResponseBody
 	@RequestMapping(value = "/pwFind", method = RequestMethod.POST)
 	public int pwFind(@Param("idInput") String idInput

@@ -64,6 +64,7 @@ type="image/png"
 					<input name="i_phoneNum" maxlength="11"
 						 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" >
 				</div>
+				<span id="checkNum_result_check"></span>
 			</div>
 			<div class="join_box">
 				<div class="join_title">이메일</div>

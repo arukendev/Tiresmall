@@ -3,11 +3,11 @@ $(function() {
 	//비밀번호 유효성검사
 	checkPw();
 	
-	
+	//폰 번호 겸치는지 검사
+	phoneNumberCheck();
 	
 	lastCheck();
 
-	
 	/*var code = "";
 	var emailBool="";*/
 	/*$("#mail_Check").click(function(){
@@ -179,16 +179,17 @@ function checkId(){
 		
 		})
 	
-		var PWCheckEffectiveness=0;
 		$("#pwCheck_input").focusout(function() {
+			console.log($("input[name=pw_password]").val());
 			console.log($("input[name=pw_pwCheck]").val());
 			
 			if($("input[name=pw_password]").val() != $("input[name=pw_pwCheck]").val()){
 				$("input[name=pw_pwCheck]").css("border-color","")
-				$('#').css("color","red");
+				$('#checkPW_result_check').css("color","red");
 		        $('#checkPW_result_check').html("");
 		        $('#checkPW_result_check').html("비밀번호가 일치하지  않습니다."); 
-		        $('#checkPW_result_check').val(0); 
+		        $('#checkPW_result_check').val(0);
+		        
 			}else{
 		        $('#checkPW_result_check').html("");
 		        $('#checkPW_result_check').val(1); 
@@ -202,18 +203,54 @@ function lastCheck() {
 			alert("아이디를 다시 입력해주세요");
 			$("input[name=u_id]").focus();
 			return false;
-		}
-		if($('#checkPW_result').val() == 0){
+		}else if($('#checkPW_result').val() == 0){
 			alert("비밀번호를 다시 입력해주세요");
 			$("input[name=pw_password]").focus();
 			return false;
-		}if($('#checkPW_result_check').val() == 0){
+		}else if($('#checkPW_result_check').val() == 0){
 			alert("비밀번호가 일치하지 않습니다.");
 			$("input[name=pw_pwCheck]").focus();
+			return false;
+		}else if($('#checkNum_result_check').val() == 0 ){
+			alert("전화번호를 다시입력해주세요");
+			$("input[name=i_phoneNum]").focus();
 			return false;
 		}
 	})
 }
-
-
-
+function phoneNumberCheck() {
+    $("#phoneNum_input").focusout(function() {
+    	var phoneNum = $("input[name=i_phoneNum]").val(); 
+    	if(phoneNum.length != 11){
+    		$('#checkNum_result_check').css("color","red");
+	        $('#checkNum_result_check').html("");
+	        $('#checkNum_result_check').html("전화번호 11자리를 입력해주세요");
+	        $('#checkNum_result_check').val(0); 
+	        return false;
+    	}else{
+    		$.ajax({
+    			url:'./phoneNumberCheck', //Controller에서 요청 받을 주소
+    			type:'post', //POST 방식으로 전달
+    			data:{phoneNum:phoneNum},
+    			success:function(cnt){ //컨트롤러에서 넘어온 cnt값을 받는다 
+    				if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 없는 전화번호
+    			        $('#checkNum_result_check').html("");
+    			        $('#checkNum_result_check').val(1); 
+    				} else { // cnt가 1일 경우 -> 있는 전화번호
+    					$('#checkNum_result_check').css("color","red");
+    			        $('#checkNum_result_check').html("");
+    			        $('#checkNum_result_check').html("이미 가입된 전화번호입니다.");
+    			        $('#checkNum_result_check').val(0); 
+    				}
+    			},
+    			error:function(){
+    				alert("에러입니다");
+    			}
+    		});
+    	}
+    		
+    	
+    	
+		  
+    }) 
+}
