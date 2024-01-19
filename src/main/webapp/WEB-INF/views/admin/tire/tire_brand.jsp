@@ -32,6 +32,12 @@
 								<div><input class="tire-brand-input" name="tb_name" required="required"></div>
 							</div>
 							<div class="admin-tire-brand-size-modal-title">
+								<div class="tire-brand-reg-title">브랜드 이미지</div>
+								<div>
+									<input type="file" name="file" required="required">
+								</div>
+							</div>
+							<div class="admin-tire-brand-size-modal-title">
 								<div class="tire-brand-reg-title">출력순서</div>
 								<div><input class="tire-brand-input" name="tb_order" required="required" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></div>
 							</div>
@@ -80,8 +86,9 @@
 				<tr class="admin_tire_brands_content">
 					<td class="admin_tire_table_td">${status.count}</td>
 					<td class="admin_tire_table_td">
-						<input value="${t.tb_img }" name = "tb_img " class = "admin-tire-brand-img">
+						<img alt="" src="resources/web/main/tire/brand/${t.tb_img}" class="admin-tire-brand-img">
 						<input type="hidden" value="${t.tb_id }">
+						<input type="file" class="admin-tire-brand-img-update" name="file">
 					</td>
 					<td class="admin_tire_table_td">
 						<input value="${t.tb_name }" name = "tb_name" class = "admin-tire-brand-name">

@@ -1,5 +1,8 @@
 package com.tireshoppingmall.home.admin.tire;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -268,13 +271,51 @@ public class AdminTireController {
 		System.out.println("여긴옴??223");
 		return tDAO.tireBrandOrderChange(tDTO);
 	}
+	//admin.tire.brand.img.change
+	@ResponseBody
+	@RequestMapping(value = "admin.tire.brand.img.change", method = RequestMethod.POST)
+	public int tireSBrandImgChange(TireDTO tDTO, MultipartFile[] file) {	
+		System.out.println("여긴옴??223");
+		
+		return tDAO.tireBrandImgChange(file,tDTO);
+
+		
+		
+		
+		
+		//여기 수정중
+
+		
+		
+		
+	}
+/*	 @Autowired
+     	FileUploadService serviceFile;
+	  
+	  
+	  public Map<String,Object> uploadFiles(MultipartFile[] uploadFiles){
+	    
+        Map<String,Object> resultMap=new HashMap<String,Object>();
+        
+        boolean fileUpload = serviceFile.uploadFile(uploadFiles);
+        
+        if(fileUpload) {
+            resultMap.put("result", "success");
+        }else {
+            resultMap.put("result", "fail");
+        }
+        
+        return resultMap;
+        
+    }*/
+	
 	
 	//admin.tire.brand.reg
 	@RequestMapping(value = "/admin.tire.brand.reg", method = RequestMethod.GET)
-	public String tireBrandTRegDo(HttpServletRequest req,TireDTO tDTO) {
+	public String tireBrandTRegDo(@RequestParam("file") MultipartFile file, HttpServletRequest req,TireDTO tDTO) {
 		
 
-		tDAO.regTireBrand(req,tDTO);
+		tDAO.regTireBrand(req,tDTO, file);
 		tDAO.getTireBrand(req);
 		req.setAttribute("subMenuPage", "tire/tire_subMenu.jsp");
 		req.setAttribute("contentPage", "tire/tire_brand.jsp");

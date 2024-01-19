@@ -158,11 +158,17 @@
 	select * from tire_brand order by tb_order
 </select>
 
-<select id="getTireBrandCount" resultType="int">
-	select count(*) from tire_group left OUTER JOIN tire_item
-	on  tg_id = ti_tg_id where tg_brand = #{val}
+<select id="getOneTireBrand" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
+	select * from tire_brand where tb_id = #{tb_id}
 </select>
 
+
+<select id="getTireBrandCount" resultType="int">
+	select count(*) from tire_group 
+	where tg_brand = #{val}
+</select>
+<!-- left OUTER JOIN tire_item
+	on  tg_id = ti_tg_id    -->
 <delete id="deleteTireBrand">
 	delete from tire_brand where tb_name= #{tb_name}
 </delete>
@@ -192,7 +198,7 @@
 </update>
 
 <insert id="regTireBrand">
-	insert into tire_brand values(tire_brand_seq.nextval, #{tb_name}, #{tb_ea}, #{tb_order})
+	insert into tire_brand values(tire_brand_seq.nextval, #{tb_name}, #{tb_ea}, #{tb_order}, #{tb_img})
 </insert>
 
 <insert id="adminTireSizeNewInsertReg">

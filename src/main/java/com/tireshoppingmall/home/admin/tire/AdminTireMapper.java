@@ -14,6 +14,8 @@ public interface AdminTireMapper {
 	int getTireCount(TireDTO paging);
 
 	List<TireDTO> getTireBrand();
+	
+	TireDTO getOneTireBrand(TireDTO tDTO);
 
 	int getTireBrandCount(String tb_name);
 
@@ -72,6 +74,10 @@ public interface AdminTireMapper {
 	int tireImgUpdate(TireDTO tDTO);
 
 	int tireImgsUpdate(TireDTO tDTO);
+
+	int adminTireBrandImgChange(TireDTO tDTO);
+
+	
 
 	
 

@@ -11,7 +11,7 @@ public class TireDTO {
 	private int tb_ea;			// 1은 출력 0은 미출력
 	private int tb_num;			// 몇개가 등록되어있는지
 	private int tb_order;		// 순서 출력
-	private int tb_id;		// 순서 출력
+	private int tb_id;			// 브랜드 pk
 	private String tb_img;		// 브랜드 이미지
 	
 	

@@ -105,6 +105,8 @@ public class TireDAO {
 		for (TireDTO t : brands) {
 			t.setTb_num(ss.getMapper(AdminTireMapper.class).getTireBrandCount(t.getTb_name()));
 		}
+		
+		
 		req.setAttribute("brands",brands);
 		
 	}
@@ -113,6 +115,11 @@ public class TireDAO {
 		
 		if(ss.getMapper(AdminTireMapper.class).deleteTireBrand(tb)==1) {
 			req.setAttribute("r", "삭제성공");
+			
+			
+			
+			
+			
 		}else {
 			req.setAttribute("r", "삭제실패");
 		}
@@ -348,8 +355,44 @@ public class TireDAO {
 	}
 	
 	
-	public void regTireBrand(HttpServletRequest req, TireDTO tDTO) {
-		ss.getMapper(AdminTireMapper.class).regTireBrand(tDTO);
+	public void regTireBrand(HttpServletRequest req, TireDTO tDTO, MultipartFile file) {
+		
+		String savePath = servletContext.getRealPath("resources/web/main/tire/brand");
+		
+		try {
+			
+			//파일이 있을때
+			if(file != null) {
+				
+				String fileName = file.getOriginalFilename();
+				System.out.println("원래 파일이름 : "+ fileName);
+				System.out.println("파일 경로 : "+ savePath);
+					
+				String saveFileName= UUID.randomUUID().toString()+
+						fileName.substring(fileName.lastIndexOf("."));
+					
+				System.out.println("저장된 파일이름 : "+saveFileName);
+				tDTO.setTb_img(saveFileName);	//이름 저장
+					
+				//파일 업로드
+				
+				file.transferTo(new File(savePath,saveFileName));
+				System.out.println("파일 업로드 성공");
+
+				//이제 db등록
+				ss.getMapper(AdminTireMapper.class).regTireBrand(tDTO);
+			}else {
+				tDTO.setTb_img(tDTO.getTb_img());
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("등록 실패");
+			//파일삭제
+	        new File(savePath + "/" + tDTO.getTb_img()).delete();
+	        System.out.println("삭제성공");
+		} 
+		
 		
 	}
 	public int adminTireSizeNewInsertReg(TireDTO tDTO) {
@@ -506,6 +549,19 @@ public class TireDAO {
 		
 		
 		
+	}
+	public int tireBrandImgChange(MultipartFile[] file, TireDTO tDTO) {
+		
+		tDTO = ss.getMapper(AdminTireMapper.class).getOneTireBrand(tDTO);
+	
+		System.out.println(tDTO.getTb_name());
+		System.out.println(tDTO.getTb_img());
+		
+		
+		
+		
+		
+		return ss.getMapper(AdminTireMapper.class).adminTireBrandImgChange(tDTO);
 	}
 
 	
