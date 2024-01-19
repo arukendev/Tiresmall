@@ -31,6 +31,11 @@
 	order by tb_order
 </select>
 
+
+
+
+
+
 <select id="getTireCountByMz" resultType="int">
 	select count(ti_tg_id) from tire_item where ti_tg_id= #{val}
 </select>

@@ -30,12 +30,22 @@ for (let i = 0; i < dropSearchA.length; i++) {
   });
 }
 
-for (let i = 0; i < dropBrandA.length; i++) {
+/*for (let i = 0; i < dropBrandA.length; i++) {
   const element = dropBrandA[i];
   element.addEventListener("mouseenter", () => {
     dropBrandImg.src = `resources/web/main/index/brand/${i + 1}.jpg`;
   });
-}
+}*/
+
+
+
+$(".index_dropBrand_a").mouseenter(function() {
+	if($(this).text() != "전체타이어"){
+		$(".index_dropImg_brand").attr("src", "resources/web/main/tire/brand/" + $(this).next().val());
+	}else{
+		$(".index_dropImg_brand").attr("src", "resources/web/main/tire/brand/1.jpg");
+	}
+})
 
 for (let i = 0; i < dropStoreA.length; i++) {
   const element = dropStoreA[i];

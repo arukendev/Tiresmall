@@ -2,11 +2,13 @@ package com.tireshoppingmall.home.admin.tire;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.mail.Session;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -110,6 +112,24 @@ public class TireDAO {
 		req.setAttribute("brands",brands);
 		
 	}
+	public void getTireBrandMenu(HttpServletRequest req) {
+		List<TireDTO> brands = ss.getMapper(AdminTireMapper.class).getTireBrandPrint();
+		
+		req.getSession().setAttribute("brands", brands);
+		req.getSession().setMaxInactiveInterval(60*60);
+		
+		req.setAttribute("brands",brands);
+	} 
+	
+//	ArrayList<String> list = (ArrayList)session.getAttribute("productlist"); 
+//	String productname = request.getParameter("product");  
+//	if(list==null) {  
+//		list = new ArrayList<String>(); 
+//		session.setAttribute("productlist", list); 
+//	} 
+//	
+//	list.add(productname); 
+	
 	
 	public void deleteTireBrand(HttpServletRequest req, TireDTO tb) {
 		
@@ -563,6 +583,7 @@ public class TireDAO {
 		
 		return ss.getMapper(AdminTireMapper.class).adminTireBrandImgChange(tDTO);
 	}
+
 
 	
 	

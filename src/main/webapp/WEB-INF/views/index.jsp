@@ -110,11 +110,10 @@
 					<li class="index_dropMenu_menu">
 						<div class="index_dropMenu_txt">
 							<a class="index_dropBrand_a" href="product.brand?b=&p=1">전체타이어</a>
-							<a class="index_dropBrand_a" href="product.brand?b=넥센&p=1">넥센타이어</a>
-							<a class="index_dropBrand_a" href="product.brand?b=한국&p=1">한국타이어</a>
-							<a class="index_dropBrand_a" href="product.brand?b=콘티넨탈&p=1">콘티넨탈타이어</a>
-							<a class="index_dropBrand_a" href="product.brand?b=피렐리&p=1">피렐리타이어</a>
-							<a class="index_dropBrand_a" href="product.brand?b=미쉐린&p=1">미쉐린타이어</a>
+							<c:forEach  items="${sessionScope.brands }" var="b" varStatus="status">
+								<a class="index_dropBrand_a" href="product.brand?b=${b.tb_name }&p=1">${b.tb_name }</a>
+								<input type="hidden" value="${b.tb_img }" class="hidden_tb_id">
+							</c:forEach>
 						</div>
 						<div class="index_dropMenu_img">
 							<img class="index_dropImg_brand"
