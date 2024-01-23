@@ -180,6 +180,38 @@ function branchRegImg() {
 		})
 
 	});
+	
+
+	$("#file2").on('change',function(e){
+		var arSplitUrl = $("#file2").val().split("\\");
+		var nArLength = arSplitUrl.length;
+		var fileName = arSplitUrl[nArLength-1];
+		$(".upload-name2").val(fileName);
+		
+		
+		//사진 미리보기
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+
+		filesArr.forEach(function(f) {
+			if(!f.type.match("image.*")){
+				alert("이미지 파일만 업로드 가능합니다.");
+				return;
+			}
+			var sel_file =f;
+	
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$("#imagePreview2").attr('src',e.target.result);
+				
+			}
+			reader.readAsDataURL(f);
+		})
+
+	});
+	
+	
+	
 }
 function emptyProsecutor() {
 	$(".admin-store-reg-button").click(function() {

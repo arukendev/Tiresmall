@@ -30,12 +30,7 @@ for (let i = 0; i < dropSearchA.length; i++) {
   });
 }
 
-/*for (let i = 0; i < dropBrandA.length; i++) {
-  const element = dropBrandA[i];
-  element.addEventListener("mouseenter", () => {
-    dropBrandImg.src = `resources/web/main/index/brand/${i + 1}.jpg`;
-  });
-}*/
+
 
 
 
@@ -46,13 +41,18 @@ $(".index_dropBrand_a").mouseenter(function() {
 		$(".index_dropImg_brand").attr("src", "resources/web/main/tire/brand/1.jpg");
 	}
 })
+$(".index_dropStore_a").mouseenter(function() {
+	$(".index_dropImg_store").attr("src", "resources/web/main/store/" + $(this).next().val());	
+})
 
-for (let i = 0; i < dropStoreA.length; i++) {
+
+
+/*for (let i = 0; i < dropStoreA.length; i++) {
   const element = dropStoreA[i];
   element.addEventListener("mouseenter", () => {
     dropStoreImg.src = `resources/web/main/index/store/${i + 1}.jpg`;
   });
-}
+}*/
 
 for (let i = 0; i < dropBoardA.length; i++) {
   const element = dropBoardA[i];
@@ -90,7 +90,7 @@ storeMenu.addEventListener("mouseenter", () => {
   reset();
   storeMenu.style.borderBottomColor = "var(--red)";
   dropStore.style.display = "block";
-  dropStoreImg.src = `resources/web/main/index/store/1.jpg`;
+  dropStoreImg.src = `resources/web/main/store/shop3.png`;
 });
 
 boardMenu.addEventListener("mouseenter", () => {

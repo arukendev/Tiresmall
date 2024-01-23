@@ -2,13 +2,11 @@ package com.tireshoppingmall.home.admin.tire;
 
 import java.io.File;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.mail.Session;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -112,15 +110,7 @@ public class TireDAO {
 		req.setAttribute("brands",brands);
 		
 	}
-	public void getTireBrandMenu(HttpServletRequest req) {
-		List<TireDTO> brands = ss.getMapper(AdminTireMapper.class).getTireBrandPrint();
-		
-		req.getSession().setAttribute("brands", brands);
-		req.getSession().setMaxInactiveInterval(60*60);
-		
-		req.setAttribute("brands",brands);
-	} 
-	
+
 //	ArrayList<String> list = (ArrayList)session.getAttribute("productlist"); 
 //	String productname = request.getParameter("product");  
 //	if(list==null) {  
@@ -574,15 +564,23 @@ public class TireDAO {
 		
 		tDTO = ss.getMapper(AdminTireMapper.class).getOneTireBrand(tDTO);
 	
-		System.out.println(tDTO.getTb_name());
-		System.out.println(tDTO.getTb_img());
-		
-		
-		
-		
-		
 		return ss.getMapper(AdminTireMapper.class).adminTireBrandImgChange(tDTO);
 	}
+	
+	
+	
+	public void getTireBrandMenu(HttpServletRequest req) {
+		List<TireDTO> brands = ss.getMapper(AdminTireMapper.class).getTireBrandPrint();
+		
+		req.getSession().setAttribute("brands", brands);
+		req.getSession().setMaxInactiveInterval(60*60);
+		
+		req.setAttribute("brands",brands);
+	} 
+	
+	
+	
+	
 
 
 	

@@ -200,7 +200,8 @@ header {
 .index_dropMenu_img {
   border-radius: 10px;
   overflow: hidden;
-}
+  top : -2000px;
+  }
 
 main {
   background-color: white;

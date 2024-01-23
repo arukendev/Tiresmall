@@ -51,8 +51,7 @@
 							</c:when>
 							<c:otherwise>
 								<a class="index_logIn" href="login">로그인</a>
-								<a class="index_nonLogIn" href="non-member">비회원
-									주문조회</a>
+								<a class="index_nonLogIn" href="non-member">비회원 주문조회</a>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -81,8 +80,7 @@
 					<div class="index_sideNav">
 						<c:choose>
 							<c:when test="${not empty sessionScope.loginMember.i_name}">
-								<a href="profile"><img
-									src="resources/web/main/user.png" /></a>
+								<a href="profile"><img src="resources/web/main/user.png" /></a>
 							</c:when>
 							<c:otherwise>
 								<a href="login"><img src="resources/web/main/user.png" /></a>
@@ -110,8 +108,10 @@
 					<li class="index_dropMenu_menu">
 						<div class="index_dropMenu_txt">
 							<a class="index_dropBrand_a" href="product.brand?b=&p=1">전체타이어</a>
-							<c:forEach  items="${sessionScope.brands }" var="b" varStatus="status">
-								<a class="index_dropBrand_a" href="product.brand?b=${b.tb_name }&p=1">${b.tb_name }</a>
+							<c:forEach items="${sessionScope.brands }" var="b"
+								varStatus="status">
+								<a class="index_dropBrand_a"
+									href="product.brand?b=${b.tb_name }&p=1">${b.tb_name }</a>
 								<input type="hidden" value="${b.tb_img }" class="hidden_tb_id">
 							</c:forEach>
 						</div>
@@ -124,16 +124,15 @@
 				<ul class="index_dropStore index_dropWrapper">
 					<li class="index_dropMenu_menu">
 						<div class="index_dropMenu_txt">
-							<a class="index_dropStore_a" href="store?id=1">타이어쇼핑몰 갈마점</a> <a
-								class="index_dropStore_a" href="store?id=2">타이어쇼핑몰
-								죽동점</a> <a class="index_dropStore_a" href="store?id=3">타이어테크
-								논산점</a> <a class="index_dropStore_a" href="store?id=4">타이어테크
-								연무점</a> <a class="index_dropStore_a" href="store?id=5">타이어테크
-								반월점</a>
+							<c:forEach items="${sessionScope.stores }" var="s" varStatus="status">
+								<a class="index_dropStore_a" href="store?id=${s.b_id }&p=1">${s.b_name }</a>
+								<input type="hidden" value="${s.b_mainimg }" class="hidden_b_id">
+							</c:forEach>
 						</div>
+
 						<div class="index_dropMenu_img">
 							<img class="index_dropImg_store"
-								src="resources/web/main/index/store/1.jpg" />
+								src="resources/web/main/index/store/shop1.png" />
 						</div>
 					</li>
 				</ul>
@@ -141,10 +140,10 @@
 					<li class="index_dropMenu_menu">
 						<div class="index_dropMenu_txt">
 							<a class="index_dropBoard_a"
-								href="board.faq.read.search?f_sortation=">FAQ</a>
-							<a class="index_dropBoard_a" href="board.qna.check">1:1 문의</a> <a
-								class="index_dropBoard_a" href="board.notice.read">공지사항</a>
-							<a class="index_dropBoard_a" href="board.event.read">이벤트</a>
+								href="board.faq.read.search?f_sortation=">FAQ</a> <a
+								class="index_dropBoard_a" href="board.qna.check">1:1 문의</a> <a
+								class="index_dropBoard_a" href="board.notice.read">공지사항</a> <a
+								class="index_dropBoard_a" href="board.event.read">이벤트</a>
 						</div>
 						<div class="index_dropMenu_img">
 							<img class="index_dropImg_board"

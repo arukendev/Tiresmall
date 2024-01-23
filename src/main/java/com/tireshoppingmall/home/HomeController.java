@@ -32,6 +32,7 @@ public class HomeController {
 	
 	@Autowired 
 	private TireDAO tDAO;
+
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(BoardNoticeDTO bn, BoardEventDTO be, HttpServletRequest req) {
@@ -40,6 +41,7 @@ public class HomeController {
 		beDAO.readEventModal(be, req);
 		
 		tDAO.getTireBrandMenu(req);
+		sDAO.getStroeMenu(req);
 		
 		req.setAttribute("eventModal", "../board/board_event_modal.jsp");
 		req.setAttribute("content", "main/home/home.jsp");

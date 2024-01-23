@@ -22,7 +22,9 @@ public class BranchDTO {
 	private String b_cr;
 	private String b_email;
 	private MultipartFile file;
+	private MultipartFile file2;
 	private String b_file;
+	private String b_mainimg;
 	
 	//페이징
 	private BigDecimal start;
@@ -34,9 +36,13 @@ public class BranchDTO {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
+
+
 	public BranchDTO(String b_id, String b_sortation, String b_area, String b_addr, String b_name, String b_time,
-			String b_service, String b_mapdata, String b_manager, String b_managernumber,
-			String b_branchnumber, String b_cr, String b_email, String b_file) {
+			String b_service, String b_mapdata, String b_manager, String b_managernumber, String b_branchnumber,
+			String b_cr, String b_email, String b_file, String b_mainimg) {
 		super();
 		this.b_id = b_id;
 		this.b_sortation = b_sortation;
@@ -52,13 +58,15 @@ public class BranchDTO {
 		this.b_cr = b_cr;
 		this.b_email = b_email;
 		this.b_file = b_file;
+		this.b_mainimg = b_mainimg;
 	}
 
+	
 
-
-	public BranchDTO( String b_id, String b_sortation, String b_area, String b_addr, String b_name,
-			String b_time, String b_service, String b_mapdata, String b_manager, String b_managernumber,
-			String b_branchnumber, String b_cr, String b_email, MultipartFile file,String b_file) {
+	public BranchDTO(String b_id, String b_sortation, String b_area, String b_addr, String b_name, String b_time,
+			String b_service, String b_mapdata, String b_manager, String b_managernumber, String b_branchnumber,
+			String b_cr, String b_email, MultipartFile file, MultipartFile file2, String b_file, String b_mainimg,
+			BigDecimal start, BigDecimal end) {
 		super();
 		this.b_id = b_id;
 		this.b_sortation = b_sortation;
@@ -74,8 +82,16 @@ public class BranchDTO {
 		this.b_cr = b_cr;
 		this.b_email = b_email;
 		this.file = file;
+		this.file2 = file2;
 		this.b_file = b_file;
+		this.b_mainimg = b_mainimg;
+		this.start = start;
+		this.end = end;
 	}
+
+
+
+
 
 	//페이징
 	public BranchDTO(String b_area, String b_name, BigDecimal start, BigDecimal end) {
@@ -193,7 +209,23 @@ public class BranchDTO {
 	public void setB_file(String b_file) {
 		this.b_file = b_file;
 	}
-	
+
+	public String getB_mainimg() {
+		return b_mainimg;
+	}
+
+	public void setB_mainimg(String b_mainimg) {
+		this.b_mainimg = b_mainimg;
+	}
+
+	public MultipartFile getFile2() {
+		return file2;
+	}
+
+	public void setFile2(MultipartFile file2) {
+		this.file2 = file2;
+	}
+
 	public static void clearSearch(HttpServletRequest req) {
 		req.getSession().setAttribute("branchDTO", null);
 		
