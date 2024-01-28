@@ -368,49 +368,48 @@ $(document).on("click",".item-list li", function() {
 				}
 			}
 		})	
-	}else{//이제 차를 클릭 하면 그거에 대한 타이어 사이즈가 다 나오면 됨
+	}else if(result > 20000 && result < 29999){//이제 차를 클릭 하면 그거에 대한 타이어 사이즈가 다 나오면 됨
 		c_name = $(this).text();
 		console.log(c_name);
 		$(".car-name").text(c_name);
 		$(".car-name").css("color","black");
 		$(".car-brand-list").remove();
-		$("#home-modal-car-search-content-item").css("display","none");
-	/*	$("#home-modal-car-search-content-item").append(
+		/*$("#home-modal-car-search-content-item").css("display","none");*/
+		$("#home-modal-car-search-content-item").append(
 			"<ol class='item-list car-tire-size-list'></ol>"	
 		);
-		*/
-		$(".home-modal-car-select-result").css("display","flex");												
 		
+		$(".home-modal-car-select-result").css("display","flex");												
 		
 		$.ajax({
 			url: "product.car.tire.size.get.ajax",
 			data : {c_brand,c_year1,c_name},
 			success : function(data) {
-				console.log("성공");
+				
 				var front_tire = data[0].c_ft.split("!");
 				var rear_tire = data[0].c_bt.split("!");
 				
-				
+ 				
 				for (var i = 0; i < front_tire.length; i++) {
-					front_tire[i] = front_tire[i].replace('앞 : ','');      
-					rear_tire[i] = rear_tire[i].replace('뒤 : ','');
-
-				/*	if(front_tire[i] == rear_tire[i]){
+					console.log(front_tire[i]);
+					if(rear_tire[i] == "" || rear_tire[i] == " "){
 						$(".car-tire-size-list").append(
-							"<li value='3000" + (i+1) + "'>" + front_tire[i] + "</li>" 
+								"<li value='3000" + (i+1) + "'>" + front_tire[i] + "</li>"	
 						);
 					}else{
 						$(".car-tire-size-list").append(
-							"<li value='3000" + (i+1) + "'>" + 
-								"전륜 : "+ front_tire[i] +
-								"후륜 : "+ rear_tire[i] +
-							"</li>"
-						);	
-					}*/
-					
+								"<li  style='width: 99%' value='4000" + (i+1) + "'> 전륜 : " + front_tire[i] + 
+								" / 후륜 : "+ rear_tire[i]+"</li>"								
+						);
+					}
 				}
 			}
 		})	
+	}else{
+		
+		
+		
+		
 	}
 	
 	

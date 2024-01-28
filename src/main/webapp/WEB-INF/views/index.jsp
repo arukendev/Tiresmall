@@ -254,30 +254,6 @@
 							</div>
 							<div id="home-modal-car-search-content-item"></div>
 							<div class='home-modal-car-select-result'>
-								<div class='home-modal-car-tire-select-result-text'>
-									<div class="home-modal-car-tire-size">111/11R11</div>
-									<div>111/11R11</div>
-									<div>111/11R11</div>
-								</div>
-
-								<!-- 	<div class='home-modal-tire-select-result-text'>
-									<span class="home-modal-result-span front-tire-width"></span>
-									<span class="home-modal-slush-display1">/</span> 
-									<span class="home-modal-result-span front-tire-ratio"></span>
-									R
-									<span class="home-modal-result-span front-tire-inch"></span>
-								</div>
-								<div class='home-modal-tire-select-result-text rearTireResult'>
-									<span class="home-modal-result-span rear-tire-width"></span>
-									<span class="home-modal-slush-display2">/</span> 
-									<span class="home-modal-result-span rear-tire-ratio"></span>
-									R
-									<span class="home-modal-result-span rear-tire-inch"></span>
-								</div>
-								 -->
-
-
-
 								<div class='home-modal-car-select-result-button'>
 									<div class="home-modal-car-select-result-back">다시 선택</div>
 									<form action='product.tire.search'>

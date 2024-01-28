@@ -32,7 +32,7 @@
 
 	<insert id="regCar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
 		insert into Car
-		values(car_seq.nextval,#{c_name},#{c_year1},#{c_year2},#{c_ft},#{c_bt},#{c_file},#{c_cb_id},#{c_brand})
+		values(c_id_seq.nextval, #{c_cb_id}, #{c_name}, #{c_year1}, #{c_year2}, #{c_brand}, #{c_ft}, #{c_bt}, #{c_file})
 	</insert>
 	
 	<select id="getBrandId" resultType="int">
