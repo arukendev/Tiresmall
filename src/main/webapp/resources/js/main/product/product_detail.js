@@ -33,7 +33,12 @@ function sizeSelect(id, width, ratio, inch, marking, size, price, facPrice) {
   quantityInput.value = 1;
   quantityInputValue = 1;
   priceTab.style.display = "block";
+  
 }
+
+alert($(".product_ti_width").val());
+
+
 
 // 사이즈 선택 ajax
 sizeBtn.addEventListener("click", () => {

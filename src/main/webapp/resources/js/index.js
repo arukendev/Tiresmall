@@ -398,18 +398,43 @@ $(document).on("click",".item-list li", function() {
 						);
 					}else{
 						$(".car-tire-size-list").append(
-								"<li  style='width: 99%' value='4000" + (i+1) + "'> 전륜 : " + front_tire[i] + 
-								" / 후륜 : "+ rear_tire[i]+"</li>"								
+								"<li  style='width: 99%' value='4000" + (i+1) + "'>" + front_tire[i] + 
+								" / "+ rear_tire[i]+"</li>"								
 						);
 					}
 				}
 			}
 		})	
 	}else{
-		
-		
-		
-		
+		$(".home-modal-car-select-result-choice").text($(this).text());
+		var searchValue = $(this).text();
+		if(result > 30000 && result < 39999){//앞,뒤 타이어 사이즈가 같을때
+			var front_tire_width = searchValue.split("/")[0];
+			var front_tire_ratio = searchValue.split("/")[1].split("R")[0];
+			var front_tire_inch = searchValue.split("/")[1].split("R")[1];	
+			$(".front_tire_width").val(front_tire_width);
+			$(".front_tire_ratio").val(front_tire_ratio);
+			$(".front_tire_inch").val(front_tire_inch);
+
+		}else{//앞, 뒤 사이즈가 다를때
+			var front_tire = searchValue.split(" / ")[0].replace("전륜 : ","");
+			var rear_tire = searchValue.split(" / ")[1].replace("후륜 : ","");
+			var front_tire_width = front_tire.split("/")[0];
+			var front_tire_ratio = front_tire.split("/")[1].split("R")[0];
+			var front_tire_inch = front_tire.split("/")[1].split("R")[1];	
+			$(".front_tire_width").val(front_tire_width);
+			$(".front_tire_ratio").val(front_tire_ratio);
+			$(".front_tire_inch").val(front_tire_inch);		
+			
+			var rear_tire_width = rear_tire.split("/")[0];
+			var rear_tire_ratio = rear_tire.split("/")[1].split("R")[0];
+			var rear_tire_inch = rear_tire.split("/")[1].split("R")[1];	
+			$(".rear_tire_width").val(rear_tire_width);
+			$(".rear_tire_ratio").val(rear_tire_ratio);
+			$(".rear_tire_inch").val(rear_tire_inch);
+			
+			
+		}
 	}
 	
 	
@@ -571,16 +596,28 @@ function homeModalCarSeachInitialization() {
 	$("#home-modal-car-search-content-item").css("display","flex");
 	$("#home-modal-car-search-content-text").css("display","flex");
 	$(".car-brand-list").remove();
+	$(".car-tire-size-list").remove();
 	$(".car-brand").css("color","var(--red)");
 	$(".car-year").css("color","black");
 	$(".car-name").css("color","black");
 	$(".car-brand").text("제조사");
 	$(".car-year").text("생산년도");
 	$(".car-name").text("차종명");
+	$(".home-modal-car-select-result-choice").text("");
 }
 
 
+//차종으로 검색할때 선택 안되면
+$(".home-modal-car-select-go").click(function() {
 
+	if($(".front_tire_width").val()==""){
+		alert("타이어 사이즈를 선택해주세요!!");
+		return false;
+	}
+
+	
+
+})
 
 
 

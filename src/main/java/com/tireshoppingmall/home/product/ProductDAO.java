@@ -259,30 +259,42 @@ public class ProductDAO {
 	
 	// 타이어 검색
 	public void getTireSeachProductGroup(HttpServletRequest request, ProductDTO pDTO) {
-		System.out.println("---------------------");
-		System.out.println(pDTO.getFront_tire_width());
-		System.out.println(pDTO.getFront_tire_ratio());
-		System.out.println(pDTO.getFront_tire_inch());
-		System.out.println(pDTO.getRear_tire_width());
-		System.out.println(pDTO.getRear_tire_ratio());
-		System.out.println(pDTO.getRear_tire_inch());
+		
 		
 		List<ProductDTO> joinDTO = new ArrayList<ProductDTO>();
 		
 		List<ProductDTO> resultFrontpDTO = ss.getMapper(ProductMapper.class).getFrontTireGroup(pDTO);
 		for (ProductDTO p : resultFrontpDTO) {
-			p.setResult_price(p.getTi_pricefac() * (100-p.getTg_dcrate()) / 100);
-		}
+			//할인 가격
+			int result_price = p.getTi_pricefac() * (100-p.getTg_dcrate()) / 100;
+			p.setResult_price((int) Math.ceil((result_price/100)*100));
+			
+			//앞 타이어 사이즈 저장
+			p.setTi_width(pDTO.getFront_tire_width());
+			p.setTi_ratio(pDTO.getFront_tire_ratio());
+			p.setTi_inch(pDTO.getFront_tire_inch());
+			
+			System.out.println(p.getTi_ratio());
+		} 
 		joinDTO.addAll(resultFrontpDTO);
 		
-		if(pDTO.getRear_tire_width()!="") {
+		if(pDTO.getRear_tire_width()!=0) {
+			System.out.println("앞 타이어랑 뒤 타이어랑 다름");
 			List<ProductDTO> resultRearpDTO = ss.getMapper(ProductMapper.class).getRearTireGroup(pDTO);
 			for (ProductDTO p : resultRearpDTO) {
-				p.setResult_price(p.getTi_pricefac() * (100-p.getTg_dcrate()) / 100);
+				//할인 가격
+				int result_price = p.getTi_pricefac() * (100-p.getTg_dcrate()) / 100;
+				p.setResult_price((int) Math.ceil((result_price/100)*100));
+				
+				//뒤 타이어 사이즈 저장
+				p.setTi_width(pDTO.getRear_tire_width());
+				p.setTi_ratio(pDTO.getRear_tire_ratio());
+				p.setTi_inch(pDTO.getRear_tire_inch());
 			}
 			joinDTO.addAll(resultRearpDTO);
 		}
 		
+		request.setAttribute("searchDo", 1);
 		request.setAttribute("pGroups", joinDTO);
 		request.setAttribute("count", joinDTO.size());
 

@@ -229,14 +229,12 @@
 									<div class="home-modal-tire-select-result-back">다시 선택</div>
 									<div class="home-modal-rear-tire-select">타이어 추가</div>
 									<form action='product.tire.search'>
-										<input type="hidden" name="front_tire_width"
-											id="front_tire_width"> <input type="hidden"
-											name="front_tire_ratio" id="front_tire_ratio"> <input
-											type="hidden" name="front_tire_inch" id="front_tire_inch">
-										<input type="hidden" name="rear_tire_width"
-											id="rear_tire_width"> <input type="hidden"
-											name="rear_tire_ratio" id="rear_tire_ratio"> <input
-											type="hidden" name="rear_tire_inch" id="rear_tire_inch">
+										<input type="hidden" name="front_tire_width" id="front_tire_width"> 
+										<input type="hidden" name="front_tire_ratio" id="front_tire_ratio"> 
+										<input type="hidden" name="front_tire_inch" id="front_tire_inch">
+										<input type="hidden" name="rear_tire_width" id="rear_tire_width" value="0">
+										<input type="hidden"name="rear_tire_ratio" id="rear_tire_ratio" value="0">
+										<input type="hidden" name="rear_tire_inch" id="rear_tire_inch" value="0">
 										<button class="home-modal-tire-select-go">검색</button>
 									</form>
 								</div>
@@ -254,17 +252,18 @@
 							</div>
 							<div id="home-modal-car-search-content-item"></div>
 							<div class='home-modal-car-select-result'>
+								<div class="home-modal-car-select-result-choice">
+									타이어 사이즈를 선택해주세요!
+								</div>
 								<div class='home-modal-car-select-result-button'>
 									<div class="home-modal-car-select-result-back">다시 선택</div>
 									<form action='product.tire.search'>
-										<input type="hidden" name="front_tire_width"
-											id="front_tire_width"> <input type="hidden"
-											name="front_tire_ratio" id="front_tire_ratio"> <input
-											type="hidden" name="front_tire_inch" id="front_tire_inch">
-										<input type="hidden" name="rear_tire_width"
-											id="rear_tire_width"> <input type="hidden"
-											name="rear_tire_ratio" id="rear_tire_ratio"> <input
-											type="hidden" name="rear_tire_inch" id="rear_tire_inch">
+										<input type="hidden" name="front_tire_width"class="front_tire_width"> 
+										<input type="hidden" name="front_tire_ratio" class="front_tire_ratio">
+										<input type="hidden" name="front_tire_inch" class="front_tire_inch">
+										<input type="hidden" name="rear_tire_width" class="rear_tire_width" value="0">
+										<input type="hidden" name="rear_tire_ratio" class="rear_tire_ratio" value="0">
+										<input type="hidden" name="rear_tire_inch" class="rear_tire_inch" value="0">
 										<button class="home-modal-car-select-go">검색</button>
 									</form>
 								</div>

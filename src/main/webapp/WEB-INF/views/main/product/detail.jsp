@@ -96,35 +96,15 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             </div>
           </div>
           <div class="detail_buy">
-            <input
-              class="product_tg_id"
-              type="hidden"
-              value="${product.tg_id}"
-            />
-            <input
-              class="product_tg_brand"
-              type="hidden"
-              value="${product.tg_brand}"
-            />
-            <input
-              class="product_tg_name"
-              type="hidden"
-              value="${product.tg_name}"
-            />
-            <input
-              class="product_tg_img"
-              type="hidden"
-              value="${product.tg_img}"
-            />
-            <input
-              class="product_tg_dcrate"
-              type="hidden"
-              value="${product.tg_dcrate}"
-            />
+            <input class="product_tg_id"type="hidden" value="${product.tg_id}"/>
+            <input class="product_tg_brand"type="hidden"value="${product.tg_brand}"/>
+            <input class="product_tg_name" type="hidden" value="${product.tg_name}"/>
+            <input class="product_tg_img" type="hidden"  value="${product.tg_img}"/>
+            <input class="product_tg_dcrate" type="hidden" value="${product.tg_dcrate}"/>
             <input class="product_ti_id" type="hidden" />
-            <input class="product_ti_width" type="hidden" />
-            <input class="product_ti_ratio" type="hidden" />
-            <input class="product_ti_inch" type="hidden" />
+            <input class="product_ti_width" type="hidden" value="${searchProduct.ti_width}"/>
+            <input class="product_ti_ratio" type="hidden" value="${searchProduct.ti_ratio}"/>
+            <input class="product_ti_inch" type="hidden" value="${searchProduct.ti_inch}"/>
             <input class="product_ti_marking" type="hidden" />
             <input class="product_ti_pricegp" type="hidden" />
             <input class="product_ti_pricefac" type="hidden" />

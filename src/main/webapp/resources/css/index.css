@@ -607,8 +607,6 @@ section {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	height: 300px;
-	position: relative;
 }
 
 
@@ -622,15 +620,18 @@ section {
 	
 }
 .car-tire-size-list li{
-	width: 36%;
+	width: 34%;
     text-align: center;
     font-size: 14pt;
     margin: 10px 7.5% 10px 7.5%;
     padding: 10px;
 }
-
-
-
+.home-modal-car-select-result-choice{
+	position: absolute;
+    bottom: 80px;
+    font-size: 20px;
+    font-weight: 800;
+}
 
 
 
