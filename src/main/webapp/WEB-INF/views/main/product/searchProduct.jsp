@@ -34,7 +34,7 @@
 		<div id="product_container">
 			<c:forEach items="${pGroups }" var="pGroup">
 				<a href="product.detail?tg_id=${pGroup.tg_id }
-						&ti_width=${pGroup.ti_width }&ti_ratio=${pGroup.ti_ratio }&ti_inch=${pGroup.ti_inch }">
+						&ti_width=${pGroup.ti_width }&ti_ratio=${pGroup.ti_ratio }&ti_inch=${pGroup.ti_inch }&result_price=${pGroup.result_price}">
 					<div class="product_item">
 						<div class="product_item_hidden">
 						</div>

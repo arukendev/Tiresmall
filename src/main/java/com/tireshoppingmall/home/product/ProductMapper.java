@@ -25,10 +25,12 @@ public interface ProductMapper {
 	List<ProductGroupDTO> getProductGroupJson(ProductSelector search);
 
 	ProductDTO getProduct(ProductDTO pDTO);
+	
+	ProductDTO getProductOneSize(ProductDTO pDTO);
 
 	List<ProductDTO> getProductSizes(ProductDTO pDTO);
 
-	List<ProductDTO> getFrontTireGroup(ProductDTO pDTO);
+	List<ProductDTO> getTireGroup(ProductDTO pDTO);
 	
 	List<ProductDTO> getRearTireGroup(ProductDTO pDTO);
 
@@ -37,5 +39,7 @@ public interface ProductMapper {
 	List<CarDTO> getCarAllName(CarDTO cDTO);
 
 	List<CarDTO> getCarAllTireSize(CarDTO cDTO);
+
+	
 	
 }

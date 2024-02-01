@@ -251,6 +251,8 @@
 									class="home-modal-span car-name">차종명</span>
 							</div>
 							<div id="home-modal-car-search-content-item"></div>
+							<!-- <div class="home-modal-tire-search-what-text">내차 타이어 사이즈
+									어떻게 아나요?</div> -->
 							<div class='home-modal-car-select-result'>
 								<div class="home-modal-car-select-result-choice">
 									타이어 사이즈를 선택해주세요!

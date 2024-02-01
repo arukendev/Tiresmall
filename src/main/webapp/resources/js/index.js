@@ -604,6 +604,7 @@ function homeModalCarSeachInitialization() {
 	$(".car-year").text("생산년도");
 	$(".car-name").text("차종명");
 	$(".home-modal-car-select-result-choice").text("");
+	$(".home-modal-car-select-result-choice").text("타이어 사이즈를 선택해주세요!");
 }
 
 

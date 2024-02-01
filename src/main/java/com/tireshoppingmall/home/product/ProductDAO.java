@@ -143,10 +143,12 @@ public class ProductDAO {
 		
 		if(pDTO.getTi_inch() != 0) {
 			System.out.println("여기옴");	
-			ProductDTO searchProduct = pDTO;
-			System.out.println(searchProduct.getTi_inch());
-			System.out.println(searchProduct.getTi_width());
-			System.out.println(searchProduct.getTi_ratio());
+			
+			ProductDTO searchProduct = ss.getMapper(ProductMapper.class).getProductOneSize(pDTO);
+			
+			searchProduct.setResult_price(Integer.parseInt(request.getParameter("result_price")));
+			
+			System.out.println(searchProduct.getResult_price());
 			request.setAttribute("searchProduct", searchProduct);
 			
 		}else {
@@ -263,33 +265,31 @@ public class ProductDAO {
 		
 		List<ProductDTO> joinDTO = new ArrayList<ProductDTO>();
 		
-		List<ProductDTO> resultFrontpDTO = ss.getMapper(ProductMapper.class).getFrontTireGroup(pDTO);
+		pDTO.setTi_width(pDTO.getFront_tire_width());
+		pDTO.setTi_ratio(pDTO.getFront_tire_ratio());
+		pDTO.setTi_inch(pDTO.getFront_tire_inch());
+		
+		
+		List<ProductDTO> resultFrontpDTO = ss.getMapper(ProductMapper.class).getTireGroup(pDTO);
 		for (ProductDTO p : resultFrontpDTO) {
 			//할인 가격
 			int result_price = p.getTi_pricefac() * (100-p.getTg_dcrate()) / 100;
 			p.setResult_price((int) Math.ceil((result_price/100)*100));
-			
-			//앞 타이어 사이즈 저장
-			p.setTi_width(pDTO.getFront_tire_width());
-			p.setTi_ratio(pDTO.getFront_tire_ratio());
-			p.setTi_inch(pDTO.getFront_tire_inch());
-			
-			System.out.println(p.getTi_ratio());
 		} 
 		joinDTO.addAll(resultFrontpDTO);
 		
 		if(pDTO.getRear_tire_width()!=0) {
 			System.out.println("앞 타이어랑 뒤 타이어랑 다름");
-			List<ProductDTO> resultRearpDTO = ss.getMapper(ProductMapper.class).getRearTireGroup(pDTO);
+			
+			pDTO.setTi_width(pDTO.getRear_tire_width());
+			pDTO.setTi_ratio(pDTO.getRear_tire_ratio());
+			pDTO.setTi_inch(pDTO.getRear_tire_inch());
+			
+			List<ProductDTO> resultRearpDTO = ss.getMapper(ProductMapper.class).getTireGroup(pDTO);
 			for (ProductDTO p : resultRearpDTO) {
 				//할인 가격
 				int result_price = p.getTi_pricefac() * (100-p.getTg_dcrate()) / 100;
 				p.setResult_price((int) Math.ceil((result_price/100)*100));
-				
-				//뒤 타이어 사이즈 저장
-				p.setTi_width(pDTO.getRear_tire_width());
-				p.setTi_ratio(pDTO.getRear_tire_ratio());
-				p.setTi_inch(pDTO.getRear_tire_inch());
 			}
 			joinDTO.addAll(resultRearpDTO);
 		}
