@@ -1,12 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib prefix="fmt"
-uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language = "java" contentType = "text/html; charset=UTF-8" pageEncoding = "UTF-8"%> 
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
+
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css" />
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fud1jij2os"></script>
   </head>
   <body>
     <c:if test="${empty sessionScope.cartSession}">
@@ -40,28 +42,24 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                     <c:when test="${tire.tg_img eq 'noimg'}">
                       <img
                         src="resources/web/main/product/no-tire-image.jpg"
-                        style="width: 150px"
-                      />
+                        style="width: 150px"/>
                     </c:when>
                     <c:otherwise>
                       <img
                         src="resources/web/main/tire/${tire.tg_img}"
-                        style="max-height: 150px"
-                      />
+                        style="max-height: 150px"/>
                     </c:otherwise>
                   </c:choose>
                 </div>
                 <div class="pay_product_info">
-                  <h2
-                    href="http://localhost/home/product.brand?b=${tire.tg_brand}&p=1"
-                    class="pay_product_brand"
-                  >
+                  <h2 href="http://localhost/home/product.brand?b=${tire.tg_brand}&p=1"
+                    class="pay_product_brand">
                     ${tire.tg_brand}
                   </h2>
-                  <h1 value="${tire.tg_id}" class="pay_product_name">
+                  <h1 value = "${tire.tg_id}" class="pay_product_name">
                     ${tire.tg_name}
                   </h1>
-                  <div class="pay_quantity_box">
+                  <div class = "pay_quantity_box">
                     <c:choose>
                       <c:when test="${tire.ti_ratio eq 0}">
                         <h2 class="pay_product_size">
@@ -80,23 +78,11 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 </div>
               </div>
               <div class="pay_product_right">
-                <span class="pay_product_price"
-                  ><fmt:formatNumber
-                    value="${tire.ti_allpricegp}"
-                    type="currency"
-                    currencySymbol=""
-                  />원</span
-                >
-                <input
-                  type="hidden"
-                  class="pay_final_price"
-                  value="${tire.ti_allpricegp}"
-                />
-                <input
-                  type="hidden"
-                  class="pay_finalFac_price"
-                  value="${tire.ti_allpricefac}"
-                />
+                <span class="pay_product_price">
+               	 	<fmt:formatNumber value="${tire.ti_allpricegp}" type="number"/>원
+                </span>
+                <input type="hidden" class="pay_final_price" value="${tire.ti_allpricegp}"/>
+                <input type="hidden" class="pay_finalFac_price" value="${tire.ti_allpricefac}" />
               </div>
             </div>
           </c:forEach>
@@ -106,27 +92,28 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
           <ul class="pay_shipMethod">
             <li>
               <div>
-                <span>장착점 선택</span>
+                <span>장착점</span>
               </div>
               <div>
                 <select class="pay_store" name="o_storeshop">
-                  <option value="타이어쇼핑몰">타이어쇼핑몰</option>
-                  <option value="타이어테크 죽동점">타이어테크 죽동점</option>
-                  <option value="논산 타이어쇼핑몰">논산 타이어쇼핑몰</option>
-                  <option value="타이어테크 연무점">타이어테크 연무점</option>
-                  <option value="타이어테크 반월점">타이어테크 반월점</option>
+                	<c:forEach items="${store }" var="s"varStatus="status" >
+                		<option value="${s.b_id}">${s.b_name}</option>
+                	</c:forEach>
                 </select>
               </div>
             </li>
-            <div class="pay_map"></div>
+        
+	      	<!-- <div id="pay_map"></div>
+	      	 -->
+	      	
+	      	
+
             <li>
               <div>
                 <span>장착점 주소</span>
               </div>
               <div>
-                <span class="pay_storeAddress"
-                  >대전광역시 서구 신갈마로 83 (갈마동)</span
-                >
+                <span class="pay_storeAddress">대전광역시 서구 신갈마로 83 (갈마동)</span>
               </div>
             </li>
             <li>
@@ -142,10 +129,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 <span>영업시간</span>
               </div>
               <div>
-                <span
-                  >평일 : 08:30 ~ 19:00 / 토요일 08:30 ~ 16:00 (일요일
-                  휴무)</span
-                >
+                <span>평일 : 08:30 ~ 19:00 / 토요일 08:30 ~ 16:00 (일요일 휴무)</span >
               </div>
             </li>
             <li>
@@ -164,22 +148,14 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
           <c:choose>
             <c:when test="${not empty sessionScope.loginMember.i_name}">
               <ul class="pay_customerInfo">
-                <input
-                  type="hidden"
-                  name="o_sortation"
-                  value="${sessionScope.loginMember.u_no}"
-                />
                 <li>
-                  <div>
-                    <span>주문자명</span>
-                  </div>
-                  <div>
-                    <input
-                      type="text"
-                      name="o_name"
-                      value="${sessionScope.loginMember.i_name}"
-                      class="pay_customer_input"
-                    />
+                	<input type="hidden" name="o_sortation" value="${sessionScope.loginMember.u_no}"/>
+                  	<div>
+                    	<span>주문자</span>
+                  	</div>
+                  	<div>
+                    <input  type="text"name="o_name"value="${sessionScope.loginMember.i_name}"
+                     class="pay_customer_input"/>
                     <span class="pay_error pay_customer_confirm"></span>
                   </div>
                 </li>
@@ -193,8 +169,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                       name="o_phone"
                       value="${sessionScope.loginMember.i_phoneNum}"
                       class="pay_phone_input"
-                      placeholder="-을 제외하고 입력해주세요"
-                    />
+                      placeholder=" '-'을 제외하고 입력해주세요"/>
                     <span class="pay_error pay_phone_confirm"></span>
                   </div>
                 </li>
@@ -208,7 +183,8 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                       name="o_email"
                       value="${sessionScope.loginMember.i_email}"
                       class="pay_email_input"
-                    />
+                       placeholder="example@naver.com"
+                      />
                     <span class="pay_error pay_email_confirm"></span>
                   </div>
                 </li>
@@ -252,7 +228,8 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                       name="o_carnumber"
                       value="${sessionScope.loginMember.mc_number}"
                       class="pay_carNum_input"
-                    />
+                       placeholder="123마4567"
+                      />
                     <span class="pay_error pay_carNum_confirm"></span>
                   </div>
                 </li>
@@ -272,17 +249,14 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
             </c:when>
             <c:otherwise>
               <ul class="pay_customerInfo">
-                <input type="hidden" name="o_sortation" value="0" />
                 <li>
+                <input type="hidden" name="o_sortation" value="0" />
                   <div>
-                    <span>주문자명</span>
+                    <span>주문자</span>
                   </div>
                   <div>
-                    <input
-                      type="text"
-                      name="o_name"
-                      class="pay_customer_input"
-                    />
+                    <input type="text"name="o_name"class="pay_customer_input"
+                      placeholder="이름을 입력해주세요"/>
                     <span class="pay_error pay_customer_confirm"></span>
                   </div>
                 </li>
@@ -291,12 +265,8 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                     <span>연락처</span>
                   </div>
                   <div>
-                    <input
-                      type="text"
-                      name="o_phone"
-                      placeholder="-을 제외하고 입력해주세요"
-                      class="pay_phone_input"
-                    />
+                    <input type="text" name="o_phone" placeholder="'-'을 제외하고 입력해주세요"
+                      class="pay_phone_input"/>
                     <span class="pay_error pay_phone_confirm"></span>
                   </div>
                 </li>
@@ -305,7 +275,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                     <span>이메일</span>
                   </div>
                   <div>
-                    <input type="text" name="o_email" class="pay_email_input" />
+                    <input type="text" name="o_email" class="pay_email_input"  placeholder="example@naver.com" />
                     <span class="pay_error pay_email_confirm"></span>
                   </div>
                 </li>
@@ -352,16 +322,14 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                     <span class="pay_error pay_carNum_confirm"></span>
                   </div>
                 </li>
-                <li>
+                <li id="pay_grid_diffrent_height">
                   <div>
                     <span>기타요청</span>
                   </div>
                   <div>
-                    <input
-                      type="text"
-                      name="o_request"
-                      class="pay_request_input"
-                    />
+                  <textarea name="o_request" id="pay_request_input" wrap="soft"></textarea>
+                    <!-- <input type="text"  name="o_request" id="pay_request_input"
+                    /> -->
                   </div>
                 </li>
               </ul>
@@ -441,6 +409,6 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
       </div>
       <input id="pInput" name="pg_token" type="hidden" value="">
     </form>
-<script type="text/javascript" src="resources/js/main/order/kakaopay.js"></script>
+	<script type="text/javascript" src="resources/js/main/order/kakaopay.js"></script>
   </body>
 </html>

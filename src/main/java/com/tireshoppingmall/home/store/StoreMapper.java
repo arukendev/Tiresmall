@@ -6,4 +6,5 @@ public interface StoreMapper {
 
 	BranchDTO getAStore(int id);
 
+
 }

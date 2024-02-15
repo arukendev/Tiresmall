@@ -1,4 +1,5 @@
 $(function(){
+	alert($('#location').val());
 	$('#location_lng').val($('#location').val().substr($('#location').val().indexOf(' ')+1));
 	$('#location_lat').val($('#location').val().substr(0,$('#location').val().indexOf(',')));
 	$('#store_wrap_banner img').attr("src", "resources/web/main/store/"+$('#store_banner_img').val());
@@ -57,15 +58,7 @@ function initMap() {
 			    } else {
 			        infowindow.open(map, marker);
 			    }
-			});
-
-
-			
-
-				
-				
-				
-				
+			});			
 	};	
 
 

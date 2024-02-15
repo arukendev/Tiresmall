@@ -24,6 +24,9 @@
 	<select id="getAllBranch" resultType="com.tireshoppingmall.home.admin.store.BranchDTO">
 		select * from branch
 	</select>
+	<select id="getAllBranchName"  resultType="com.tireshoppingmall.home.admin.store.BranchDTO">
+		select b_name,b_id from branch
+	</select>
 
 	<insert id="regBranch" parameterType="com.tireshoppingmall.home.admin.store.BranchDTO">
 		insert into branch

@@ -10,6 +10,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tireshoppingmall.home.admin.store.AdminStoreMapper;
+import com.tireshoppingmall.home.admin.store.BranchDTO;
+import com.tireshoppingmall.home.store.StoreMapper;
+
 @Service
 public class MainOrderDAO {
 	
@@ -25,14 +29,23 @@ public class MainOrderDAO {
 		}
 		List<CarName> carNames = ss.getMapper(MainOrderMapper.class).getCarName();
 		List<CarBrand> carBrands = ss.getMapper(MainOrderMapper.class).getCarBrand();
+		ss.getMapper(AdminStoreMapper.class).getAllBranch();
+	
 		
+		
+		req.setAttribute("store", ss.getMapper(AdminStoreMapper.class).getAllBranch());
 		req.setAttribute("carYears", carYears);
 		req.setAttribute("carNames", carNames);
 		req.setAttribute("carBrands", carBrands);
 	}
 
 	public void setValues(HttpServletRequest req, MainOrderDTO mODTO) {
+		System.out.println("뭐길래???");
+		System.out.println(req.getSession().getAttribute("cartSession"));
+
+		
 		ArrayList<CartDTO> cList = (ArrayList<CartDTO>) req.getSession().getAttribute("cartSession");
+		
 		String orderName = cList.get(0).getTg_name() + " " + cList.get(0).getTi_stock() + "EA";
 		if (cList.size() > 1) {
 			orderName = cList.get(0).getTg_name() + " " + cList.get(0).getTi_stock() + "EA 외" + (cList.size() - 1) + "건";
@@ -57,5 +70,11 @@ public class MainOrderDAO {
 			System.out.println("등록실패");
 		}
 	}
+
+	public BranchDTO payStoreChage(int id) {
+		return ss.getMapper(StoreMapper.class).getAStore(id);
+	}
+
+
 	
 }
