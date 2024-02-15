@@ -26,17 +26,9 @@ const payStoreAddress = document.querySelector(".pay_storeAddress");
 const payStorePhone = document.querySelector(".pay_storePhone");
 const payStore = document.querySelector(".pay_store");
 
-/*payInitStoreMap(
-  36.3417632,
-  127.3663178,
-  "[직영점] 타이어쇼핑몰",
-  "대전광역시 서구 신갈마로 83 (갈마동)"
-);*/
 
-//테스트 $('.' +payStore.value).css("display", "flex");
-
-
-
+//지도 실행
+initMap();
 
 payStore.addEventListener("change", () => {
 	
@@ -49,66 +41,70 @@ payStore.addEventListener("change", () => {
 		      
 		      payStoreAddress.innerText =data.b_area +""+ data.b_addr;
 		      payStorePhone.innerText = data.b_managernumber;
-		      
-		      
-		      const latV = console.log(data.b_mapdata.split(", ")[0]);
-		      const lngV = console.log(data.b_mapdata.split(", ")[1]);
-
-		     /* //네이버 지도
-			  
-			  var mapOptions = {
-					    center: new naver.maps.LatLng(latV, lngV),
-					    zoom: 18,
-					    zoomControl: true,
-					    zoomControlOptions: {
-					        style: naver.maps.ZoomControlStyle.LARGE,
-					        position: naver.maps.Position.RIGHT_CENTER
-					    }
-					    
-			  };
-
-			  var map = new naver.maps.Map('pay_map', mapOptions);
-			  
-			  //정보창 
-			  var contentString = [
-				  	'<div id="content">' +
-				  		'<div id="siteNotice">' + "</div>" +
-				  		'<h1 id="firstHeading" class="firstHeading">'+ $('#store_info_name').text() +'</h1>' +
-				    "</div>"
-			   ].join('');
-			  //마커
-			  var marker = new naver.maps.Marker({
-					  position: new naver.maps.LatLng(latV, lngV),
-					  map: map
-
-			  });
-			  var infowindow = new naver.maps.InfoWindow({
-				    content: contentString
-			  });
-			  
-			  
-			  //정보창 오픈하기
-			  infowindow.open(map, marker);
-			  //클릭하면정보창 없애고 띄우기
-			  naver.maps.Event.addListener(marker, "click", function(e) {
-				    if (infowindow.getMap()) {
-				        infowindow.close();
-				    } else {
-				        infowindow.open(map, marker);
-				    }
-				});	*/
+		      $(".mapAddre").val(data.b_mapdata);
+		      initMap();
 		      
 		    },
 		  });
-/*  if (payStore.value === "타이어쇼핑몰") {
-    payInitStoreMap(
-      36.3417632,
-      127.3663178,
-      "[직영점] 타이어쇼핑몰",
-      "대전광역시 서구 신갈마로 83 (갈마동)"
-    );
-  }*/
 });
+
+//지도
+function initMap() {
+	
+	const latV=$(".mapAddre").val().split(", ")[0];
+	const lngV=$(".mapAddre").val().split(", ")[1];
+	
+	  //네이버 지도
+	  
+	  var mapOptions = {
+			    center: new naver.maps.LatLng(latV, lngV),
+			    zoom: 17,
+			    zoomControl: true,
+			    zoomControlOptions: {
+			        style: naver.maps.ZoomControlStyle.LARGE,
+			        position: naver.maps.Position.RIGHT_CENTER
+			    }
+			    
+	  };
+
+	  var map = new naver.maps.Map('pay_map', mapOptions);
+	  
+	  //정보창 
+	  var contentString = [
+		  	'<div id="content">' +
+		  		'<div id="siteNotice">' + "</div>" +
+		  		'<h1 id="firstHeading" class="firstHeading">'+ $('#store_info_name').text() +'</h1>' +
+		    "</div>"
+	   ].join('');
+	  
+
+	  //마커
+	  var marker = new naver.maps.Marker({
+			  position: new naver.maps.LatLng(latV, lngV),
+			  map: map
+
+	  });
+	  var infowindow = new naver.maps.InfoWindow({
+		    content: contentString
+	  });
+	  
+	  
+	  //정보창 오픈하기
+	  infowindow.open(map, marker);
+	  //클릭하면정보창 없애고 띄우기
+	  naver.maps.Event.addListener(marker, "click", function(e) {
+		    if (infowindow.getMap()) {
+		        infowindow.close();
+		    } else {
+		        infowindow.open(map, marker);
+		    }
+		});			
+};	
+
+
+
+
+
 
 // 날짜제한
 const payDate = document.querySelector(".pay_date");
@@ -354,6 +350,20 @@ payPhoneInput.addEventListener("input", payPhoneCheck);
 payEmailInput.addEventListener("input", payEmailCheck);
 payCarNumInput.addEventListener("input", payCarNumCheck);
 payCarYearSelect.addEventListener("change", () => {
+
+	$.ajax({
+		url: "product.car.name.get.ajax",
+		data : {c_brand : payCarBrandSelect.value,
+				c_year1 : payCarYearSelect.value},
+		success : function(data) {
+			for (var i = 0; i < data.length; i++) {
+				payCarYearSelect.append(
+					"<option value='"+  data[i].c_name +"'>"+  data[i].c_name + "</option>"
+				);
+			}
+		}
+	})
+	
   payCarYearSelect.style.borderColor = "#aaa";
   document.querySelector(".pay_car_confirm").innerText = "";
 });

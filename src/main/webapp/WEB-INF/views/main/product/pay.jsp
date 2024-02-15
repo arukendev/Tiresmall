@@ -16,44 +16,39 @@
         location.href = "/home";
       </script>
     </c:if>
-    <form action="pay.complete" method="post" id="pay_container" class="pay_container">
-      <div class="pay_titles">
-        <div class="pay_title_left">
+    <form action = "pay.complete" method = "post" id = "pay_container" class = "pay_container">
+      <div class = "pay_titles">
+        <div class = "pay_title_left">
           <h1>구매예약</h1>
         </div>
-        <div class="pay_title_right">
+        <div class = "pay_title_right">
           <h2>장바구니</h2>
-          <i class="fa-solid fa-chevron-right"></i>
-          <h2 class="pay_title_point">구매예약</h2>
-          <i class="fa-solid fa-chevron-right"></i>
+          <i class = "fa-solid fa-chevron-right"></i>
+          <h2 class = "pay_title_point">구매예약</h2>
+          <i class = "fa-solid fa-chevron-right"></i>
           <h2>예약완료</h2>
         </div>
       </div>
-      <div class="pay_content">
-        <div class="pay_list">
-          <div class="pay_subtitles">
+      <div class = "pay_content">
+        <div class = "pay_list">
+          <div class = "pay_subtitles">
             <span>주문 상품</span>
           </div>
-          <c:forEach var="tire" items="${sessionScope.cartSession}">
-            <div class="pay_product">
-              <div class="pay_product_left">
-                <div class="pay_product_img">
+          <c:forEach var = "tire" items = "${sessionScope.cartSession}">
+            <div class = "pay_product">
+              <div class = "pay_product_left">
+                <div class = "pay_product_img">
                   <c:choose>
-                    <c:when test="${tire.tg_img eq 'noimg'}">
-                      <img
-                        src="resources/web/main/product/no-tire-image.jpg"
-                        style="width: 150px"/>
+                    <c:when test = "${tire.tg_img eq 'noimg'}">
+                      <img src = "resources/web/main/product/no-tire-image.jpg" style = "width: 150px"/>
                     </c:when>
                     <c:otherwise>
-                      <img
-                        src="resources/web/main/tire/${tire.tg_img}"
-                        style="max-height: 150px"/>
+                      <img src="resources/web/main/tire/${tire.tg_img}" style="max-height: 150px"/>
                     </c:otherwise>
                   </c:choose>
                 </div>
                 <div class="pay_product_info">
-                  <h2 href="http://localhost/home/product.brand?b=${tire.tg_brand}&p=1"
-                    class="pay_product_brand">
+                  <h2 href="http://localhost/home/product.brand?b=${tire.tg_brand}&p=1"class="pay_product_brand">
                     ${tire.tg_brand}
                   </h2>
                   <h1 value = "${tire.tg_id}" class="pay_product_name">
@@ -96,42 +91,41 @@
               </div>
               <div>
                 <select class="pay_store" name="o_storeshop">
-                	<c:forEach items="${store }" var="s"varStatus="status" >
+                	<c:forEach items="${store }" var="s" varStatus="status">
                 		<option value="${s.b_id}">${s.b_name}</option>
                 	</c:forEach>
                 </select>
               </div>
             </li>
-        
-	      	<!-- <div id="pay_map"></div>
-	      	 -->
-	      	
-	      	
+       		 <c:forEach items="${store }" var="s" end="0">
+       		 	<input type="hidden" value="${s.b_mapdata }" class="mapAddre">
+	      		<div id="pay_map"></div>
 
-            <li>
-              <div>
-                <span>장착점 주소</span>
-              </div>
-              <div>
-                <span class="pay_storeAddress">대전광역시 서구 신갈마로 83 (갈마동)</span>
-              </div>
-            </li>
-            <li>
-              <div>
-                <span>전화번호</span>
-              </div>
-              <div>
-                <span class="pay_storePhone">042 - 545 - 8008</span>
-              </div>
-            </li>
-            <li>
-              <div>
-                <span>영업시간</span>
-              </div>
-              <div>
-                <span>평일 : 08:30 ~ 19:00 / 토요일 08:30 ~ 16:00 (일요일 휴무)</span >
-              </div>
-            </li>
+	            <li>
+	              <div>
+	                <span>장착점 주소</span>
+	              </div>
+	              <div>
+	                <span class="pay_storeAddress">${s.b_area}&nbsp;${s.b_addr}</span>
+	              </div>
+	            </li>
+	            <li>
+	              <div>
+	                <span>전화번호</span>
+	              </div>
+	              <div>
+	                <span class="pay_storePhone">${s.b_managernumber}</span>
+	              </div>
+	            </li>
+	            <li>
+	              <div>
+	                <span>영업시간</span>
+	              </div>
+	              <div>
+	                <span>${s.b_time }</span >
+	              </div>
+	            </li>
+            </c:forEach>
             <li>
               <div>
                 <span>장착예정일</span>
@@ -154,8 +148,7 @@
                     	<span>주문자</span>
                   	</div>
                   	<div>
-                    <input  type="text"name="o_name"value="${sessionScope.loginMember.i_name}"
-                     class="pay_customer_input"/>
+                    <input  type="text"name="o_name"value="${sessionScope.loginMember.i_name}" class="pay_customer_input"/>
                     <span class="pay_error pay_customer_confirm"></span>
                   </div>
                 </li>
@@ -164,12 +157,7 @@
                     <span>연락처</span>
                   </div>
                   <div>
-                    <input
-                      type="text"
-                      name="o_phone"
-                      value="${sessionScope.loginMember.i_phoneNum}"
-                      class="pay_phone_input"
-                      placeholder=" '-'을 제외하고 입력해주세요"/>
+                    <input type="text" name="o_phone" value="${sessionScope.loginMember.i_phoneNum}" class="pay_phone_input" placeholder=" '-'을 제외하고 입력해주세요"/>
                     <span class="pay_error pay_phone_confirm"></span>
                   </div>
                 </li>
@@ -178,13 +166,7 @@
                     <span>이메일</span>
                   </div>
                   <div>
-                    <input
-                      type="text"
-                      name="o_email"
-                      value="${sessionScope.loginMember.i_email}"
-                      class="pay_email_input"
-                       placeholder="example@naver.com"
-                      />
+                    <input type="text" name="o_email" value="${sessionScope.loginMember.i_email}" class="pay_email_input" placeholder="example@naver.com"/>
                     <span class="pay_error pay_email_confirm"></span>
                   </div>
                 </li>
@@ -223,13 +205,7 @@
                     <span>차량번호</span>
                   </div>
                   <div>
-                    <input
-                      type="text"
-                      name="o_carnumber"
-                      value="${sessionScope.loginMember.mc_number}"
-                      class="pay_carNum_input"
-                       placeholder="123마4567"
-                      />
+                    <input type="text" name="o_carnumber" value="${sessionScope.loginMember.mc_number}" class="pay_carNum_input" placeholder="123마4567" />
                     <span class="pay_error pay_carNum_confirm"></span>
                   </div>
                 </li>
@@ -238,11 +214,7 @@
                     <span>기타요청</span>
                   </div>
                   <div>
-                    <input
-                      type="text"
-                      name="o_request"
-                      class="pay_request_input"
-                    />
+                    <input type="text" name="o_request" class="pay_request_input"/>
                   </div>
                 </li>
               </ul>
@@ -255,8 +227,7 @@
                     <span>주문자</span>
                   </div>
                   <div>
-                    <input type="text"name="o_name"class="pay_customer_input"
-                      placeholder="이름을 입력해주세요"/>
+                    <input type="text"name="o_name"class="pay_customer_input"placeholder="이름을 입력해주세요"/>
                     <span class="pay_error pay_customer_confirm"></span>
                   </div>
                 </li>
@@ -265,8 +236,7 @@
                     <span>연락처</span>
                   </div>
                   <div>
-                    <input type="text" name="o_phone" placeholder="'-'을 제외하고 입력해주세요"
-                      class="pay_phone_input"/>
+                    <input type="text" name="o_phone" placeholder="'-'을 제외하고 입력해주세요"class="pay_phone_input"/>
                     <span class="pay_error pay_phone_confirm"></span>
                   </div>
                 </li>
@@ -284,6 +254,14 @@
                     <span>차량정보</span>
                   </div>
                   <div>
+                    <select name="o_carbrand" >
+                      <option value="">제조사</option>
+                      <c:forEach var="brands" items="${carBrands}">
+                        <option value="${brands.cb_name}">
+                          ${brands.cb_name}
+                        </option>
+                      </c:forEach>
+                    </select>
                     <select name="o_caryear">
                       <option value="">연식</option>
                       <c:forEach var="years" items="${carYears}">
@@ -292,20 +270,13 @@
                         </option>
                       </c:forEach>
                     </select>
-                    <select name="o_carbrand">
-                      <option value="">제조사</option>
-                      <c:forEach var="brands" items="${carBrands}">
-                        <option value="${brands.cb_name}">
-                          ${brands.cb_name}
-                        </option>
-                      </c:forEach>
-                    </select>
                     <select name="o_carname">
-                      <option value="">차종</option>
-                      <c:forEach var="names" items="${carNames}">
-                        <option value="${names.c_name}">${names.c_name}</option>
-                      </c:forEach>
-                    </select>
+                      <option value="">차종</option>   
+                     
+                     
+                     
+                                    
+                     </select>
                     <span class="pay_error pay_car_confirm"></span>
                   </div>
                 </li>
@@ -314,11 +285,7 @@
                     <span>차량번호</span>
                   </div>
                   <div>
-                    <input
-                      type="text"
-                      name="o_carnumber"
-                      class="pay_carNum_input"
-                    />
+                    <input type="text" name="o_carnumber" class="pay_carNum_input"  placeholder="123마4567" />
                     <span class="pay_error pay_carNum_confirm"></span>
                   </div>
                 </li>
@@ -340,34 +307,15 @@
           </div>
           <div class="pay_payInfo">
             <div class="pay_directpay">
-              <input
-                type="radio"
-                id="directpay"
-                name="o_paymethod"
-                value="현장결제"
-                onchange="payChange(this)"
-                checked
-              />
+              <input type="radio"  id="directpay" name="o_paymethod" value="현장결제"onchange="payChange(this)"checked/>
               <label for="directpay">현장결제</label>
             </div>
             <div class="pay_nonbankpay">
-              <input
-                type="radio"
-                id="nonbankpay"
-                name="o_paymethod"
-                value="무통장"
-                onchange="payChange(this)"
-              />
+              <input type="radio" id="nonbankpay" name="o_paymethod" value="무통장" onchange="payChange(this)"/>
               <label for="nonbankpay">무통장 입금</label>
             </div>
             <div class="pay_kakaopay">
-              <input
-                type="radio"
-                id="kakaopay"
-                name="o_paymethod"
-                value="카카오"
-                onchange="payChange(this)"
-              />
+              <input type="radio"  id="kakaopay" name="o_paymethod" value="카카오" onchange="payChange(this)" />
               <label for="kakaopay">카카오페이</label>
             </div>
           </div>
@@ -402,8 +350,7 @@
             </div>
             <input type="hidden" name="o_deliverymethod" value="직영점" />
             <input type="hidden" name="o_step" value="결제대기" />
-            <!-- <button class="pay_nav_pay" type="button" onclick="kakao_pay()">결제하기</button>
-             --><button class="pay_nav_pay">결제하기</button>
+          <button class="pay_nav_pay">결제하기</button>
           </div>
         </div>
       </div>

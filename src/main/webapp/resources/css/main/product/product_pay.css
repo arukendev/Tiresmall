@@ -143,9 +143,10 @@
 
 
 #pay_map {
-  height: 200px;
-  
-  margin: 20px 0;
+  height: 300px;
+  width:80%;
+  margin: 20px 10%;
+
 }
 
 .pay_shipMethod{
