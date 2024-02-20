@@ -102,7 +102,6 @@ public class AuthController {
 		
 		//로그인 실패할 경우
 		if (!mDAO.loginCheck(req)) {
-			System.out.println("안으로 들어옴?");
 			String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 	        System.out.println("네이버:" + naverAuthUrl);
 	        req.setAttribute("url", naverAuthUrl);
@@ -110,9 +109,7 @@ public class AuthController {
 		}
 		
 		// 로그인페이지를통하여들어온경우:	로그인후에 홈화면으로
-		System.out.println("여기옴11?");
 		if (req.getSession().getAttribute("loginRequiredByQna") == null) {
-			System.out.println("여기옴?");
 			req.setAttribute("content", "main/home/home.jsp");
 			return "redirect:/";
 		// 1:1문의페이지를통하여들어온경우:	로그인후에 1:1문의화면으로
@@ -301,8 +298,8 @@ public class AuthController {
 			HttpServletRequest request) throws Exception {
 		String reqUrl = 
 				"https://kauth.kakao.com/oauth/authorize"
-				+ "?client_id=9ac97206ae6044bf6edfb9749a0e5e62"
-				+ "&redirect_uri=http://localhost/home/login/oauth_kakao"
+				+ "?client_id=d1b1a9018632bd600689694eb9153b75"		//나중에 바꿔야함
+				+ "&redirect_uri=http://localhost/home/login/oauth_kakao"  
 				+ "&response_type=code";
 		return reqUrl;
 	}

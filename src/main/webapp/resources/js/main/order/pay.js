@@ -30,8 +30,8 @@ const payStore = document.querySelector(".pay_store");
 //지도 실행
 initMap();
 
+//장착점 변경 할떄
 payStore.addEventListener("change", () => {
-	
 	$.ajax({
 		    url: "pay.store.change",
 		    type: "get",
@@ -84,13 +84,10 @@ function initMap() {
 			  map: map
 
 	  });
-	  var infowindow = new naver.maps.InfoWindow({
-		    content: contentString
-	  });
-	  
+
 	  
 	  //정보창 오픈하기
-	  infowindow.open(map, marker);
+	/*  infowindow.open(map, marker);
 	  //클릭하면정보창 없애고 띄우기
 	  naver.maps.Event.addListener(marker, "click", function(e) {
 		    if (infowindow.getMap()) {
@@ -98,7 +95,7 @@ function initMap() {
 		    } else {
 		        infowindow.open(map, marker);
 		    }
-		});			
+		});			*/
 };	
 
 
@@ -350,14 +347,13 @@ payPhoneInput.addEventListener("input", payPhoneCheck);
 payEmailInput.addEventListener("input", payEmailCheck);
 payCarNumInput.addEventListener("input", payCarNumCheck);
 payCarYearSelect.addEventListener("change", () => {
-
 	$.ajax({
 		url: "product.car.name.get.ajax",
 		data : {c_brand : payCarBrandSelect.value,
 				c_year1 : payCarYearSelect.value},
 		success : function(data) {
 			for (var i = 0; i < data.length; i++) {
-				payCarYearSelect.append(
+				$("select[name=o_carname]").append(
 					"<option value='"+  data[i].c_name +"'>"+  data[i].c_name + "</option>"
 				);
 			}

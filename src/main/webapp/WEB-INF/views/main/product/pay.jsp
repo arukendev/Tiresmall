@@ -272,10 +272,6 @@
                     </select>
                     <select name="o_carname">
                       <option value="">차종</option>   
-                     
-                     
-                     
-                                    
                      </select>
                     <span class="pay_error pay_car_confirm"></span>
                   </div>
