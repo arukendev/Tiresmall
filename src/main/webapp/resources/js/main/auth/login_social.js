@@ -25,13 +25,15 @@ $(document).ready(function() {
 
 function kakaoLogin() {
 
+	
     $.ajax({
         url: 'login/getKakaoAuthUrl',
         type: 'get',
         async: false,
         dataType: 'text',
         success: function (res) {
-            location.href = res;
+        	console.log(res);
+            location.href =res;
         }
     });
 

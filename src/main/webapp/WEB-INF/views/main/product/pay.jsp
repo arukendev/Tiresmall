@@ -254,7 +254,7 @@
                     <span>차량정보</span>
                   </div>
                   <div>
-                    <select name="o_carbrand" >
+                    <select name="o_carbrand" id="pay_o_carbrand_select">
                       <option value="">제조사</option>
                       <c:forEach var="brands" items="${carBrands}">
                         <option value="${brands.cb_name}">
@@ -262,7 +262,7 @@
                         </option>
                       </c:forEach>
                     </select>
-                    <select name="o_caryear">
+                    <select name="o_caryear" id="pay_o_caryear_select">
                       <option value="">연식</option>
                       <c:forEach var="years" items="${carYears}">
                         <option value="${years.carYear}">
@@ -270,7 +270,7 @@
                         </option>
                       </c:forEach>
                     </select>
-                    <select name="o_carname">
+                    <select name="o_carname" id="pay_o_carname_select">
                       <option value="">차종</option>   
                      </select>
                     <span class="pay_error pay_car_confirm"></span>
@@ -310,15 +310,15 @@
               <input type="radio" id="nonbankpay" name="o_paymethod" value="무통장" onchange="payChange(this)"/>
               <label for="nonbankpay">무통장 입금</label>
             </div>
-            <div class="pay_kakaopay">
+    <!--         <div class="pay_kakaopay">
               <input type="radio"  id="kakaopay" name="o_paymethod" value="카카오" onchange="payChange(this)" />
               <label for="kakaopay">카카오페이</label>
-            </div>
+            </div> -->
           </div>
           <div class="pay_method_info">
             <div class="pay_nonbankpay_content" style="display: none">
-              <span>예금주 김준범</span>
-              <span>농협 356-1434-7356-03</span>
+              <span>예금주 강민석</span>
+              <span>농협 351-0252-0511-43</span>
             </div>
           </div>
           <div class="pay_method_info">

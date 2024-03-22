@@ -296,20 +296,25 @@ public class AuthController {
 	@RequestMapping(value = "/login/getKakaoAuthUrl" , method = RequestMethod.GET)
 	public @ResponseBody String getKakaoAuthUrl(
 			HttpServletRequest request) throws Exception {
+		System.out.println("1");
+		// sb.append("&client_id=9ac97206ae6044bf6edfb9749a0e5e62");d1b1a9018632bd600689694eb9153b75
 		String reqUrl = 
 				"https://kauth.kakao.com/oauth/authorize"
 				+ "?client_id=d1b1a9018632bd600689694eb9153b75"		//나중에 바꿔야함
 				+ "&redirect_uri=http://localhost/home/login/oauth_kakao"  
 				+ "&response_type=code";
+		
+		System.out.println(reqUrl);
 		return reqUrl;
 	}
 	
 	// 카카오 연동정보 조회
-	@RequestMapping(value = "/login/oauth_kakao")
+	@RequestMapping(value = "/login/auth_kakao")
 	public String oauthKakao(
 			@RequestParam(value = "code", required = false) String code
 			, Model model,HttpServletRequest req,RedirectAttributes rttr,MemberDTO mDTO) throws Exception {
-
+		System.out.println("여긴 옴???111");
+			
 		System.out.println("#########" + code);
         String access_Token = lsDAO.getAccessToken(code);
         System.out.println("###access_Token#### : " + access_Token);
@@ -416,9 +421,13 @@ public class AuthController {
     @RequestMapping(value = "/profile.myInfo", method = RequestMethod.GET)
     public String myProfileInfoGo(HttpServletRequest req,Model model,AuthUserDTO aDTO) {
     	
-    	model.addAttribute("content", "main/auth/myProfile.jsp");
+    	
+    	
+    	mDAO.getMyInfo(req,model,aDTO);
     	
     	aDTO = (AuthUserDTO) req.getSession().getAttribute("loginMember");
+    	model.addAttribute("content", "main/auth/myProfile.jsp");
+    	
     	if (aDTO == null) {
 			return "redirect:/";
 		}
@@ -426,6 +435,8 @@ public class AuthController {
     	System.out.println(aDTO.getMc_carname());
     	System.out.println(aDTO.getMc_number());
     	System.out.println(aDTO.getMc_year());
+    	
+    	
     	model.addAttribute("personalInfomation",aDTO);
     	model.addAttribute("profile_contents", "profileInfo.jsp");
     	

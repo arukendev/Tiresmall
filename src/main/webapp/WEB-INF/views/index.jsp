@@ -23,10 +23,10 @@
 			<div class="index_header">
 				<div class="index_hTop">
 					<div class="index_hTopLeft">
-						<a href="javascript:board_openKakao_new()" class="index_kakao"
+						<!-- <a href="javascript:board_openKakao_new()" class="index_kakao"
 							style="cursor: pointer">카카오톡상담 <img
 							src="resources/web/main/board/kakaologo.png" style="width: 16px" />
-						</a>
+						</a> -->
 
 						<!-- <img
                 onclick="board_openKakao_new()"
@@ -38,9 +38,9 @@
                 "
                 src="resources/web/main/board/tsd.png"
               /> -->
-
 						<c:if test="${sessionScope.homegradecheck.i_grade > 1}">
-							<a href="admin.order.go?m=order">관리자</a>
+							<a href="admin.order.go?m=order" class="main_admin_go">관리자 페이지
+							</a>
 						</c:if>
 					</div>
 					<div class="index_hTopRight">
@@ -124,7 +124,8 @@
 				<ul class="index_dropStore index_dropWrapper">
 					<li class="index_dropMenu_menu">
 						<div class="index_dropMenu_txt">
-							<c:forEach items="${sessionScope.stores }" var="s" varStatus="status">
+							<c:forEach items="${sessionScope.stores }" var="s"
+								varStatus="status">
 								<a class="index_dropStore_a" href="store?id=${s.b_id }&p=1">${s.b_name }</a>
 								<input type="hidden" value="${s.b_mainimg }" class="hidden_b_id">
 							</c:forEach>
@@ -229,12 +230,15 @@
 									<div class="home-modal-tire-select-result-back">다시 선택</div>
 									<div class="home-modal-rear-tire-select">타이어 추가</div>
 									<form action='product.tire.search'>
-										<input type="hidden" name="front_tire_width" id="front_tire_width"> 
-										<input type="hidden" name="front_tire_ratio" id="front_tire_ratio"> 
-										<input type="hidden" name="front_tire_inch" id="front_tire_inch">
-										<input type="hidden" name="rear_tire_width" id="rear_tire_width" value="0">
-										<input type="hidden"name="rear_tire_ratio" id="rear_tire_ratio" value="0">
-										<input type="hidden" name="rear_tire_inch" id="rear_tire_inch" value="0">
+										<input type="hidden" name="front_tire_width"
+											id="front_tire_width"> <input type="hidden"
+											name="front_tire_ratio" id="front_tire_ratio"> <input
+											type="hidden" name="front_tire_inch" id="front_tire_inch">
+										<input type="hidden" name="rear_tire_width"
+											id="rear_tire_width" value="0"> <input type="hidden"
+											name="rear_tire_ratio" id="rear_tire_ratio" value="0">
+										<input type="hidden" name="rear_tire_inch" id="rear_tire_inch"
+											value="0">
 										<button class="home-modal-tire-select-go">검색</button>
 									</form>
 								</div>
@@ -254,18 +258,20 @@
 							<!-- <div class="home-modal-tire-search-what-text">내차 타이어 사이즈
 									어떻게 아나요?</div> -->
 							<div class='home-modal-car-select-result'>
-								<div class="home-modal-car-select-result-choice">
-									타이어 사이즈를 선택해주세요!
-								</div>
+								<div class="home-modal-car-select-result-choice">타이어 사이즈를
+									선택해주세요!</div>
 								<div class='home-modal-car-select-result-button'>
 									<div class="home-modal-car-select-result-back">다시 선택</div>
 									<form action='product.tire.search'>
-										<input type="hidden" name="front_tire_width"class="front_tire_width"> 
-										<input type="hidden" name="front_tire_ratio" class="front_tire_ratio">
-										<input type="hidden" name="front_tire_inch" class="front_tire_inch">
-										<input type="hidden" name="rear_tire_width" class="rear_tire_width" value="0">
-										<input type="hidden" name="rear_tire_ratio" class="rear_tire_ratio" value="0">
-										<input type="hidden" name="rear_tire_inch" class="rear_tire_inch" value="0">
+										<input type="hidden" name="front_tire_width"
+											class="front_tire_width"> <input type="hidden"
+											name="front_tire_ratio" class="front_tire_ratio"> <input
+											type="hidden" name="front_tire_inch" class="front_tire_inch">
+										<input type="hidden" name="rear_tire_width"
+											class="rear_tire_width" value="0"> <input
+											type="hidden" name="rear_tire_ratio" class="rear_tire_ratio"
+											value="0"> <input type="hidden" name="rear_tire_inch"
+											class="rear_tire_inch" value="0">
 										<button class="home-modal-car-select-go">검색</button>
 									</form>
 								</div>
@@ -297,14 +303,41 @@
 						<img src="resources/web/logo2.png" style="width: 190px" />
 					</div>
 					<div class="index_fNav">
-						<a href="/">이용약관 |</a> <a href="/">개인정보 처리방침 |</a> <a href="/">장착점
-							제휴문의 |</a> <a href="/">환불정책 |</a> <a href="/">도매문의</a>
+						<a href="termsAndConditionsOfUse">이용약관 |</a> 
+						<a href="PrivacyPolicy">&nbsp;개인정보 처리방침 |</a>
+						<div class="footer_modal_criteria footer1">&nbsp;환불정책 |
+							<div class="footer_modal_content footerModal1">
+                        		<p class="tit">환불정책</p>
+			                    <ol class="list">
+			                    	<li>
+			                                1. 제품의 문제가 있을 경우 반품 또는 교환이 모두 가능합니다.<br>
+			                           		    단 특별한 사유가 없거나 고객님께 책임이 있는 부분에 대해서는 불가능합니다.
+			                       	</li>
+			                     	<li>2. 단순 반품과 제품에 문제가 없을 경우 왕복 택배비가 부과 됩니다.</li>
+			                     	<li>3. 대전 타이어쇼핑몰에서 판매되는 모든 타이어는 정식 유통된 제품만 취급하며 각 제조사의 지정된 지점에서 A/S를 받으실수 있습니다.</li>
+			                  		<li>4. 환불관련 문의는 고객센터 010-5125-8008 으로 문의해주세요.</li>
+			          			</ol>
+							</div>
+						</div>
+						<div class="footer_modal_criteria footer2">&nbsp;장착점 제휴문의 |
+							<div class="footer_modal_content footerModal2">
+								장착점 제휴문의는 고객센터 010-5125-8008로 전화 주시기 바랍니다.
+							</div>
+						</div>
+						<div class="footer_modal_criteria footer3">&nbsp;도매문의
+							<div class="footer_modal_content footerModal3">
+								도매문의는 고객센터 010-5125-8008로 전화 주시기 바랍니다.
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="index_fBottom">
-					<p>대전 타이어쇼핑몰 ㅣ 대표 강남용 ㅣ 대전광역시 서구 신갈마로 83(갈마동) 사업자등록번호
-						597-01-01529 ㅣ 통신판매업 신고번호 2022-대전서구-0842호</p>
+					<p>대전 타이어쇼핑몰 ㅣ 대표 강민석 ㅣ 대전광역시 서구 신갈마로 83(갈마동) 사업자등록번호
+						601-15-58309 ㅣ 통신판매업 신고번호 2022-대전서구-0842호</p>
 					<p>고객센터 010-5125-8008 ㅣ kny2220@naver.com</p>
+					<!-- <a href="#" target="_new">
+						<img src="page/ui/image/layout/footer_btn_info.gif" alt="사업자정보확인">
+					</a> -->
 					<p>TIRESHOPPINGMALL.COM | Copyright © PITNINE & SUN Co.,Ltd.
 						All Rights Reserved.</p>
 				</div>

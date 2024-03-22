@@ -92,6 +92,20 @@
 			<groupId>com.oracle.ojdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
 			<version>19.3.0.0</version>
+			
+			<!-- fanmanger time out 해결을 위해 simplefan이랑 ons 제외 추가설정 -->
+			<exclusions>
+				<exclusion>
+					<groupId>com.oracle.database.ha</groupId>
+					<artifactId>simplefan</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.oracle.database.ha</groupId>
+					<artifactId>ons</artifactId>
+				</exclusion>
+			</exclusions>
+			
+			
 		</dependency>
 		<dependency>
 			<groupId>com.jfinal</groupId>

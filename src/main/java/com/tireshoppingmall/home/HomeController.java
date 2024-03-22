@@ -96,4 +96,19 @@ public class HomeController {
 		req.setAttribute("content", "main/auth/non_member.jsp");
 		return "index";
 	}
+	
+	@RequestMapping(value = "/termsAndConditionsOfUse", method = RequestMethod.GET)
+	public String goTerms(HttpServletRequest req) {
+		req.setAttribute("content", "main/home/terms.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "/PrivacyPolicy", method = RequestMethod.GET)
+	public String goPrivacyPolicy(HttpServletRequest req) {
+		req.setAttribute("content", "main/home/PrivacyPolicy.jsp");
+		return "index";
+	}
+	
+	
+	
+	
 }

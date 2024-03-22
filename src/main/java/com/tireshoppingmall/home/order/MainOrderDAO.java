@@ -1,5 +1,6 @@
 package com.tireshoppingmall.home.order;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -22,14 +23,17 @@ public class MainOrderDAO {
 	
 	public void getCarInfo(HttpServletRequest req) {
 		ArrayList<CarYear> carYears = new ArrayList<CarYear>();
-		for (int i = 2024; i > 1990; i--) {
+		//현재 날짜 가져오기
+		LocalDate now = LocalDate.now();
+		int year = now.getYear(); //올해 년도
+		//차종 제조 년도 
+		for (int i = year; i > 2000; i--) {
 			CarYear carYear = new CarYear();
 			carYear.setCarYear(i);
 			carYears.add(carYear);
 		}
 		List<CarName> carNames = ss.getMapper(MainOrderMapper.class).getCarName();
 		List<CarBrand> carBrands = ss.getMapper(MainOrderMapper.class).getCarBrand();
-		ss.getMapper(AdminStoreMapper.class).getAllBranch();
 	
 		
 		

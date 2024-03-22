@@ -208,8 +208,8 @@ public class CarDAO {
 					carFT+=c.getTf_width()[i] + "/" +  c.getTf_ratio()[i] + "R" + c.getTf_inch()[i] +"!";
 					carRT+="!";
 				}else {//다를 경우
-					carFT += "앞 : " + c.getTf_width()[i] + "/" + c.getTf_ratio()[i] + "R" + c.getTf_inch()[i]+"!";
-					carRT += "뒤 : " + c.getTb_width()[i] + "/" + c.getTb_ratio()[i] + "R" + c.getTb_inch()[i]+"!";			
+					carFT += "전륜 : " + c.getTf_width()[i] + "/" + c.getTf_ratio()[i] + "R" + c.getTf_inch()[i]+"!";
+					carRT += "후륜 : " + c.getTb_width()[i] + "/" + c.getTb_ratio()[i] + "R" + c.getTb_inch()[i]+"!";			
 				}
 			}else { //마지막일경우
 				//앞,뒤 타이어가 같을 경우
@@ -217,8 +217,8 @@ public class CarDAO {
 					carFT+=c.getTf_width()[i] + "/" +  c.getTf_ratio()[i] + "R" + c.getTf_inch()[i];
 					carRT+=" ";
 				}else {	//다를경우
-					carFT+= "앞 : " + c.getTf_width()[i] + "/" +  c.getTf_ratio()[i] + "R" + c.getTf_inch()[i];
-					carRT+= "뒤 : " + c.getTb_width()[i] + "/" +  c.getTb_ratio()[i] + "R" + c.getTb_inch()[i];
+					carFT+= "전륜 : " + c.getTf_width()[i] + "/" +  c.getTf_ratio()[i] + "R" + c.getTf_inch()[i];
+					carRT+= "후륜 : " + c.getTb_width()[i] + "/" +  c.getTb_ratio()[i] + "R" + c.getTb_inch()[i];
 				}
 			}
 			
@@ -287,19 +287,27 @@ public class CarDAO {
 		System.out.println(c.getC_id());
 		
 		CarDTO Car = ss.getMapper(AdminCarMapper.class).getCar(c);
-		
-		
-		String[] frontTire =  Car.getC_ft().replaceAll("앞 : ", "").replaceAll("/", "").replaceAll("R", "").split("!");
-		String[] rearTire = Car.getC_bt().replaceAll("뒤 : ", "").replaceAll("/", "").replaceAll("R", "").split("!");
+		System.out.println(Car.toString());
+		System.out.println(Car.getC_ft());
+		System.out.println(Car.getC_bt());
+		String[] frontTire =  Car.getC_ft().replaceAll("전륜 : ", "").replaceAll("/", "").replaceAll("R", "").split("!");
+		String[] rearTire = Car.getC_bt().replaceAll("후륜 : ", "").replaceAll("/", "").replaceAll("R", "").split("!");
 		
 		
 		//자동차 타이어 사이즈 업데이트 
 		ArrayList<CarDTO> carTireSize = new ArrayList<CarDTO>();
-		for (int i = 0; i < rearTire.length; i++) {
-			carTireSize.add(new CarDTO(frontTire[i].substring(0,3),frontTire[i].substring(3,5),frontTire[i].substring(5,7),
-					rearTire[i].substring(0,3),rearTire[i].substring(3,5),rearTire[i].substring(5,7)));
+		for (int i = 0; i < frontTire.length; i++) {
+			System.out.println(rearTire[i].length());
+			
+			if(rearTire[i].length()<=1) {// 앞뒤 타이어 사이즈가 같을 경우
+				carTireSize.add(new CarDTO(frontTire[i].substring(0,3),frontTire[i].substring(3,5),frontTire[i].substring(5,7)));				
+			}else {// 앞뒤 타이어 사이즈가 다를경우
+				carTireSize.add(new CarDTO(frontTire[i].substring(0,3),frontTire[i].substring(3,5),frontTire[i].substring(5,7)
+										,rearTire[i].substring(0,3),rearTire[i].substring(3,5),rearTire[i].substring(5,7)));				
+			}
+			
 		}
-
+	
 		req.setAttribute("car", Car);
 		req.setAttribute("carTireSize", carTireSize);
 		req.setAttribute("carbrands", carBrands);

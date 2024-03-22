@@ -38,18 +38,18 @@ payStore.addEventListener("change", () => {
 		    data: { b_id : payStore.value },
 		    success: function (data) {
 		      console.log(data);
-		      
+		     
 		      payStoreAddress.innerText =data.b_area +""+ data.b_addr;
 		      payStorePhone.innerText = data.b_managernumber;
 		      $(".mapAddre").val(data.b_mapdata);
-		      initMap();
+		      initMap(data.b_name);
 		      
 		    },
 		  });
 });
 
 //지도
-function initMap() {
+function initMap(d) {
 	
 	const latV=$(".mapAddre").val().split(", ")[0];
 	const lngV=$(".mapAddre").val().split(", ")[1];
@@ -73,7 +73,7 @@ function initMap() {
 	  var contentString = [
 		  	'<div id="content">' +
 		  		'<div id="siteNotice">' + "</div>" +
-		  		'<h1 id="firstHeading" class="firstHeading">'+ $('#store_info_name').text() +'</h1>' +
+		  		'<h1 id="firstHeading" class="firstHeading">'+ d +'</h1>' +
 		    "</div>"
 	   ].join('');
 	  
@@ -87,7 +87,7 @@ function initMap() {
 
 	  
 	  //정보창 오픈하기
-	/*  infowindow.open(map, marker);
+/*	  infowindow.open(map, marker);
 	  //클릭하면정보창 없애고 띄우기
 	  naver.maps.Event.addListener(marker, "click", function(e) {
 		    if (infowindow.getMap()) {
@@ -95,7 +95,7 @@ function initMap() {
 		    } else {
 		        infowindow.open(map, marker);
 		    }
-		});			*/
+		});		*/	
 };	
 
 
@@ -283,6 +283,7 @@ content = $(document.querySelector(".pay_kakaopay_content"));
     document.querySelector(".pay_email_confirm").innerText =
       "이메일을 입력해주세요.";
     e.preventDefault();
+    
   }
   if (payCarNumInput.value) {
     payCarNumInput.style.borderColor = "#aaa";
@@ -346,27 +347,52 @@ payNameInput.addEventListener("input", () => {
 payPhoneInput.addEventListener("input", payPhoneCheck);
 payEmailInput.addEventListener("input", payEmailCheck);
 payCarNumInput.addEventListener("input", payCarNumCheck);
+
+
+//payStore.addEventListener("change", () => {
 payCarYearSelect.addEventListener("change", () => {
-	$.ajax({
-		url: "product.car.name.get.ajax",
-		data : {c_brand : payCarBrandSelect.value,
-				c_year1 : payCarYearSelect.value},
-		success : function(data) {
-			for (var i = 0; i < data.length; i++) {
-				$("select[name=o_carname]").append(
-					"<option value='"+  data[i].c_name +"'>"+  data[i].c_name + "</option>"
-				);
+	if($("#pay_o_carbrand_select").val()!=""){
+		$("#pay_o_carname_select option").remove();
+		$.ajax({
+			url: "product.car.name.get.ajax",
+			data : {c_brand : $("#pay_o_carbrand_select").val(),
+					c_year1 : $("#pay_o_caryear_select").val()},
+			success : function(data) {
+				for (var i = 0; i < data.length; i++) {
+					$("select[name=o_carname]").append(
+						"<option value='"+  data[i].c_name +"'>"+  data[i].c_name + "</option>"
+					);
+				}
 			}
-		}
-	})
+		})
+	}
 	
   payCarYearSelect.style.borderColor = "#aaa";
   document.querySelector(".pay_car_confirm").innerText = "";
 });
+
+
 payCarBrandSelect.addEventListener("change", () => {
+	if( $("#pay_o_carname_select").val()!=""){
+		$("#pay_o_carname_select option").remove();
+		$.ajax({
+			url: "product.car.name.get.ajax",
+			data : {c_brand : $("#pay_o_carbrand_select").val(),
+					c_year1 : $("#pay_o_caryear_select").val()},
+			success : function(data) {
+				for (var i = 0; i < data.length; i++) {
+					$("select[name=o_carname]").append(
+						"<option value='"+  data[i].c_name +"'>"+  data[i].c_name + "</option>"
+					);
+				}
+			}
+		})
+	}
   payCarBrandSelect.style.borderColor = "#aaa";
-  document.querySelector(".pay_car_confirm").innerText = "";
+  document.querySelector(".pay_car_confirm").innerText = ""; 
 });
+
+
 payCarNameSelect.addEventListener("change", () => {
   payCarNameSelect.style.borderColor = "#aaa";
   document.querySelector(".pay_car_confirm").innerText = "";

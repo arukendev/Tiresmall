@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
+import com.tireshoppingmall.home.admin.car.AdminCarMapper;
+import com.tireshoppingmall.home.admin.car.CarDTO;
 import com.tireshoppingmall.home.order.CartDTO;
 import com.tireshoppingmall.home.order.MainOrderDTO;
 
@@ -168,6 +171,18 @@ public class MemberDAO {
 	public int phoneNumCheck(String phoneNum) {
 		System.out.println("카운트 값 : " + ss.getMapper(MemberMapper.class).phoneNumCheck(phoneNum));
 		return ss.getMapper(MemberMapper.class).phoneNumCheck(phoneNum);		
+	}
+
+	public void getMyInfo(HttpServletRequest req, Model model, AuthUserDTO aDTO) {
+		//여기서 차 브랜드 가져오기
+    	
+    	
+    	List<CarDTO> carBrand =  ss.getMapper(AdminCarMapper.class).getAllCarBrands();
+    	req.setAttribute("carBrand", carBrand);
+    	
+    	
+    	
+		
 	}
 
 	
