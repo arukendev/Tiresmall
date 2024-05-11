@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -31,13 +30,14 @@ public class LoginSocialDAO {
 	private SqlSession ss;
 	
 	 //------------------------------------------카카오 ---------------------------------------------------------------
-	
+	//https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api#request-code
 	 //토큰발급
+	
 		public String getAccessToken (String authorize_code) {
+			System.out.println("여긴 오나? 2");
 	        String access_Token = "";
 	        String refresh_Token = "";
 	        String reqURL = "https://kauth.kakao.com/oauth/token";
-
 	        try {
 	            URL url = new URL(reqURL);
 
@@ -51,9 +51,11 @@ public class LoginSocialDAO {
 	            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 	            StringBuilder sb = new StringBuilder();
 	            sb.append("grant_type=authorization_code");
-	            sb.append("&client_id=9ac97206ae6044bf6edfb9749a0e5e62");  //본인이 발급받은 key
+	            //sb.append("&client_id=9ac97206ae6044bf6edfb9749a0e5e62");  //본인이 발급받은 key
+	            // sb.append("&client_id=0b3e3ccd649011c1da5feee5f25fa010");  //이번에 바꾼 key  REST API 키  나중에 이걸로해야
+	            sb.append("&client_id=d1b1a9018632bd600689694eb9153b75");  //test  REST API 키
 	            sb.append("&redirect_uri=http://localhost/home/login/oauth_kakao");     // 본인이 설정해 놓은 경로
-	            sb.append("&code=" + authorize_code);
+	            sb.append("&code=" + authorize_code);	
 	            bw.write(sb.toString());
 	            bw.flush();
 
@@ -164,6 +166,14 @@ public class LoginSocialDAO {
 
 
 		public Boolean regMemberSocial(HttpServletRequest req, MemberDTO mDTO) {
+			
+			if(mDTO.getMc_number()==null) {
+				mDTO.setMc_number("");
+				mDTO.setMc_brand("");
+				mDTO.setMc_carname("");
+				mDTO.setMc_year("0");
+			}
+			
 			
 			if(ss.getMapper(MemberMapper.class).regMemberSocial(mDTO)>=3) {
 				System.out.println("가입성공");

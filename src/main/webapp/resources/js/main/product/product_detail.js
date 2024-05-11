@@ -33,6 +33,7 @@ function sizeSelect(id, width, ratio, inch, marking, size, price, facPrice) {
   quantityInput.value = 1;
   quantityInputValue = 1;
   priceTab.style.display = "block";
+  
 }
 
 // 사이즈 선택 ajax
@@ -81,6 +82,11 @@ sizeBtn.addEventListener("click", () => {
   const sizeSelector = document.querySelector(".detail_size_selector");
   sizeSelector.showModal();
 });
+
+
+if($(".product_ti_width").val() !=""){
+	$(".detail_price_wrapper").css("display","block");
+}
 
 // 수량별 가격 변동
 plusBtn.addEventListener("click", () => {
@@ -248,3 +254,17 @@ function resetDetailInclude() {
   guide.classList.remove("detail_nav_li_active");
   info.classList.remove("detail_nav_li_active");
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

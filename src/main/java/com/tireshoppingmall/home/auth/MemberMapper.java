@@ -38,6 +38,8 @@ public interface MemberMapper {
 
 	List<MyOrderDTO> getNonOrder(MainOrderDTO oDTO);
 
+	int phoneNumCheck(String phoneNum);
+
 
 
 }

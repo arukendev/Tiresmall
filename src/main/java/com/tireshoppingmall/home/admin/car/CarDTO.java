@@ -124,7 +124,14 @@ public class CarDTO {
 		this.end = end;
 	}
 
-	//업데이트
+	//업데이트 앞 뒤 타이어 사이즈가 같을경우
+	public CarDTO(String ft_width, String ft_ratio, String ft_inch) {
+		super();
+		this.ft_width = ft_width;
+		this.ft_ratio = ft_ratio;
+		this.ft_inch = ft_inch;
+	}
+	//없데이트 앞 뒤 타이어 사이즈가 다를경우
 	public CarDTO(String ft_width, String ft_ratio, String ft_inch, String rt_width, String rt_ratio, String rt_inch) {
 		super();
 		this.ft_width = ft_width;

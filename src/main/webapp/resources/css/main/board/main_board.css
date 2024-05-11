@@ -94,6 +94,8 @@
 	margin-top: 100px;
 	margin-bottom: 50px;
 	line-height: 21px;
+	border-left-color: gray;
+	border-left: 1px; 
 }
 
 .board_sideInfoSinnzidai_20px {

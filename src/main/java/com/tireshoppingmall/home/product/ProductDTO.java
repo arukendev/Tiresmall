@@ -18,12 +18,12 @@ public class ProductDTO {
 	private int ti_stock;
 	private int ti_pricefac;
 	
-	private String front_tire_width;
-	private String front_tire_ratio;
-	private String front_tire_inch;
-	private String rear_tire_width;
-	private String rear_tire_ratio;
-	private String rear_tire_inch;
+	private int front_tire_width;
+	private int front_tire_ratio;
+	private int front_tire_inch;
+	private int rear_tire_width;
+	private int rear_tire_ratio;
+	private int rear_tire_inch;
 	
 	private int result_price;
 	
@@ -34,8 +34,8 @@ public class ProductDTO {
 	//전체
 	public ProductDTO(int tg_id, String tg_brand, String tg_name, String tg_img, String tg_text, int tg_dcrate,
 			String tg_detail, int ti_id, int ti_tg_id, int ti_width, int ti_ratio, int ti_inch, String ti_marking,
-			int ti_stock, int ti_pricefac, String front_tire_width, String front_tire_ratio, String front_tire_inch,
-			String rear_tire_width, String rear_tire_ratio, String rear_tire_inch, int result_price) {
+			int ti_stock, int ti_pricefac, int front_tire_width, int front_tire_ratio, int front_tire_inch,
+			int rear_tire_width, int rear_tire_ratio, int rear_tire_inch, int result_price) {
 		super();
 		this.tg_id = tg_id;
 		this.tg_brand = tg_brand;
@@ -155,40 +155,40 @@ public class ProductDTO {
 	public void setTi_pricefac(int ti_pricefac) {
 		this.ti_pricefac = ti_pricefac;
 	}
-	public String getFront_tire_width() {
+	public int getFront_tire_width() {
 		return front_tire_width;
 	}
-	public void setFront_tire_width(String front_tire_width) {
+	public void setFront_tire_width(int front_tire_width) {
 		this.front_tire_width = front_tire_width;
 	}
-	public String getFront_tire_ratio() {
+	public int getFront_tire_ratio() {
 		return front_tire_ratio;
 	}
-	public void setFront_tire_ratio(String front_tire_ratio) {
+	public void setFront_tire_ratio(int front_tire_ratio) {
 		this.front_tire_ratio = front_tire_ratio;
 	}
-	public String getFront_tire_inch() {
+	public int getFront_tire_inch() {
 		return front_tire_inch;
 	}
-	public void setFront_tire_inch(String front_tire_inch) {
+	public void setFront_tire_inch(int front_tire_inch) {
 		this.front_tire_inch = front_tire_inch;
 	}
-	public String getRear_tire_width() {
+	public int getRear_tire_width() {
 		return rear_tire_width;
 	}
-	public void setRear_tire_width(String rear_tire_width) {
+	public void setRear_tire_width(int rear_tire_width) {
 		this.rear_tire_width = rear_tire_width;
 	}
-	public String getRear_tire_ratio() {
+	public int getRear_tire_ratio() {
 		return rear_tire_ratio;
 	}
-	public void setRear_tire_ratio(String rear_tire_ratio) {
+	public void setRear_tire_ratio(int rear_tire_ratio) {
 		this.rear_tire_ratio = rear_tire_ratio;
 	}
-	public String getRear_tire_inch() {
+	public int getRear_tire_inch() {
 		return rear_tire_inch;
 	}
-	public void setRear_tire_inch(String rear_tire_inch) {
+	public void setRear_tire_inch(int rear_tire_inch) {
 		this.rear_tire_inch = rear_tire_inch;
 	}
 	public int getResult_price() {

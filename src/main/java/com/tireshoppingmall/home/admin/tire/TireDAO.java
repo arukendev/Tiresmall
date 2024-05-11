@@ -99,25 +99,43 @@ public class TireDAO {
 	
 	
 	//타이어 브랜드 작업~~~~~~!!!
-
 	public void getTireBrand(HttpServletRequest req) {
 		List<TireDTO> brands = ss.getMapper(AdminTireMapper.class).getTireBrand();
 		
 		for (TireDTO t : brands) {
 			t.setTb_num(ss.getMapper(AdminTireMapper.class).getTireBrandCount(t.getTb_name()));
 		}
+		
+		
 		req.setAttribute("brands",brands);
 		
 	}
+
+//	ArrayList<String> list = (ArrayList)session.getAttribute("productlist"); 
+//	String productname = request.getParameter("product");  
+//	if(list==null) {  
+//		list = new ArrayList<String>(); 
+//		session.setAttribute("productlist", list); 
+//	} 
+//	
+//	list.add(productname); 
+	
+	
 	public void deleteTireBrand(HttpServletRequest req, TireDTO tb) {
 		
 		if(ss.getMapper(AdminTireMapper.class).deleteTireBrand(tb)==1) {
 			req.setAttribute("r", "삭제성공");
+			
+			
+			
+			
+			
 		}else {
 			req.setAttribute("r", "삭제실패");
 		}
 		
 	}
+	
 	public void deleteTireGroup(HttpServletRequest req, TireDTO tg) {
 		if(ss.getMapper(AdminTireMapper.class).deleteTireGroup(tg)==1) {
 			req.setAttribute("r", "삭제성공");
@@ -161,10 +179,11 @@ public class TireDAO {
 				for(int i = 0; i<list.size(); i++) {
 					String fileRealName = list.get(i).getOriginalFilename();
 					
-					String saveFilesName =	UUID.randomUUID().toString()+
+					System.out.println(list.get(i).getOriginalFilename());
+					String saveFilesName =	UUID.randomUUID().toString() +
 								fileRealName.substring(fileRealName.lastIndexOf("."));
 					
-					System.out.println("여러파일들 이름 : " +i+"번째파일  - " +saveFilesName );
+					System.out.println("여러파일들 이름 : " + i +"번째파일  - " + saveFilesName );
 					
 					File saveFile = new File(savePath + "\\"+ saveFilesName);	
 					if(i == 0) {
@@ -346,8 +365,44 @@ public class TireDAO {
 	}
 	
 	
-	public void regTireBrand(HttpServletRequest req, TireDTO tDTO) {
-		ss.getMapper(AdminTireMapper.class).regTireBrand(tDTO);
+	public void regTireBrand(HttpServletRequest req, TireDTO tDTO, MultipartFile file) {
+		
+		String savePath = servletContext.getRealPath("resources/web/main/tire/brand");
+		
+		try {
+			
+			//파일이 있을때
+			if(file != null) {
+				
+				String fileName = file.getOriginalFilename();
+				System.out.println("원래 파일이름 : "+ fileName);
+				System.out.println("파일 경로 : "+ savePath);
+					
+				String saveFileName= UUID.randomUUID().toString()+
+						fileName.substring(fileName.lastIndexOf("."));
+					
+				System.out.println("저장된 파일이름 : "+saveFileName);
+				tDTO.setTb_img(saveFileName);	//이름 저장
+					
+				//파일 업로드
+				
+				file.transferTo(new File(savePath,saveFileName));
+				System.out.println("파일 업로드 성공");
+
+				//이제 db등록
+				ss.getMapper(AdminTireMapper.class).regTireBrand(tDTO);
+			}else {
+				tDTO.setTb_img(tDTO.getTb_img());
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("등록 실패");
+			//파일삭제
+	        new File(savePath + "/" + tDTO.getTb_img()).delete();
+	        System.out.println("삭제성공");
+		} 
+		
 		
 	}
 	public int adminTireSizeNewInsertReg(TireDTO tDTO) {
@@ -505,6 +560,28 @@ public class TireDAO {
 		
 		
 	}
+	public int tireBrandImgChange(MultipartFile[] file, TireDTO tDTO) {
+		
+		tDTO = ss.getMapper(AdminTireMapper.class).getOneTireBrand(tDTO);
+	
+		return ss.getMapper(AdminTireMapper.class).adminTireBrandImgChange(tDTO);
+	}
+	
+	
+	
+	public void getTireBrandMenu(HttpServletRequest req) {
+		List<TireDTO> brands = ss.getMapper(AdminTireMapper.class).getTireBrandPrint();
+		
+		req.getSession().setAttribute("brands", brands);
+		req.getSession().setMaxInactiveInterval(60*60);
+		
+		req.setAttribute("brands",brands);
+	} 
+	
+	
+	
+	
+
 
 	
 	

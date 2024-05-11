@@ -34,7 +34,7 @@
 		<div id="product_container">
 			<c:forEach items="${pGroups }" var="pGroup">
 				<a href="product.detail?tg_id=${pGroup.tg_id }
-						&ti_width=${pGroup.ti_width }&ti_ratio=${pGroup.ti_ratio }&ti_inch=${pGroup.ti_inch }">
+						&ti_width=${pGroup.ti_width }&ti_ratio=${pGroup.ti_ratio }&ti_inch=${pGroup.ti_inch }&result_price=${pGroup.result_price}">
 					<div class="product_item">
 						<div class="product_item_hidden">
 						</div>
@@ -54,7 +54,7 @@
 						</div>
 						<div class="product_item_size">
 							<c:choose>
-								<c:when test="${pGroup.ti_ratio } !=0">
+								<c:when test="${pGroup.ti_ratio != 0 }">
 									${pGroup.ti_width }/${pGroup.ti_ratio }R${pGroup.ti_inch }
 								</c:when>
 								<c:otherwise>
@@ -65,17 +65,20 @@
 						<div class="product_item_price">
 								<input type="hidden" class="pl_dcRate" value="${pGroup.tg_dcrate}">
 								<span class="detail_discount">${pGroup.tg_dcrate}%</span>
-             				   	<span class="detail_final_price">
-             				   		<fmt:formatNumber value="${pGroup.result_price }" type="currency"/>
+             				   	&#8361;<span class="detail_final_price">
+             				   		<fmt:formatNumber value="${pGroup.result_price }"  type="number"/>
              				   	</span>
-                				<span class="detail_not_price">
-                					<fmt:formatNumber value="${pGroup.ti_pricefac }" type="currency"/>
+                				<span class="detail_not_price">&#8361;
+                					<fmt:formatNumber value="${pGroup.ti_pricefac }"  type="number"/>
                 				</span>
 							
 								<input type="hidden" class="pl_minPrice" value="${pGroup.ti_pricefac}">
 						</div>
-						<div class="product_item_detail"><i class="fa-solid fa-magnifying-glass"></i>상세보기</div>
+						<div class="product_item_detail">
+							<i class="fa-solid fa-magnifying-glass"></i>상세보기
+						</div>
 					</div>
+					
 				</a>
 			</c:forEach>
 		</div>

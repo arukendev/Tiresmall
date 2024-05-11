@@ -1,3 +1,4 @@
+
 const payAllId = document.querySelectorAll(".pay_tg_id");
 const payAllGp = document.querySelectorAll(".pay_final_price");
 const payAllFac = document.querySelectorAll(".pay_finalFac_price");
@@ -25,110 +26,82 @@ const payStoreAddress = document.querySelector(".pay_storeAddress");
 const payStorePhone = document.querySelector(".pay_storePhone");
 const payStore = document.querySelector(".pay_store");
 
-payInitStoreMap(
-  36.3417632,
-  127.3663178,
-  "[직영점] 타이어쇼핑몰",
-  "대전광역시 서구 신갈마로 83 (갈마동)"
-);
 
-function payInitStoreMap(latV, lngV, store, address) {
-  const map = new google.maps.Map(document.querySelector(".pay_map"), {
-    center: { lat: latV, lng: lngV },
-    zoom: 18,
-  });
+//지도 실행
+initMap();
 
-  const marker = new google.maps.Marker({
-    position: { lat: latV, lng: lngV },
-    map: map,
-    title: store,
-  });
-
-  const contentString = `
-    <div class="pay_mapContent">
-      <div class="pay_notice">
-      </div>
-      <h1 class="pay_heading">${store}</h1>
-      <div class="pay_mapBody">
-        <p>${address}</p>
-        <a 
-          style="color: blue; text-decoration: underline; font-size:11pt;"
-          target="_blank"
-          href="https://www.google.com/maps/dir//'${latV},${lngV}'/@${latV},${lngV},18z">
-          <i class="fa-solid fa-diamond-turn-right"></i>
-          경로찾기
-        </a>
-      </div>
-    </div>`;
-
-  const infowindow = new google.maps.InfoWindow({
-    content: contentString,
-    ariaLabel: store,
-  });
-
-  infowindow.open({
-    anchor: marker,
-    map,
-  });
-
-  marker.addListener("click", () => {
-    infowindow.open({
-      anchor: marker,
-      map,
-    });
-  });
-}
-
+//장착점 변경 할떄
 payStore.addEventListener("change", () => {
-  if (payStore.value === "타이어쇼핑몰") {
-    payInitStoreMap(
-      36.3417632,
-      127.3663178,
-      "[직영점] 타이어쇼핑몰",
-      "대전광역시 서구 신갈마로 83 (갈마동)"
-    );
-    payStoreAddress.innerText = "대전광역시 서구 신갈마로 83 (갈마동)";
-    payStorePhone.innerText = "042 - 545 - 8008";
-  } else if (payStore.value === "타이어테크 죽동점") {
-    payInitStoreMap(
-      36.369228,
-      127.338054,
-      "[제휴 당일장착점] 타이어테크 죽동점",
-      "대전광역시 유성구 죽동 707-2번지 타이어테크"
-    );
-    payStoreAddress.innerText = "대전광역시 유성구 죽동 707-2번지 타이어테크";
-    payStorePhone.innerText = "010 - 4417 - 2220";
-  } else if (payStore.value === "논산 타이어쇼핑몰") {
-    payInitStoreMap(
-      36.1900937,
-      127.0954606,
-      "[제휴 당일장착점] 논산 타이어쇼핑몰(타이어테크 시청점)",
-      "충청남도 논산시 시민로 262 논산타이어 (내동)"
-    );
-    payStoreAddress.innerText = "충청남도 논산시 시민로 262 논산타이어 (내동)";
-    payStorePhone.innerText = "010 - 8488 - 2326";
-  } else if (payStore.value === "타이어테크 연무점") {
-    payInitStoreMap(
-      36.1188693,
-      127.0984388,
-      "[제휴 당일장착점] 타이어테크 연무점",
-      "충청남도 논산시 연무읍 왕릉로13번길 38 타이어테크 연무점"
-    );
-    payStoreAddress.innerText =
-      "충청남도 논산시 연무읍 왕릉로13번길 38 타이어테크 연무점";
-    payStorePhone.innerText = "010 - 4202 - 1588";
-  } else {
-    payInitStoreMap(
-      36.208517,
-      127.0937896,
-      "[제휴 당일장착점] 타이어테크 반월점 (로얄카)",
-      "충청남도 논산시 해월로252 타이어테크 반월점 (로얄카)"
-    );
-    payStoreAddress.innerText =
-      "충청남도 논산시 해월로252 타이어테크 반월점 (로얄카)";
-    payStorePhone.innerText = "010 - 7267 - 2220";
-  }
+	$.ajax({
+		    url: "pay.store.change",
+		    type: "get",
+		    data: { b_id : payStore.value },
+		    success: function (data) {
+		      console.log(data);
+		     
+		      payStoreAddress.innerText =data.b_area +""+ data.b_addr;
+		      payStorePhone.innerText = data.b_managernumber;
+		      $(".mapAddre").val(data.b_mapdata);
+		      initMap(data.b_name);
+		      
+		    },
+		  });
 });
+
+//지도
+function initMap(d) {
+	
+	const latV=$(".mapAddre").val().split(", ")[0];
+	const lngV=$(".mapAddre").val().split(", ")[1];
+	
+	  //네이버 지도
+	  
+	  var mapOptions = {
+			    center: new naver.maps.LatLng(latV, lngV),
+			    zoom: 17,
+			    zoomControl: true,
+			    zoomControlOptions: {
+			        style: naver.maps.ZoomControlStyle.LARGE,
+			        position: naver.maps.Position.RIGHT_CENTER
+			    }
+			    
+	  };
+
+	  var map = new naver.maps.Map('pay_map', mapOptions);
+	  
+	  //정보창 
+	  var contentString = [
+		  	'<div id="content">' +
+		  		'<div id="siteNotice">' + "</div>" +
+		  		'<h1 id="firstHeading" class="firstHeading">'+ d +'</h1>' +
+		    "</div>"
+	   ].join('');
+	  
+
+	  //마커
+	  var marker = new naver.maps.Marker({
+			  position: new naver.maps.LatLng(latV, lngV),
+			  map: map
+
+	  });
+
+	  
+	  //정보창 오픈하기
+/*	  infowindow.open(map, marker);
+	  //클릭하면정보창 없애고 띄우기
+	  naver.maps.Event.addListener(marker, "click", function(e) {
+		    if (infowindow.getMap()) {
+		        infowindow.close();
+		    } else {
+		        infowindow.open(map, marker);
+		    }
+		});		*/	
+};	
+
+
+
+
+
 
 // 날짜제한
 const payDate = document.querySelector(".pay_date");
@@ -198,6 +171,7 @@ const dateReg = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
 const phoneReg = /^\d{9,11}$/;
 const emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const carNumReg = /\d{2,3}[가-힣]{1}\d{4}/;
+
 function payDateCheck(e) {
 
   if (!dateReg.test(e.target.value)) {
@@ -309,6 +283,7 @@ content = $(document.querySelector(".pay_kakaopay_content"));
     document.querySelector(".pay_email_confirm").innerText =
       "이메일을 입력해주세요.";
     e.preventDefault();
+    
   }
   if (payCarNumInput.value) {
     payCarNumInput.style.borderColor = "#aaa";
@@ -372,14 +347,52 @@ payNameInput.addEventListener("input", () => {
 payPhoneInput.addEventListener("input", payPhoneCheck);
 payEmailInput.addEventListener("input", payEmailCheck);
 payCarNumInput.addEventListener("input", payCarNumCheck);
+
+
+//payStore.addEventListener("change", () => {
 payCarYearSelect.addEventListener("change", () => {
+	if($("#pay_o_carbrand_select").val()!=""){
+		$("#pay_o_carname_select option").remove();
+		$.ajax({
+			url: "product.car.name.get.ajax",
+			data : {c_brand : $("#pay_o_carbrand_select").val(),
+					c_year1 : $("#pay_o_caryear_select").val()},
+			success : function(data) {
+				for (var i = 0; i < data.length; i++) {
+					$("select[name=o_carname]").append(
+						"<option value='"+  data[i].c_name +"'>"+  data[i].c_name + "</option>"
+					);
+				}
+			}
+		})
+	}
+	
   payCarYearSelect.style.borderColor = "#aaa";
   document.querySelector(".pay_car_confirm").innerText = "";
 });
+
+
 payCarBrandSelect.addEventListener("change", () => {
+	if( $("#pay_o_carname_select").val()!=""){
+		$("#pay_o_carname_select option").remove();
+		$.ajax({
+			url: "product.car.name.get.ajax",
+			data : {c_brand : $("#pay_o_carbrand_select").val(),
+					c_year1 : $("#pay_o_caryear_select").val()},
+			success : function(data) {
+				for (var i = 0; i < data.length; i++) {
+					$("select[name=o_carname]").append(
+						"<option value='"+  data[i].c_name +"'>"+  data[i].c_name + "</option>"
+					);
+				}
+			}
+		})
+	}
   payCarBrandSelect.style.borderColor = "#aaa";
-  document.querySelector(".pay_car_confirm").innerText = "";
+  document.querySelector(".pay_car_confirm").innerText = ""; 
 });
+
+
 payCarNameSelect.addEventListener("change", () => {
   payCarNameSelect.style.borderColor = "#aaa";
   document.querySelector(".pay_car_confirm").innerText = "";

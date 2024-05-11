@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+
+.main_container{
+	display: flex;
+	justify-content: center;
+	margin: 50px 13% 0px 13%;
+	margin-bottom: 50px;
+}
+.sub_tilte {
+    height: 105px;
+    padding-top: 45px;
+    font-weight: normal;
+    font-size: 30px;
+    color: #000000;
+    text-align: center;
+    border-bottom: 1px solid #c7c7c7;
+}
+.agreeType .policy_msg {
+    margin: 20px 0;
+}
+
+.agreeType p {
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #010101;
+}
+.agreeType ol li {
+    margin: 8px 0;
+    padding-left: 11px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #010101;
+    text-indent: -11px;
+}
+.agreeType ul li {
+    margin: 8px 0;
+    padding-left: 20px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #010101;
+    text-indent: -20px;
+}
+
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+table {
+	width:100%;
+	margin-top:10px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.agreeType table th {
+    text-align: center;
+    background: #eee;
+    text-indent: initial;
+}
+.agreeType table th, .agreeType table td {
+    padding: 10px;
+    font-weight: normal;
+    font-size: 15px;
+    font-weight: 400;
+    color: #010101;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.agreeType table td.al_c {
+    text-align: center;
+     border-left: 1px solid #ccc;
+}

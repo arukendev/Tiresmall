@@ -1,5 +1,7 @@
 $(function() {
 	
+	
+	
 	$('#idFind_btn').click(function() {
 		alert('1');
 		var phoneNumInput = document.querySelector("input[name=i_phoneNum]").value
@@ -73,7 +75,6 @@ $(function() {
 	    });
 	});
 	
-	
 	$("#authnum_check").click(function(){
 		console.log(code);
 		var idInput = document.querySelector("input[name=u_idPW]").value
@@ -86,15 +87,6 @@ $(function() {
 			$('input[name=u_id]').val(idInput);
 			$("#emailNumCheck_box").css("display","none");
     		$("#setPw_box").css("display","flex");
-			
-			
-			
-			
-			
-			
-			
-			
-			
 		}else {
 			alert('인증번호가 일치하지 않습니다.')
 			$('#i_emailCheck').text('');
@@ -104,23 +96,19 @@ $(function() {
 		
 	});
 	
-	
-	
-	
-	
 	$('#backHOME').click(function() {
 		location.href='/home'
 	});
 	
+	//년도 내년까지 자동계산 
+	setDateSelectBox();
 	
-	
-	
-	
-	
+	//차종 가져오기
+	findCarName();
 	
 	
 });
-
+// ready끝  
 
 function deleteOK(n) {
 	var deleteOk = confirm('회원을 탈퇴하시겠습니까?');
@@ -157,9 +145,79 @@ function updateCheck() {
 		carnumInput.focus();
 		return false;
 	}
-	
-	
 	return true;
-	
-	
 }
+
+//년도 자동계산 내년까지
+function setDateSelectBox(){
+	var now = new Date();
+	var now_year = now.getFullYear();
+	$("#mc_year").append("<option value=''>선택</option>");
+	// 2000년 부터 올년까지
+	for(var i = now_year; i >= 2000; i--){
+		$("#mc_year").append("<option value='"+ i +"'  >"+ i + " 년" +"</option>");
+		//저장된 년도 선택
+		$("select[name=mc_year] option[value="+$("#mc_year_hidden").val()+"]").prop("selected", true);
+	}
+}
+
+//차종 가져오기
+function findCarName() {
+	//년도 변경할떄
+	$("#mc_year").on("change",function() {
+		if( $("#mc_brand").val()!=""){
+			$("#mc_carname option").remove();
+			
+			$.ajax({
+				url: "product.car.name.get.ajax",
+				data : {c_brand : $("#mc_brand").val(),
+						c_year1 : $("#mc_year").val()},
+				success : function(data) {
+					for (var i = 0; i < data.length; i++) {
+						$("select[name=mc_carname]").append(
+							"<option value='"+  data[i].c_name +"'>"+  data[i].c_name + "</option>"
+						);
+					}
+				}
+			})
+		}	
+	})
+	
+	//브랜드 변경할때
+	$("#mc_brand").on("change", function() {
+		if($("#mc_year").val() != ""){
+			$("#mc_carname option").remove();// 차종 셀렉트 내용 삭제
+			
+			$.ajax({
+				url: "product.car.name.get.ajax",
+				data : {c_brand : $("#mc_brand").val(),
+						c_year1 : $("#mc_year").val()},
+				success : function(data) {
+					for (var i = 0; i < data.length; i++) {
+						$("select[name=mc_carname]").append(
+							"<option value='"+  data[i].c_name +"'>"+  data[i].c_name + "</option>"
+						);
+					}
+				}
+			})
+		}
+	})
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

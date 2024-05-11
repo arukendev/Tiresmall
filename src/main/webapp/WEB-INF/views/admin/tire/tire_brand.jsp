@@ -32,6 +32,12 @@
 								<div><input class="tire-brand-input" name="tb_name" required="required"></div>
 							</div>
 							<div class="admin-tire-brand-size-modal-title">
+								<div class="tire-brand-reg-title">브랜드 이미지</div>
+								<div>
+									<input type="file" name="file" required="required">
+								</div>
+							</div>
+							<div class="admin-tire-brand-size-modal-title">
 								<div class="tire-brand-reg-title">출력순서</div>
 								<div><input class="tire-brand-input" name="tb_order" required="required" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></div>
 							</div>
@@ -62,6 +68,7 @@
 		<table id="admin_tire_brand_content">
 			<tr>
 				<td class="admin_tire_content_title admin_tire_brand_no" style="border-right: 2px solid white">No.</td>
+				<td class="admin_tire_content_title admin_tire_brand_img"style="border-right: 2px solid white">브랜드이미지</td>
 				<td class="admin_tire_content_title admin_tire_brand_name"style="border-right: 2px solid white">브랜드명</td>
 				<td class="admin_tire_content_title admin_tire_print_order"style="border-right: 2px solid white">출력 순서</td>
 				<td class="admin_tire_content_title admin_tire_brand_Print"style="border-right: 2px solid white">출력 여부</td>
@@ -78,6 +85,11 @@
 			<c:forEach items="${brands }" var="t" varStatus="status">
 				<tr class="admin_tire_brands_content">
 					<td class="admin_tire_table_td">${status.count}</td>
+					<td class="admin_tire_table_td">
+						<img alt="" src="resources/web/main/tire/brand/${t.tb_img}" class="admin-tire-brand-img">
+						<input type="hidden" value="${t.tb_id }">
+						<input type="file" class="admin-tire-brand-img-update" name="file">
+					</td>
 					<td class="admin_tire_table_td">
 						<input value="${t.tb_name }" name = "tb_name" class = "admin-tire-brand-name">
 						<input type="hidden" value="${t.tb_id }">

@@ -38,25 +38,26 @@
 						<div class="product_item_hidden">
 						</div>
 						<div class="product_item_img">
-						<c:choose>
-							<c:when test="${pGroup.tg_img eq 'noimg'}">
-								<img src="resources/web/main/product/no-tire-image.jpg">
-							</c:when>
-							<c:otherwise>
-								<img src="resources/web/main/tire/${pGroup.tg_img }"> <!-- 타이어 등록 기능 되면 경로지정 -->
-							</c:otherwise>					
-						</c:choose>
+							<c:choose>
+								<c:when test="${pGroup.tg_img eq 'noimg'}">
+									<img src="resources/web/main/product/no-tire-image.jpg">
+								</c:when>
+								<c:otherwise>
+									<img src="resources/web/main/tire/${pGroup.tg_img }"> <!-- 타이어 등록 기능 되면 경로지정 -->
+								</c:otherwise>					
+							</c:choose>
 						</div>
 						<div class="product_item_title">
 							<p>${pGroup.tg_brand }</p>
 							<p class="item_title_p">${pGroup.tg_name }</p>
 						</div>
-						<div class="product_item_size">${pGroup.minInch }인치  ~ ${pGroup.maxInch }인치</div>
+						<div class="product_item_size">${pGroup.minInch }인치  ~ ${pGroup.maxInch }인치
+						</div>
 						<div class="product_item_price">
 								<input type="hidden" class="pl_dcRate" value="${pGroup.tg_dcrate}">
-							￦ <span class="pl_minPriceSpan">${pGroup.minPrice }</span>
+							&#8361; <span class="pl_minPriceSpan">${pGroup.minPrice }</span>
 								<input type="hidden" class="pl_minPrice" value="${pGroup.minPrice}">
-								~ ￦  <span class="pl_maxPriceSpan">${pGroup.maxPrice }</span>
+								~ &#8361;  <span class="pl_maxPriceSpan">${pGroup.maxPrice }</span>
 								<input type="hidden" class="pl_maxPrice" value="${pGroup.maxPrice}">
 						</div>
 						<div class="product_item_detail"><i class="fa-solid fa-magnifying-glass"></i>상세보기</div>
@@ -131,7 +132,7 @@
 		</div>
 		
 		
-		<div id="product_nav">
+		<!-- <div id="product_nav">
 			<div class="product_nav_brand">
 				<a href="product.brand?b=&p=1">
 					<div id="product_brand_all">All</div>
@@ -168,7 +169,7 @@
 				</a>
 				<div class="product_nav_brandNameBadge">미쉐린타이어</div>
 			</div>
-		</div>
+		</div> -->
 			
 			
 <script src="https://kit.fontawesome.com/772d40e343.js" crossorigin="anonymous"></script>

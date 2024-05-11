@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tireshoppingmall.home.admin.tire.TireDAO;
 import com.tireshoppingmall.home.board.BoardEventDAO;
 import com.tireshoppingmall.home.board.BoardEventDTO;
 import com.tireshoppingmall.home.board.BoardNoticeDAO;
@@ -29,11 +30,19 @@ public class HomeController {
 	@Autowired
 	private StoreDAO sDAO;
 	
+	@Autowired 
+	private TireDAO tDAO;
+
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(BoardNoticeDTO bn, BoardEventDTO be, HttpServletRequest req) {
 		hDAO.checkAdmin(req);
 		bnDAO.readNotice(bn, 1, req);
 		beDAO.readEventModal(be, req);
+		
+		tDAO.getTireBrandMenu(req);
+		sDAO.getStroeMenu(req);
+		
 		req.setAttribute("eventModal", "../board/board_event_modal.jsp");
 		req.setAttribute("content", "main/home/home.jsp");
 		return "index";
@@ -87,4 +96,19 @@ public class HomeController {
 		req.setAttribute("content", "main/auth/non_member.jsp");
 		return "index";
 	}
+	
+	@RequestMapping(value = "/termsAndConditionsOfUse", method = RequestMethod.GET)
+	public String goTerms(HttpServletRequest req) {
+		req.setAttribute("content", "main/home/terms.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "/PrivacyPolicy", method = RequestMethod.GET)
+	public String goPrivacyPolicy(HttpServletRequest req) {
+		req.setAttribute("content", "main/home/PrivacyPolicy.jsp");
+		return "index";
+	}
+	
+	
+	
+	
 }

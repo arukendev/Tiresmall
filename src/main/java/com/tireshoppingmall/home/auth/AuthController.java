@@ -1,25 +1,14 @@
 package com.tireshoppingmall.home.auth;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -29,10 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.util.UrlPathHelper;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -199,6 +186,9 @@ public class AuthController {
 	@RequestMapping(value = "/authRegSocial.go", method = RequestMethod.GET)
 	public String authRegSOGo(HttpServletRequest req,MemberDTO mDTO) {
 		System.out.println(req.getParameter("socialID"));
+		if(mDTO.getMc_number() =="") {
+			mDTO.setMc_number("차량없음");
+		}
 		return "main/auth/authRegSocial";
 	}
 	
@@ -237,6 +227,20 @@ public class AuthController {
 		System.out.println("cnt : " + cnt);
 		return cnt;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/phoneNumberCheck", method = RequestMethod.POST)
+	public int phoneNumberCheck(@RequestParam("phoneNum") String phoneNum,Model model) {
+		System.out.println("phoneNum : " + phoneNum);
+		
+		int cnt = mDAO.phoneNumCheck(phoneNum);
+		System.out.println("cnt : " + cnt);
+		return cnt;
+	}
+	
+	
+	
+	
 	@ResponseBody
 	@RequestMapping(value = "/pwFind", method = RequestMethod.POST)
 	public int pwFind(@Param("idInput") String idInput
@@ -292,20 +296,25 @@ public class AuthController {
 	@RequestMapping(value = "/login/getKakaoAuthUrl" , method = RequestMethod.GET)
 	public @ResponseBody String getKakaoAuthUrl(
 			HttpServletRequest request) throws Exception {
+		System.out.println("1");
+		// sb.append("&client_id=9ac97206ae6044bf6edfb9749a0e5e62");d1b1a9018632bd600689694eb9153b75
 		String reqUrl = 
 				"https://kauth.kakao.com/oauth/authorize"
-				+ "?client_id=9ac97206ae6044bf6edfb9749a0e5e62"
-				+ "&redirect_uri=http://localhost/home/login/oauth_kakao"
+				+ "?client_id=d1b1a9018632bd600689694eb9153b75"		//나중에 바꿔야함
+				+ "&redirect_uri=http://localhost/home/login/oauth_kakao"  
 				+ "&response_type=code";
+		
+		System.out.println(reqUrl);
 		return reqUrl;
 	}
 	
 	// 카카오 연동정보 조회
-	@RequestMapping(value = "/login/oauth_kakao")
+	@RequestMapping(value = "/login/auth_kakao")
 	public String oauthKakao(
 			@RequestParam(value = "code", required = false) String code
 			, Model model,HttpServletRequest req,RedirectAttributes rttr,MemberDTO mDTO) throws Exception {
-
+		System.out.println("여긴 옴???111");
+			
 		System.out.println("#########" + code);
         String access_Token = lsDAO.getAccessToken(code);
         System.out.println("###access_Token#### : " + access_Token);
@@ -412,9 +421,13 @@ public class AuthController {
     @RequestMapping(value = "/profile.myInfo", method = RequestMethod.GET)
     public String myProfileInfoGo(HttpServletRequest req,Model model,AuthUserDTO aDTO) {
     	
-    	model.addAttribute("content", "main/auth/myProfile.jsp");
+    	
+    	
+    	mDAO.getMyInfo(req,model,aDTO);
     	
     	aDTO = (AuthUserDTO) req.getSession().getAttribute("loginMember");
+    	model.addAttribute("content", "main/auth/myProfile.jsp");
+    	
     	if (aDTO == null) {
 			return "redirect:/";
 		}
@@ -422,6 +435,8 @@ public class AuthController {
     	System.out.println(aDTO.getMc_carname());
     	System.out.println(aDTO.getMc_number());
     	System.out.println(aDTO.getMc_year());
+    	
+    	
     	model.addAttribute("personalInfomation",aDTO);
     	model.addAttribute("profile_contents", "profileInfo.jsp");
     	

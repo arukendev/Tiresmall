@@ -15,6 +15,38 @@
   box-sizing: border-box;
 }
 
+
+.main_admin_go{
+	padding:5px;
+	border: 1px solid black; 
+	border-radius: 10px;
+	cursor:pointer;
+	-webkit-user-select:all;
+	-moz-user-select:all;
+	-ms-user-select:all;
+	user-select:all
+}
+.main_admin_go:hover{
+	background-color: rgb(8, 248, 252);
+	color: white;
+	border: 1px solid rgb(8, 248, 252);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+
 .display_none {
   display: none;
 }
@@ -200,10 +232,16 @@ header {
 .index_dropMenu_img {
   border-radius: 10px;
   overflow: hidden;
+  }
+.index_dropMenu_img img{
+	position: relative;
+	top : -25px;
 }
+ 
 
 main {
   background-color: white;
+  min-height: 1000px;
 }
 
 footer {
@@ -314,8 +352,7 @@ section {
     
 }
 .btn_close a:before, .btn_close2 a:before {
-    transform: rotate(45deg);
-    
+    transform: rotate(45deg);  
     content: "";
     position: absolute;
     left: 25px;
@@ -386,7 +423,7 @@ section {
 	align-items: center;
 }
 
-#home-modal-tire-search-content-text{
+#home-modal-tire-search-content-text, #home-modal-car-search-content-text{
 	height: 50px;
 	font-size: 15pt;
 	border-bottom: 1px solid var(--red);
@@ -404,7 +441,7 @@ section {
 	color: #d85050;
 }
 
-#home-modal-tire-search-content-text img{
+#home-modal-tire-search-content-text img,#home-modal-car-search-content-text img{
 	max-width: 20px;
 }
 
@@ -432,6 +469,7 @@ section {
 	font-size: 14pt;
 	margin: 10px 7.5% 10px 7.5%;	
 	padding: 3px;
+	cursor:pointer;
 }
 .car-brand-list li{
 	width: 15%;
@@ -441,6 +479,7 @@ section {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	cursor:pointer;
 }
 
 .item-list li:hover {
@@ -456,7 +495,7 @@ section {
 	height: 350px;
 	position: relative;
 }
-.home-modal-tire-select-result-text{	
+.home-modal-tire-select-result-text,.home-modal-tire-select-result-text{	
 	margin-bottom:60px;
 	display: flex;
 	justify-content: center;
@@ -487,17 +526,16 @@ section {
 	bottom:90px;
 }
 
-.home-modal-tire-select-result-button{
+.home-modal-tire-select-result-button, .home-modal-car-select-result-button{
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	bottom:25px;
 	position: absolute;
 }
-.home-modal-tire-select-result-back{
+.home-modal-tire-select-result-back, .home-modal-car-select-result-back{
 	margin:0px 10px 0px 10px;
-	padding: 10px;
-	
+	padding: 10px;	
 	border-radius:3px;
 	font-size: 13pt;
 	font-weight:500;
@@ -513,7 +551,7 @@ section {
 	font-size: 13pt;
 	font-weight:500;
 }
-.home-modal-tire-select-go{
+.home-modal-tire-select-go, .home-modal-car-select-go{
 	margin:0px 10px 0px 10px;
 	padding: 7px 10px 7px 10px;
 	font-size: 13pt;
@@ -595,6 +633,41 @@ section {
 }
 
 
+/* car tire size */
+
+.home-modal-car-select-result{
+	display: none;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+
+
+.home-modal-car-tire-select-result-text{
+	 display: flex;
+}
+
+
+.home-modal-car-tire-size{
+	
+}
+.car-tire-size-list li{
+	width: 34%;
+    text-align: center;
+    font-size: 14pt;
+    margin: 10px 7.5% 10px 7.5%;
+    padding: 10px;
+}
+.home-modal-car-select-result-choice{
+	position: absolute;
+    bottom: 80px;
+    font-size: 20px;
+    font-weight: 800;
+}
+.index_fNav{
+	display: flex;
+}
 
 
 
@@ -602,18 +675,43 @@ section {
 
 
 
+.footer_modal_criteria{
+	position: relative;
+	cursor:pointer;
+	-webkit-user-select:none;
+  	-moz-user-select:none;
+  	-ms-user-select:none;
+  	user-select:none
+}
 
-
-
-
-
-
-
-
-
-
-
-
+.footer_modal_content{
+	position: absolute;	
+	display: none;
+	top: -40px;
+	left:-150px;
+	width: 420px;
+	padding: 11px 15px;
+	border: 1px solid #ccc;
+	background-color: white;
+	color: black;
+	font-size: 13px;
+	font-weight: 400;
+}
+.footerModal1{
+	top:-190px;
+	z-index: 3;
+}
+.tit {
+    font-size: 12px;
+    color: #000;
+}
+.list li {
+    float: none;
+    margin: 10px 0;
+    font-size: 12px;
+    line-height: 17px;
+    color: #000;
+}
 
 
 

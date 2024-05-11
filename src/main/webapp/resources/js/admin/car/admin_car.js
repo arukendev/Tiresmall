@@ -17,12 +17,7 @@ $(function() {
 	
 	//브랜드 모달
 	carBrandModal();
-	//엔터로 검색
-	$(window).keydown(function(e) {
-		if(e.keyCode == 13){
-			$(".carsearchButton").trigger("click");
-		}
-	})
+
 	
 	//브랜드 이름 변경ajax
 	CarBrandNameChange();
@@ -122,9 +117,73 @@ function tireRegSizeDelete() {
 function carTire() {
 	$(document).on("click",".admin_tire_size_reg_modal_open1",function() {	
 		$(this).siblings().css("display","flex");			// 형제 노드를 찾아서 열어줌
+		$(this).siblings().find($(".tire_input_width1")).focus();
+		
+	/*	alert($(this).siblings().find($(".tire_input_width1")).attr("maxlength"));
+		alert($(this).siblings().find($(".tire_input_width1")).val().length);*/
+		
+		
+		//다음 input focus
+		$(this).siblings().find($(".tire_input_width1")).keyup(function() {
+			if(this.value.length >= $(this).attr("maxlength")){
+				$(this).nextAll(".tire_input_ratio1").focus();
+			}
+		})
+		$(this).siblings().find($(".tire_input_ratio1")).keyup(function() {
+			if(this.value.length >= $(this).attr("maxlength")){
+				$(this).nextAll(".tire_input_inch1").focus();
+			}
+		})
+		
+		
+		var enterEv = $(this).siblings().find($(".admin_tire_reg_in1"));
+		var escEv = $(this).siblings().find($(".admin_tire_reg_cen1"));
+		
+		
+		//enter / esc로 검색
+		window.addEventListener("keydown", (e) => {
+			if(e.keyCode == 27){
+				escEv.trigger("click");
+				 event.preventDefault();		//enter 이벤트 중복 방지				
+			}
+			if(e.keyCode == 13){
+				enterEv .trigger("click");
+				event.preventDefault();
+			}
+		});
 	});
 	$(document).on("click",".admin_tire_size_reg_modal_open2",function() {	
 		$(this).siblings().css("display","flex");			// 형제 노드를 찾아서 열어줌
+		$(this).siblings().find($(".tire_input_width2")).focus();
+		
+		
+		
+		//다음 input focus
+		$(this).siblings().find($(".tire_input_width2")).keyup(function() {
+			if(this.value.length >= $(this).attr("maxlength")){
+				$(this).nextAll(".tire_input_ratio2").focus();
+			}
+		})
+		$(this).siblings().find($(".tire_input_ratio2")).keyup(function() {
+			if(this.value.length >= $(this).attr("maxlength")){
+				$(this).nextAll(".tire_input_inch2").focus();
+			}
+		})
+		
+		var enterEv = $(this).siblings().find($(".admin_tire_reg_in2"));
+		var escEv = $(this).siblings().find($(".admin_tire_reg_cen2"));
+		
+		//enter / esc로 검색
+		window.addEventListener("keydown", (e) => {
+			if(e.keyCode == 27){
+				escEv.trigger("click");	
+				event.preventDefault();
+			}
+			if(e.keyCode == 13){
+				enterEv.trigger("click");
+				event.preventDefault();
+			}
+		});
 	});
 	
 	//사이즈 입력시에  (모달창에)
@@ -242,22 +301,20 @@ function inputEmpty() {
 				returnResult=1;
 				return false;
 			}
-
+			
+			
+			//비여 있으면 0으로 반환하여 입력하게함
 			if($("input[name='tb_width']").eq(i).val()==""){
-				alert((i+1)+"번째 뒷타이어 단면폭 값이 비여있습니다.");
-				returnResult=1;
-				return false;
+				$("input[name='tb_width']").eq(i).val(0);
 			}
 			if($("input[name='tb_ratio']").eq(i).val()==""){
-				alert((i+1)+"번째 뒷타이어 편평비 값이 비여있습니다.");
-				returnResult=1;
-				return false;
+				$("input[name='tb_ratio']").eq(i).val(0);
 			}
 			if($("input[name='tb_inch']").eq(i).val()==""){
-				alert((i+1)+"번째 뒷타이어 인치 값이 비여있습니다.");
-				returnResult=1;
-				return false;
+				$("input[name='tb_inch']").eq(i).val(0);
 			}
+			
+
 		
 		});
 		if(returnResult==1){
@@ -335,10 +392,6 @@ function CarBrandNameChange() {
 		}
 	})
 }
-
-
-
-
 
 
 

@@ -86,7 +86,9 @@ $(function(){
 }) // ready 끝
 function getProductJSON(page){
 		
-		$.getJSON("product.brand.type.ajax?b="+getParameter('b')+"&p="+page+"&t="+$('input[name="carTypeA"]:checked').val(),function(j){
+		$.getJSON("product.brand.type.ajax?b="+
+				getParameter('b')+"&p="+page+"&t="+
+				$('input[name="carTypeA"]:checked').val(),function(j){
 			console.log(JSON.stringify(j));
 			
 //			$('#product_search span').eq(0).html('총 '+j.pGroups.length+'개 상품이 검색되었습니다.');
@@ -125,11 +127,34 @@ function getProductJSON(page){
 			
 			$('#product_container a').remove();
 			$.each(j.pGroups, function(i, s){
-				$('#product_container').append('<a href="product.detail?tg_id='+ s.tg_id + '"><div class="product_item"><div class="product_item_hidden"><div class="product_item_hidden product_img_border"></div></div>'+
-						'<div class="product_item_img"><img src="resources/web/main/product/no-tire-image.jpg"></div>'+
-						'<div class="product_item_title"><p>'+ s.tg_brand +'</p><p>'+ s.tg_name +'</p></div>'+
-						'<div class="product_item_size">'+ s.minInch +'인치  ~ '+ s.maxInch +'인치</div>'+
-						'<div class="product_item_price"><input type="hidden" class="pl_dcRate" value="'+s.tg_dcrate+'">￦ <span class="pl_minPriceSpan">'+s.minPrice+'</span><input type="hidden" class="pl_minPrice" value="'+s.minPrice+'"> ~ ￦ <span class="pl_maxPriceSpan">'+s.maxPrice+'</span><input type="hidden" class="pl_maxPrice" value="'+s.maxPrice+'"></div><div class="product_item_detail"><i class="fa-solid fa-magnifying-glass"></i>상세보기</div></div></a>')
+				$('#product_container').append(
+					'<a href="product.detail?tg_id='+ s.tg_id + '">'+
+						'<div class="product_item">'+
+							'<div class="product_item_hidden">'+
+								'<div class="product_item_hidden product_img_border">'+
+								'</div>'+
+							'</div>'+
+							'<div class="product_item_img">'+
+								'<img src="resources/web/main/product/no-tire-image.jpg">'+
+							'</div>'+
+							'<div class="product_item_title">'+
+								'<p>'+ s.tg_brand +'</p>'+
+								'<p>'+ s.tg_name +'</p>'+
+							'</div>'+
+							'<div class="product_item_size">'+ s.minInch +'인치  ~ '+ s.maxInch +'인치</div>'+
+							'<div class="product_item_price">'+
+						
+								'<input type="hidden" class="pl_dcRate" value="'+s.tg_dcrate+'">'+
+								 '￦  <span class="pl_minPriceSpan">'+s.minPrice +'</span>'+
+								 '<input type="hidden" class="pl_minPrice" value="'+s.minPrice+'"> ~ ￦  '+
+								 '<span class="pl_maxPriceSpan">'+s.maxPrice+'</span>'+
+								 '<input type="hidden" class="pl_maxPrice" value="'+s.maxPrice+'">'+
+							'</div>'+
+							'<div class="product_item_detail">'+
+								'<i class="fa-solid fa-magnifying-glass"></i>상세보기'+
+							'</div>'+
+						'</div>'+
+					'</a>')
 			})
 			loadPrices();
 			

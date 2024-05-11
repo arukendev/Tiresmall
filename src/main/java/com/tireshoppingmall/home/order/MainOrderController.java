@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.tireshoppingmall.home.admin.store.BranchDTO;
+import com.tireshoppingmall.home.admin.tire.TireDTO;
+import com.tireshoppingmall.home.product.PaymentDTO;
 
 
 @Controller
@@ -18,6 +23,16 @@ public class MainOrderController {
 		mODAO.getCarInfo(req);
 		req.setAttribute("content", "main/product/pay.jsp");
 		return "index";
+	}
+	//pay.store.change
+	@ResponseBody
+	@RequestMapping(
+			value = "pay.store.change",
+			method = RequestMethod.GET,
+			produces = "application/json;charset=utf-8"
+			)
+	public BranchDTO payStoreChange(int b_id) {
+		return mODAO.payStoreChage(b_id);
 	}
 	
 	@RequestMapping(value = "/pay.complete", method = RequestMethod.POST)

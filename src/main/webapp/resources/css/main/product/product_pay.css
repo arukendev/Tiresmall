@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 1200px;
   justify-content: center;
+  background-color: #f5f5f5;
 }
 
 .pay_empty {
@@ -65,6 +66,9 @@
   padding: 20px 20px 20px 10px;
   margin-bottom: 20px;
   border-bottom: 3px solid #ddd;
+  background-color: white;
+  border-radius: 10px;
+}
 }
 
 .pay_product_delete {
@@ -126,11 +130,34 @@
   font-size: 24px;
   font-weight: 500;
 }
-
-.pay_map {
-  height: 400px;
-  margin: 20px 0;
+.pay_store{
+	width : 150px;
+	padding : 10px;
+	border-radius: 5px;
 }
+#pay_request_input{
+	width: 580px;
+    height: 100px;
+    resize: none;
+}
+
+
+#pay_map {
+  height: 300px;
+  width:80%;
+  margin: 20px 10%;
+
+}
+
+.pay_shipMethod{
+	padding: 20px 20px 20px 10px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #ddd;
+    background-color: white;
+    border-radius: 10px;
+}
+
+
 
 .pay_shipMethod select,
 .pay_shipMethod input {
@@ -142,6 +169,9 @@
 
 .pay_shipMethod input:focus {
   outline: none;
+}
+#pay_grid_diffrent_height{
+	 grid-template-rows: 100px;
 }
 
 .pay_shipMethod li,
@@ -172,6 +202,15 @@
   border: 1px solid #aaa;
   font-family: "Noto Sans KR", sans-serif;
 }
+.pay_customerInfo{
+	padding: 20px 20px 20px 10px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #ddd;
+    background-color: white;
+    border-radius: 10px;
+}
+
+
 
 .pay_customerInfo input:focus {
   outline: none;
@@ -199,6 +238,7 @@
   border-bottom: 1px solid #ddd;
 }
 
+
 .pay_error {
   font-size: 16px;
   font-weight: 300;
@@ -212,6 +252,8 @@
   flex-direction: column;
   border: 1px solid #ddd;
   padding: 20px;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .pay_nav_title {

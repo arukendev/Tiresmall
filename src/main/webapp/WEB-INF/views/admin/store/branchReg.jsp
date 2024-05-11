@@ -11,7 +11,7 @@
 <body>
 	<input id="whatMenu" value="store" type="hidden">
 	<div class="container sub">
-		<div id="tire_container">
+		<div id="tire_container" style="position: relative;top: -50px">
 			<div id="admin-store-reg">
 				<h1 id="admin-store-reg-whatPage">장착점 등록</h1>
 			</div>
@@ -106,6 +106,31 @@
 					</tr>
 					<tr>
 						<td class="admin_store_table_title">메인 이미지</td>
+						<td colspan="3">
+							<div class="admin-store-reg-img-container">
+								<div class="admin-store-reg-img-contain">
+									<div class="admin-store-img-title"
+										style="border-right: 2px solid white;">현재 이미지</div>
+									<div class="admin-store-img-content">
+										<img  src="resources/web/main/store/${branch.b_mainimg }" id="imagePreview2" >
+									</div>
+								</div>
+								<div class="admin-store-reg-img-contain">
+									<div class="admin-store-img-title">이미지 등록</div>
+									<div class="admin-store-img-content">
+										<div class="filebox1 bs3-primary">
+											<input class="upload-name2" placeholder="첨부파일"
+												disabled="disabled"> <label for="file2">업로드</label>
+											<input type="file" id="file2" name="file2">
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				
+					<tr>
+						<td class="admin_store_table_title"> 이미지</td>
 						<td colspan="3">
 							<div class="admin-store-reg-img-container">
 								<div class="admin-store-reg-img-contain">

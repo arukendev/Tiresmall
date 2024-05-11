@@ -14,7 +14,7 @@ pageEncoding="UTF-8"%>
     ></script>
     <script
       type="text/javascript"
-      src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js"
+      src="https://static.nid.naver.com/js/naverLogin_implicit-2.0.2.js"
       charset="utf-8"
     ></script>
     <script
@@ -57,7 +57,7 @@ pageEncoding="UTF-8"%>
           >
           <span onclick="location.href='authTermsOfUse.go'">회원가입</span>
         </div>
-        <div id="login_btn_social">
+        <%-- <div id="login_btn_social">
           <div id="login_btn_kakao">
             <button type="button" onclick="kakaoLogin()">
               <img
@@ -71,7 +71,7 @@ pageEncoding="UTF-8"%>
               ><img src="resources/web/main/auth/naver_login_btn.png" />
             </a>
           </div>
-        </div>
+        </div> --%>
       </div>
     </form>
   </body>

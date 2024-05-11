@@ -30,19 +30,29 @@ for (let i = 0; i < dropSearchA.length; i++) {
   });
 }
 
-for (let i = 0; i < dropBrandA.length; i++) {
-  const element = dropBrandA[i];
-  element.addEventListener("mouseenter", () => {
-    dropBrandImg.src = `resources/web/main/index/brand/${i + 1}.jpg`;
-  });
-}
 
-for (let i = 0; i < dropStoreA.length; i++) {
+
+
+
+$(".index_dropBrand_a").mouseenter(function() {
+	if($(this).text() != "전체타이어"){
+		$(".index_dropImg_brand").attr("src", "resources/web/main/tire/brand/" + $(this).next().val());
+	}else{
+		$(".index_dropImg_brand").attr("src", "resources/web/main/tire/brand/1.jpg");
+	}
+})
+$(".index_dropStore_a").mouseenter(function() {
+	$(".index_dropImg_store").attr("src", "resources/web/main/store/" + $(this).next().val());	
+})
+
+
+
+/*for (let i = 0; i < dropStoreA.length; i++) {
   const element = dropStoreA[i];
   element.addEventListener("mouseenter", () => {
     dropStoreImg.src = `resources/web/main/index/store/${i + 1}.jpg`;
   });
-}
+}*/
 
 for (let i = 0; i < dropBoardA.length; i++) {
   const element = dropBoardA[i];
@@ -80,7 +90,7 @@ storeMenu.addEventListener("mouseenter", () => {
   reset();
   storeMenu.style.borderBottomColor = "var(--red)";
   dropStore.style.display = "block";
-  dropStoreImg.src = `resources/web/main/index/store/1.jpg`;
+  dropStoreImg.src = `resources/web/main/store/shop3.png`;
 });
 
 boardMenu.addEventListener("mouseenter", () => {
@@ -297,46 +307,22 @@ $(document).on("click",".item-list li", function() {
 		$(".car-brand").css("color","black");
 		
 		$(".car-brand-list").remove();
+		
+		
+		
 		$("#home-modal-car-search-content-item").append(
-				"<ol class='item-list car-brand-list'>" +
-					"<li value='102024'>2024</li>" +
-					"<li value='102023'>2023</li>" +
-					"<li value='102022'>2022</li>" +
-					"<li value='102021'>2021</li>" +
-					"<li value='102020'>2020</li>" +
-					"<li value='102019'>2019</li>" +
-					"<li value='102018'>2018</li>" +
-					"<li value='102017'>2017</li>" +
-					"<li value='102016'>2016</li>" +
-					"<li value='102015'>2015</li>" +
-					"<li value='102014'>2014</li>" +
-					"<li value='102013'>2013</li>" +
-					"<li value='102012'>2012</li>" +
-					"<li value='102011'>2011</li>" +
-					"<li value='102010'>2010</li>" +
-					"<li value='102009'>2009</li>" +
-					"<li value='102008'>2008</li>" +
-					"<li value='102007'>2007</li>" +
-					"<li value='102006'>2006</li>" +
-					"<li value='102005'>2005</li>" +
-					"<li value='102004'>2004</li>" +
-					"<li value='102003'>2003</li>" +
-					"<li value='102002'>2002</li>" +
-					"<li value='102001'>2001</li>" +
-					"<li value='102000'>2000</li>" +
-					"<li value='101999'>1999</li>" +
-					"<li value='101998'>1998</li>" +
-					"<li value='101997'>1997</li>" +
-					"<li value='101996'>1996</li>" +
-					"<li value='101995'>1995</li>" +
-					"<li value='101994'>1994</li>" +
-					"<li value='101993'>1993</li>" +
-				"</ol>"	
-		);
+				"<ol class='item-list car-brand-list'></ol>");
+		
+		//년도 계산
+		var now = new Date();
+		var now_year = now.getFullYear();
+		for(var i = now_year; i >= 2000; i--){
+			$(".car-brand-list").append("<li value='10"+ i +"'  >"+ i + "</li>");
+		}
 	}else if(result > 100000 && result < 103000){
 		c_year1 = $(this).text();		 
 		$(".car-year").text(c_year1);
-		alert(c_year1);
+
 		$(".car-name").css("color","var(--red)");
 		$(".car-year").css("color","black");
 		$(".car-brand-list").remove();
@@ -345,8 +331,6 @@ $(document).on("click",".item-list li", function() {
 			"<ol class='item-list car-brand-list'>" +	
 			"</ol>"	
 		);
-		
-		
 		$.ajax({
 			url: "product.car.name.get.ajax",
 			data : {c_brand,c_year1},
@@ -360,19 +344,90 @@ $(document).on("click",".item-list li", function() {
 				}
 			}
 		})	
-	}else{//이제 차를 클릭 하면 그거에 대한 타이어 사이즈가 다 나오면 됨
+	}else if(result > 20000 && result < 29999){//이제 차를 클릭 하면 그거에 대한 타이어 사이즈가 다 나오면 됨
+		c_name = $(this).text();
+		console.log(c_name);
+		$(".car-name").text(c_name);
+		$(".car-name").css("color","black");
+		$(".car-brand-list").remove();
+		/*$("#home-modal-car-search-content-item").css("display","none");*/
+		$("#home-modal-car-search-content-item").append(
+			"<ol class='item-list car-tire-size-list'></ol>"	
+		);
 		
+		$(".home-modal-car-select-result").css("display","flex");												
+		
+		$.ajax({
+			url: "product.car.tire.size.get.ajax",
+			data : {c_brand,c_year1,c_name},
+			success : function(data) {
+				
+				var front_tire = data[0].c_ft.split("!");
+				var rear_tire = data[0].c_bt.split("!");
+				
+ 				
+				for (var i = 0; i < front_tire.length; i++) {
+					console.log(front_tire[i]);
+					if(rear_tire[i] == "" || rear_tire[i] == " "){
+						$(".car-tire-size-list").append(
+								"<li value='3000" + (i+1) + "'>" + front_tire[i] + "</li>"	
+						);
+					}else{
+						$(".car-tire-size-list").append(
+								"<li  style='width: 99%' value='4000" + (i+1) + "'>" + front_tire[i] + 
+								" / "+ rear_tire[i]+"</li>"								
+						);
+					}
+				}
+			}
+		})	
+	}else{
+		$(".home-modal-car-select-result-choice").text($(this).text());
+		var searchValue = $(this).text();
+		if(result > 30000 && result < 39999){//앞,뒤 타이어 사이즈가 같을때
+			var front_tire_width = searchValue.split("/")[0];
+			var front_tire_ratio = searchValue.split("/")[1].split("R")[0];
+			var front_tire_inch = searchValue.split("/")[1].split("R")[1];	
+			$(".front_tire_width").val(front_tire_width);
+			$(".front_tire_ratio").val(front_tire_ratio);
+			$(".front_tire_inch").val(front_tire_inch);
+
+		}else{//앞, 뒤 사이즈가 다를때
+			var front_tire = searchValue.split(" / ")[0].replace("전륜 : ","");
+			var rear_tire = searchValue.split(" / ")[1].replace("후륜 : ","");
+			var front_tire_width = front_tire.split("/")[0];
+			var front_tire_ratio = front_tire.split("/")[1].split("R")[0];
+			var front_tire_inch = front_tire.split("/")[1].split("R")[1];	
+			$(".front_tire_width").val(front_tire_width);
+			$(".front_tire_ratio").val(front_tire_ratio);
+			$(".front_tire_inch").val(front_tire_inch);		
+			
+			var rear_tire_width = rear_tire.split("/")[0];
+			var rear_tire_ratio = rear_tire.split("/")[1].split("R")[0];
+			var rear_tire_inch = rear_tire.split("/")[1].split("R")[1];	
+			$(".rear_tire_width").val(rear_tire_width);
+			$(".rear_tire_ratio").val(rear_tire_ratio);
+			$(".rear_tire_inch").val(rear_tire_inch);
+			
+			
+		}
 	}
 	
 	
 	
 	
 })
-//다시 선택 누를시
+//다시 선택 누를시	1.타이어	2.차
 $(".home-modal-tire-select-result-back").click(function() {
-	homeModalTireSeachInitialization();
-	
+	homeModalTireSeachInitialization();	
 })
+$(".home-modal-car-select-result-back").click(function() {
+	homeModalCarSeachInitialization();
+	$("#home-modal-car-search-container").css("display","block");
+	homeModalCarBrandListJson();
+})
+
+
 //타이어 추가 버튼
 $(".home-modal-rear-tire-select").click(function() {
 	$(".home-modal-tire-select-result").css("display","none");
@@ -477,6 +532,7 @@ function homeModalTireSeachInitialization() {
 	$(".rear-tire-ratio").css("display","block");
 	$(".home-modal-slush-display1").css("display","block");
 	$(".home-modal-slush-display2").css("display","block");
+	$(".home-modal-tire-select-result").css("display","none");
 	$(".home-modal-tire-select-result-button").find("input").val("");
 	$(".front-tire").remove();
 	$(".item-list").remove();
@@ -512,21 +568,61 @@ function homeModalTireSeachInitialization() {
 //차종으로 검색 지우기
 function homeModalCarSeachInitialization() {
 	$("#home-modal-car-search-container").css("display","none");
+	$(".home-modal-car-select-result").css("display","none");
+	$("#home-modal-car-search-content-item").css("display","flex");
+	$("#home-modal-car-search-content-text").css("display","flex");
 	$(".car-brand-list").remove();
+	$(".car-tire-size-list").remove();
 	$(".car-brand").css("color","var(--red)");
 	$(".car-year").css("color","black");
 	$(".car-name").css("color","black");
 	$(".car-brand").text("제조사");
 	$(".car-year").text("생산년도");
 	$(".car-name").text("차종명");
+	$(".home-modal-car-select-result-choice").text("");
+	$(".home-modal-car-select-result-choice").text("타이어 사이즈를 선택해주세요!");
 }
 
 
+//차종으로 검색할때 선택 안되면
+$(".home-modal-car-select-go").click(function() {
 
+	if($(".front_tire_width").val()==""){
+		alert("타이어 사이즈를 선택해주세요!!");
+		return false;
+	}
 
+	
 
+})
 
-
+$(document).on("click",".footer1", function() {
+	if($(".footerModal1").css("display") == "none"){
+		$(".footerModal2").css("display","none");
+		$(".footerModal3").css("display","none");
+		$(".footerModal1").css("display","block");
+	}else{
+		$(".footerModal1").css("display","none");
+	}
+})
+$(document).on("click",".footer2", function() {
+	if($(".footerModal2").css("display") == "none"){
+		$(".footerModal1").css("display","none");
+		$(".footerModal3").css("display","none");
+		$(".footerModal2").css("display","block");
+	}else{
+		$(".footerModal2").css("display","none");
+	}
+})
+$(document).on("click",".footer3", function() {
+	if($(".footerModal3").css("display") == "none"){
+		$(".footerModal1").css("display","none");
+		$(".footerModal2").css("display","none");
+		$(".footerModal3").css("display","block");
+	}else{
+		$(".footerModal3").css("display","none");
+	}
+})
 
 
 

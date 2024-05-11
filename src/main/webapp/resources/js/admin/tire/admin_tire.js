@@ -663,6 +663,52 @@ function tireBrandForcusout() {
 			}
 		});
 	});
+	
+	//타이어 브랜드 이미지 변경
+	/*$(".admin-tire-brand-img").click(function() {
+		
+		var tb_id = $(this).next().val();
+		$(this).nextAll($(".admin-tire-brand-img-update")).click();
+		console.log($(".admin-tire-brand-img-update")[0].files[0]);
+		
+	
+        
+        //이미지가 바뀔때
+        $(".admin-tire-brand-img-update").change(function() {
+        	
+        	console.log(form);
+        	
+        	//이미지가 선택 될때 안될때 구분
+        	if(this.files.length > 0){
+        	    //파일이 선택된 경우
+        		var form = new FormData();
+                form.append( "files", $(".admin-tire-brand-img-update")[0].files[0] );
+                form.append( "tb_id", tb_id);
+        		alert("파일등록함");
+        	 	$.ajax({
+            		url : "admin.tire.brand.img.change", 
+            		method : "POST", 
+            		processData : false, 
+            		contentType : false, 
+            		enctype: 'multipart/form-data',
+            		data : form, 
+            		success:function(response) {
+            			alert("성공하였습니다.");
+            		},error: function (jqXHR){ 
+            			alert("실패");
+            		}
+            	});
+        	}
+        	else {
+        		alert("파일 등록 안함");
+        	}    	
+        })    
+			if(!$(".admin-tire-brand-img-update").value){
+				console.log("1");
+			}else{	
+				console.log("2");
+			}	
+	})*/
 }
 
 
@@ -683,6 +729,10 @@ function tireBrandModal() {
 
 		
 	})
+	
+	//타이어 브랜드 이미지 등록
+	
+	
 	
 }
 

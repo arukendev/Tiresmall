@@ -72,16 +72,19 @@
 }
 
 .admin_tire_brand_no{
-	width: 10%;
+	width: 7%;
+}
+.admin_tire_brand_img{
+	width: 20%;
 }
 .admin_tire_brand_name{
-	width: 40%;
+	width: 30%;
 }
 .admin_tire_print_order{
-	width: 13%;
+	width: 10%;
 }
 .admin_tire_brand_num{
-	width: 13%;
+	width: 10%;
 }
 .admin_tire_brand_Print{
 	width:12%;
@@ -105,9 +108,18 @@
 	padding-top: 3px;	
 }
 
+.admin-tire-brand-img{
+	margin:5px;
+	height: 100%;
+	max-height: 80px;
+	max-width: 130px;
+}
+.admin-tire-brand-img-update{
+	display: none;
+}
 .admin-tire-brand-name{
 	width: 95%;
-	height:40px;
+	height:60px;
 	font-family: GmarketSansMedium;
 	font-size: 17pt;
 	border: none;

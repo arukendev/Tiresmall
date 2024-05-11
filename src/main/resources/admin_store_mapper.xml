@@ -24,10 +24,16 @@
 	<select id="getAllBranch" resultType="com.tireshoppingmall.home.admin.store.BranchDTO">
 		select * from branch
 	</select>
+	<select id="getAllBranchName"  resultType="com.tireshoppingmall.home.admin.store.BranchDTO">
+		select b_name,b_id from branch
+	</select>
 
 	<insert id="regBranch" parameterType="com.tireshoppingmall.home.admin.store.BranchDTO">
 		insert into branch
-		values(branch_seq.nextval,#{b_sortation},#{b_area},#{b_addr},#{b_name},#{b_time},#{b_service},#{b_mapdata},#{b_manager},#{b_managernumber},#{b_branchnumber},#{b_cr},#{b_email},#{b_file})
+		values(branch_seq.nextval,#{b_sortation},#{b_area},
+		#{b_addr},#{b_name},#{b_time},#{b_service},#{b_mapdata},
+		#{b_manager},#{b_managernumber},#{b_branchnumber},#{b_cr},
+		#{b_email},#{b_file}),#{B_MAINIMG}
 	</insert>
 
 	<select id="branchSearchbranchname" resultType="com.tireshoppingmall.home.admin.store.BranchDTO">
@@ -50,6 +56,7 @@
 		b_name = #{b_name}, b_time = #{b_time}, b_service = #{b_service},
 		b_mapdata = #{b_mapdata}, b_manager = #{b_manager}, b_managernumber = #{b_managernumber},
 		b_branchnumber = #{b_branchnumber}, b_cr = #{b_cr}, b_email = #{b_email}, b_file = #{b_file}
+		,B_MAINIMG = #{B_MAINIMG}
 		where b_id = #{b_id}
 	</update>
 

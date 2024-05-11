@@ -586,7 +586,7 @@ select {
   border-radius: .25em;
 }
 /* named upload */
-.filebox1 .upload-name1{
+.filebox1 .upload-name1,.filebox1 .upload-name2{
   width: 300px;
   display: inline-block;
   padding: .5em .75em;

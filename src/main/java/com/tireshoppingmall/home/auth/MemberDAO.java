@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
+import com.tireshoppingmall.home.admin.car.AdminCarMapper;
+import com.tireshoppingmall.home.admin.car.CarDTO;
 import com.tireshoppingmall.home.order.CartDTO;
 import com.tireshoppingmall.home.order.MainOrderDTO;
 
@@ -23,7 +26,15 @@ public class MemberDAO {
 	
 	public void regMember(HttpServletRequest req, MemberDTO mDTO) {
 		System.out.println("값-------"+mDTO.getMc_number());
-		if(ss.getMapper(MemberMapper.class).regMember(mDTO)>=3) {
+		if(mDTO.getMc_number() == null) {
+			mDTO.setMc_number("");
+			mDTO.setMc_brand("");
+			mDTO.setMc_carname("");
+			mDTO.setMc_year("0");
+		}
+		mDTO.setU_logintype("1");
+		
+		if(ss.getMapper(MemberMapper.class).regMember(mDTO) >= 3) {
 			System.out.println("가입성공");
 			System.out.println(mDTO.getMc_year());
 			req.setAttribute("resultMem", "가입성공");
@@ -46,7 +57,7 @@ public class MemberDAO {
 				if (checkMemberInDB.equals(mDTO.getPw_password())) {
 					System.out.println("비밀번호 성공");
 					AuthUserDTO member = ss.getMapper(MemberMapper.class).getMember(mDTO);
-					
+					System.out.println(member.getU_id());
 					req.getSession().setAttribute("loginMember", member);
 					req.getSession().setMaxInactiveInterval(60 * 10);
 				}else {
@@ -155,6 +166,23 @@ public class MemberDAO {
 	public int setPassword(MemberDTO mDTO) {
 		
 		return ss.getMapper(MemberMapper.class).pwSet(mDTO);
+	}
+
+	public int phoneNumCheck(String phoneNum) {
+		System.out.println("카운트 값 : " + ss.getMapper(MemberMapper.class).phoneNumCheck(phoneNum));
+		return ss.getMapper(MemberMapper.class).phoneNumCheck(phoneNum);		
+	}
+
+	public void getMyInfo(HttpServletRequest req, Model model, AuthUserDTO aDTO) {
+		//여기서 차 브랜드 가져오기
+    	
+    	
+    	List<CarDTO> carBrand =  ss.getMapper(AdminCarMapper.class).getAllCarBrands();
+    	req.setAttribute("carBrand", carBrand);
+    	
+    	
+    	
+		
 	}
 
 	

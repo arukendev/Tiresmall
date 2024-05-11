@@ -70,6 +70,14 @@
     margin: 20px 0px 60px 0px;
 }
 
+/* 지도 정보창 css*/
+#content{
+    padding: 10px;
+  	font-family: GmarketSansMedium;
+	font-size: 14px;
+	font-weight: 700;
+}
+
 /* .store_likeNotice_content{
 	padding-left: 10px;
 }

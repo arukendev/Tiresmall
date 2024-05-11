@@ -70,7 +70,6 @@
 			</tr>
 		</c:if>
 		<c:forEach items="${cars }" var="c" varStatus="status">
-		<c:forTokens items="" delims=""></c:forTokens>
 			<tr id="admin_cars_content">
 				<td class="admin_car_table_td">${status.count + (curPage-1)*count}</td>
 				<td class="admin_car_table_td">${c.c_brand }</td>
