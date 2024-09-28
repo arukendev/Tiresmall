@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tireshoppingmall.home.store.StoreMapper">
+	
 	<select id="getAStore" resultType="com.tireshoppingmall.home.admin.store.BranchDTO">
-		select * from branch where b_id = #{id}
+	    select * from branch where b_id = #{id}
 	</select>
+
 
 </mapper>

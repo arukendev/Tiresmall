@@ -2,215 +2,223 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tireshoppingmall.home.admin.tire.AdminTireMapper">
 
-<select id="getTireCount" resultType="int">
-	select count(*)
-		from tire_group 
-		where 	
-		<if test="tg_brand != '전체'">
-			tg_brand like '%'||#{tg_brand}||'%' and 
-		</if> 
-		tg_name like '%'||#{tg_name}||'%' 
-</select>
-
-<select id="getAllTireGroup" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
-	select * from 
-	(select rownum as rn,tg_id,tg_brand,tg_name,tg_img,tg_text,tg_dcrate,tg_print,tg_sedan,tg_suv,TG_DETAIL
-	 from (select * from tire_group  
-	 where 
-	 	<if test="tg_brand != '전체'">
-			tg_brand like '%'||#{tg_brand}||'%' and 
-		</if> 
-		tg_name like '%'||#{tg_name}||'%' 
-			order by tg_id desc )  <!-- 계발중이니깐 이런데 나중에는 지워줘야함 -->
-			)where rn &gt;= #{start} and rn &lt;= #{end}
-</select>
-
-<select id="getTireBrandPrint" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
-	select * from tire_brand 
-	where tb_ea = '1'
-	order by tb_order
-</select>
-
-
-
-
-
-
-<select id="getTireCountByMz" resultType="int">
-	select count(ti_tg_id) from tire_item where ti_tg_id= #{val}
-</select>
-
-<delete id="deleteTireGroup">
-	delete from tire_group where tg_id=#{tg_id}
-</delete>
-
-<update id="tirePrintOnOff">
-	update tire_group
-	set tg_print = #{tg_print}
-	where tg_id = #{tg_id}
-</update>
-
-<update id="tireSedanRecommend">
-	update tire_group
-	set tg_sedan = #{tg_sedan}
-	where tg_id = #{tg_id}
-</update>
-
-<update id="tireSuvRecommend">
-	update tire_group
-	set tg_suv = #{tg_suv}
-	where tg_id = #{tg_id}
-</update>
-<update id="tireGroupDcrateChange">
-	update tire_group
-	set tg_dcrate = #{tg_dcrate}
-	where tg_id = #{tg_id}
-</update>
-
-
-
-
-
-
-<insert id="tireGroupReg">
-	insert into tire_group values(tire_group_seq.nextval,#{tg_brand},
-	#{tg_name},#{tg_img},#{tg_text},#{tg_dcrate},#{tg_print},#{tg_sedan},#{tg_suv},#{tg_detail})
-</insert>
-
-
-<!-- 이거 예외처리는 어떻게 할것인가? 같은 이름의 타이어가 있을경우  -->
-<select id="getTireGroupPk" resultType="int">
-	select tg_id from tire_group where tg_name =#{val}
-</select>
-<!-- 이게 맞나? -->
-<insert id="tierItemReg">
-	insert into tire_item values(tire_item_seq.nextval,#{ti_tg_id},#{ti_width},#{ti_ratio},#{ti_inch},#{ti_stock},#{ti_pricefac},#{ti_marking})
-</insert>
-<!-- 여기서 여러번 등록하는곳 		MyBatis에서 여러번 등록-->
-<!-- <insert id= "tierItemReg2">
-	insert into
-		tire_item
-		(TI_ID,TI_TG_ID,TI_WIDTH,TI_RATIO,TI_INCH,TI_STOCK,TI_PRICEFAC,TI_MARKING,)
-		values
-		<foreach collection="TireListDTO"> List<TireDTO></foreach>
-</insert>
- -->
-<select id="getTireGroupDetail" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
-	select * from tire_group where tg_id = #{val}
-</select>
-
- 
-<select id="getTireItem" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
-	select * from tire_item where ti_tg_id = #{tg_id} 
-</select>
- 
-
-
-<select id="getTireGroupforDetail" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
-	select * from tire_group, tire_item
-	where ti_tg_id = tg_id
-	and ti_id = #{val}
-</select>
-<delete id="tireSizeDelete">
-	delete from tire_item where ti_id= #{val}
-</delete>
-
-<update id="getTireGroupUpdate">
-	update tire_group
-	set tg_name = #{tg_name}, tg_text = #{tg_text}, tg_img = #{tg_img}, tg_detail = #{tg_detail}
-	where tg_id = #{tg_id}
-</update>
-
-<update id="tireSizeChage">
-	update tire_item
-	set ti_width=#{ti_width},ti_ratio=#{ti_ratio},ti_inch=#{ti_inch}
-	where ti_id=#{ti_id}
-</update>
-<update id="tireMarckingChange">
-	update tire_item
-	set ti_marking = #{ti_marking}
-	where ti_id=#{ti_id}
-</update>
-<update id="tirePriceChange">
-	update tire_item
-	set ti_pricefac = #{ti_pricefac}
-	where ti_id=#{ti_id}
-</update>
-<update id="tireStockChange">
-	update tire_item
-	set ti_stock = #{ti_stock}
-	where ti_id=#{ti_id}
-</update>
-
-
-<update id="tireImgUpdate">
-	update tire_group
-	set tg_img = #{tg_img}
-	where tg_id=#{tg_id}
-</update>
-<update id="tireImgsUpdate">
-	update tire_group
-	set tg_detail = #{tg_detail}
-	where tg_id=#{tg_id}
-</update>
-
-
-
-
-
-<!--타이어 브랜드  -->
-<select id="getTireBrand" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
-	select * from tire_brand order by tb_order
-</select>
-
-<select id="getOneTireBrand" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
-	select * from tire_brand where tb_id = #{tb_id}
-</select>
-
-
-<select id="getTireBrandCount" resultType="int">
-	select count(*) from tire_group 
-	where tg_brand = #{val}
-</select>
-<!-- left OUTER JOIN tire_item
-	on  tg_id = ti_tg_id    -->
-<delete id="deleteTireBrand">
-	delete from tire_brand where tb_name= #{tb_name}
-</delete>
-
-<update id="tireBrandPrintOnOff">
-	update tire_brand
-	set tb_ea = #{tb_ea}
-	where tb_name= #{tb_name}
-</update>
-
-<update id="tireBrandNameChange">
-	update tire_brand
-	set tb_name = #{tb_name}
-	where tb_id= #{tb_id}
-</update>
-
-<update id="tireGroupBrandNameChange">
-	update tire_group
-	set tg_brand = #{tb_name}
-	where tg_tb_id = #{tb_id}
-</update>
-
-<update id="tireBrandOrderChange">
-	update tire_brand
-	set tb_order = #{tb_order}
-	where tb_name= #{tb_name}
-</update>
-
-<insert id="regTireBrand">
-	insert into tire_brand values(tire_brand_seq.nextval, #{tb_name}, #{tb_ea}, #{tb_order}, #{tb_img})
-</insert>
-
-<insert id="adminTireSizeNewInsertReg">
-	insert into tire_item values(tire_item_seq.nextval,#{ti_tg_id},#{ti_width},#{ti_ratio},#{ti_inch},#{ti_stock},#{ti_pricefac},#{ti_marking})
-</insert>
-
-
-
+	<!-- 타이어 카운트 -->
+	<select id="getTireCount" resultType="int">
+	    SELECT COUNT(*) FROM tire_group 
+	    WHERE 
+	    <if test="tg_brand != '전체'">
+	        tg_brand LIKE CONCAT('%', #{tg_brand}, '%') AND 
+	    </if> 
+	    tg_name LIKE CONCAT('%', #{tg_name}, '%')
+	</select>
+	
+	<!-- 모든 타이어 그룹 가져오기 -->
+	<select id="getAllTireGroup" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
+	    SELECT * FROM (
+	        SELECT @rownum := @rownum + 1 AS rn, tg_id, tg_brand, tg_name, tg_img, tg_text, tg_dcrate, tg_print, tg_sedan, tg_suv, TG_DETAIL
+	        FROM tire_group, (SELECT @rownum := 0) r
+	        WHERE 
+	        <if test="tg_brand != '전체'">
+	            tg_brand LIKE CONCAT('%', #{tg_brand}, '%') AND 
+	        </if> 
+	        tg_name LIKE CONCAT('%', #{tg_name}, '%') 
+	        ORDER BY tg_id DESC
+	    ) AS temp
+	    WHERE rn <![CDATA[>=]]> #{start} AND rn <![CDATA[<=]]> #{end}
+	</select>
+	
+	<!-- 타이어 브랜드 가져오기 -->
+	<select id="getTireBrandPrint" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
+	    SELECT * FROM tire_brand 
+	    WHERE tb_ea = '1'
+	    ORDER BY tb_order
+	</select>
+	
+	<!-- 타이어 아이템 카운트 -->
+	<select id="getTireCountByMz" resultType="int">
+	    SELECT COUNT(ti_tg_id) FROM tire_item WHERE ti_tg_id = #{val}
+	</select>
+	
+	<!-- 타이어 그룹 삭제 -->
+	<delete id="deleteTireGroup">
+	    DELETE FROM tire_group WHERE tg_id = #{tg_id}
+	</delete>
+	
+	<!-- 타이어 그룹 업데이트 (인쇄 여부) -->
+	<update id="tirePrintOnOff">
+	    UPDATE tire_group
+	    SET tg_print = #{tg_print}
+	    WHERE tg_id = #{tg_id}
+	</update>
+	
+	<!-- 타이어 그룹 업데이트 (세단 추천) -->
+	<update id="tireSedanRecommend">
+	    UPDATE tire_group
+	    SET tg_sedan = #{tg_sedan}
+	    WHERE tg_id = #{tg_id}
+	</update>
+	
+	<!-- 타이어 그룹 업데이트 (SUV 추천) -->
+	<update id="tireSuvRecommend">
+	    UPDATE tire_group
+	    SET tg_suv = #{tg_suv}
+	    WHERE tg_id = #{tg_id}
+	</update>
+	
+	<!-- 타이어 그룹 업데이트 (가격) -->
+	<update id="tireGroupDcrateChange">
+	    UPDATE tire_group
+	    SET tg_dcrate = #{tg_dcrate}
+	    WHERE tg_id = #{tg_id}
+	</update>
+	
+	<!-- 타이어 그룹 등록 -->
+	<insert id="tireGroupReg">
+	    INSERT INTO tire_group 
+	    VALUES (#{tg_brand}, #{tg_name}, #{tg_img}, #{tg_text}, #{tg_dcrate}, #{tg_print}, #{tg_sedan}, #{tg_suv}, #{tg_detail})
+	</insert>
+	
+	<!-- 타이어 그룹 PK 가져오기 -->
+	<select id="getTireGroupPk" resultType="int">
+	    SELECT tg_id FROM tire_group WHERE tg_name = #{val}
+	</select>
+	
+	<!-- 타이어 아이템 등록 -->
+	<insert id="tierItemReg">
+	    INSERT INTO tire_item 
+	    VALUES (#{ti_tg_id}, #{ti_width}, #{ti_ratio}, #{ti_inch}, #{ti_stock}, #{ti_pricefac}, #{ti_marking})
+	</insert>
+	
+	<!-- 타이어 그룹 상세 가져오기 -->
+	<select id="getTireGroupDetail" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
+	    SELECT * FROM tire_group WHERE tg_id = #{val}
+	</select>
+	
+	<!-- 타이어 아이템 가져오기 -->
+	<select id="getTireItem" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
+	    SELECT * FROM tire_item WHERE ti_tg_id = #{tg_id}
+	</select>
+	
+	<!-- 타이어 그룹 상세 정보 가져오기 -->
+	<select id="getTireGroupforDetail" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
+	    SELECT * FROM tire_group, tire_item
+	    WHERE ti_tg_id = tg_id
+	    AND ti_id = #{val}
+	</select>
+	
+	<!-- 타이어 아이템 삭제 -->
+	<delete id="tireSizeDelete">
+	    DELETE FROM tire_item WHERE ti_id = #{val}
+	</delete>
+	
+	<!-- 타이어 그룹 업데이트 -->
+	<update id="getTireGroupUpdate">
+	    UPDATE tire_group
+	    SET tg_name = #{tg_name}, tg_text = #{tg_text}, tg_img = #{tg_img}, tg_detail = #{tg_detail}
+	    WHERE tg_id = #{tg_id}
+	</update>
+	
+	<!-- 타이어 사이즈 업데이트 -->
+	<update id="tireSizeChage">
+	    UPDATE tire_item
+	    SET ti_width = #{ti_width}, ti_ratio = #{ti_ratio}, ti_inch = #{ti_inch}
+	    WHERE ti_id = #{ti_id}
+	</update>
+	
+	<!-- 타이어 마킹 업데이트 -->
+	<update id="tireMarckingChange">
+	    UPDATE tire_item
+	    SET ti_marking = #{ti_marking}
+	    WHERE ti_id = #{ti_id}
+	</update>
+	
+	<!-- 타이어 가격 업데이트 -->
+	<update id="tirePriceChange">
+	    UPDATE tire_item
+	    SET ti_pricefac = #{ti_pricefac}
+	    WHERE ti_id = #{ti_id}
+	</update>
+	
+	<!-- 타이어 재고 업데이트 -->
+	<update id="tireStockChange">
+	    UPDATE tire_item
+	    SET ti_stock = #{ti_stock}
+	    WHERE ti_id = #{ti_id}
+	</update>
+	
+	<!-- 타이어 이미지 업데이트 -->
+	<update id="tireImgUpdate">
+	    UPDATE tire_group
+	    SET tg_img = #{tg_img}
+	    WHERE tg_id = #{tg_id}
+	</update>
+	
+	<!-- 타이어 상세 이미지 업데이트 -->
+	<update id="tireImgsUpdate">
+	    UPDATE tire_group
+	    SET tg_detail = #{tg_detail}
+	    WHERE tg_id = #{tg_id}
+	</update>
+	
+	<!-- 타이어 브랜드 가져오기 -->
+	<select id="getTireBrand" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
+	    SELECT * FROM tire_brand ORDER BY tb_order
+	</select>
+	
+	<!-- 특정 타이어 브랜드 가져오기 -->
+	<select id="getOneTireBrand" resultType="com.tireshoppingmall.home.admin.tire.TireDTO">
+	    SELECT * FROM tire_brand WHERE tb_id = #{tb_id}
+	</select>
+	
+	<!-- 타이어 브랜드 카운트 -->
+	<select id="getTireBrandCount" resultType="int">
+	    SELECT COUNT(*) FROM tire_group 
+	    WHERE tg_brand = #{val}
+	</select>
+	
+	<!-- 타이어 브랜드 삭제 -->
+	<delete id="deleteTireBrand">
+	    DELETE FROM tire_brand WHERE tb_name = #{tb_name}
+	</delete>
+	
+	<!-- 타이어 브랜드 인쇄 여부 업데이트 -->
+	<update id="tireBrandPrintOnOff">
+	    UPDATE tire_brand
+	    SET tb_ea = #{tb_ea}
+	    WHERE tb_name = #{tb_name}
+	</update>
+	
+	<!-- 타이어 브랜드 이름 변경 -->
+	<update id="tireBrandNameChange">
+	    UPDATE tire_brand
+	    SET tb_name = #{tb_name}
+	    WHERE tb_id = #{tb_id}
+	</update>
+	
+	<!-- 타이어 그룹 브랜드 이름 변경 -->
+	<update id="tireGroupBrandNameChange">
+	    UPDATE tire_group
+	    SET tg_brand = #{tb_name}
+	    WHERE tg_tb_id = #{tb_id}
+	</update>
+	
+	<!-- 타이어 브랜드 순서 변경 -->
+	<update id="tireBrandOrderChange">
+	    UPDATE tire_brand
+	    SET tb_order = #{tb_order}
+	    WHERE tb_name = #{tb_name}
+	</update>
+	
+	<!-- 타이어 브랜드 등록 -->
+	<insert id="regTireBrand">
+	    INSERT INTO tire_brand 
+	    VALUES (#{tb_name}, #{tb_ea}, #{tb_order}, #{tb_img})
+	</insert>
+	
+	<!-- 타이어 사이즈 신규 등록 -->
+	<insert id="adminTireSizeNewInsertReg">
+	    INSERT INTO tire_item 
+	    VALUES (#{ti_tg_id}, #{ti_width}, #{ti_ratio}, #{ti_inch}, #{ti_stock}, #{ti_pricefac}, #{ti_marking})
+	</insert>
 
 </mapper>

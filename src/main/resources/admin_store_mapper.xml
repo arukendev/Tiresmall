@@ -2,69 +2,79 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.tireshoppingmall.home.admin.store.AdminStoreMapper">
+	
+	<!-- 지점 카운트 -->
 	<select id="getBranchCount" resultType="int">
-		select count(*) from branch
-		where b_name like '%'||#{b_name}||'%'
-		<if test="b_area != ''">and b_area like '%'||#{b_area}||'%'  </if>
+	    SELECT COUNT(*) FROM branch
+	    WHERE b_name LIKE CONCAT('%', #{b_name}, '%')
+	    <if test="b_area != ''"> 
+	        AND b_area LIKE CONCAT('%', #{b_area}, '%')  
+	    </if>
 	</select>
-
- 
+	
+	<!-- 지점 리스트 -->
 	<select id="getBranchlist" resultType="com.tireshoppingmall.home.admin.store.BranchDTO">
-
-		select * from (
-		select rownum as rn, b_id, b_sortation, b_area, b_addr,b_name, b_time, b_service, b_mapdata,
-		b_manager, b_managernumber, b_branchnumber, b_cr , b_email, b_file
-		from(select * from branch where 
-		b_name like '%'||#{b_name}||'%'
-		<if test="b_area != ''"> and b_area like '%'||#{b_area}||'%'  </if>)
-		)  where rn &gt;= #{start} and rn &lt;= #{end}
+	    SELECT * FROM (
+	        SELECT @rownum := @rownum + 1 AS rn, b_id, b_sortation, b_area, b_addr, b_name, b_time, b_service, b_mapdata,
+	            b_manager, b_managernumber, b_branchnumber, b_cr, b_email, b_file
+	        FROM branch,
+	        (SELECT @rownum := 0) r
+	        WHERE 
+	            b_name LIKE CONCAT('%', #{b_name}, '%')
+	            <if test="b_area != ''"> 
+	                AND b_area LIKE CONCAT('%', #{b_area}, '%')  
+	            </if>
+	    ) AS temp
+	    WHERE rn <![CDATA[>=]]> #{start} AND rn <![CDATA[<=]]> #{end}
 	</select>
-
-
+	
+	<!-- 모든 지점 가져오기 -->
 	<select id="getAllBranch" resultType="com.tireshoppingmall.home.admin.store.BranchDTO">
-		select * from branch
+	    SELECT * FROM branch
 	</select>
-	<select id="getAllBranchName"  resultType="com.tireshoppingmall.home.admin.store.BranchDTO">
-		select b_name,b_id from branch
+	
+	<!-- 지점 이름과 ID 가져오기 -->
+	<select id="getAllBranchName" resultType="com.tireshoppingmall.home.admin.store.BranchDTO">
+	    SELECT b_name, b_id FROM branch
 	</select>
-
+	
+	<!-- 지점 등록 -->
 	<insert id="regBranch" parameterType="com.tireshoppingmall.home.admin.store.BranchDTO">
-		insert into branch
-		values(branch_seq.nextval,#{b_sortation},#{b_area},
-		#{b_addr},#{b_name},#{b_time},#{b_service},#{b_mapdata},
-		#{b_manager},#{b_managernumber},#{b_branchnumber},#{b_cr},
-		#{b_email},#{b_file}),#{B_MAINIMG}
+	    INSERT INTO branch 
+	    VALUES (#{b_sortation}, #{b_area}, #{b_addr}, #{b_name}, #{b_time}, #{b_service}, 
+	            #{b_mapdata}, #{b_manager}, #{b_managernumber}, #{b_branchnumber}, #{b_cr}, #{b_email}, 
+	            #{b_file}, #{B_MAINIMG})
 	</insert>
-
+	
+	<!-- 지점 이름 검색 -->
 	<select id="branchSearchbranchname" resultType="com.tireshoppingmall.home.admin.store.BranchDTO">
-		select * from branch where 
-		b_name like '%'||#{b_name}||'%'
-		<if test="b_area != ''"> and b_area like '%'||#{b_area}||'%'  </if>
+	    SELECT * FROM branch 
+	    WHERE b_name LIKE CONCAT('%', #{b_name}, '%')
+	    <if test="b_area != ''"> 
+	        AND b_area LIKE CONCAT('%', #{b_area}, '%')  
+	    </if>
 	</select>
-
-	<!-- <select id="branchSearcharea" resultType="com.tireshoppingmall.home.admin.store.BranchDTO" 
-		parameterType="com.tireshoppingmall.home.admin.store.SearchBranchDTO"> select 
-		* from branch where b_area like '%'||#{branchareaInput}||'%' </select> -->
-
+	
+	<!-- 특정 지점 가져오기 -->
 	<select id="getbranch" resultType="com.tireshoppingmall.home.admin.store.BranchDTO">
-		select * from branch where b_id = #{b_id}
+	    SELECT * FROM branch WHERE b_id = #{b_id}
 	</select>
-
+	
+	<!-- 지점 업데이트 -->
 	<update id="updatebranch" parameterType="com.tireshoppingmall.home.admin.store.BranchDTO">
-		update branch set
-		b_sortation = #{b_sortation}, b_area = #{b_area}, b_addr = #{b_addr},
-		b_name = #{b_name}, b_time = #{b_time}, b_service = #{b_service},
-		b_mapdata = #{b_mapdata}, b_manager = #{b_manager}, b_managernumber = #{b_managernumber},
-		b_branchnumber = #{b_branchnumber}, b_cr = #{b_cr}, b_email = #{b_email}, b_file = #{b_file}
-		,B_MAINIMG = #{B_MAINIMG}
-		where b_id = #{b_id}
+	    UPDATE branch SET
+	        b_sortation = #{b_sortation}, b_area = #{b_area}, b_addr = #{b_addr},
+	        b_name = #{b_name}, b_time = #{b_time}, b_service = #{b_service},
+	        b_mapdata = #{b_mapdata}, b_manager = #{b_manager}, b_managernumber = #{b_managernumber},
+	        b_branchnumber = #{b_branchnumber}, b_cr = #{b_cr}, b_email = #{b_email}, b_file = #{b_file},
+	        b_mainimg = #{B_MAINIMG}
+	    WHERE b_id = #{b_id}
 	</update>
-
+	
+	<!-- 지점 삭제 -->
 	<delete id="deletebranch">
-		delete branch where b_id = #{b_id}
+	    DELETE FROM branch WHERE b_id = #{b_id}
 	</delete>
-
-
 
 
 </mapper>
