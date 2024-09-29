@@ -16,45 +16,46 @@
 	
 	<!-- Notice 등록  -->
 	<insert id="regNotice" parameterType="com.tireshoppingmall.home.admin.board.NoticeDTO">
-		insert into notice values(notice_seq.nextval, #{selectOption}, #{n_title}, #{n_txt}, sysdate)
+	    insert into notice (n_sortation, n_title, n_txt, n_date) values (#{selectOption}, #{n_title}, #{n_txt}, NOW())
 	</insert>
-
+	
 	<!-- Notice 업데이트 -->
 	<update id="updateNotice">
-		update notice set n_sortation = #{selectOption}, n_title = #{n_title}, n_txt = #{n_txt}, n_date = sysdate where n_no = #{n_no}
+	    update notice set n_sortation = #{selectOption}, n_title = #{n_title}, n_txt = #{n_txt}, n_date = NOW() where n_no = #{n_no}
 	</update>
 	
 	<!-- Notice 삭제 -->
 	<delete id="deleteNotice">
-		delete notice where n_no = #{n_no}
+	    delete from notice where n_no = #{n_no}
 	</delete>
-	
+
 	<!-- Notice 페이징 (notice 갯수 카운트) -->
 	<select id="getNoticeCount" resultType="int">
-		select count(*)
-		from notice
-		where n_title like '%'||#{titleInput}||'%'
+	    select count(*)
+	    from notice
+	    where n_title like CONCAT('%', #{titleInput}, '%')
 	</select>
 	
 	<!-- Notice 페이징-->
 	<select id="getNotice" resultType="com.tireshoppingmall.home.admin.board.NoticeDTO">
-		select * from 
-			(select rownum as rn, n_no, n_sortation, n_title, n_txt, n_date from(
-			select * from notice where n_title like '%'||#{titleInput}||'%'
-			<choose>
-				<when test="selectOption == 1">
-					and n_sortation = '안내' 
-				</when>
-				<when test="selectOption == 2">
-					and n_sortation = '매장'
-				</when>
-				<when test="selectOption == 3">
-					and n_sortation = '프로모션'
-				</when>
-			</choose>
-			order by n_no desc)
-			)where rn &gt;= #{start} and rn &lt;= #{end}
+	    select * from 
+	        (select n_no, n_sortation, n_title, n_txt, n_date from notice 
+	        where n_title like CONCAT('%', #{titleInput}, '%')
+	        <choose>
+	            <when test="selectOption == 1">
+	                and n_sortation = '안내' 
+	            </when>
+	            <when test="selectOption == 2">
+	                and n_sortation = '매장'
+	            </when>
+	            <when test="selectOption == 3">
+	                and n_sortation = '프로모션'
+	            </when>
+	        </choose>
+	        order by n_no desc
+	        limit #{end - start + 1} offset #{start - 1}) as paginated
 	</select>
+
 	
 	<!-- FAQ mapper  -->
 	
@@ -69,61 +70,83 @@
 	
 	<!-- FAQ 등록  -->
 	<insert id="regFaq" parameterType="com.tireshoppingmall.home.admin.board.FaqDTO">
-		insert into faq values(faq_seq.nextval, #{selectOption}, #{f_title}, #{f_txt}, sysdate)
+	    insert into faq values(#{selectOption}, #{f_title}, #{f_txt}, NOW())
 	</insert>
 	
 	<!-- FAQ 업데이트 -->
 	<update id="updateFaq" parameterType="com.tireshoppingmall.home.admin.board.FaqDTO">
-		update faq set f_sortation = #{selectOption}, f_title = #{f_title}, f_txt = #{f_txt}, f_date = sysdate where f_no = #{f_no}
+	    update faq set f_sortation = #{selectOption}, f_title = #{f_title}, f_txt = #{f_txt}, f_date = NOW() where f_no = #{f_no}
 	</update>
 	
 	<!-- FAQ 삭제 -->
 	<delete id="deleteFaq">
-		delete faq where f_no = #{f_no}
+	    delete from faq where f_no = #{f_no}
 	</delete>
 	
 	<!-- FAQ 페이징 (faq 갯수 카운트) -->
 	<select id="getFaqCount" resultType="int">
-		select count(*)
-		from faq
-		where f_title like '%'||#{titleInput}||'%'
+	    select count(*)
+	    from faq
+	    where f_title like CONCAT('%', #{titleInput}, '%')
 	</select>
 	
-	<!-- FAQ 페이징-->
+	<!-- FAQ 페이징 -->
 	<select id="getFaq" resultType="com.tireshoppingmall.home.admin.board.FaqDTO">
-		select * from 
-			(select rownum as rn, f_no, f_sortation, f_title, f_txt, f_date from(
-			select * from faq where f_title like '%'||#{titleInput}||'%'
-			<choose>
-				<when test="selectOption == 1">
-					and f_sortation = '주문/배송' 
-				</when>
-				<when test="selectOption == 2">
-					and f_sortation = '상품관련'
-				</when>
-				<when test="selectOption == 3">
-					and f_sortation = '장착관련'
-				</when>
-				<when test="selectOption == 4">
-					and f_sortation = '반품/교환/취소'
-				</when>
-				<when test="selectOption == 5">
-					and f_sortation = '회원'
-				</when>
-			</choose>
-			order by f_no desc)
-			)where rn &gt;= #{start} and rn &lt;= #{end}
+	    select * from (
+	        select 
+	            @rownum := @rownum + 1 as rn, 
+	            f_no, 
+	            f_sortation, 
+	            f_title, 
+	            f_txt, 
+	            f_date 
+	        from faq, (select @rownum := 0) as r
+	        where f_title like CONCAT('%', #{titleInput}, '%')
+	        <choose>
+	            <when test="selectOption == 1">
+	                and f_sortation = '주문/배송'
+	            </when>
+	            <when test="selectOption == 2">
+	                and f_sortation = '상품관련'
+	            </when>
+	            <when test="selectOption == 3">
+	                and f_sortation = '장착관련'
+	            </when>
+	            <when test="selectOption == 4">
+	                and f_sortation = '반품/교환/취소'
+	            </when>
+	            <when test="selectOption == 5">
+	                and f_sortation = '회원'
+	            </when>
+	        </choose>
+	        order by f_no desc
+	    ) as faq_paged
+	    where rn <![CDATA[>=]]> #{start} and rn <![CDATA[<=]]> #{end}
 	</select>
+
 	
 	<!-- QNA mapper  -->
 	
 	<!-- QNA 전체 조회 -->
 	<select id="getAllQna" resultType="com.tireshoppingmall.home.admin.board.QnaDTO">
-		select q_no, q_title, q_txt, q_date, q_u_no, q_reply_has, u_id, i_name, au.u_no
-		from qna q, auth_user au, auth_userinfo aui
-		where q.q_u_no = au.u_no
-		and au.u_no = aui.u_no
-		order by q_no
+	    select 
+	        q_no, 
+	        q_title, 
+	        q_txt, 
+	        q_date, 
+	        q_u_no, 
+	        q_reply_has, 
+	        u_id, 
+	        i_name, 
+	        au.u_no
+	    from 
+	        qna q 
+	    join 
+	        auth_user au on q.q_u_no = au.u_no
+	    join 
+	        auth_userinfo aui on au.u_no = aui.u_no
+	    order by 
+	        q_no
 	</select>
 
 	<!-- QNA 부분 검색-->
@@ -142,132 +165,153 @@
 	
 	<!-- QNA답변 카운트 -->
 	<select id="countQnAReply" resultType="int">
-		select count(*)
-		from qna_reply
-		where q_reply_board_no = #{q_reply_board_no}
+	    select count(*)
+	    from qna_reply
+	    where q_reply_board_no = #{q_reply_board_no}
 	</select>
-	<!-- QNA답변-->
+	
+	<!-- QNA답변 -->
 	<insert id="insertQnAReply" parameterType="com.tireshoppingmall.home.admin.board.QnaReplyDTO">
-		insert
-		into qna_reply
-		values(qna_reply_seq.nextval, #{q_reply_txt}, sysdate, #{q_reply_board_no})
+	    insert into qna_reply
+	    values (#{q_reply_txt}, now(), #{q_reply_board_no}) <!-- MySQL에서는 시퀀스를 사용하지 않음 -->
 	</insert>
-	<!-- QNA답변 완료처리-->
+	
+	<!-- QNA답변 완료처리 -->
 	<update id="updateQna">
-		update qna
-		set q_reply_has = 1
-		where q_no = #{q_reply_board_no}
+	    update qna
+	    set q_reply_has = 1
+	    where q_no = #{q_reply_board_no}
 	</update>
 	
 	<!-- QNA답변 수정 -->
 	<update id="updateQnAReply">
-		update qna_reply
-		set q_reply_txt = #{q_reply_txt}
-		where q_reply_board_no = #{q_reply_board_no}
+	    update qna_reply
+	    set q_reply_txt = #{q_reply_txt}
+	    where q_reply_board_no = #{q_reply_board_no}
 	</update>
 	
-	<!-- QNA 모달에 값 가져오기-->
+	<!-- QNA 모달에 값 가져오기 -->
 	<select id="getReply" resultType="com.tireshoppingmall.home.admin.board.QnaReplyDTO">
-		select * from qna_reply where q_reply_board_no = #{q_reply_board_no}
+	    select * from qna_reply where q_reply_board_no = #{q_reply_board_no}
 	</select>
 	
-	<!-- QNA 페이징 (faq 갯수 카운트) -->
+	<!-- QNA 페이징 (QnA 갯수 카운트) -->
 	<select id="getQnaCount" resultType="int">
-		select count(*)
-		from qna q, auth_user au, auth_userinfo aui
-		where q.q_u_no = au.u_no and au.u_no = aui.i_no
-		and q_title like '%'||#{titleInput}||'%'
-        and u_id like '%'||#{idInput}||'%'
-        and i_name like '%'||#{nameInput}||'%'
+	    select count(*)
+	    from qna q
+	    join auth_user au on q.q_u_no = au.u_no
+	    join auth_userinfo aui on au.u_no = aui.i_no
+	    where q.q_title like CONCAT('%', #{titleInput}, '%')
+	    and au.u_id like CONCAT('%', #{idInput}, '%')
+	    and aui.i_name like CONCAT('%', #{nameInput}, '%')
 	</select>
 	
-	<!-- QNA 페이징-->
+	<!-- QNA 페이징 -->
 	<select id="getQna" resultType="com.tireshoppingmall.home.admin.board.QnaDTO">
-		select * from
-        (select rownum as rn, q_no, q_u_no, q_title, q_txt, q_date, q_reply_has, u_id, i_name
-        from(select * from qna q, auth_user au, auth_userinfo aui where q.q_u_no = au.u_no and au.u_no = aui.i_no and
-       		<if test="nameInput != ''">
-         	  aui.i_name = #{nameInput} and
-			</if>
-			<if test="idInput != ''">	
-          	  au.u_id = #{idInput} and
-            </if>
-           	  q.q_title like '%'||#{titleInput}||'%' order by q_date desc))
-        where rn &gt;= #{start} and rn &lt;= #{end}
+	    select * from (
+	        select 
+	            @rownum := @rownum + 1 as rn, 
+	            q_no, q_u_no, q_title, q_txt, q_date, q_reply_has, u_id, i_name
+	        from (
+	            select * 
+	            from qna q
+	            join auth_user au on q.q_u_no = au.u_no
+	            join auth_userinfo aui on au.u_no = aui.i_no 
+	            where 1=1
+	            <if test="nameInput != ''">
+	                and aui.i_name = #{nameInput}
+	            </if>
+	            <if test="idInput != ''">    
+	                and au.u_id = #{idInput}
+	            </if>
+	            and q.q_title like CONCAT('%', #{titleInput}, '%') 
+	            order by q_date desc
+	        ) as qna_with_user
+	    ) as paged_qna
+	    where rn <![CDATA[>=]]> #{start} and rn <![CDATA[<=]]> #{end}
 	</select>
+
         
 	<!-- EVENT 페이징 (event 갯수 카운트) -->
 	<select id="getEventCount" resultType="int">
-		select count(*)
-		from event
-<!--
-		where 
- 		and q_title like '%'||#{titleInput}||'%'
-        and q_id like '%'||#{idInput}||'%'
-        and a_name like '%'||#{nameInput}||'%' -->
+	    select count(*)
+	    from shop_event
+	    <!--
+	    where 
+	    e_title like CONCAT('%', #{titleInput}, '%')
+	    and e_id like CONCAT('%', #{idInput}, '%')
+	    and a_name like CONCAT('%', #{nameInput}, '%') -->
 	</select>
 	
-	<!-- Event 페이징-->
+	<!-- Event 페이징 -->
 	<select id="getEvent" resultType="com.tireshoppingmall.home.admin.board.EventDTO">
-		select * from
-        (select rownum as rn, e_no, e_title, e_date, e_content, e_duration,e_popup,e_mainimg,e_detailimg,e_status
-        from(select * from event e
-        <!-- 
-       		<if test="nameInput != ''">
-         	  a.a_name = #{nameInput} and
-			</if>
-			<if test="idInput != ''">	
-          	  q.q_id = #{idInput} and
-            </if>
-           	  q.q_title like '%'||#{titleInput}||'%' 
-         -->
-           	  order by e_date desc
-         ))
-        where rn &gt;= #{start} and rn &lt;= #{end}
+	    select * from (
+	        select 
+	            @rownum := @rownum + 1 as rn, 
+	            e_no, e_title, e_date, e_content, e_duration, e_popup, e_mainimg, e_detailimg, e_status
+	        from (
+	            select * 
+	            from shop_event 
+	            <!--
+	            <if test="nameInput != ''">
+	                and a_name = #{nameInput}
+	            </if>
+	            <if test="idInput != ''">    
+	                and e_id = #{idInput}
+	            </if>
+	            e_title like CONCAT('%', #{titleInput}, '%') 
+	            -->
+	            order by e_date desc
+	        ) as event_ordered
+	    ) as paged_events
+	    where rn <![CDATA[>=]]> #{start} and rn <![CDATA[<=]]> #{end}
 	</select>
+
         
     <!-- popup 제어 on/off 업데이트 -->
-        <update id="switchPopup">
-        	update event
-        	set e_popup = #{e_popup}
-        	where e_no = #{e_no}
-        </update>
-        
-        
-    <!-- 이벤트 디테일 (1개 조회)-->    
-        <select id="eventDetail" resultType="com.tireshoppingmall.home.admin.board.EventDTO">
-        	select * from event where e_no=#{e_no}
-        </select>
-        
-    <!-- 이벤트 수정 -->
-		<update id="eventUpdate">
-			update event
-			<set>
-				<choose>
-					<when test="e_title != null">
-							e_title = #{e_title}
-					</when>
-					<when test="e_content != null">
-							e_content = #{e_content}
-					</when>
-					<when test="e_duration != null">
-							e_duration = #{e_duration}
-					</when>
-					<when test="e_status != null">
-							e_status = #{e_status}
-					</when>
-				</choose>
-			</set>
-			where e_no = #{e_no}
-		</update>
-        
-        <!-- 이벤트 삭제 -->
-        <delete id="eventDelete">
-        	delete event where e_no = #{e_no}
-        </delete>
-        <!-- 이벤트 등록 -->
+	<update id="switchPopup">
+	    update event
+	    set e_popup = #{e_popup}
+	    where e_no = #{e_no}
+	</update>
+	
+	<!-- 이벤트 디테일 (1개 조회) -->    
+	<select id="eventDetail" resultType="com.tireshoppingmall.home.admin.board.EventDTO">
+	    select * from shop_event where e_no = #{e_no}
+	</select>
+	
+	<!-- 이벤트 수정 -->
+	<update id="eventUpdate">
+	    update event
+	    <set>
+	        <choose>
+	            <when test="e_title != null">
+	                e_title = #{e_title},
+	            </when>
+	            <when test="e_content != null">
+	                e_content = #{e_content},
+	            </when>
+	            <when test="e_duration != null">
+	                e_duration = #{e_duration},
+	            </when>
+	            <when test="e_status != null">
+	                e_status = #{e_status}
+	            </when>
+	        </choose>
+	    </set>
+	    where e_no = #{e_no}
+	</update>
+	
+	<!-- 이벤트 삭제 -->
+	<delete id="eventDelete">
+	    delete from shop_event where e_no = #{e_no}
+	</delete>
+	
+	<!-- 이벤트 등록 -->
 	<insert id="eventReg">
-		insert into event values(event_seq.nextval, #{e_title},sysdate,#{e_content},#{e_duration},#{e_popup},#{e_mainimg},#{e_detailimg},#{e_status})
+	    insert into event (e_title, e_date, e_content, e_duration, e_popup, e_mainimg, e_detailimg, e_status)
+	    values (#{e_title}, NOW(), #{e_content}, #{e_duration}, #{e_popup}, #{e_mainimg}, #{e_detailimg}, #{e_status})
 	</insert>
+
 
 </mapper>

@@ -1,91 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tireshoppingmall.home.admin.car.AdminCarMapper">
+	
 	<!--페이징 작업  -->
 	<select id="getCarCount" resultType="int">
-		select count(*) from Car
-		where c_name like '%'||#{c_name}||'%'
-		<if test="c_brand != '전체'">
-			and c_brand like '%'||#{c_brand}||'%'
-		</if>
+	    SELECT COUNT(*) FROM Car
+	    WHERE c_name LIKE CONCAT('%', #{c_name}, '%')
+	    <if test="c_brand != '전체'">
+	        AND c_brand LIKE CONCAT('%', #{c_brand}, '%')
+	    </if>
 	</select>
 	
 	<!-- 차 전체 가져오기 -->
 	<select id="getAllCar" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
-		select * from 
-		(select rownum as rn, c_id, c_name, c_year1, c_year2,c_brand, c_ft, c_bt, c_file, cb_name
-		from (select * from car INNER JOIN car_brand ON c_brand = cb_name
-		where 
-		<if test="c_brand != '전체'">
-			c_brand like '%'||#{c_brand}||'%' and 
-		</if> 
-		c_name like '%'||#{c_name}||'%'
-		ORDER BY c_id desc)
-		)WHERE rn &gt;= #{start} and rn &lt;=#{end} 
+	    SELECT * FROM (
+	        SELECT @rownum := @rownum + 1 AS rn, c_id, c_name, c_year1, c_year2, c_brand, c_ft, c_bt, c_file, cb_name
+	        FROM car
+	        INNER JOIN car_brand ON c_brand = cb_name,
+	        (SELECT @rownum := 0) r
+	        WHERE 
+	        <if test="c_brand != '전체'">
+	            c_brand LIKE CONCAT('%', #{c_brand}, '%') AND 
+	        </if>
+	        c_name LIKE CONCAT('%', #{c_name}, '%')
+	        ORDER BY c_id DESC
+	    ) AS temp
+	    WHERE rn <![CDATA[>=]]> #{start} AND rn <![CDATA[<=]]> #{end} 
 	</select>
-	
 	
 	<select id="getCar" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
-		select * from car where C_ID = #{c_id}
+	    SELECT * FROM car WHERE c_id = #{c_id}
 	</select>
-
-
+	
 	<insert id="regCar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
-		insert into Car
-		values(c_id_seq.nextval, #{c_cb_id}, #{c_name}, #{c_year1}, #{c_year2}, #{c_brand}, #{c_ft}, #{c_bt}, #{c_file})
+	    INSERT INTO Car
+	    VALUES (#{c_cb_id}, #{c_name}, #{c_year1}, #{c_year2}, #{c_brand}, #{c_ft}, #{c_bt}, #{c_file})
 	</insert>
 	
 	<select id="getBrandId" resultType="int">
-		select cb_id from car_brand where cb_name = #{c_brand}
+	    SELECT cb_id FROM car_brand WHERE cb_name = #{c_brand}
 	</select>
 	
-	
-	<update id ="updatecar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
-	update car set
-	c_name = #{c_name}, c_year1 = #{c_year1}, c_year2 = #{c_year2},
-	c_brand = #{c_brand}, c_ft = #{c_ft},
-	c_bt = #{c_bt}, c_file = #{c_file}, c_cb_id = #{c_cb_id}
-	where c_id = #{c_id}
+	<update id="updatecar" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
+	    UPDATE car SET
+	    c_name = #{c_name}, c_year1 = #{c_year1}, c_year2 = #{c_year2},
+	    c_brand = #{c_brand}, c_ft = #{c_ft},
+	    c_bt = #{c_bt}, c_file = #{c_file}, c_cb_id = #{c_cb_id}
+	    WHERE c_id = #{c_id}
 	</update>
-
-	<delete id="deletecar">
-		delete Car where c_id = #{c_id}
-	</delete>
-
 	
+	<delete id="deletecar">
+	    DELETE FROM Car WHERE c_id = #{c_id}
+	</delete>
 	
 	<!-- 차 브랜드 -->
-
+	
 	<!-- 차브랜드 다가져오기 -->
 	<select id="getAllCarBrands" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
-	SELECT * FROM car_brand
-	ORDER by cb_order
+	    SELECT * FROM car_brand
+	    ORDER BY cb_order
 	</select>
-
-
+	
 	<delete id="deletebrand">
-   		delete from car_brand where cb_id = #{cb_id}
+	    DELETE FROM car_brand WHERE cb_id = #{cb_id}
 	</delete>
-
+	
 	<insert id="regbrand" parameterType="com.tireshoppingmall.home.admin.car.CarDTO">
-		insert into car_brand
-		values(cb_id_seq.nextval,#{cb_name},#{cb_order})
+	    INSERT INTO car_brand
+	    VALUES (#{cb_name}, #{cb_order})
 	</insert>
-
-	<select id= "getallBrandCount" resultType="int">
-		select count(*) from car where c_cb_id = #{val}
+	
+	<select id="getallBrandCount" resultType="int">
+	    SELECT COUNT(*) FROM car WHERE c_cb_id = #{val}
 	</select>
-																										
+	
 	<update id="carBrandNameChange">
-		update car_brand 
-		set cb_name = #{cb_name}
-		where cb_id = #{cb_id}
+	    UPDATE car_brand 
+	    SET cb_name = #{cb_name}
+	    WHERE cb_id = #{cb_id}
 	</update>
+	
 	<update id="carBrandChange">
-		update car 
-		set c_brand = #{cb_name}
-		where c_cb_id = #{cb_id}
+	    UPDATE car 
+	    SET c_brand = #{cb_name}
+	    WHERE c_cb_id = #{cb_id}
 	</update>
-
 	
 </mapper>

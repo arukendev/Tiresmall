@@ -3,36 +3,55 @@
 <mapper namespace="com.tireshoppingmall.home.order.MainOrderMapper">
 
 	<insert id="setOrder">
-		insert into product_order values(
-		    o_no_seq.nextval,
-		    #{o_sortation},
-		    #{o_ordernumber},
-		    CURRENT_DATE,
-		    #{o_ordername},
-		    #{o_product},
-		    #{o_price},
-		    #{o_paymethod},
-		    #{o_deliverymethod},
-		    #{o_step},
-		    #{o_storeshop},
-		    #{o_tireinstalldate},
-		    #{o_name},
-		    #{o_phone},
-		    #{o_email},
-		    #{o_caryear},
-		    #{o_carbrand},
-		    #{o_carname},
-		    #{o_carnumber},
-		    #{o_request}
-		)
+	    insert into product_order (
+	        o_sortation,
+	        o_ordernumber,
+	        o_orderdate,
+	        o_ordername,
+	        o_product,
+	        o_price,
+	        o_paymethod,
+	        o_deliverymethod,
+	        o_step,
+	        o_storeshop,
+	        o_tireinstalldate,
+	        o_name,
+	        o_phone,
+	        o_email,
+	        o_caryear,
+	        o_carbrand,
+	        o_carname,
+	        o_carnumber,
+	        o_request
+	    ) values (
+	        #{o_sortation},
+	        #{o_ordernumber},
+	        CURRENT_DATE,
+	        #{o_ordername},
+	        #{o_product},
+	        #{o_price},
+	        #{o_paymethod},
+	        #{o_deliverymethod},
+	        #{o_step},
+	        #{o_storeshop},
+	        #{o_tireinstalldate},
+	        #{o_name},
+	        #{o_phone},
+	        #{o_email},
+	        #{o_caryear},
+	        #{o_carbrand},
+	        #{o_carname},
+	        #{o_carnumber},
+	        #{o_request}
+	    )
 	</insert>
 	
 	<select id="getCarName" resultType="com.tireshoppingmall.home.order.CarName">
-		select DISTINCT c_name from car
+	    select DISTINCT c_name from car
 	</select>
 	
 	<select id="getCarBrand" resultType="com.tireshoppingmall.home.order.CarBrand">
-		select cb_name from car_brand ORDER by cb_order
+	    select cb_name from car_brand ORDER by cb_order
 	</select>
 	
 </mapper>

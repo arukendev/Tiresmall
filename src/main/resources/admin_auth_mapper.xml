@@ -9,51 +9,42 @@
 
 
 	<update id="authUpdate">
-		update auth_userinfo
-		set i_grade=#{i_grade}
-		where i_no = #{i_no}
+	    UPDATE auth_userinfo
+	    SET i_grade = #{i_grade}
+	    WHERE i_no = #{i_no}
 	</update>
 
 	<select id="getAuthCount" resultType="int">
-		select count(*)
-		from auth_user u , auth_userinfo ui
-		where u.u_no =
-		ui.i_no and
-		u_id like '%'||#{u_id}||'%' and
-		i_name like '%'||#{i_name}||'%'
-		<if test="i_grade != 0">
-			and i_grade = #{i_grade}
-		</if>
+	    SELECT COUNT(*)
+	    FROM auth_user u
+	    JOIN auth_userinfo ui ON u.u_no = ui.i_no
+	    WHERE u.u_id LIKE CONCAT('%', #{u_id}, '%')
+	    AND ui.i_name LIKE CONCAT('%', #{i_name}, '%')
+	    <if test="i_grade != 0">
+	        AND ui.i_grade = #{i_grade}
+	    </if>
 	</select>
-
-	<select id="getAuth"
-		resultType="com.tireshoppingmall.home.admin.auth.AuthDTO">
-
-
-		select * from (
-		select rownum as rn,u_no,
-		u_id,u_logintype,i_no,i_name,i_phonenum,i_newdate,i_grade,i_email,
-		mc_number,mc_id,mc_carname,mc_brand,mc_year
-		from (
-		select * from auth_user u
-		inner join auth_userinfo ui on u.u_no = ui.i_no
-		left OUTER JOIN my_car
-		mc on u.u_no = mc.mc_id
-		where
-		<if test="u_id != ''">
-			u.u_id like '%'||#{u_id}||'%' and
-		</if>
-			ui.i_name like '%'||#{i_name}||'%'
-		<if test="mc_number != null">
-			and mc.mc_number = #{mc_number}
-		</if>
-		<if test="i_grade != 0">
-			and ui.i_grade = #{i_grade}
-		</if>
-		order by ui.i_newdate desc)
-		)where rn &gt;= #{start} and rn &lt;=
-		#{end}
-
+	
+	<select id="getAuth" resultType="com.tireshoppingmall.home.admin.auth.AuthDTO">
+	    SELECT u.u_no, u.u_id, u.u_logintype, ui.i_no, ui.i_name, ui.i_phonenum, 
+	           ui.i_newdate, ui.i_grade, ui.i_email, mc.mc_number, mc.mc_id, 
+	           mc.mc_carname, mc.mc_brand, mc.mc_year
+	    FROM auth_user u
+	    INNER JOIN auth_userinfo ui ON u.u_no = ui.i_no
+	    LEFT JOIN my_car mc ON u.u_no = mc.mc_id
+	    WHERE 1=1
+	    <if test="u_id != ''">
+	        AND u.u_id LIKE CONCAT('%', #{u_id}, '%')
+	    </if>
+	    AND ui.i_name LIKE CONCAT('%', #{i_name}, '%')
+	    <if test="mc_number != null">
+	        AND mc.mc_number = #{mc_number}
+	    </if>
+	    <if test="i_grade != 0">
+	        AND ui.i_grade = #{i_grade}
+	    </if>
+	    ORDER BY ui.i_newdate DESC
+	    LIMIT #{start}, #{end} 
 	</select>
 
 </mapper>

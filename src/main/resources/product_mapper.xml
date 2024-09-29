@@ -1,113 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tireshoppingmall.home.product.ProductMapper">
+	
 	<select id="getProductGroupCount" resultType="int">
-		select count(*)
-        from tire_group, tire_brand
-        where tg_brand like '%'||#{search}||'%'
-       		<if test="search2 != ''">
-        		and tg_${search2} = 1
-       		</if>
-        and tg_brand = tb_name
-        order by tb_order, tg_id
+	    select count(*)
+	    from tire_group
+	    join tire_brand on tg_brand = tb_name
+	    where tg_brand like CONCAT('%', #{search}, '%')
+	        <if test="search2 != ''">
+	            and tg_${search2} = 1
+	        </if>
+	    order by tb_order, tg_id
 	</select>
+	
 	<select id="getProductGroup" resultType="com.tireshoppingmall.home.product.ProductGroupDTO">
-		select *
-        from (
-        	select rownum as rn, tg_id, tg_brand, tg_name, tg_img, tg_text, tg_dcrate,  tg_print, tg_sedan, tg_suv
-                from (
-                    select * from tire_group, tire_brand
-                where tg_brand like '%'||#{search}||'%'
-	        		<if test="search2 != ''">
-		        		and tg_${search2} = 1
-	        		</if>
-                and tg_brand = tb_name
-        		order by tb_order, tg_id
-            )
-        )
-        where rn &gt;= #{start} and rn &lt;= #{end}	
+	    select *
+	    from (
+	        select @rownum := @rownum + 1 as rn, tg_id, tg_brand, tg_name, tg_img, tg_text, tg_dcrate, tg_print, tg_sedan, tg_suv
+	        from (
+	            select * from tire_group
+	            join tire_brand on tg_brand = tb_name
+	            where tg_brand like CONCAT('%', #{search}, '%')
+	                <if test="search2 != ''">
+	                    and tg_${search2} = 1
+	                </if>
+	            order by tb_order, tg_id
+	        ) as subquery
+	    ) as numbered
+	    where rn <![CDATA[>=]]> #{start} and rn <![CDATA[<=]]> #{end} 
 	</select>
 	
 	<!-- 인치 최소값 -->
 	<select id="getMinInchOfGroup" resultType="String">
-		select min(ti_inch) from tire_item
-		where ti_tg_id = #{tg_id}
+	    select min(ti_inch) from tire_item
+	    where ti_tg_id = #{tg_id}
 	</select>
 	
 	<!-- 인치 최대값 -->
 	<select id="getMaxInchOfGroup" resultType="String">
-		select max(ti_inch) from tire_item
-		where ti_tg_id = #{tg_id}
+	    select max(ti_inch) from tire_item
+	    where ti_tg_id = #{tg_id}
 	</select>
 	
 	<!-- 가격 최소값  // 가격은 임시로 ti_pricefac(공장가격)으로 함 -->
 	<select id="getMinPriceOfGroup" resultType="String">
-		select min(ti_pricefac) from tire_item
-		where ti_tg_id = #{tg_id}
+	    select min(ti_pricefac) from tire_item
+	    where ti_tg_id = #{tg_id}
 	</select>
 	
 	<!-- 가격 최대값  // 가격은 임시로 ti_pricefac(공장가격)으로 함 -->
 	<select id="getMaxPriceOfGroup" resultType="String">
-		select max(ti_pricefac) from tire_item
-		where ti_tg_id = #{tg_id}
+	    select max(ti_pricefac) from tire_item
+	    where ti_tg_id = #{tg_id}
 	</select>
 	
 	<select id="getProductGroupJson" resultType="com.tireshoppingmall.home.product.ProductGroupDTO">
-		select *
-        from tire_group
-        where tg_sedan like '%'||#{search}||'%' and tg_brand like '%'||#{searchBrand}||'%'
+	    select *
+	    from tire_group
+	    where tg_sedan like CONCAT('%', #{search}, '%') and tg_brand like CONCAT('%', #{searchBrand}, '%')
 	</select>
 	
 	<!-- 타이어 그룹을 아이디 별로 가져옴 -->
 	<select id="getProduct" resultType="com.tireshoppingmall.home.product.ProductDTO">
-		select *
-		from tire_group
-		where tg_id = #{tg_id}
+	    select *
+	    from tire_group
+	    where tg_id = #{tg_id}
 	</select>
 	
 	<select id="getProductOneSize" resultType="com.tireshoppingmall.home.product.ProductDTO">
-		select * from tire_item, tire_group
-		where tg_id = ti_tg_id
-		and tg_id = #{tg_id}
-		and ti_width = #{ti_width}
-		and ti_ratio = #{ti_ratio}
-		and ti_inch = #{ti_inch}
+	    select * from tire_item
+	    join tire_group on tg_id = ti_tg_id
+	    where tg_id = #{tg_id}
+	    and ti_width = #{ti_width}
+	    and ti_ratio = #{ti_ratio}
+	    and ti_inch = #{ti_inch}
 	</select>
 	
 	<!-- 타이어 그룹 아이디로 타이어 아이템을 가져옴  -->
 	<select id="getProductSizes" resultType="com.tireshoppingmall.home.product.ProductDTO">
-		select *
-		from tire_group, tire_item
-		where tg_id = ti_tg_id
-		and tg_id = #{tg_id}
-		order by ti_inch, ti_width, ti_ratio
+	    select *
+	    from tire_group
+	    join tire_item on tg_id = ti_tg_id
+	    where tg_id = #{tg_id}
+	    order by ti_inch, ti_width, ti_ratio
 	</select>
 	
 	<!-- 타이어 검색  -->
-	<select id="getTireGroup"  resultType="com.tireshoppingmall.home.product.ProductDTO">
-		select * from tire_item, tire_group
-		where tg_id = ti_tg_id
-		and ti_width = #{ti_width}
-		and ti_ratio = #{ti_ratio}
-		and ti_inch = #{ti_inch}
+	<select id="getTireGroup" resultType="com.tireshoppingmall.home.product.ProductDTO">
+	    select * from tire_item
+	    join tire_group on tg_id = ti_tg_id
+	    where ti_width = #{ti_width}
+	    and ti_ratio = #{ti_ratio}
+	    and ti_inch = #{ti_inch}
 	</select>
 	
 	<select id="getCarAllBrand" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
-		select cb_name from car_brand ORDER BY cb_order
+	    select cb_name from car_brand ORDER BY cb_order
 	</select>
 	
 	<select id="getCarAllName" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
-		select c_name from car
-		where #{c_year1} &gt;= c_year1 
-		and #{c_year1} &lt;= c_year2
-		and c_brand = #{c_brand}
-	</select>
-	<select id="getCarAllTireSize" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
-		select * from car
-		where #{c_year1} &gt;= c_year1 
-		and #{c_year1} &lt;= c_year2
-		and c_brand = #{c_brand}
-		and c_name = #{c_name}
+	    select c_name from car
+	    where #{c_year1} <![CDATA[>=]]> c_year1 
+	    and #{c_year1} <![CDATA[<=]]> c_year2
+	    and c_brand = #{c_brand}
 	</select>
 	
+	<select id="getCarAllTireSize" resultType="com.tireshoppingmall.home.admin.car.CarDTO">
+	    select * from car
+	    where #{c_year1} <![CDATA[>=]]> c_year1 
+	    and #{c_year1} <![CDATA[<=]]> c_year2
+	    and c_brand = #{c_brand}
+	    and c_name = #{c_name}
+	</select>
+
 </mapper>

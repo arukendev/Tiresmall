@@ -4,46 +4,44 @@
 
 	<!-- Order 페이징 (order 갯수 카운트) -->
 	<select id="getOrderCount" resultType="int">
-		select count(*)
-		from product_order
-				 where
-			o_name like '%'||#{nameInput}||'%'
-		    and	o_phone like '%'||#{phoneInput}||'%'
-		    and	o_ordernumber like '%'||#{orderNumberInput}||'%'
-			<if test="dateSearch1 != '' and dateSearch2 != ''">
-		    and o_orderdate BETWEEN TO_DATE(#{dateSearch1}) 
-        	AND TO_DATE(#{dateSearch2}) + 1
-		</if>
+	    SELECT COUNT(*)
+	    FROM product_order
+	    WHERE
+	        o_name LIKE CONCAT('%', #{nameInput}, '%')
+	        AND o_phone LIKE CONCAT('%', #{phoneInput}, '%')
+	        AND o_ordernumber LIKE CONCAT('%', #{orderNumberInput}, '%')
+	        <if test="dateSearch1 != '' and dateSearch2 != ''">
+	            AND o_orderdate BETWEEN #{dateSearch1} AND DATE_ADD(#{dateSearch2}, INTERVAL 1 DAY)
+	        </if>
 	</select>
-
-	<!-- Order 페이징-->
+	
+	<!-- Order 페이징 -->
 	<select id="getOrder" resultType="com.tireshoppingmall.home.admin.order.OrderDTO">
-		select * from(
-			select rownum as rn, o_no, o_sortation, o_ordernumber,
-			o_orderdate, o_name,O_PRODUCT, o_phone, o_ordername, o_price,
-			o_paymethod, o_deliverymethod, o_step,O_STORESHOP,O_TIREINSTALLDATE,O_EMAIL,
-			O_CARYEAR,O_CARBRAND,O_CARNAME,O_CARNUMBER,O_REQUEST
-			 from(
-				select * from product_order
-				 where
-		       		 o_name like '%'||#{nameInput}||'%'
-		        	and o_phone like '%'||#{phoneInput}||'%'
-		        	and o_ordernumber like '%'||#{orderNumberInput}||'%'
-		      		<if test="dateSearch1 != '' and dateSearch2 != ''">
-					and o_orderdate BETWEEN TO_DATE(#{dateSearch1}) 
-		       		AND TO_DATE(#{dateSearch2}) + 1
-		        	</if>
-		        order by o_no))
-	    where rn &gt;= #{start} and rn &lt;= #{end}
+	    SELECT * FROM (
+	        SELECT @rownum := @rownum + 1 AS rn, o_no, o_sortation, o_ordernumber,
+	            o_orderdate, o_name, o_product, o_phone, o_ordername, o_price,
+	            o_paymethod, o_deliverymethod, o_step, o_storeshop, o_tireinstalldate, o_email,
+	            o_caryear, o_carbrand, o_carname, o_carnumber, o_request
+	        FROM product_order,
+	        (SELECT @rownum := 0) r
+	        WHERE
+	            o_name LIKE CONCAT('%', #{nameInput}, '%')
+	            AND o_phone LIKE CONCAT('%', #{phoneInput}, '%')
+	            AND o_ordernumber LIKE CONCAT('%', #{orderNumberInput}, '%')
+	            <if test="dateSearch1 != '' and dateSearch2 != ''">
+	                AND o_orderdate BETWEEN #{dateSearch1} AND DATE_ADD(#{dateSearch2}, INTERVAL 1 DAY)
+	            </if>
+	        ORDER BY o_no
+	    ) AS temp
+	    WHERE rn <![CDATA[>=]]> #{start} AND rn <![CDATA[<=]]> #{end}
 	</select>
 	
 	<update id="updateOrder">
-		update product_order set o_step = #{o_step} where o_no = #{o_no}
+	    UPDATE product_order SET o_step = #{o_step} WHERE o_no = #{o_no}
 	</update>
-
 	
 	<delete id="deleteOrder">
-		delete from product_order where o_no = #{o_no}
+	    DELETE FROM product_order WHERE o_no = #{o_no}
 	</delete>
 
 </mapper>

@@ -2,92 +2,83 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tireshoppingmall.home.auth.MemberMapper">
 
-<insert id="regMember"  parameterType="com.tireshoppingmall.home.auth.MemberDTO">
-		insert all 
-		into auth_user values(auth_user_seq.nextval, #{u_id}, 1) 
-		into auth_password values(auth_user_seq.nextval , 'test' , #{pw_password}, sysdate)
-		into auth_userinfo values(auth_user_seq.nextval , #{i_name} ,#{i_phoneNum},sysdate, 1,#{i_email})
-		into my_car values(#{mc_number} , auth_user_seq.nextval ,#{mc_carname}, #{mc_brand}, #{mc_year})
-		SELECT * FROM DUAL
-</insert>
-
-<insert id="regMemberSocial"  parameterType="com.tireshoppingmall.home.auth.MemberDTO">
-	insert all 
-		into auth_user values(auth_user_seq.nextval, #{u_id}, #{u_logintype}) 
-		into auth_password values(auth_user_seq.nextval , 'test' , 'social', sysdate)
-		into auth_userinfo values(auth_user_seq.nextval , #{i_name} ,#{i_phoneNum},sysdate, 1,#{i_email})
-		into my_car values(#{mc_number} , auth_user_seq.nextval ,#{mc_carname},
-		#{mc_brand}, #{mc_year})
-	SELECT * FROM DUAL
-</insert>
-
-<select id="checkMember" resultType="string">
-	select pw_password from auth_user,auth_password 
-	where u_no=pw_no and u_id=#{u_id}
-</select>
-
-<select id="getMember" resultType="com.tireshoppingmall.home.auth.AuthUserDTO">
-	select *
-	from auth_user,auth_userinfo
-	,my_car 
-	where auth_user.u_no=auth_userinfo.i_no 
-	and auth_user.u_no= my_car.mc_id 
-	and u_id=#{u_id}
-		
-</select>
-<select id="getSocialMember" resultType="com.tireshoppingmall.home.auth.AuthUserDTO">
-	select *
-	from auth_user,auth_userinfo 
-	,my_car 
-	where auth_user.u_no=auth_userinfo.i_no 
-	and auth_user.u_no= my_car.mc_id 
-	and u_id=#{socialID}
-</select>
-
-
-<select id="checkIDkko" resultType="int">
-	select count(*) from auth_user where u_id=#{ID}
-</select>
-<select id="phoneNumCheck" resultType="int">
-	select count(*) from AUTH_USERINFO where I_PHONENUM = #{phoneNum}
-</select>
-
-<select id="getMyOrder" resultType="com.tireshoppingmall.home.auth.MyOrderDTO">
-	select * from product_order where O_SORTATION=#{u_no}
-</select>
-
-<select id="getNonOrder" resultType="com.tireshoppingmall.home.auth.MyOrderDTO">
-	select * from product_order where o_phone = #{o_phone}
-</select>
-
-<select id="getTireInfo" resultType="com.tireshoppingmall.home.order.CartDTO">
-	select * from tire_group, tire_item where tg_id = ti_tg_id and ti_id = #{tireId}
-</select>
-
-<delete id="deleteMember" >
-	delete auth_user where u_no=#{u_no}
-</delete>
-<update id="updateInfo" parameterType="com.tireshoppingmall.home.auth.MemberDTO" >
-	update (select * from my_car,auth_user where u_no=mc_id) 
-	set mc_number=#{mc_number},mc_carname=#{mc_carname},mc_brand=#{mc_brand},mc_year=#{mc_year} 
-	where u_id=#{u_id}
-</update>
-<select id="idFind" resultType="string">
-	select u_id from auth_user,auth_userinfo 
-	where u_no=i_no and 
-	i_name=#{i_name} and i_phoneNum=#{i_phoneNum}
-</select>
-<select id="pwFind" resultType="int">
-	select count(*) from auth_user,auth_userinfo 
-	where u_no=i_no and u_id=#{u_id} and i_email=#{i_email}
-</select>
-
-<update id="pwSet" parameterType="com.tireshoppingmall.home.auth.MemberDTO">
-	update (select * from auth_password,auth_user where u_no=pw_no) 
-	set pw_password=#{pw_password} , pw_update=sysdate where u_id=#{u_id}
-</update>
-
-
-
+	<insert id="regMember"  parameterType="com.tireshoppingmall.home.auth.MemberDTO">
+	    insert into auth_user (u_id, i_grade) values(#{u_id}, 1)
+	    insert into auth_password (pw_no, pw_password, pw_update) values ((SELECT LAST_INSERT_ID()), 'test', #{pw_password}, NOW())
+	    insert into auth_userInfo (i_no, i_name, i_phoneNum, i_date, i_status, i_email) values ((SELECT LAST_INSERT_ID()), #{i_name}, #{i_phoneNum}, NOW(), 1, #{i_email})
+	    insert into my_car (mc_number, mc_id, mc_carname, mc_brand, mc_year) values(#{mc_number}, (SELECT LAST_INSERT_ID()), #{mc_carname}, #{mc_brand}, #{mc_year})
+	</insert>
+	
+	<insert id="regMemberSocial"  parameterType="com.tireshoppingmall.home.auth.MemberDTO">
+	    insert into auth_user (u_id, u_logintype) values(#{u_id}, #{u_logintype})
+	    insert into auth_password (pw_no, pw_password, pw_update) values ((SELECT LAST_INSERT_ID()), 'test', 'social', NOW())
+	    insert into auth_userInfo (i_no, i_name, i_phoneNum, i_date, i_status, i_email) values ((SELECT LAST_INSERT_ID()), #{i_name}, #{i_phoneNum}, NOW(), 1, #{i_email})
+	    insert into my_car (mc_number, mc_id, mc_carname, mc_brand, mc_year) values(#{mc_number}, (SELECT LAST_INSERT_ID()), #{mc_carname}, #{mc_brand}, #{mc_year})
+	</insert>
+	
+	<select id="checkMember" resultType="string">
+	    select pw_password from auth_user, auth_password 
+	    where u_id=pw_no and u_id=#{u_id}
+	</select>
+	
+	<select id="getMember" resultType="com.tireshoppingmall.home.auth.AuthUserDTO">
+	    select * from auth_user, auth_userinfo, my_car 
+	    where auth_user.u_no=auth_userInfo.i_no 
+	    and auth_user.u_no=my_car.mc_id 
+	    and u_id=#{u_id}
+	</select>
+	
+	<select id="getSocialMember" resultType="com.tireshoppingmall.home.auth.AuthUserDTO">
+	    select * from auth_user, auth_userinfo, my_car 
+	    where auth_user.u_no=auth_userInfo.i_no 
+	    and auth_user.u_no=my_car.mc_id 
+	    and u_id=#{socialID}
+	</select>
+	
+	<select id="checkIDkko" resultType="int">
+	    select count(*) from auth_user where u_id=#{ID}
+	</select>
+	
+	<select id="phoneNumCheck" resultType="int">
+	    select count(*) from auth_userInfo where i_phonenum = #{phoneNum}
+	</select>
+	
+	<select id="getMyOrder" resultType="com.tireshoppingmall.home.auth.MyOrderDTO">
+	    select * from product_order where o_sortation=#{u_no}
+	</select>
+	
+	<select id="getNonOrder" resultType="com.tireshoppingmall.home.auth.MyOrderDTO">
+	    select * from product_order where o_phone = #{o_phone}
+	</select>
+	
+	<select id="getTireInfo" resultType="com.tireshoppingmall.home.order.CartDTO">
+	    select * from tire_group, tire_item where tg_id = ti_tg_id and ti_id = #{tireId}
+	</select>
+	
+	<delete id="deleteMember" >
+	    delete from auth_user where u_no=#{u_no}
+	</delete>
+	
+	<update id="updateInfo" parameterType="com.tireshoppingmall.home.auth.MemberDTO" >
+	    update my_car 
+	    set mc_number=#{mc_number}, mc_carname=#{mc_carname}, mc_brand=#{mc_brand}, mc_year=#{mc_year} 
+	    where mc_id=(select u_no from auth_user where u_id=#{u_id})
+	</update>
+	
+	<select id="idFind" resultType="string">
+	    select u_id from auth_user, auth_userInfo 
+	    where i_no=i_no and i_name=#{i_name} and i_phoneNum=#{i_phoneNum}
+	</select>
+	
+	<select id="pwFind" resultType="int">
+	    select count(*) from auth_user, auth_userInfo 
+	    where i_no=i_no and u_id=#{u_id} and i_email=#{i_email}
+	</select>
+	
+	<update id="pwSet" parameterType="com.tireshoppingmall.home.auth.MemberDTO">
+	    update auth_password 
+	    set pw_password=#{pw_password}, pw_update=NOW() 
+	    where pw_no=(select u_no from auth_user where u_id=#{u_id})
+	</update>
 
 </mapper>
